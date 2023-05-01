@@ -18,6 +18,11 @@ android {
         versionName "1.0"
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+
+        Properties properties = new Properties()
+        properties.load(project.rootProject.file("local.properties").newDataInputStream())
+        buildConfigField "String", "PUBLIC_API_KEY", "${properties.getProperty('publicapikey')}"
+        buildConfigField "String", "PRIVATE_API_KEY", "${properties.getProperty('privateapikey')}"
     }
 
     buildTypes {
