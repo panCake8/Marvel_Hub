@@ -13,9 +13,11 @@ abstract class BaseActivity<VD : ViewDataBinding, VM : ViewModel> : AppCompatAct
 
     abstract val viewModel: VM
 
+    abstract val layoutId: Int
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        binding = DataBindingUtil.setContentView(this, R.layout.activity_main)
+        binding = DataBindingUtil.setContentView(this, layoutId)
         binding.lifecycleOwner = this
 
     }
