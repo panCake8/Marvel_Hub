@@ -9,6 +9,6 @@ import retrofit2.http.Query
 interface MarvelApiService {
     @GET("characters")
     fun getAllCharacters(
-        @Query("apikey") apikey: String = Constants.ApiKey.getApiKeyWithHash()
+        @Query("apikey") apikey: String = Constants.ApiKey.apiKey
     ): Single<MarvelCharactersModel>
 }

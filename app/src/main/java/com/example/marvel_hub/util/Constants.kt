@@ -15,17 +15,18 @@ object Constants {
         private const val LENGTH = 1
         private const val PAD_CHAR = '0'
 
-        fun getApiKeyWithHash(): String {
-            val input = "$timeStamp${BuildConfig.PRIVATE_API_KEY}${BuildConfig.PUBLIC_API_KEY}"
+        private fun getApiKeyWithHash(): String {
+            val apiKey = "$timeStamp${BuildConfig.PRIVATE_API_KEY}${BuildConfig.PUBLIC_API_KEY}"
             val messageDigest = MessageDigest.getInstance(HASH_ALGORITHM)
             return BigInteger(
                 SIG_NUM, messageDigest
-                    .digest(input.toByteArray())
+                    .digest(apiKey.toByteArray())
             )
                 .toString(RADIX)
                 .padStart(LENGTH, PAD_CHAR)
         }
-    }
 
+        val apiKey = getApiKeyWithHash()
+    }
 
 }
