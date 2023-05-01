@@ -59,7 +59,7 @@ dependencies {
     //splash screen
     implementation 'androidx.core:core-splashscreen:1.0.1'
     //activity
-    implementation "androidx.activity:activity-ktx:1.7.1"
+    implementation "androidx.activity:activity-ktx:1.2.4"
     //fragment
     implementation 'androidx.fragment:fragment-ktx:1.5.7'
     //interceptor
