@@ -1,6 +1,9 @@
 plugins {
     id 'com.android.application'
     id 'org.jetbrains.kotlin.android'
+    id 'kotlin-kapt'
+    id "kotlin-parcelize"
+    id 'androidx.navigation.safeargs.kotlin'
 }
 
 android {
@@ -23,6 +26,11 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
     }
+
+    buildFeatures {
+        dataBinding true
+    }
+
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_1_8
         targetCompatibility JavaVersion.VERSION_1_8
@@ -30,15 +38,56 @@ android {
     kotlinOptions {
         jvmTarget = '1.8'
     }
+
+    kapt {
+        correctErrorTypes true
+    }
+
 }
 
 dependencies {
+    def version = "2.2.0"
+    def okhttp_version = "4.9.1"
 
-    implementation 'androidx.core:core-ktx:1.10.0'
-    implementation 'androidx.appcompat:appcompat:1.6.1'
+    implementation 'androidx.core:core-ktx:1.8.0'
+    implementation 'androidx.appcompat:appcompat:1.5.1'
     implementation 'com.google.android.material:material:1.8.0'
     implementation 'androidx.constraintlayout:constraintlayout:2.1.4'
     testImplementation 'junit:junit:4.13.2'
     androidTestImplementation 'androidx.test.ext:junit:1.1.5'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.5.1'
+    //splash screen
+    implementation 'androidx.core:core-splashscreen:1.0.1'
+    //activity
+    implementation "androidx.activity:activity-ktx:1.7.1"
+    //fragment
+    implementation 'androidx.fragment:fragment-ktx:1.5.7'
+    //interceptor
+    //noinspection GradleDependency
+    implementation("com.squareup.okhttp3:logging-interceptor:$okhttp_version")
+    //RxJava3
+    implementation "io.reactivex.rxjava3:rxjava:3.1.6"
+    implementation 'io.reactivex.rxjava3:rxandroid:3.0.2'
+    //RxKotlin
+    implementation 'io.reactivex.rxjava3:rxkotlin:3.0.1'
+    // ViewModel
+    //noinspection GradleDependency
+    implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:$version"
+    //noinspection GradleDependency
+    implementation "androidx.lifecycle:lifecycle-livedata-ktx:$version"
+    //noinspection GradleDependency
+    implementation "androidx.lifecycle:lifecycle-viewmodel-savedstate:$version"
+    //retrofit
+    implementation 'com.squareup.retrofit2:converter-gson:2.9.0'
+    implementation 'com.squareup.retrofit2:retrofit:2.9.0'
+    //retrofit with rxjava3
+    implementation 'com.squareup.retrofit2:adapter-rxjava3:2.9.0'
+    // Navigation component
+    implementation "androidx.navigation:navigation-fragment-ktx:2.5.3"
+    implementation "androidx.navigation:navigation-ui-ktx:2.5.3"
+    //Glide
+    annotationProcessor 'com.github.bumptech.glide:compiler:4.14.1'
+    implementation 'com.github.bumptech.glide:glide:4.14.1'
+    //circleImage
+    implementation 'com.mikhaellopez:circularimageview:4.3.0'
 }
