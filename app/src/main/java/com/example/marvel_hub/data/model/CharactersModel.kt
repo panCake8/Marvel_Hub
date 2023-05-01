@@ -3,7 +3,7 @@ package com.example.marvel_hub.data.model
 
 import com.google.gson.annotations.SerializedName
 
-data class MarvelCharactersModel(
+data class CharactersModel(
     val attributionHTML: String? = "",
     val attributionText: String? = "",
     val code: Int? = 0,
