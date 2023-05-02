@@ -3,6 +3,7 @@ package com.example.marvel_hub.data.api
 import com.example.marvel_hub.data.model.CharactersModel
 import com.example.marvel_hub.data.model.EventModel
 import com.example.marvel_hub.data.model.SeriesModel
+import com.example.marvel_hub.data.model.StoriesModel
 import io.reactivex.rxjava3.core.Single
 import retrofit2.http.GET
 import retrofit2.http.Path
@@ -84,5 +85,37 @@ interface MarvelApiService {
         @Path("seriesId") seriesId: Int
     ): Single<SeriesModel>
 
+    // stories requests
+    @GET("v1/public/stories")
+    fun getAllStories(): Single<StoriesModel>
 
+    @GET("v1/public/stories/{storyId}")
+    fun getStoryById(
+        @Path("storyId") storyId: Int
+    ): Single<StoriesModel>
+
+    @GET("v1/public/stories/{storyId}/characters")
+    fun getCharactersByStoryId(
+        @Path("storyId") storyId: Int
+    ): Single<StoriesModel>
+
+    @GET("v1/public/stories/{storyId}/comics")
+    fun getComicsByStoryId(
+        @Path("storyId") storyId: Int
+    ): Single<StoriesModel>
+
+    @GET("v1/public/stories/{storyId}/creators")
+    fun getCreatorsByStoryId(
+        @Path("storyId") storyId: Int
+    ): Single<StoriesModel>
+
+    @GET("v1/public/stories/{storyId}/events")
+    fun getEventsByStoryId(
+        @Path("storyId") storyId: Int
+    ): Single<StoriesModel>
+
+    @GET("v1/public/stories/{storyId}/series")
+    fun getSeriesByStoryId(
+        @Path("storyId") storyId: Int
+    ): Single<StoriesModel>
 }
