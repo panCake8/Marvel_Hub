@@ -9,10 +9,10 @@ import androidx.databinding.ViewDataBinding
 import androidx.fragment.app.Fragment
 
 
-abstract class BaseFragment<VDB : ViewDataBinding,VM: BaseViewModel> : Fragment() {
+abstract class BaseFragment<VDB : ViewDataBinding, VM : BaseViewModel> : Fragment() {
 
     private var _binding: VDB? = null
-    protected val binding: VDB?
+    protected val binding
         get() = _binding!!
 
     abstract val viewModel: VM
@@ -25,7 +25,7 @@ abstract class BaseFragment<VDB : ViewDataBinding,VM: BaseViewModel> : Fragment(
         savedInstanceState: Bundle?
     ): View? {
         _binding = DataBindingUtil.inflate(inflater, layoutId, container, false)
-        requireNotNull(_binding) .apply {
+        requireNotNull(_binding).apply {
             lifecycleOwner = viewLifecycleOwner
             return root
         }
