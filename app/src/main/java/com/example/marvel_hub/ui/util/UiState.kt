@@ -1,4 +1,4 @@
-package com.example.marvel_hub.data.model
+package com.example.marvel_hub.ui.util
 
 sealed class UiState<out T> {
     data class Success<T>(val data: T) : UiState<T>()
