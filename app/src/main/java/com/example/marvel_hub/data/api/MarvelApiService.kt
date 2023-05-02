@@ -10,7 +10,6 @@ interface MarvelApiService {
     @GET("v1/public/characters")
     fun getAllCharacters(): Single<CharactersModel>
 
-
     @GET("v1/public/characters/{characterId}")
     fun getCharacterById(
         @Path("characterId") characterId: Int,

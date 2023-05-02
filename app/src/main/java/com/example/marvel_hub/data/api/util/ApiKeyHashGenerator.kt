@@ -1,20 +1,23 @@
-package com.example.marvel_hub.data.api
+package com.example.marvel_hub.data.api.util
 
 import com.example.marvel_hub.BuildConfig
-import com.example.marvel_hub.data.api.util.TimeStampCreator
 import java.math.BigInteger
 import java.security.MessageDigest
+import java.sql.Timestamp
 
-class ApiHashGenerator {
+class ApiKeyHashGenerator {
+
+    fun getTimeStamp() = Timestamp(System.currentTimeMillis()).time.toString()
+
     fun getHash(): String {
         val apiKey =
-            "${TimeStampCreator().getTimeStamp()}${BuildConfig.PRIVATE_API_KEY}${BuildConfig.PUBLIC_API_KEY}"
+            "${getTimeStamp()}${BuildConfig.PRIVATE_API_KEY}${BuildConfig.PUBLIC_API_KEY}"
         val messageDigest = MessageDigest.getInstance(HASH_ALGORITHM_TYPE)
+
         return BigInteger(
             SIG_NUM,
             messageDigest.digest(apiKey.toByteArray())
-        )
-            .toString(RADIX)
+        ).toString(RADIX)
             .padStart(LENGTH, PAD_CHAR)
     }
 
