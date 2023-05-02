@@ -16,7 +16,7 @@ object API {
         .addInterceptor(ApiInterceptor())
         .build()
 
-    private const val BASE_URL = "https://gateway.marvel.com/"
+    private const val BASE_URL = "https://gateway.marvel.com/v1/public/"
     private val retrofit = Retrofit.Builder()
         .baseUrl(BASE_URL)
         .client(myClient)
