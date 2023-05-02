@@ -33,4 +33,7 @@ data class StoriesItem(
 
     @field:SerializedName("type")
     val type: String? = null,
+
+    @field:SerializedName("modified")
+    val modified: String? = null,
 )

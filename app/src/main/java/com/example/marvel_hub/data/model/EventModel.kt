@@ -31,6 +31,9 @@ data class EventItem(
 
     @field:SerializedName("thumbnail")
     val thumbnail: Thumbnail? = null,
+
+    @field:SerializedName("modified")
+    val modified: String? = null,
 )
 
 data class Thumbnail(

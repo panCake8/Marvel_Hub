@@ -33,4 +33,7 @@ data class SeriesItem(
 
     @field:SerializedName("rating")
     val rating: String? = null,
+
+    @field:SerializedName("modified")
+    val modified: String? = null,
 )
