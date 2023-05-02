@@ -11,7 +11,7 @@ data class EventModel(
     val code: Int? = null,
 
     @field:SerializedName("data")
-    val data: Data? = null,
+    val data: EventData? = null,
 
     @field:SerializedName("attributionHTML")
     val attributionHTML: String? = null,
@@ -26,25 +26,7 @@ data class EventModel(
     val status: String? = null
 )
 
-data class Previous(
-
-    @field:SerializedName("name")
-    val name: String? = null,
-
-    @field:SerializedName("resourceURI")
-    val resourceURI: String? = null
-)
-
-data class UrlsItem(
-
-    @field:SerializedName("type")
-    val type: String? = null,
-
-    @field:SerializedName("url")
-    val url: String? = null
-)
-
-data class Data(
+data class EventData(
 
     @field:SerializedName("total")
     val total: Int? = null,
@@ -59,7 +41,94 @@ data class Data(
     val count: Int? = null,
 
     @field:SerializedName("results")
-    val results: List<ResultsItem?>? = null
+    val results: List<EventResultsItem?>? = null
+)
+
+data class EventResultsItem(
+
+    @field:SerializedName("next")
+    val next: Next? = null,
+
+    @field:SerializedName("thumbnail")
+    val thumbnail: Thumbnail? = null,
+
+    @field:SerializedName("stories")
+    val stories: Stories? = null,
+
+    @field:SerializedName("previous")
+    val previous: Previous? = null,
+
+    @field:SerializedName("creators")
+    val creators: Creators? = null,
+
+    @field:SerializedName("comics")
+    val comics: Comics? = null,
+
+    @field:SerializedName("start")
+    val start: String? = null,
+
+    @field:SerializedName("description")
+    val description: String? = null,
+
+    @field:SerializedName("resourceURI")
+    val resourceURI: String? = null,
+
+    @field:SerializedName("title")
+    val title: String? = null,
+
+    @field:SerializedName("characters")
+    val characters: Characters? = null,
+
+    @field:SerializedName("urls")
+    val urls: List<UrlsItem?>? = null,
+
+    @field:SerializedName("series")
+    val series: Series? = null,
+
+    @field:SerializedName("modified")
+    val modified: String? = null,
+
+    @field:SerializedName("end")
+    val end: String? = null,
+
+    @field:SerializedName("id")
+    val id: Int? = null
+)
+
+data class Next(
+
+    @field:SerializedName("name")
+    val name: String? = null,
+
+    @field:SerializedName("resourceURI")
+    val resourceURI: String? = null
+)
+
+data class Previous(
+
+    @field:SerializedName("name")
+    val name: String? = null,
+
+    @field:SerializedName("resourceURI")
+    val resourceURI: String? = null
+)
+
+data class Thumbnail(
+
+    @field:SerializedName("path")
+    val path: String? = null,
+
+    @field:SerializedName("extension")
+    val extension: String? = null
+)
+
+data class UrlsItem(
+
+    @field:SerializedName("type")
+    val type: String? = null,
+
+    @field:SerializedName("url")
+    val url: String? = null
 )
 
 data class Characters(
@@ -120,75 +189,6 @@ data class Comics(
 
     @field:SerializedName("items")
     val items: List<Item?>? = null
-)
-
-data class Next(
-
-    @field:SerializedName("name")
-    val name: String? = null,
-
-    @field:SerializedName("resourceURI")
-    val resourceURI: String? = null
-)
-
-data class Thumbnail(
-
-    @field:SerializedName("path")
-    val path: String? = null,
-
-    @field:SerializedName("extension")
-    val extension: String? = null
-)
-
-data class ResultsItem(
-
-    @field:SerializedName("next")
-    val next: Next? = null,
-
-    @field:SerializedName("thumbnail")
-    val thumbnail: Thumbnail? = null,
-
-    @field:SerializedName("stories")
-    val stories: Stories? = null,
-
-    @field:SerializedName("previous")
-    val previous: Previous? = null,
-
-    @field:SerializedName("creators")
-    val creators: Creators? = null,
-
-    @field:SerializedName("comics")
-    val comics: Comics? = null,
-
-    @field:SerializedName("start")
-    val start: String? = null,
-
-    @field:SerializedName("description")
-    val description: String? = null,
-
-    @field:SerializedName("resourceURI")
-    val resourceURI: String? = null,
-
-    @field:SerializedName("title")
-    val title: String? = null,
-
-    @field:SerializedName("characters")
-    val characters: Characters? = null,
-
-    @field:SerializedName("urls")
-    val urls: List<UrlsItem?>? = null,
-
-    @field:SerializedName("series")
-    val series: Series? = null,
-
-    @field:SerializedName("modified")
-    val modified: String? = null,
-
-    @field:SerializedName("end")
-    val end: String? = null,
-
-    @field:SerializedName("id")
-    val id: Int? = null
 )
 
 data class Creators(
