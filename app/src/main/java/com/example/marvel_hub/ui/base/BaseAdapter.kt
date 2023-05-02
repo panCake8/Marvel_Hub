@@ -9,7 +9,7 @@ import androidx.recyclerview.widget.RecyclerView.ViewHolder
 
 abstract class BaseAdapter<T>(
     private val items: List<T>,
-    private val listener: BaseAdapterListener
+    private val listener: BaseAdapterListener?
 ) : RecyclerView.Adapter<BaseAdapter.BaseViewHolder>() {
     abstract val getLayoutId: Int
 
