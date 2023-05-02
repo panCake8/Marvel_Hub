@@ -9,10 +9,10 @@ import retrofit2.http.GET
 import retrofit2.http.Path
 
 interface MarvelApiService {
-    @GET("v1/public/characters")
+    @GET("characters")
     fun getAllCharacters(): Single<CharactersModel>
 
-    @GET("v1/public/characters/{characterId}")
+    @GET("characters/{characterId}")
     fun getCharacterById(
         @Path("characterId") characterId: Int,
     ): Single<CharactersModel>
@@ -46,7 +46,7 @@ interface MarvelApiService {
         @Path("eventId") eventId: Int
     ): Single<EventModel>
 
-    @GET("v1/public/events/{eventId}/series")
+    @GET("v1/public/events/{eventId}/stories")
     fun getStoriesByEventId(
         @Path("eventId") eventId: Int
     ): Single<EventModel>
