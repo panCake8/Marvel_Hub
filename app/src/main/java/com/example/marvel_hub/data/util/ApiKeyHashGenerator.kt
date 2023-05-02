@@ -1,17 +1,14 @@
-package com.example.marvel_hub.data.api.util
+package com.example.marvel_hub.data.util
 
 import com.example.marvel_hub.BuildConfig
 import java.math.BigInteger
 import java.security.MessageDigest
-import java.sql.Timestamp
 
 class ApiKeyHashGenerator {
 
-    fun getTimeStamp() = Timestamp(System.currentTimeMillis()).time.toString()
-
-    fun getHash(): String {
+    fun getHash(timeStamp: String): String {
         val apiKey =
-            "${getTimeStamp()}${BuildConfig.PRIVATE_API_KEY}${BuildConfig.PUBLIC_API_KEY}"
+            "$timeStamp${BuildConfig.PRIVATE_API_KEY}${BuildConfig.PUBLIC_API_KEY}"
         val messageDigest = MessageDigest.getInstance(HASH_ALGORITHM_TYPE)
 
         return BigInteger(
