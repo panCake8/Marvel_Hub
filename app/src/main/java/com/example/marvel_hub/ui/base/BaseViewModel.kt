@@ -10,7 +10,7 @@ abstract class BaseViewModel : ViewModel() {
 
     protected val repository: IMarvelRepository = MarvelRepository()
 
-    private val disposables = CompositeDisposable()
+    protected val disposables = CompositeDisposable()
 
 
     override fun onCleared() {
