@@ -80,7 +80,7 @@ interface MarvelApiService {
         @Path("seriesId") seriesId: Int
     ): Single<SeriesModel>
 
-    @GET("public/series/{seriesId}/characters")
+    @GET("series/{seriesId}/characters")
     fun getCharactersBySeriesId(
         @Path("seriesId") seriesId: Int
     ): Single<SeriesModel>
