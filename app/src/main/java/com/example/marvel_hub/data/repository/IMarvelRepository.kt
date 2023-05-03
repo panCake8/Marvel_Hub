@@ -10,6 +10,10 @@ interface IMarvelRepository {
     fun getAllCharacters(): Single<CharactersModel>
 
     fun getCharacterById(characterId: Int): Single<CharactersModel>
+    fun getCharacterByComics(characterId: Int): Single<CharactersModel>
+    fun getCharacterByEvents(characterId: Int): Single<CharactersModel>
+    fun getCharacterBySeries(characterId: Int): Single<CharactersModel>
+    fun getCharacterByStories(characterId: Int): Single<CharactersModel>
 
     fun getAllEvents(): Single<EventModel>
 
