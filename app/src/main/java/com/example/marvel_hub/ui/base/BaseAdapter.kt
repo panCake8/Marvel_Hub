@@ -8,7 +8,7 @@ import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.RecyclerView.ViewHolder
 
 abstract class BaseAdapter<T>(
-    private val items: List<T>,
+    private var items: List<T>,
     private val listener: BaseAdapterListener?
 ) : RecyclerView.Adapter<BaseAdapter.BaseViewHolder>() {
     abstract val getLayoutId: Int
@@ -25,12 +25,25 @@ abstract class BaseAdapter<T>(
         )
     }
 
+    override fun onBindViewHolder(holder: BaseViewHolder, position: Int) {
+        when (holder) {
+            is ItemViewHolder -> {
+                val item = items[position]
+
+            }
+        }
+    }
+
     override fun getItemCount() = items.size
+
+    fun setItems(items : List<T>){
+        this.items = items
+    }
 
     interface BaseAdapterListener
 
     abstract class BaseViewHolder(binding: ViewDataBinding) : ViewHolder(binding.root)
-    class ItemViewHolder(binding: ViewDataBinding) : BaseViewHolder(binding)
+    class ItemViewHolder(val binding: ViewDataBinding) : BaseViewHolder(binding)
 
 
 }
