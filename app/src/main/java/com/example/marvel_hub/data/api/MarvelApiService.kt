@@ -38,103 +38,103 @@ interface MarvelApiService {
     ): Single<CharactersModel>
 
     // events requests
-    @GET("v1/public/events")
+    @GET("events")
     fun getAllEvents(): Single<EventModel>
 
-    @GET("v1/public/events/{eventId}")
+    @GET("events/{eventId}")
     fun getEventsById(
         @Path("eventId") eventId: Int
     ): Single<EventModel>
 
-    @GET("v1/public/events/{eventId}/characters")
+    @GET("events/{eventId}/characters")
     fun getCharactersByEventId(
         @Path("eventId") eventId: Int
     ): Single<EventModel>
 
-    @GET("v1/public/events/{eventId}/comics")
+    @GET("events/{eventId}/comics")
     fun getComicsByEventId(
         @Path("eventId") eventId: Int
     ): Single<EventModel>
 
-    @GET("v1/public/events/{eventId}/creators")
+    @GET("events/{eventId}/creators")
     fun getCreatorsByEventId(
         @Path("eventId") eventId: Int
     ): Single<EventModel>
 
-    @GET("v1/public/events/{eventId}/series")
+    @GET("events/{eventId}/series")
     fun getSeriesByEventId(
         @Path("eventId") eventId: Int
     ): Single<EventModel>
 
-    @GET("v1/public/events/{eventId}/stories")
+    @GET("events/{eventId}/stories")
     fun getStoriesByEventId(
         @Path("eventId") eventId: Int
     ): Single<EventModel>
 
     // series requests
-    @GET("/v1/public/series")
+    @GET("series")
     fun getAllSeries(): Single<SeriesModel>
 
-    @GET("v1/public/series/{seriesId}")
+    @GET("series/{seriesId}")
     fun getSeriesById(
         @Path("seriesId") seriesId: Int
     ): Single<SeriesModel>
 
-    @GET("v1/public/series/{seriesId}/characters")
+    @GET("public/series/{seriesId}/characters")
     fun getCharactersBySeriesId(
         @Path("seriesId") seriesId: Int
     ): Single<SeriesModel>
 
-    @GET("v1/public/series/{seriesId}/comics")
+    @GET("series/{seriesId}/comics")
     fun getComicsBySeriesId(
         @Path("seriesId") seriesId: Int
     ): Single<SeriesModel>
 
-    @GET("/v1/public/series/{seriesId}/creators")
+    @GET("series/{seriesId}/creators")
     fun getCreatorsBySeriesId(
         @Path("seriesId") seriesId: Int
     ): Single<SeriesModel>
 
-    @GET("v1/public/series/{seriesId}/events")
+    @GET("series/{seriesId}/events")
     fun getEventsBySeriesId(
         @Path("seriesId") seriesId: Int
     ): Single<SeriesModel>
 
-    @GET("v1/public/series/{seriesId}/stories")
+    @GET("series/{seriesId}/stories")
     fun getStoriesBySeriesId(
         @Path("seriesId") seriesId: Int
     ): Single<SeriesModel>
 
     // stories requests
-    @GET("v1/public/stories")
+    @GET("stories")
     fun getAllStories(): Single<StoriesModel>
 
-    @GET("v1/public/stories/{storyId}")
+    @GET("stories/{storyId}")
     fun getStoryById(
         @Path("storyId") storyId: Int
     ): Single<StoriesModel>
 
-    @GET("v1/public/stories/{storyId}/characters")
+    @GET("stories/{storyId}/characters")
     fun getCharactersByStoryId(
         @Path("storyId") storyId: Int
     ): Single<StoriesModel>
 
-    @GET("v1/public/stories/{storyId}/comics")
+    @GET("stories/{storyId}/comics")
     fun getComicsByStoryId(
         @Path("storyId") storyId: Int
     ): Single<StoriesModel>
 
-    @GET("v1/public/stories/{storyId}/creators")
+    @GET("stories/{storyId}/creators")
     fun getCreatorsByStoryId(
         @Path("storyId") storyId: Int
     ): Single<StoriesModel>
 
-    @GET("v1/public/stories/{storyId}/events")
+    @GET("stories/{storyId}/events")
     fun getEventsByStoryId(
         @Path("storyId") storyId: Int
     ): Single<StoriesModel>
 
-    @GET("v1/public/stories/{storyId}/series")
+    @GET("stories/{storyId}/series")
     fun getSeriesByStoryId(
         @Path("storyId") storyId: Int
     ): Single<StoriesModel>
