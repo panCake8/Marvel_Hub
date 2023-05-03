@@ -4,7 +4,7 @@ object Constants {
     const val CHARACTERS = "/characters"
     const val COMICS = "/comics"
     const val CREATORS = "/creators"
-    const val EVENTS = "/characters"
+    const val EVENTS = "/events"
     const val SERIES = "/series"
     const val STORIES = "/stories"
 }
