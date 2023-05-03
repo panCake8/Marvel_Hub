@@ -43,7 +43,7 @@ abstract class BaseAdapter<T>(
     interface BaseAdapterListener
 
     abstract class BaseViewHolder(binding: ViewDataBinding) : ViewHolder(binding.root)
-    class ItemViewHolder(val binding: ViewDataBinding) : BaseViewHolder(binding)
+    class ItemViewHolder(binding: ViewDataBinding) : BaseViewHolder(binding)
 
 
 }
