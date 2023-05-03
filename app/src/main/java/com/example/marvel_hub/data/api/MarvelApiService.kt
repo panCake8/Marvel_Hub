@@ -17,6 +17,26 @@ interface MarvelApiService {
         @Path("characterId") characterId: Int,
     ): Single<CharactersModel>
 
+    @GET("characters/{characterId}/comics")
+    fun getCharacterByComics(
+        @Path("characterId") characterId: Int,
+    ): Single<CharactersModel>
+
+    @GET("characters/{characterId}/events")
+    fun getCharacterByEvents(
+        @Path("characterId") characterId: Int,
+    ): Single<CharactersModel>
+
+    @GET("characters/{characterId}/series")
+    fun getCharacterBySeries(
+        @Path("characterId") characterId: Int,
+    ): Single<CharactersModel>
+
+    @GET("characters/{characterId}/stories")
+    fun getCharacterByStories(
+        @Path("characterId") characterId: Int,
+    ): Single<CharactersModel>
+
     // events requests
     @GET("v1/public/events")
     fun getAllEvents(): Single<EventModel>
