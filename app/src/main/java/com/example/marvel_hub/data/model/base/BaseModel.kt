@@ -1,6 +1,5 @@
 package com.example.marvel_hub.data.model.base
 
-import com.example.marvel_hub.data.model.Thumbnail
 import com.google.gson.annotations.SerializedName
 
 data class BaseModel<T>(
@@ -12,7 +11,8 @@ data class BaseModel<T>(
 )
 
 data class BaseModelData<T>(
+
     @field:SerializedName("results")
-    val results: List<IBaseDataItem<T?>?>? = null
+    val results: List<IDataItem<T?>?>? = null
 )
 

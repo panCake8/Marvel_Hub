@@ -20,10 +20,25 @@ data class EventData(
 )
 
 data class EventItem(
-
     @field:SerializedName("title")
     val title: String? = null,
-)
+
+    @field:SerializedName("title")
+    override val id: Int? = null,
+
+    @field:SerializedName("title")
+    override val description: String? = null,
+
+    @field:SerializedName("title")
+    override val thumbnail: Thumbnail? = null,
+
+    @field:SerializedName("title")
+    override val rating: String? = null,
+
+    @field:SerializedName("title")
+    override val modified: String? = null,
+
+    ) : IBaseDataItem
 
 data class Thumbnail(
 
