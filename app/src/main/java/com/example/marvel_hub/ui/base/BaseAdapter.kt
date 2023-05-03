@@ -36,14 +36,14 @@ abstract class BaseAdapter<T>(
 
     override fun getItemCount() = items.size
 
-    fun setItems(items : List<T>){
+    fun setItems(items: List<T>) {
         this.items = items
     }
 
     interface BaseAdapterListener
 
     abstract class BaseViewHolder(binding: ViewDataBinding) : ViewHolder(binding.root)
-    class ItemViewHolder(binding: ViewDataBinding) : BaseViewHolder(binding)
+    class ItemViewHolder(val binding: ViewDataBinding) : BaseViewHolder(binding)
 
 
 }

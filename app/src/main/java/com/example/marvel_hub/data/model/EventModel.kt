@@ -1,5 +1,6 @@
 package com.example.marvel_hub.data.model
 
+import com.example.marvel_hub.data.model.base.IBaseDataItem
 import com.google.gson.annotations.SerializedName
 
 data class EventModel(
@@ -20,20 +21,8 @@ data class EventData(
 
 data class EventItem(
 
-    @field:SerializedName("id")
-    val id: Int? = null,
-
     @field:SerializedName("title")
     val title: String? = null,
-
-    @field:SerializedName("description")
-    val description: String? = null,
-
-    @field:SerializedName("thumbnail")
-    val thumbnail: Thumbnail? = null,
-
-    @field:SerializedName("modified")
-    val modified: String? = null,
 )
 
 data class Thumbnail(
