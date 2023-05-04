@@ -6,7 +6,7 @@ import com.example.marvel_hub.data.model.CreatorModel
 import com.example.marvel_hub.data.model.EventModel
 import com.example.marvel_hub.data.model.SeriesModel
 import com.example.marvel_hub.data.model.StoriesModel
-import com.example.marvel_hub.data.model.base.BaseModel
+import com.example.marvel_hub.data.model.base.BaseResponse
 import io.reactivex.rxjava3.core.Single
 
 interface IMarvelRepository {
@@ -18,46 +18,46 @@ interface IMarvelRepository {
     fun getCharacterBySeries(characterId: Int): Single<CharactersModel>
     fun getCharacterByStories(characterId: Int): Single<CharactersModel>
 
-    fun getAllEvents(): Single<BaseModel<EventModel>>
+    fun getAllEvents(): Single<BaseResponse<EventModel>>
 
-    fun getEventsById(eventId: Int): Single<BaseModel<EventModel>>
+    fun getEventsById(eventId: Int): Single<BaseResponse<EventModel>>
 
-    fun getCharactersByEventId(eventId: Int): Single<BaseModel<CharactersModel>>
+    fun getCharactersByEventId(eventId: Int): Single<BaseResponse<CharactersModel>>
 
-    fun getComicsByEventId(eventId: Int): Single<BaseModel<ComicModel>>
+    fun getComicsByEventId(eventId: Int): Single<BaseResponse<ComicModel>>
 
-    fun getCreatorsByEventId(eventId: Int): Single<BaseModel<CreatorModel>>
+    fun getCreatorsByEventId(eventId: Int): Single<BaseResponse<CreatorModel>>
 
-    fun getSeriesByEventId(eventId: Int): Single<BaseModel<SeriesModel>>
+    fun getSeriesByEventId(eventId: Int): Single<BaseResponse<SeriesModel>>
 
-    fun getStoriesByEventId(eventId: Int): Single<BaseModel<StoriesModel>>
+    fun getStoriesByEventId(eventId: Int): Single<BaseResponse<StoriesModel>>
 
-    fun getAllSeries(): Single<BaseModel<SeriesModel>>
+    fun getAllSeries(): Single<BaseResponse<SeriesModel>>
 
-    fun getSeriesById(seriesId: Int): Single<BaseModel<SeriesModel>>
+    fun getSeriesById(seriesId: Int): Single<BaseResponse<SeriesModel>>
 
-    fun getCharactersBySeriesId(seriesId: Int): Single<BaseModel<CharactersModel>>
+    fun getCharactersBySeriesId(seriesId: Int): Single<BaseResponse<CharactersModel>>
 
-    fun getComicsBySeriesId(seriesId: Int): Single<BaseModel<ComicModel>>
+    fun getComicsBySeriesId(seriesId: Int): Single<BaseResponse<ComicModel>>
 
-    fun getCreatorsBySeriesId(seriesId: Int): Single<BaseModel<CreatorModel>>
+    fun getCreatorsBySeriesId(seriesId: Int): Single<BaseResponse<CreatorModel>>
 
-    fun getEventsBySeriesId(seriesId: Int): Single<BaseModel<EventModel>>
+    fun getEventsBySeriesId(seriesId: Int): Single<BaseResponse<EventModel>>
 
-    fun getStoriesBySeriesId(seriesId: Int): Single<BaseModel<StoriesModel>>
+    fun getStoriesBySeriesId(seriesId: Int): Single<BaseResponse<StoriesModel>>
 
-    fun getAllStories(): Single<BaseModel<StoriesModel>>
+    fun getAllStories(): Single<BaseResponse<StoriesModel>>
 
-    fun getStoryById(storyId: Int): Single<BaseModel<StoriesModel>>
+    fun getStoryById(storyId: Int): Single<BaseResponse<StoriesModel>>
 
-    fun getCharactersByStoryId(storyId: Int): Single<BaseModel<CharactersModel>>
+    fun getCharactersByStoryId(storyId: Int): Single<BaseResponse<CharactersModel>>
 
-    fun getComicsByStoryId(storyId: Int): Single<BaseModel<ComicModel>>
+    fun getComicsByStoryId(storyId: Int): Single<BaseResponse<ComicModel>>
 
-    fun getCreatorsByStoryId(storyId: Int): Single<BaseModel<CreatorModel>>
+    fun getCreatorsByStoryId(storyId: Int): Single<BaseResponse<CreatorModel>>
 
-    fun getEventsByStoryId(storyId: Int): Single<BaseModel<EventModel>>
+    fun getEventsByStoryId(storyId: Int): Single<BaseResponse<EventModel>>
 
-    fun getSeriesByStoryId(storyId: Int): Single<BaseModel<SeriesModel>>
+    fun getSeriesByStoryId(storyId: Int): Single<BaseResponse<SeriesModel>>
 
 }

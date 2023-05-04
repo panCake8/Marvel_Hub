@@ -1,6 +1,6 @@
 package com.example.marvel_hub.data.model
 
-import com.example.marvel_hub.data.model.base.IDataItem
+import com.example.marvel_hub.data.model.base.IResponseItem
 import com.example.marvel_hub.data.model.base.Thumbnail
 import com.google.gson.annotations.SerializedName
 
@@ -29,4 +29,4 @@ data class CreatorModel(
 
     @field:SerializedName("id")
     override val id: Int? = null,
-) : IDataItem
+) : IResponseItem
