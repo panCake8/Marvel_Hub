@@ -19,6 +19,13 @@
     <color name="black_87">#DE121212</color>
     <color name="black_60">#99121212</color>
     <color name="black_38">#61121212</color>
+    <color name="search_bar_background">#ffffff</color>
+    <color name="ic_search_color">#99121212</color>
+    <color name="background_color">#FAFAFA</color>
+    <color name="input_text_color">#DE121212</color>
+    <color name="hint_color">#99121212</color>
+    <color name="liner_color">#80121212</color>
+    <color name="search_result_text_color">#DEFAFAFA</color>
 
 
 </resources>
