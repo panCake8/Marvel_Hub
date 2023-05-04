@@ -1,9 +1,11 @@
 package com.example.marvel_hub.data.model
 
 import com.example.marvel_hub.data.model.base.IDataItem
+import com.example.marvel_hub.data.model.base.Thumbnail
 import com.google.gson.annotations.SerializedName
 
-data class EventItem(
+data class EventModel(
+
     @field:SerializedName("title")
     val title: String? = null,
 
@@ -11,7 +13,7 @@ data class EventItem(
     override val id: Int? = null,
 
     @field:SerializedName("description")
-    override val description: String? = null,
+    val description: String? = null,
 
     @field:SerializedName("thumbnail")
     override val thumbnail: Thumbnail? = null,
@@ -26,12 +28,3 @@ data class EventItem(
     override val modified: String? = null,
 
     ) : IDataItem
-
-data class Thumbnail(
-
-    @field:SerializedName("path")
-    val path: String? = null,
-
-    @field:SerializedName("extension")
-    val extension: String? = null
-)

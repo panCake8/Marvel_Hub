@@ -1,9 +1,10 @@
 package com.example.marvel_hub.data.model
 
 import com.example.marvel_hub.data.model.base.IDataItem
+import com.example.marvel_hub.data.model.base.Thumbnail
 import com.google.gson.annotations.SerializedName
 
-data class StoriesItem(
+data class StoriesModel(
 
     @field:SerializedName("id")
     override val id: Int? = null,
@@ -12,7 +13,7 @@ data class StoriesItem(
     val title: String? = null,
 
     @field:SerializedName("description")
-    override val description: String? = null,
+    val description: String? = null,
 
     @field:SerializedName("thumbnail")
     override val thumbnail: Thumbnail? = null,

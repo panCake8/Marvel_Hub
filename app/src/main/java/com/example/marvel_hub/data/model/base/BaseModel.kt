@@ -16,3 +16,11 @@ data class BaseModelData<T>(
     val results: List<T?>? = null
 )
 
+data class Thumbnail(
+
+    @field:SerializedName("path")
+    val path: String? = null,
+
+    @field:SerializedName("extension")
+    val extension: String? = null
+)
