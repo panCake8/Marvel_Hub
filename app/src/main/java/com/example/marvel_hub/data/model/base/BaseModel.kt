@@ -13,6 +13,6 @@ data class BaseModel<T>(
 data class BaseModelData<T>(
 
     @field:SerializedName("results")
-    val results: List<IDataItem<T?>?>? = null
+    val results: List<T?>? = null
 )
 
