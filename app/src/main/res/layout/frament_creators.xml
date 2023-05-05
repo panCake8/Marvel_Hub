@@ -24,11 +24,18 @@ xmlns:tools="http://schemas.android.com/tools">
             app:title="Creators"
             />
 
-        <ImageView
+
+
+        <com.google.android.material.imageview.ShapeableImageView
+
             android:id="@+id/imageView"
             android:layout_width="180dp"
             android:layout_height="180dp"
             tools:src="@drawable/marvel"
+            android:adjustViewBounds="true"
+            android:scaleType="fitCenter"
+
+
             android:layout_marginTop="@dimen/large_margin"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
