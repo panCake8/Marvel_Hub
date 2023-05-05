@@ -15,27 +15,27 @@
         app:cardCornerRadius="@dimen/medium_radius">
 
         <androidx.constraintlayout.widget.ConstraintLayout
-            android:id="@+id/card_recipe"
+            android:id="@+id/card_search_result"
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
             <ImageView
                 android:id="@+id/image_search_result"
-                android:layout_height="match_parent"
                 android:layout_width="match_parent"
-                android:scaleType="centerCrop"
-                app:layout_constraintHorizontal_bias="1.0"
+                android:layout_height="match_parent"
+                android:contentDescription="@string/image_description"
                 android:foreground="@drawable/card_foreground"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
+                android:scaleType="centerCrop"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="1.0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintVertical_bias="0.0"
-                tools:src="@drawable/image"
-                android:contentDescription="@string/image_description" />
+                tools:src="@drawable/image" />
 
             <TextView
-                android:id="@+id/text_recipe_name"
+                android:id="@+id/text_result_name"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/search_result_text_name"
