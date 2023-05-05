@@ -10,7 +10,7 @@ data class CreatorModel(
     val lastName: String? = null,
 
     @field:SerializedName("thumbnail")
-    override val thumbnail: Thumbnail? = null,
+    override val thumbnail: Thumbnail?  = Thumbnail(),
 
     @field:SerializedName("fullName")
     val fullName: String? = null,
