@@ -26,6 +26,8 @@
     <color name="hint_color">#99121212</color>
     <color name="liner_color">#80121212</color>
     <color name="search_result_text_color">#DEFAFAFA</color>
+    <color name="selected_chip_color">@color/red</color>
+    <color name="unselected_chip_color">@color/white_87</color>
 
 
 </resources>
