@@ -3,4 +3,7 @@
     <string name="search_hint">search</string>
     <string name="image_description">TODO</string>
     <string name="search_result_text_name">Name</string>
+    <string name="events">events</string>
+    <string name="creators">creators</string>
+    <string name="comics">comics</string>
 </resources>
