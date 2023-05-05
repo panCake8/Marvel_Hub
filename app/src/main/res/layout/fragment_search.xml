@@ -16,12 +16,13 @@
             android:id="@+id/search_bar"
             android:layout_width="match_parent"
             android:layout_height="@dimen/search_bar_height"
-            android:background="@drawable/search_bar_background"
             android:layout_marginHorizontal="@dimen/margin_large"
             android:layout_marginTop="@dimen/margin_medium"
+            android:background="@drawable/search_bar_background"
             android:drawableLeft="@drawable/ic_search"
             android:drawablePadding="@dimen/padding_medium"
             android:hint="@string/search_hint"
+            android:importantForAutofill="no"
             android:inputType="text"
             android:maxLength="50"
             android:paddingHorizontal="@dimen/padding_large"
@@ -31,8 +32,57 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            tools:ignore="RtlHardcoded"
-            android:importantForAutofill="no" />
+            tools:ignore="RtlHardcoded" />
+
+        <com.google.android.material.chip.ChipGroup
+            android:id="@+id/filter_chip_component"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="@dimen/padding_medium"
+
+            app:layout_constraintTop_toBottomOf="@+id/search_bar"
+            app:singleSelection="false">
+
+
+            <com.google.android.material.chip.Chip
+                android:id="@+id/chip_comics"
+                style="@style/Widget.MaterialComponents.Chip.Filter"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/comics"
+                app:chipStrokeColor="@color/red"
+                android:height="83dp"
+                app:chipCornerRadius="8dp"
+                app:chipStrokeWidth="1dp"
+                android:textColor="@color/chip_text_color"
+                app:chipBackgroundColor="@color/chip_background" />
+            <com.google.android.material.chip.Chip
+                android:id="@+id/chip_creators"
+                style="@style/Widget.MaterialComponents.Chip.Filter"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/creators"
+                app:chipStrokeColor="@color/red"
+                android:height="83dp"
+                app:chipCornerRadius="8dp"
+                app:chipStrokeWidth="1dp"
+                android:textColor="@color/chip_text_color"
+                app:chipBackgroundColor="@color/chip_background" />
+            <com.google.android.material.chip.Chip
+                android:id="@+id/chip_events"
+                style="@style/Widget.MaterialComponents.Chip.Filter"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:height="83dp"
+                app:chipCornerRadius="8dp"
+                app:chipStrokeWidth="1dp"
+                app:chipStrokeColor="@color/red"
+                android:text="@string/events"
+                android:textColor="@color/chip_text_color"
+                app:chipBackgroundColor="@color/chip_background" />
+
+
+        </com.google.android.material.chip.ChipGroup>
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/recycler_search_result"
@@ -48,7 +98,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.053"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/search_bar"
+            app:layout_constraintTop_toBottomOf="@+id/filter_chip_component"
             app:layout_constraintVertical_bias="0.04"
             app:spanCount="2"
             tools:listitem="@layout/item_search_result" />
