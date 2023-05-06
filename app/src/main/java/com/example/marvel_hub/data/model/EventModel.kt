@@ -16,7 +16,7 @@ data class EventModel(
     val description: String? = null,
 
     @field:SerializedName("thumbnail")
-    override val thumbnail: Thumbnail? = null,
+    override val thumbnail: Thumbnail?  = Thumbnail(),
 
     @field:SerializedName("start")
     val start: String? = null,
