@@ -16,7 +16,7 @@ data class SeriesModel(
     val description: String? = null,
 
     @field:SerializedName("thumbnail")
-    override val thumbnail: Thumbnail? = null,
+    override val thumbnail: Thumbnail?  = Thumbnail(),
 
     @field:SerializedName("rating")
     val rating: String? = null,
