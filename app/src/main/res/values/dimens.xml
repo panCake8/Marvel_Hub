@@ -56,4 +56,8 @@
 
     <dimen name="lottie_height">140dp</dimen>
 
+    <dimen name="elevation_small">8dp</dimen>
+    <dimen name="height_image_creator">180dp</dimen>
+    <dimen name="width_image_creator">180dp</dimen>
+
 </resources>
