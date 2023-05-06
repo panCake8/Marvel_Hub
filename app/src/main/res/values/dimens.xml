@@ -51,9 +51,12 @@
     <dimen name="input_text_field_description">114dp</dimen>
 
     <dimen name="no_height">0dp</dimen>
+    <dimen name="no_width">0dp</dimen>
 
     <dimen name="edit_text_height">36dp</dimen>
 
     <dimen name="lottie_height">140dp</dimen>
+    <dimen name="image_hero_width">131dp</dimen>
+    <dimen name="image_hero_height">151dp</dimen>
 
 </resources>
