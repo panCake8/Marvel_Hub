@@ -14,29 +14,24 @@ xmlns:tools="http://schemas.android.com/tools">
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <androidx.appcompat.widget.Toolbar
+        <com.google.android.material.appbar.MaterialToolbar
             android:id="@+id/app_bar_details"
-            android:layout_width="match_parent"
-            android:layout_height="@dimen/app_bar_height"
+            style="@style/AppBar"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:title="Creators"
-            />
-
-
+            app:title="Creators" />
 
         <com.google.android.material.imageview.ShapeableImageView
-
-            android:id="@+id/imageView"
-            android:layout_width="180dp"
-            android:layout_height="180dp"
-            tools:src="@drawable/marvel"
+            android:id="@+id/image_creator"
+            android:layout_width="@dimen/width_image_creator"
+            android:layout_height="@dimen/height_image_creator"
+            tools:src="@drawable/creator"
             android:adjustViewBounds="true"
-            android:scaleType="fitCenter"
-
-
+            android:scaleType="centerCrop"
             android:layout_marginTop="@dimen/large_margin"
+            app:shapeAppearanceOverlay="@style/roundimageview"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/app_bar_details" />
@@ -48,10 +43,10 @@ xmlns:tools="http://schemas.android.com/tools">
             android:textSize="@dimen/large_text"
             android:textColor="@color/black_87"
             android:layout_marginTop="@dimen/large_margin"
-            app:layout_constraintEnd_toEndOf="@+id/imageView"
+            app:layout_constraintEnd_toEndOf="@+id/image_creator"
             app:layout_constraintHorizontal_bias="0.489"
-            app:layout_constraintStart_toStartOf="@+id/imageView"
-            app:layout_constraintTop_toBottomOf="@+id/imageView"
+            app:layout_constraintStart_toStartOf="@+id/image_creator"
+            app:layout_constraintTop_toBottomOf="@+id/image_creator"
             tools:text="Creator Name" />
 
         <TextView
@@ -63,11 +58,10 @@ xmlns:tools="http://schemas.android.com/tools">
             android:textSize="@dimen/large_text"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/text_creator_name"
-            tools:text="About Creator" />
-
+            android:text="@string/about_creator" />
 
         <TextView
-            android:id="@+id/text_about_creator_graph"
+            android:id="@+id/text_about_creator_paragraph"
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_margin="@dimen/large_margin"
@@ -91,12 +85,10 @@ xmlns:tools="http://schemas.android.com/tools">
             android:textSize="@dimen/title_text"
             android:background="@drawable/button_background"
             app:layout_constraintCircleRadius="@dimen/large_radius"
-            android:text="Products"
+            android:text="@string/products"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-
-
             />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
