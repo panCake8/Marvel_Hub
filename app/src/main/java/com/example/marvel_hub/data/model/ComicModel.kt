@@ -18,6 +18,6 @@ data class ComicModel(
     @field:SerializedName("id")
     override val id: Int? = null,
 
-    override val thumbnail: Thumbnail?,
+    override val thumbnail: Thumbnail?  = Thumbnail()
 
     ) : IResponseItem
