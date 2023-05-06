@@ -52,8 +52,10 @@
 
     <dimen name="no_height">0dp</dimen>
 
-    <dimen name="edit_text_height">36dp</dimen>
 
-    <dimen name="lottie_height">140dp</dimen>
+    <dimen name="edit_text_height">36dp</dimen>
+    <dimen name="margin_large">16dp</dimen>
+    <dimen name="margin_medium">8dp</dimen>
+    <dimen name="radius_medium">12dp</dimen>
 
 </resources>
