@@ -16,7 +16,7 @@ data class StoriesModel(
     val description: String? = null,
 
     @field:SerializedName("thumbnail")
-    override val thumbnail: Thumbnail? = null,
+    override val thumbnail: Thumbnail? = Thumbnail(),
 
     @field:SerializedName("type")
     val type: String? = null,
