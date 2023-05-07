@@ -1,26 +1,11 @@
 package com.example.marvel_hub.data.model
 
-import com.example.marvel_hub.data.model.base.IResponseItem
-import com.example.marvel_hub.data.model.base.Thumbnail
-import com.google.gson.annotations.SerializedName
 
 data class StoriesModel(
-
-    @field:SerializedName("id")
-    override val id: Int? = null,
-
-    @field:SerializedName("title")
+    val id: Int? = null,
     val title: String? = null,
-
-    @field:SerializedName("description")
     val description: String? = null,
-
-    @field:SerializedName("thumbnail")
-    override val thumbnail: Thumbnail? = Thumbnail(),
-
-    @field:SerializedName("type")
+    val thumbnail: Thumbnail? = Thumbnail(),
     val type: String? = null,
-
-    @field:SerializedName("modified")
-    override val modified: String? = null,
-) : IResponseItem
+    val modified: String? = null,
+)
