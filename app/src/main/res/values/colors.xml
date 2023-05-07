@@ -21,4 +21,10 @@
     <color name="black_38">#61121212</color>
 
 
+    <color name="app_bar_text_color">#121212</color>
+    <color name="background_color">#FAFAFA</color>
+    <dimen name="elevation_small">8dp</dimen>
+    <color name="back_icon_color">#121212</color>
+    <color name="stroke_app_bar">#5EFFFFFF</color>
+
 </resources>
