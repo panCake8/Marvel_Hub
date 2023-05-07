@@ -1,0 +1,78 @@
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+    </data>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <com.google.android.material.appbar.MaterialToolbar
+                android:id="@+id/toolbar_about_marvel"
+                style="@style/AppBar"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:title="@string/about_marvel" />
+
+            <View
+                android:id="@+id/toolbar_stroke"
+                style="@style/AppBarStroke"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/toolbar_about_marvel" />
+
+            <ImageView
+                android:id="@+id/image_marvel"
+                android:layout_width="@dimen/no_height"
+                android:layout_height="@dimen/image_sing_up_height"
+                android:src="@drawable/image_marvel"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/toolbar_stroke" />
+
+            <TextView
+                android:id="@+id/text_creators"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/margin_large"
+                android:layout_marginBottom="@dimen/view_height"
+                android:text="@string/creators"
+                android:textColor="@color/black_100"
+                android:textSize="@dimen/text_creator"
+                app:layout_constraintStart_toStartOf="@id/image_marvel"
+                app:layout_constraintTop_toBottomOf="@id/image_marvel" />
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/recycler_characters"
+                style="@style/RecyclerStyle2"
+                android:orientation="horizontal"
+                app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.666"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/text_creators"
+                tools:listitem="@layout/item_about_marvel" />
+
+
+            <TextView
+                android:id="@+id/creators_details"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/medium_radius"
+                android:layout_marginTop="@dimen/small_padding"
+                android:text="@string/stan_lee_28_1922_12_2018_1989_spider_man_x_men_hulk_iron_man_thor_eisner_award_2008"
+                android:textColor="@color/black_100"
+                android:textSize="@dimen/text_creator"
+                app:layout_constraintStart_toStartOf="@id/image_marvel"
+                app:layout_constraintTop_toBottomOf="@id/recycler_characters" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </ScrollView>
+</layout>
