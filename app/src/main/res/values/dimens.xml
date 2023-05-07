@@ -57,5 +57,8 @@
     <dimen name="margin_large">16dp</dimen>
     <dimen name="margin_medium">8dp</dimen>
     <dimen name="radius_medium">12dp</dimen>
+    <dimen name="height_item_comics_card">220dp</dimen>
+    <dimen name="width_image_item_comics">160dp</dimen>
+    <dimen name="text_creator">14sp</dimen>
 
 </resources>

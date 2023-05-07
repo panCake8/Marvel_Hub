@@ -39,7 +39,7 @@
         <item name="android:layout_height">match_parent</item>
         <item name="android:layout_marginStart">@dimen/margin_large</item>
         <item name="android:layout_marginEnd">@dimen/margin_medium</item>
-        <item name="android:layout_marginTop">64dp</item>
+        <item name="android:layout_marginTop">@dimen/app_bar_height</item>
         <item name="spanCount">2</item>
         <item name="android:orientation">vertical</item>
     </style>
@@ -51,6 +51,6 @@
         <item name="android:layout_marginStart">@dimen/margin_large</item>
         <item name="android:layout_marginEnd">@dimen/margin_medium</item>
         <item name="spanCount">1</item>
-        <item name="android:orientation">vertical</item>
+        <item name="android:orientation">horizontal</item>
     </style>
 </resources>

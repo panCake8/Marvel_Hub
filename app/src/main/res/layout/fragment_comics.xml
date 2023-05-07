@@ -15,7 +15,7 @@
 
 
         <com.google.android.material.appbar.MaterialToolbar
-            android:id="@+id/quick_comics_toolbar"
+            android:id="@+id/toolbar_comics"
             style="@style/AppBar"
             app:layout_constraintEnd_toEndOf="parent"
             android:text="@{viewmodel.getComics().thumbnail}"
@@ -28,7 +28,7 @@
             style="@style/AppBarStroke"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/quick_comics_toolbar" />
+            app:layout_constraintTop_toBottomOf="@id/toolbar_comics" />
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/recycler_comics"
