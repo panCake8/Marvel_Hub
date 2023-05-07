@@ -3,9 +3,9 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="80dp"
-    android:layout_marginHorizontal="16dp"
-    app:cardCornerRadius="12dp">
+    android:layout_height="@dimen/small_card_height"
+    android:layout_marginHorizontal="@dimen/large_margin"
+    app:cardCornerRadius="@dimen/normal_corner_radius">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
@@ -22,12 +22,11 @@
             android:id="@+id/text_about_marvel"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="18dp"
+            android:layout_marginStart="@dimen/large_margin"
             android:fontFamily="@font/poppins_semibold"
             android:includeFontPadding="false"
-            android:lineSpacingExtra="0dp"
             android:text="@string/about_marvel"
-            android:textColor="#DEFFFFFF"
+            android:textColor="@color/white_100"
             android:textSize="@dimen/title_text"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -35,11 +34,11 @@
 
         <ImageView
             android:id="@+id/button_about_marvel"
-            android:layout_width="24dp"
-            android:layout_height="24dp"
-            android:layout_marginEnd="16dp"
+            android:layout_width="@dimen/large_icon_width"
+            android:layout_height="@dimen/large_icon_height"
+            android:layout_marginEnd="@dimen/large_margin"
             android:background="@drawable/background_transparent_circle"
-            android:padding="4dp"
+            android:padding="@dimen/small_padding"
             android:src="@drawable/ic_arrow_right"
             app:layout_constraintBottom_toBottomOf="@id/text_about_marvel"
             app:layout_constraintEnd_toEndOf="parent"

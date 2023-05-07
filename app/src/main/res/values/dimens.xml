@@ -5,12 +5,15 @@
     <dimen name="body_text">14sp</dimen>
     <dimen name="body_text_small">12sp</dimen>
 
+    <dimen name="tiny_small_margin">2dp</dimen>
     <dimen name="small_margin">4dp</dimen>
     <dimen name="medium_margin">8dp</dimen>
     <dimen name="large_margin">16dp</dimen>
 
+
     <dimen name="small_padding">4dp</dimen>
     <dimen name="medium_padding">8dp</dimen>
+    <dimen name="horizontal_padding">12dp</dimen>
     <dimen name="large_padding">16dp</dimen>
 
     <dimen name="small_elevation">8dp</dimen>
@@ -55,8 +58,25 @@
 
     <dimen name="edit_text_height">36dp</dimen>
 
+    <dimen name="large_card_height">180dp</dimen>
+    <dimen name="large_card_width">328dp</dimen>
+    <dimen name="small_card_height">80dp</dimen>
+
+
+    <dimen name="movie_card_height">200dp</dimen>
+    <dimen name="movie_card_width">160dp</dimen>
+
+    <dimen name="large_icon_height">24dp</dimen>
+    <dimen name="large_icon_width">24dp</dimen>
+
+    <dimen name="small_icon_height">16dp</dimen>
+    <dimen name="small_icon_width">16dp</dimen>
+
+
     <dimen name="lottie_height">140dp</dimen>
     <dimen name="image_hero_width">131dp</dimen>
     <dimen name="image_hero_height">151dp</dimen>
+
+    <dimen name="normal_corner_radius">12dp</dimen>
 
 </resources>

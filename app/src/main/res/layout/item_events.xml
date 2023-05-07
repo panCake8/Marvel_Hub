@@ -2,10 +2,10 @@
 <com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="328dp"
-    android:layout_height="180dp"
+    android:layout_width="@dimen/large_card_width"
+    android:layout_height="@dimen/large_card_height"
     android:layout_marginHorizontal="@dimen/small_margin"
-    app:cardCornerRadius="12dp">
+    app:cardCornerRadius="@dimen/normal_corner_radius">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
@@ -15,7 +15,6 @@
             android:id="@+id/image_movie"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:contentDescription="logo"
             android:scaleType="centerCrop"
             tools:src="@drawable/movie_photo" />
 
@@ -28,7 +27,7 @@
             android:ellipsize="end"
             android:fontFamily="@font/poppins_medium"
             android:includeFontPadding="false"
-            android:textColor="#DEFFFFFF"
+            android:textColor="@color/white_100"
             android:textSize="@dimen/title_text"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"

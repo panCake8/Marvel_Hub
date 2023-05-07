@@ -1,4 +1,7 @@
 <resources>
     <string name="app_name">Marvel Hub</string>
     <string name="about_marvel">About Marvel</string>
+    <string name="text_comics">Comics</string>
+    <string name="text_events">Events</string>
+    <string name="text_series">Series</string>
 </resources>
