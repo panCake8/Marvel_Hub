@@ -50,6 +50,11 @@
     <dimen name="height_button">56dp</dimen>
     <dimen name="input_text_field_description">114dp</dimen>
 
+    <dimen name="height_card">240dp</dimen>
+
+    <dimen name="width_loading_error">80dp</dimen>
+    <dimen name="height_loading_error">80dp</dimen>
+
     <dimen name="no_height">0dp</dimen>
 
     <dimen name="edit_text_height">36dp</dimen>
