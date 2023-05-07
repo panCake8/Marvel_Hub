@@ -9,6 +9,7 @@
     <dimen name="medium_margin">8dp</dimen>
     <dimen name="large_margin">16dp</dimen>
 
+
     <dimen name="small_padding">4dp</dimen>
     <dimen name="medium_padding">8dp</dimen>
     <dimen name="large_padding">16dp</dimen>
@@ -52,9 +53,16 @@
 
     <dimen name="no_height">0dp</dimen>
 
-    <dimen name="edit_text_height">36dp</dimen>
 
-    <dimen name="lottie_height">140dp</dimen>
+    <dimen name="edit_text_height">36dp</dimen>
+    <dimen name="margin_large">16dp</dimen>
+    <dimen name="margin_medium">8dp</dimen>
+    <dimen name="radius_medium">12dp</dimen>
+    <dimen name="height_item_comics_card">220dp</dimen>
+    <dimen name="width_image_item_comics">160dp</dimen>
+    <dimen name="text_creator">14sp</dimen>
+    <dimen name="width_image_creator">130dp</dimen>
+    <dimen name="height_image_creator">130dp</dimen>
 
     <dimen name="elevation_small">8dp</dimen>
     <dimen name="height_image_creator">180dp</dimen>
