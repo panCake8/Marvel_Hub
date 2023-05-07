@@ -11,14 +11,14 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:background="@color/white_back_about_marvel">
 
 
         <com.google.android.material.appbar.MaterialToolbar
             android:id="@+id/toolbar_comics"
             style="@style/AppBar"
             app:layout_constraintEnd_toEndOf="parent"
-            android:text="@{viewmodel.getComics().thumbnail}"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:title="@string/comics" />
