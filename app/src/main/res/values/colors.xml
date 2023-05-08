@@ -15,6 +15,7 @@
     <color name="white_60">#99FAFAFA</color>
     <color name="white_38">#61FAFAFA</color>
 
+
     <color name="black_100">#121212</color>
     <color name="black_87">#DE121212</color>
     <color name="black_60">#99121212</color>
@@ -26,5 +27,6 @@
     <dimen name="elevation_small">8dp</dimen>
     <color name="back_icon_color">#121212</color>
     <color name="stroke_app_bar">#5EFFFFFF</color>
+    <color name="white_back_about_marvel">#FFFFFF</color>
 
 </resources>
