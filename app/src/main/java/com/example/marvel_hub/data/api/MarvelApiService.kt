@@ -6,7 +6,7 @@ import com.example.marvel_hub.data.model.CreatorModel
 import com.example.marvel_hub.data.model.EventModel
 import com.example.marvel_hub.data.model.SeriesModel
 import com.example.marvel_hub.data.model.StoriesModel
-import com.example.marvel_hub.data.model.base.BaseResponse
+import com.example.marvel_hub.data.model.BaseResponse
 import io.reactivex.rxjava3.core.Single
 import retrofit2.http.GET
 import retrofit2.http.Path
@@ -78,7 +78,7 @@ interface MarvelApiService {
     @GET("creators/{creatorId}")
     fun getCreatorById(
         @Path("creatorId") creatorId: Int,
-    ): Single<BaseResponse<CreatorModel>>
+    ): Single<CreatorModel>
 
     @GET("creators/{creatorId}/comics")
     fun getComicsByCreatorId(
