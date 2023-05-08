@@ -9,7 +9,7 @@
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@color/white_back_about_marvel">
+        android:background="@color/white_100">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
@@ -52,8 +52,10 @@
                 app:layout_constraintStart_toStartOf="@id/image_marvel"
                 app:layout_constraintTop_toBottomOf="@id/image_marvel" />
 
+
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/recycler_characters"
+                android:layout_marginTop="@dimen/medium_margin"
                 style="@style/RecyclerStyleCreator"
                 android:orientation="horizontal"
                 app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
@@ -61,7 +63,6 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/text_creators"
                 tools:listitem="@layout/item_about_marvel" />
-
 
             <TextView
                 android:id="@+id/creators_details"
