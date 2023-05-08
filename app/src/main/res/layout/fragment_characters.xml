@@ -6,10 +6,6 @@
     <data>
 
         <variable
-            name="adapter"
-            type="com.example.marvel_hub.ui.characters.adapter.CharacterAdapter" />
-
-        <variable
             name="viewModel"
             type="com.example.marvel_hub.ui.characters.viewModel.CharacterViewModel" />
     </data>
@@ -23,7 +19,6 @@
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/recycler_view_characters"
             style="@style/RecyclerViewCharacters"
-            android:adapter="adapter"
             app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
