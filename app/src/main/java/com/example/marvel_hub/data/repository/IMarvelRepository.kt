@@ -6,7 +6,7 @@ import com.example.marvel_hub.data.model.CreatorModel
 import com.example.marvel_hub.data.model.EventModel
 import com.example.marvel_hub.data.model.SeriesModel
 import com.example.marvel_hub.data.model.StoriesModel
-import com.example.marvel_hub.data.model.base.BaseResponse
+import com.example.marvel_hub.data.model.BaseResponse
 import io.reactivex.rxjava3.core.Single
 
 interface IMarvelRepository {
@@ -27,7 +27,7 @@ interface IMarvelRepository {
 
 
     fun getAllCreators(): Single<BaseResponse<CreatorModel>>
-    fun getCreatorById(creatorId: Int): Single<BaseResponse<CreatorModel>>
+    fun getCreatorById(creatorId: Int): Single<CreatorModel>
     fun getComicsByCreatorId(creatorId: Int): Single<BaseResponse<ComicModel>>
     fun getEventsByCreatorId(creatorId: Int): Single<BaseResponse<EventModel>>
     fun getSeriesByCreatorId(creatorId: Int): Single<BaseResponse<SeriesModel>>
