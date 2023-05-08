@@ -60,7 +60,5 @@
     <dimen name="height_item_comics_card">220dp</dimen>
     <dimen name="width_image_item_comics">160dp</dimen>
     <dimen name="text_creator">14sp</dimen>
-    <dimen name="width_image_item_creator">130dp</dimen>
-    <dimen name="height_image_item_creator">130dp</dimen>
 
 </resources>
