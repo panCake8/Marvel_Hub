@@ -73,4 +73,9 @@
     <dimen name="height_image_creator">180dp</dimen>
     <dimen name="width_image_creator">180dp</dimen>
 
+    <dimen name="card_height">240dp</dimen>
+
+    <dimen name="width_error_image">80dp</dimen>
+    <dimen name="height_error_image">80dp</dimen>
+
 </resources>

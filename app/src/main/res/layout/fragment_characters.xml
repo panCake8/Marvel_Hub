@@ -7,22 +7,25 @@
 
         <variable
             name="viewModel"
-            type="com.example.marvel_hub.ui.characters.viewModel.CharacterViewModel" />
+            type="com.example.marvel_hub.ui.character.viewModel.CharacterViewModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:background="@color/background_color">
 
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/recycler_view_characters"
-            style="@style/recyclerViewCharacter"
+            style="@style/RecyclerViewCharacters"
             app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
+            app:recyclerItems="@{viewModel.characterMarvel.toData()}"
+            app:showWhenSuccess="@{viewModel.characterMarvel}"
             app:spanCount="2"
             tools:listitem="@layout/item_character_card" />
 
@@ -33,14 +36,18 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent"
+            app:showWhenLoading="@{viewModel.characterMarvel}" />
 
         <ImageView
             android:id="@+id/image_view_error"
-            style="@style/imageViewError"
+            android:layout_width="@dimen/width_error_image"
+            android:layout_height="@dimen/height_error_image"
+            android:contentDescription="@string/error_image"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent"
+            app:showWhenError="@{viewModel.characterMarvel}" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

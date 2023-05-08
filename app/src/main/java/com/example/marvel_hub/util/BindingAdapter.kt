@@ -5,7 +5,6 @@ import androidx.databinding.BindingAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.example.marvel_hub.ui.base.BaseAdapter
 import com.example.marvel_hub.data.util.DataState
-
 @BindingAdapter(value = ["app:showWhenLoading"])
 fun <T> showWhenLoading(view: View, dataState: DataState<T>?) {
 

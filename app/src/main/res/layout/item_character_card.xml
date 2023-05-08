@@ -11,19 +11,23 @@
 
         <variable
             name="listener"
-            type="com.example.marvel_hub.ui.characters.CharacterInteractionListener" />
+            type="com.example.marvel_hub.ui.character.viewModel.CharacterViewModel" />
     </data>
 
-    <com.google.android.material.card.MaterialCardView style="@style/CardRecItem.Character">
+    <com.google.android.material.card.MaterialCardView
+        style="@style/CardRecItem.Character"
+        android:onClick="@{() -> listener.onClickCharacter(item)}">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/card_character"
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="match_parent"
+            android:background="@color/background_color">
 
             <ImageView
                 android:id="@+id/image_character"
-                style="@style/ImageCardCharacter"
+                style="@style/ImageViewCharacter"
+                android:contentDescription="@string/characters"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -32,10 +36,12 @@
 
             <TextView
                 android:id="@+id/text_view_character_name"
-                style="@style/titleCardCharacter"
+                style="@style/TextViewCharacterName"
+                android:text="@{item.name}"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent" />
+                app:layout_constraintStart_toStartOf="parent"
+                tools:text="HULK" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
