@@ -1,4 +1,4 @@
-package com.example.marvel_hub.ui
+package com.example.marvel_hub.ui.home
 
 import android.os.Bundle
 import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
@@ -14,5 +14,4 @@ class HomeActivity : BaseActivity<ActivityHomeBinding>() {
         installSplashScreen()
         super.onCreate(savedInstanceState)
     }
-
 }
