@@ -78,7 +78,7 @@ interface MarvelApiService {
     @GET("creators/{creatorId}")
     fun getCreatorById(
         @Path("creatorId") creatorId: Int,
-    ): Single<CreatorModel>
+    ): Single<BaseResponse<CreatorModel>>
 
     @GET("creators/{creatorId}/comics")
     fun getComicsByCreatorId(

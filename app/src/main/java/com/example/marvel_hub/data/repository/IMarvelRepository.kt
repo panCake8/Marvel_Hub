@@ -27,7 +27,7 @@ interface IMarvelRepository {
 
 
     fun getAllCreators(): Single<BaseResponse<CreatorModel>>
-    fun getCreatorById(creatorId: Int): Single<CreatorModel>
+    fun getCreatorById(creatorId: Int): Single<BaseResponse<CreatorModel>>
     fun getComicsByCreatorId(creatorId: Int): Single<BaseResponse<ComicModel>>
     fun getEventsByCreatorId(creatorId: Int): Single<BaseResponse<EventModel>>
     fun getSeriesByCreatorId(creatorId: Int): Single<BaseResponse<SeriesModel>>
