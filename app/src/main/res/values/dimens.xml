@@ -95,5 +95,7 @@
     <dimen name="height_error_image">80dp</dimen>
     <dimen name="width_error_marvel">80dp</dimen>
     <dimen name="height_error_marvel">80dp</dimen>
+    <dimen name="width_image_comics">80dp</dimen>
+    <dimen name="hight_image_comics">80dp</dimen>
 
 </resources>
