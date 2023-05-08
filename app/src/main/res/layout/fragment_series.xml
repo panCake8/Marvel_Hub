@@ -5,8 +5,8 @@
 
     <data>
         <variable
-            name="viewmodel"
-            type="" />
+            name="viewModel"
+            type="com.example.marvel_hub.ui.series.SeriesViewModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -31,13 +31,36 @@
             app:layout_constraintTop_toBottomOf="@id/toolbar_series" />
 
         <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/recycler_comics"
+            android:id="@+id/recycler_series"
             style="@style/RecyclerStyle"
             app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
             app:layout_constraintEnd_toEndOf="parent"
+            app:recyclerItems="@{viewModel.series.toData().data.results}"
+            app:showWhenSuccess="@{viewModel.series}"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/toolbar_stroke"
             tools:listitem="@layout/item_series_card" />
+
+        <ImageView
+            android:id="@+id/image_view_error"
+            android:layout_width="64dp"
+            android:layout_height="64dp"
+            android:src="@drawable/baseline_error_24"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:showWhenError="@{viewModel.series}" />
+
+        <ProgressBar
+            android:id="@+id/progress_bar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:showWhenLoading="@{viewModel.series}" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
