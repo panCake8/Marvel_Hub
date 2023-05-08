@@ -19,6 +19,10 @@ class CreatorsFragment : BaseFragment<FragmentCreatorsBinding, CreatorsViewModel
 
         viewModel.getCreator(30)
 
+        binding.buttonProducts.setOnClickListener {
+
+        }
+
 
     }
 
