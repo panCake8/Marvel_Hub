@@ -2,6 +2,7 @@ package com.example.marvel_hub.ui.creators
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
+import com.example.marvel_hub.data.model.BaseResponse
 import com.example.marvel_hub.data.model.CreatorModel
 import com.example.marvel_hub.ui.base.BaseViewModel
 import com.example.marvel_hub.data.util.DataState
@@ -12,8 +13,8 @@ class CreatorsViewModel : BaseViewModel() {
 
 
     private val _creator =
-        MutableLiveData<DataState<CreatorModel?>>(DataState.Loading)
-    val creator: LiveData<DataState<CreatorModel?>>
+        MutableLiveData<DataState<BaseResponse<CreatorModel>>>(DataState.Loading)
+    val creator: LiveData<DataState<BaseResponse<CreatorModel>>>
         get() = _creator
 
     fun getCreator( id :Int) {
@@ -26,7 +27,7 @@ class CreatorsViewModel : BaseViewModel() {
 
     }
 
-    private fun onGetCreatorsSuccess(creators: CreatorModel?) {
+    private fun onGetCreatorsSuccess(creators: BaseResponse<CreatorModel>) {
         _creator.postValue(DataState.Success(creators))
 
     }
