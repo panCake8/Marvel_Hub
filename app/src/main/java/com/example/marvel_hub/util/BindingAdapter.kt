@@ -48,6 +48,6 @@ fun <T> setRecyclerItems(view: RecyclerView, items: List<T>?) {
 }
 
 @BindingAdapter(value = ["app:imageUrl"])
-fun imageUrl(view: ImageView, url: String){
+fun setImageFromUrl(view: ImageView, url: String?) {
     Glide.with(view).load(url).into(view)
 }
