@@ -1,6 +1,6 @@
 package com.example.marvel_hub.data.api
 
-import com.example.marvel_hub.data.api.interceptor.ApiInterceptor
+import com.example.marvel_hub.data.api.interceptor.AuthInterceptor
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
@@ -13,7 +13,7 @@ object API {
     )
     private val myClient = OkHttpClient.Builder()
         .addInterceptor(loggInterceptor)
-        .addInterceptor(ApiInterceptor())
+        .addInterceptor(AuthInterceptor())
         .build()
 
     private const val BASE_URL = "https://gateway.marvel.com/v1/public/"
