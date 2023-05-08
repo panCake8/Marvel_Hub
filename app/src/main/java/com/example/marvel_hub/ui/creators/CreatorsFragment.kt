@@ -17,6 +17,8 @@ class CreatorsFragment : BaseFragment<FragmentCreatorsBinding, CreatorsViewModel
         super.onViewCreated(view, savedInstanceState)
 
 
+        viewModel.getCreator(30)
+
 
     }
 
