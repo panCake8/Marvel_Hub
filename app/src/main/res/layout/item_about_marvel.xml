@@ -1,49 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
-<com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
+<ImageView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="@dimen/small_card_height"
-    android:layout_marginHorizontal="@dimen/large_margin"
-    app:cardCornerRadius="@dimen/normal_corner_radius">
+    android:id="@+id/imageView"
+    android:layout_width="@dimen/width_image_item_creator"
+    android:layout_height="@dimen/height_image_item_creator"
+    android:layout_marginEnd="@dimen/large_margin"
+    app:srcCompat="@drawable/image_stanli" />
 
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:background="@color/white_100">
-
-        <ImageView
-            android:id="@+id/image_about_marvel"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:scaleType="fitXY"
-            tools:src="@drawable/header" />
-
-        <TextView
-            android:id="@+id/text_about_marvel"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/large_margin"
-            android:fontFamily="@font/poppins_semibold"
-            android:includeFontPadding="false"
-            android:text="@string/about_marvel"
-            android:textColor="@color/white_100"
-            android:textSize="@dimen/title_text"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-
-        <ImageView
-            android:id="@+id/button_about_marvel"
-            android:layout_width="@dimen/large_icon_width"
-            android:layout_height="@dimen/large_icon_height"
-            android:layout_marginEnd="@dimen/large_margin"
-            android:background="@drawable/background_transparent_circle"
-            android:padding="@dimen/small_padding"
-            android:src="@drawable/ic_arrow_right"
-            app:layout_constraintBottom_toBottomOf="@id/text_about_marvel"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="@id/text_about_marvel" />
-
-    </androidx.constraintlayout.widget.ConstraintLayout>
-</com.google.android.material.card.MaterialCardView>

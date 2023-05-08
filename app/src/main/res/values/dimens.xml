@@ -48,6 +48,8 @@
     <dimen name="icon_search_result_height">40dp</dimen>
     <dimen name="icon_search_result_width">40dp</dimen>
 
+    <dimen name="transparent_circle_radius">100dp</dimen>
+
     <dimen name="height_button">56dp</dimen>
     <dimen name="input_text_field_description">114dp</dimen>
 
@@ -77,5 +79,14 @@
     <dimen name="normal_corner_radius">12dp</dimen>
 
     <dimen name="lottie_height">140dp</dimen>
+    <dimen name="margin_large">16dp</dimen>
+    <dimen name="margin_medium">8dp</dimen>
+    <dimen name="radius_medium">12dp</dimen>
+    <dimen name="height_item_comics_card">220dp</dimen>
+    <dimen name="width_image_item_comics">160dp</dimen>
+    <dimen name="text_creator">14sp</dimen>
+    <dimen name="width_image_item_creator">130dp</dimen>
+    <dimen name="height_image_item_creator">130dp</dimen>
+    <dimen name="elevation_small">8dp</dimen>
 
 </resources>
