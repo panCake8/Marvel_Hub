@@ -29,6 +29,7 @@
                 android:id="@+id/image_character"
                 style="@style/ImageViewCharacter"
                 android:contentDescription="@string/characters"
+                app:imageUrl="@{item.thumbnail.image}"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
