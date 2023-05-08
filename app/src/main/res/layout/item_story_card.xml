@@ -9,7 +9,7 @@
             type="com.example.marvel_hub.data.model.SeriesModel" />
         <variable
             name="listener"
-            type= "com.example.marvel_hub.ui.stories.StoryViewModel"/>
+            type= "com.example.marvel_hub.ui.stories.StoriesInteractionListener"/>
     </data>
 
     <com.google.android.material.card.MaterialCardView
