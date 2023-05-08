@@ -4,12 +4,12 @@ import android.view.View
 import androidx.databinding.BindingAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.example.marvel_hub.ui.base.BaseAdapter
-import com.example.marvel_hub.ui.util.UiState
+import com.example.marvel_hub.data.util.DataState
 
 @BindingAdapter(value = ["app:showWhenLoading"])
-fun <T> showWhenLoading(view: View, uiState: UiState<T>?) {
+fun <T> showWhenLoading(view: View, dataState: DataState<T>?) {
 
-    if (uiState is UiState.Loading)
+    if (dataState is DataState.Loading)
         view.visibility = View.VISIBLE
     else
         view.visibility = View.GONE
@@ -17,9 +17,9 @@ fun <T> showWhenLoading(view: View, uiState: UiState<T>?) {
 }
 
 @BindingAdapter(value = ["app:showWhenError"])
-fun <T> showWhenError(view: View, uiState: UiState<T>?) {
+fun <T> showWhenError(view: View, dataState: DataState<T>?) {
 
-    if (uiState is UiState.Error)
+    if (dataState is DataState.Error)
         view.visibility = View.VISIBLE
     else
         view.visibility = View.GONE
@@ -27,9 +27,9 @@ fun <T> showWhenError(view: View, uiState: UiState<T>?) {
 }
 
 @BindingAdapter(value = ["app:showWhenSuccess"])
-fun <T> showWhenSuccess(view: View, uiState: UiState<T>?) {
+fun <T> showWhenSuccess(view: View, dataState: DataState<T>?) {
 
-    if (uiState is UiState.Success)
+    if (dataState is DataState.Success)
         view.visibility = View.VISIBLE
     else
         view.visibility = View.GONE
