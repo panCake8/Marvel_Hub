@@ -5,4 +5,9 @@
         <item name="android:textSize">@dimen/large_text</item>
         <item name="android:textColor">@color/black_87</item>
     </style>
+
+    <style name="header" parent="Widget.AppCompat.TextView">
+        <item name="android:textSize">@dimen/title_text</item>
+        <item name="android:textColor">@color/black_60</item>
+    </style>
 </resources>
