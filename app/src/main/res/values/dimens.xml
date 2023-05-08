@@ -89,4 +89,9 @@
     <dimen name="height_image_item_creator">130dp</dimen>
     <dimen name="elevation_small">8dp</dimen>
 
+    <dimen name="card_height">240dp</dimen>
+
+    <dimen name="width_error_image">80dp</dimen>
+    <dimen name="height_error_image">80dp</dimen>
+
 </resources>
