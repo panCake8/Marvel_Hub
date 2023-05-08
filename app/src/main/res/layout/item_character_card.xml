@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="item"
+            type="com.example.marvel_hub.data.model.CharactersModel" />
+
+        <variable
+            name="listener"
+            type="com.example.marvel_hub.ui.characters.viewModel.CharacterViewModel" />
+    </data>
+
+
+    <com.google.android.material.card.MaterialCardView
+        style="@style/CardRecItem.Character"
+        android:onClick="@{() -> listener.onClickCharacter(item)}">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/card_character"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/background_color">
+
+            <ImageView
+                android:id="@+id/image_character"
+                style="@style/ImageViewCharacter"
+                android:contentDescription="@string/characters"
+                app:imageUrl="@{item.thumbnail.image}"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:srcCompat="@tools:sample/backgrounds/scenic" />
+
+            <TextView
+                android:id="@+id/text_view_character_name"
+                style="@style/TextViewCharacterName"
+                android:text="@{item.name}"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                tools:text="HULK" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </com.google.android.material.card.MaterialCardView>
+</layout>

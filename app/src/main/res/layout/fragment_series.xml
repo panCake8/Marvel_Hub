@@ -6,7 +6,7 @@
     <data>
         <variable
             name="viewmodel"
-            type="com.example.marvel_hub.ui.comics.ViewModelComics" />
+            type="" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -16,19 +16,19 @@
 
 
         <com.google.android.material.appbar.MaterialToolbar
-            android:id="@+id/toolbar_comics"
+            android:id="@+id/toolbar_series"
             style="@style/AppBar"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:title="@string/comics" />
+            app:title="@string/series" />
 
         <View
             android:id="@+id/toolbar_stroke"
             style="@style/AppBarStroke"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/toolbar_comics" />
+            app:layout_constraintTop_toBottomOf="@id/toolbar_series" />
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/recycler_comics"
@@ -37,7 +37,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/toolbar_stroke"
-            tools:listitem="@layout/item_comics_card" />
+            tools:listitem="@layout/item_series_card" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
