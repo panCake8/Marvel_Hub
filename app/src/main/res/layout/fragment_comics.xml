@@ -5,14 +5,14 @@
 
     <data>
         <variable
-            name="viewmodel"
-            type="com.example.marvel_hub.ui.comics.ViewModelComics" />
+            name="viewModel"
+            type="com.example.marvel_hub.ui.comics.ComicsViewModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@color/white_100">
+        android:background="@color/background_color">
 
 
         <com.google.android.material.appbar.MaterialToolbar
@@ -33,11 +33,32 @@
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/recycler_comics"
             style="@style/RecyclerStyle"
+            app:recyclerItems="@{viewModel._comics.toData().data.results}"
+            app:showWhenSuccess="@{viewModel._getComics}"
             app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/toolbar_stroke"
             tools:listitem="@layout/item_comics_card" />
 
+        <ProgressBar
+            android:id="@+id/progress_bar_loading"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:showWhenLoading="@{viewModel._getComics}"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintTop_toTopOf="parent"/>
+
+        <ImageView
+            android:id="@+id/image_view_error"
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            app:showWhenError="@{viewModel._getComics}"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
