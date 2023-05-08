@@ -9,6 +9,7 @@
     <dimen name="medium_margin">8dp</dimen>
     <dimen name="large_margin">16dp</dimen>
 
+
     <dimen name="small_padding">4dp</dimen>
     <dimen name="medium_padding">8dp</dimen>
     <dimen name="large_padding">16dp</dimen>
@@ -62,5 +63,6 @@
     <dimen name="text_creator">14sp</dimen>
     <dimen name="width_image_item_creator">130dp</dimen>
     <dimen name="height_image_item_creator">130dp</dimen>
+    <dimen name="elevation_small">8dp</dimen>
 
 </resources>
