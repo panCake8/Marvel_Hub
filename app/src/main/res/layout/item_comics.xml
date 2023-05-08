@@ -18,7 +18,7 @@
             android:layout_width="@dimen/movie_card_width"
             android:layout_height="@dimen/movie_card_height"
             android:foreground="@drawable/background_bottom_linear_transparent"
-            android:scaleType="centerCrop"
+            android:scaleType="fitXY"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
