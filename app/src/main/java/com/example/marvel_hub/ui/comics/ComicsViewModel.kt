@@ -4,7 +4,6 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.example.marvel_hub.data.model.BaseResponse
 import com.example.marvel_hub.data.model.ComicModel
-import com.example.marvel_hub.data.model.EventModel
 import com.example.marvel_hub.data.util.DataState
 import com.example.marvel_hub.ui.base.BaseViewModel
 import com.example.marvel_hub.util.Event
@@ -12,16 +11,16 @@ import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
 import io.reactivex.rxjava3.kotlin.addTo
 import io.reactivex.rxjava3.schedulers.Schedulers
 
-class ComicsViewModel() : BaseViewModel(), ComicsInterActionListener {
+class ComicsViewModel() : BaseViewModel(), onClickComic {
 
-    val _getComics = MutableLiveData<DataState<BaseResponse<ComicModel>>>()
-    val _comics: LiveData<DataState<BaseResponse<ComicModel>>>
-        get() = _getComics
+    private val _Comics = MutableLiveData<DataState<BaseResponse<ComicModel>>>()
+    val comics: LiveData<DataState<BaseResponse<ComicModel>>>
+        get() = _Comics
 
 
-    val getComic = MutableLiveData<Event<ComicModel>>()
-    val comic: LiveData<Event<ComicModel>>
-        get() = getComic
+   private val _selectedComicsItem = MutableLiveData<Event<ComicModel>>()
+    val selectedComicsItem: LiveData<Event<ComicModel>>
+        get() = _selectedComicsItem
 
     init {
         getComics()
@@ -37,14 +36,14 @@ class ComicsViewModel() : BaseViewModel(), ComicsInterActionListener {
     }
 
     fun onSuccess(comicsResponse: BaseResponse<ComicModel>) {
-        _getComics.postValue(DataState.Success(comicsResponse))
+        _Comics.postValue(DataState.Success(comicsResponse))
     }
 
     fun onFaild(message: Throwable) {
-        _getComics.postValue(message.localizedMessage?.let { DataState.Error(it) })
+        _Comics.postValue(message.localizedMessage?.let { DataState.Error(it) })
     }
 
     override fun onClickComics(comics: ComicModel) {
-        getComic.postValue(Event(comics))
+        _selectedComicsItem.postValue(Event(comics))
     }
 }

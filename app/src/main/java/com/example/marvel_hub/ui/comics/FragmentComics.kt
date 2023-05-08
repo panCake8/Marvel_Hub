@@ -19,7 +19,7 @@ class FragmentComics : BaseFragment<FragmentComicsBinding, ComicsViewModel>() {
         val adapter = ComicsAdapter(mutableListOf(), viewModel)
         binding.recyclerComics.adapter = adapter
 
-        viewModel.getComic.observe(viewLifecycleOwner,EventObserver{
+        viewModel.selectedComicsItem.observe(viewLifecycleOwner,EventObserver{
             //Todo
         })
     }

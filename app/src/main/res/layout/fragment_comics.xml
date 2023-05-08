@@ -33,8 +33,8 @@
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/recycler_comics"
             style="@style/RecyclerStyle"
-            app:recyclerItems="@{viewModel._comics.toData().data.results}"
-            app:showWhenSuccess="@{viewModel._getComics}"
+            app:recyclerItems="@{viewModel.comics.toData().data.results}"
+            app:showWhenSuccess="@{viewModel.comics}"
             app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -45,7 +45,7 @@
             android:id="@+id/progress_bar_loading"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            app:showWhenLoading="@{viewModel._getComics}"
+            app:showWhenLoading="@{viewModel.comics}"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintBottom_toBottomOf="parent"
@@ -53,9 +53,9 @@
 
         <ImageView
             android:id="@+id/image_view_error"
-            android:layout_width="80dp"
-            android:layout_height="80dp"
-            app:showWhenError="@{viewModel._getComics}"
+            android:layout_width="@dimen/width_image_comics"
+            android:layout_height="@dimen/hight_image_comics"
+            app:showWhenError="@{viewModel.comics}"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
