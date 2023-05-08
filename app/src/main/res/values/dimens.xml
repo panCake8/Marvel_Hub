@@ -47,6 +47,8 @@
     <dimen name="icon_search_result_height">40dp</dimen>
     <dimen name="icon_search_result_width">40dp</dimen>
 
+    <dimen name="transparent_circle_radius">100dp</dimen>
+
     <dimen name="height_button">56dp</dimen>
     <dimen name="input_text_field_description">114dp</dimen>
 
