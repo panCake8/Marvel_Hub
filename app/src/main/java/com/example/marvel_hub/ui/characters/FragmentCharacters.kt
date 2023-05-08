@@ -13,7 +13,7 @@ import com.example.marvel_hub.util.EventObserver
 class FragmentCharacters : BaseFragment<FragmentCharactersBinding, CharacterViewModel>() {
 
     override val viewModel: CharacterViewModel by viewModels()
-    override val layoutId: Int = R.layout.fragment_characters
+    override val layoutId: Int get() = R.layout.fragment_characters
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
