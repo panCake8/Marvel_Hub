@@ -10,7 +10,7 @@
 
         <variable
             name="listener"
-            type="com.example.marvel_hub.ui.comics.ComicsViewModel" />
+            type="com.example.marvel_hub.ui.comics.OnClickComic" />
     </data>
 
     <com.google.android.material.card.MaterialCardView
@@ -19,7 +19,7 @@
         android:layout_marginStart="@dimen/margin_large"
         android:layout_marginEnd="@dimen/margin_medium"
         android:layout_marginBottom="@dimen/margin_large"
-        android:onClick="@{() -> listener.onClickComics(item)}"
+        android:onClick="@{() -> listener.onClickComic(item)}"
         app:cardCornerRadius="@dimen/radius_medium">
 
         <androidx.constraintlayout.widget.ConstraintLayout
