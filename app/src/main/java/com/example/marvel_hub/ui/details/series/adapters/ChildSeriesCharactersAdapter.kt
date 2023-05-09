@@ -6,5 +6,5 @@ import com.example.marvel_hub.ui.base.BaseAdapter
 
 class ChildSeriesCharactersAdapter(items: List<SeriesModel>, listener: BaseAdapterListener) :
     BaseAdapter<SeriesModel>(items, listener) {
-    override val getLayoutId = R.layout.item_character
+    override val getLayoutId = R.layout.item_details_character
 }
