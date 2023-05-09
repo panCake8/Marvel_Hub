@@ -1,21 +1,27 @@
 package com.example.marvel_hub.ui.search
 
 import android.os.Bundle
-import android.view.KeyEvent
 import android.view.View
 import androidx.core.widget.doOnTextChanged
 import androidx.fragment.app.viewModels
 import com.example.marvel_hub.R
 import com.example.marvel_hub.databinding.FragmentSearchBinding
 import com.example.marvel_hub.ui.base.BaseFragment
+import com.example.marvel_hub.ui.search.adapter.CreatorAdapter
+import com.example.marvel_hub.ui.search.adapter.EventAdapter
 import com.example.marvel_hub.ui.search.viewModel.SearchViewModel
-import com.google.android.material.chip.Chip
 import io.reactivex.rxjava3.core.Observable
 import java.util.concurrent.TimeUnit
 
 class SearchFragment : BaseFragment<FragmentSearchBinding, SearchViewModel>() {
 
     override val viewModel: SearchViewModel by viewModels()
+
+    private val eventAdapter = EventAdapter(mutableListOf(), viewModel)
+
+   private val comicAdapter = ComicsAdapter(mutableListOf(), viewModel)
+
+    private val creatorAdapter = CreatorAdapter(mutableListOf(), viewModel)
 
     override val layoutId: Int
         get() = R.layout.fragment_search
@@ -24,61 +30,45 @@ class SearchFragment : BaseFragment<FragmentSearchBinding, SearchViewModel>() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        onSelectComicChip()
+        onSelectCreatorChip()
+        onSelectEventChip()
+
+        viewModel.result.observe(viewLifecycleOwner) {
+            onSelectEventChip()
+            onSelectCreatorChip()
+        }
+    }
 
 
-        searchHandel()
-
-
-        val debounceOperator = Observable.create { emitter ->
-            binding.searchBar.doOnTextChanged { text, start, before, count ->
-                emitter.onNext(text.toString())
-
-                if (showSelectedChips() == "Comics") {
-                    viewModel.searchInComics(text)
-                } else if (showSelectedChips() == "Creators") {
-                    viewModel.searchInCreators(text)
-                } else if (showSelectedChips() == "Events") {
-                    viewModel.searchInEvent(text)
-                }
-            }
-        }.debounce(1, TimeUnit.SECONDS)
-        debounceOperator.subscribe { it ->
-
+    private fun onSelectComicChip() {
+        binding.chipComics.setOnClickListener {
+            binding.recyclerSearchResult.adapter = comicAdapter
         }
 
 
     }
 
-
-    private fun searchHandel() {
-        binding.searchBar.setOnKeyListener { _, keyCode, event ->
-            if (event.action == KeyEvent.ACTION_UP && keyCode == KeyEvent.KEYCODE_ENTER) {
-                // Do something when the Enter key is pressed
-                val inputText = binding.searchBar.text.toString()
-                if (showSelectedChips() == "Comics") {
-                    viewModel.searchInComics(inputText)
-                } else if (showSelectedChips() == "Creators") {
-                    viewModel.searchInCreators(inputText)
-                } else if (showSelectedChips() == "Events") {
-                    viewModel.searchInEvent(inputText)
-                }
-
-
-                return@setOnKeyListener true
-            }
-            return@setOnKeyListener false
+    private fun onSelectEventChip() {
+        binding.chipEvents.setOnClickListener {
+            binding.recyclerSearchResult.adapter = eventAdapter
         }
+
     }
 
-    private fun showSelectedChips(): String {
-        val selectedChipsIds = binding.filterChipComponent.checkedChipIds
-        val selectedChips = mutableListOf<String>()
-        for (id in selectedChipsIds) {
-            val chip = binding.filterChipComponent.findViewById<Chip>(id)
-            selectedChips.add(chip.text.toString())
+    private fun onSelectCreatorChip() {
+        binding.chipCreators.setOnClickListener {
+            binding.recyclerSearchResult.adapter = creatorAdapter
         }
-        return selectedChips.joinToString(", ")
+
     }
+    val debounceOperator = Observable.create {emitter ->
+        binding.searchBar.doOnTextChanged { text, start, before, count ->
+            emitter.onNext(text.toString())
+        }
+    }.debounce (1,TimeUnit.SECONDS)
+
 
 
 }
+

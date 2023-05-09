@@ -4,14 +4,14 @@ import com.example.marvel_hub.R
 import com.example.marvel_hub.data.model.ComicModel
 import com.example.marvel_hub.ui.base.BaseAdapter
 
-class ComicsAdapter(items: List<ComicModel>, listener: BaseAdapterListener) :
+class ComicsAdapter(items: List<ComicModel>, listener: ComicInteractionListener) :
     BaseAdapter<ComicModel>(items, listener) {
 
     override val getLayoutId: Int
-    get() =  R.layout.item_comics_card
+    get() =  R.layout.item_search_comics
 
 }
 
-interface OnClickComic : BaseAdapter.BaseAdapterListener {
+interface ComicInteractionListener : BaseAdapter.BaseAdapterListener {
     fun onClickComic(comic: ComicModel)
 }
