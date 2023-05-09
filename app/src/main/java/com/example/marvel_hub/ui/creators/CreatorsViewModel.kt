@@ -6,16 +6,20 @@ import com.example.marvel_hub.data.model.BaseResponse
 import com.example.marvel_hub.data.model.CreatorModel
 import com.example.marvel_hub.ui.base.BaseViewModel
 import com.example.marvel_hub.data.util.DataState
+import com.example.marvel_hub.util.Event
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
 import io.reactivex.rxjava3.schedulers.Schedulers
 
 class CreatorsViewModel : BaseViewModel() {
 
-
-    private val _creator =
-        MutableLiveData<DataState<BaseResponse<CreatorModel>>>(DataState.Loading)
+    private val _creator = MutableLiveData<DataState<BaseResponse<CreatorModel>>>()
     val creator: LiveData<DataState<BaseResponse<CreatorModel>>>
         get() = _creator
+
+    private val _selectedCreatorItem = MutableLiveData<Event<CreatorModel>>()
+    val selectedCreatorItem: LiveData<Event<CreatorModel>>
+        get() = _selectedCreatorItem
+
 
     fun getCreator( id :Int) {
         disposable.add(
