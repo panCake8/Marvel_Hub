@@ -7,6 +7,7 @@ import com.example.marvel_hub.data.model.CharactersModel
 import com.example.marvel_hub.data.model.ComicModel
 import com.example.marvel_hub.data.model.EventModel
 import com.example.marvel_hub.data.model.SeriesModel
+import com.example.marvel_hub.data.model.StoriesModel
 import com.example.marvel_hub.data.util.DataState
 import com.example.marvel_hub.ui.base.BaseViewModel
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
@@ -34,6 +35,11 @@ class CharacterDetailsViewModel : BaseViewModel() {
         MutableLiveData<DataState<BaseResponse<EventModel>>>(DataState.Loading)
     val events: LiveData<DataState<BaseResponse<EventModel>>>
         get() = _events
+
+    private val _stories =
+        MutableLiveData<DataState<BaseResponse<StoriesModel>>>(DataState.Loading)
+    val stories: LiveData<DataState<BaseResponse<StoriesModel>>>
+        get() = _stories
 
     fun getCharacterById(characterId: Int) =
         repository.getCharacterById(characterId).observeOn(Schedulers.io())
@@ -73,6 +79,7 @@ class CharacterDetailsViewModel : BaseViewModel() {
     private fun seriesOnSuccess(series: BaseResponse<SeriesModel>) {
         _series.postValue(DataState.Success(series))
     }
+
     private fun seriesOnError(error: Throwable) {
         _series.postValue(DataState.Error(error.message.toString()))
     }
@@ -85,8 +92,22 @@ class CharacterDetailsViewModel : BaseViewModel() {
     private fun eventsOnSuccess(events: BaseResponse<EventModel>) {
         _events.postValue(DataState.Success(events))
     }
+
     private fun eventsOnError(error: Throwable) {
         _events.postValue(DataState.Error(error.message.toString()))
+    }
+
+    private fun getStoriesByCharacterId(characterId: Int) =
+        repository.getStoriesByCharacterId(characterId).observeOn(Schedulers.io())
+            .subscribeOn(AndroidSchedulers.mainThread())
+            .subscribe(::storiesOnSuccess, ::storiesOnError).addTo(disposable)
+
+    private fun storiesOnSuccess(events: BaseResponse<StoriesModel>) {
+        _stories.postValue(DataState.Success(events))
+    }
+
+    private fun storiesOnError(error: Throwable) {
+        _stories.postValue(DataState.Error(error.message.toString()))
     }
 
     companion object {
