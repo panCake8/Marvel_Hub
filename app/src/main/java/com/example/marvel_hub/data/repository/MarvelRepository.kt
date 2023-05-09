@@ -17,6 +17,7 @@ class MarvelRepository : IMarvelRepository {
     override fun getStoriesByCharacterId(characterId: Int) =API.apiService.getStoriesByCharacterId(characterId)
 
     override fun getAllComics() = API.apiService.getAllComics()
+    override fun searchComics(name:String) = API.apiService.searchComics(name)
 
     override fun getComicById(comicId: Int) = API.apiService.getComicsById(comicId)
 
@@ -29,6 +30,7 @@ class MarvelRepository : IMarvelRepository {
     override fun getStoriesByComicId(comicId: Int) = API.apiService.getStoriesByComicId(comicId)
 
     override fun getAllCreators() = API.apiService.getAllCreators()
+    override fun searchCreators(name:String)= API.apiService.searchCreators(name)
 
     override fun getCreatorById(creatorId: Int) = API.apiService.getCreatorById(creatorId)
 
@@ -41,6 +43,7 @@ class MarvelRepository : IMarvelRepository {
     override fun getStoriesByCreatorId(creatorId: Int) = API.apiService.getStoriesByCreatorId(creatorId)
 
     override fun getAllEvents() = API.apiService.getAllEvents()
+    override fun searchEvents(name :String) = API.apiService.searchEvent(name)
 
     override fun getEventsById(eventId: Int) = API.apiService.getEventsById(eventId)
 
