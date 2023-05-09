@@ -29,9 +29,9 @@ fun <T> showWhenError(view: View, dataState: DataState<T>?) {
 }
 
 @BindingAdapter(value = ["app:showWhenSuccess"])
-fun <T> showWhenSuccess(view: View, uiState: UiState<T>?) {
+fun <T> showWhenSuccess(view: View, uiState: DataState<T>?) {
 
-    if (uiState is UiState.Success)
+    if (uiState is DataState.Success)
         view.visibility = View.VISIBLE
     else
         view.visibility = View.GONE
