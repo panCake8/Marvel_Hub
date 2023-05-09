@@ -11,14 +11,14 @@ import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
 import io.reactivex.rxjava3.kotlin.addTo
 import io.reactivex.rxjava3.schedulers.Schedulers
 
-class ComicsViewModel() : BaseViewModel(), onClickComic {
+class ComicsViewModel() : BaseViewModel(), OnClickComic {
 
     private val _Comics = MutableLiveData<DataState<BaseResponse<ComicModel>>>()
     val comics: LiveData<DataState<BaseResponse<ComicModel>>>
         get() = _Comics
 
 
-   private val _selectedComicsItem = MutableLiveData<Event<ComicModel>>()
+    private val _selectedComicsItem = MutableLiveData<Event<ComicModel>>()
     val selectedComicsItem: LiveData<Event<ComicModel>>
         get() = _selectedComicsItem
 
@@ -43,7 +43,7 @@ class ComicsViewModel() : BaseViewModel(), onClickComic {
         _Comics.postValue(message.localizedMessage?.let { DataState.Error(it) })
     }
 
-    override fun onClickComics(comics: ComicModel) {
-        _selectedComicsItem.postValue(Event(comics))
+    override fun onClickComic(comic: ComicModel) {
+        _selectedComicsItem.postValue(Event(comic))
     }
 }

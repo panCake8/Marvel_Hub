@@ -1,4 +1,4 @@
-package com.example.marvel_hub.ui.details.character.adapters
+package com.example.marvel_hub.ui.details.series.adapters
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
@@ -11,6 +11,7 @@ import com.example.marvel_hub.databinding.ItemRecyclerSeriesDetailsCharacterBind
 import com.example.marvel_hub.databinding.ItemRecyclerSeriesDetailsComicsBinding
 import com.example.marvel_hub.databinding.ItemRecyclerSeriesDetailsEventsBinding
 import com.example.marvel_hub.databinding.ItemRecyclerSeriesDetailsInfoBinding
+import com.example.marvel_hub.databinding.ItemRecyclerSeriesDetailsStoriesBinding
 
 class ParentSeriesAdapter() :
     Adapter<ParentSeriesAdapter.BaseSeriesViewHolder>() {
@@ -26,7 +27,16 @@ class ParentSeriesAdapter() :
                 )
             )
 
-            SECOND_ITEM -> ComicViewHolder(
+            SECOND_ITEM -> CharacterViewHolder(
+                DataBindingUtil.inflate(
+                    LayoutInflater.from(parent.context),
+                    R.layout.item_recycler_series_details_character,
+                    parent,
+                    false
+                )
+            )
+
+            THIRD_ITEM -> ComicViewHolder(
                 DataBindingUtil.inflate(
                     LayoutInflater.from(parent.context),
                     R.layout.item_recycler_series_details_comics,
@@ -35,10 +45,10 @@ class ParentSeriesAdapter() :
                 )
             )
 
-            THIRD_ITEM -> CharacterViewHolder(
+            FOURTH_ITEM -> StoriesViewHolder(
                 DataBindingUtil.inflate(
                     LayoutInflater.from(parent.context),
-                    R.layout.item_recycler_series_details_character,
+                    R.layout.item_recycler_series_details_stories,
                     parent,
                     false
                 )
@@ -66,6 +76,7 @@ class ParentSeriesAdapter() :
             is ComicViewHolder -> bindComics(holder.binding)
             is CharacterViewHolder -> bindCharacter(holder.binding)
             is EventsViewHolder -> bindEvents(holder.binding)
+            is StoriesViewHolder -> bindStories(holder.binding)
         }
     }
 
@@ -73,6 +84,7 @@ class ParentSeriesAdapter() :
     private fun bindComics(binding: ItemRecyclerSeriesDetailsComicsBinding) {}
     private fun bindCharacter(binding: ItemRecyclerSeriesDetailsCharacterBinding) {}
     private fun bindEvents(binding: ItemRecyclerSeriesDetailsEventsBinding) {}
+    private fun bindStories(binding: ItemRecyclerSeriesDetailsStoriesBinding) {}
 
 
     abstract class BaseSeriesViewHolder(binding: ViewDataBinding) : ViewHolder(binding.root)
@@ -88,12 +100,16 @@ class ParentSeriesAdapter() :
     class ComicViewHolder(val binding: ItemRecyclerSeriesDetailsComicsBinding) :
         BaseSeriesViewHolder(binding)
 
+    class StoriesViewHolder(val binding: ItemRecyclerSeriesDetailsStoriesBinding) :
+        BaseSeriesViewHolder(binding)
+
 
     companion object {
         const val FIRST_ITEM = 0
         const val SECOND_ITEM = 1
         const val THIRD_ITEM = 2
-        const val ITEMS_COUNT = 4
+        const val FOURTH_ITEM = 3
+        const val ITEMS_COUNT = 5
 
     }
 }
