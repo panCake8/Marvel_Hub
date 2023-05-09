@@ -1,9 +1,9 @@
 package com.example.marvel_hub.ui.search
 
 import android.os.Bundle
-import android.util.Log
 import android.view.KeyEvent
 import android.view.View
+import androidx.core.widget.doOnTextChanged
 import androidx.fragment.app.viewModels
 import com.example.marvel_hub.R
 import com.example.marvel_hub.databinding.FragmentSearchBinding
@@ -30,32 +30,36 @@ class SearchFragment : BaseFragment<FragmentSearchBinding, SearchViewModel>() {
 
 
         val debounceOperator = Observable.create { emitter ->
-            binding.searchBar .doOnTextChanged { text, start, before, count ->
+            binding.searchBar.doOnTextChanged { text, start, before, count ->
                 emitter.onNext(text.toString())
+
+                if (showSelectedChips() == "Comics") {
+                    viewModel.searchInComics(text)
+                } else if (showSelectedChips() == "Creators") {
+                    viewModel.searchInCreators(text)
+                } else if (showSelectedChips() == "Events") {
+                    viewModel.searchInEvent(text)
+                }
             }
-        }.debounce (1, TimeUnit.SECONDS)
-        debounceOperator.subscribe { t -> Log.i("TAG", "on next:$t") }
+        }.debounce(1, TimeUnit.SECONDS)
+        debounceOperator.subscribe { it ->
+
+        }
 
 
     }
 
-    }
 
-
-
-    private fun searchHandel(){
+    private fun searchHandel() {
         binding.searchBar.setOnKeyListener { _, keyCode, event ->
             if (event.action == KeyEvent.ACTION_UP && keyCode == KeyEvent.KEYCODE_ENTER) {
                 // Do something when the Enter key is pressed
                 val inputText = binding.searchBar.text.toString()
-                if(showSelectedChips() == "Comics"){
+                if (showSelectedChips() == "Comics") {
                     viewModel.searchInComics(inputText)
-                }
-                else if(showSelectedChips() == "Creators"){
+                } else if (showSelectedChips() == "Creators") {
                     viewModel.searchInCreators(inputText)
-                }
-
-                else if(showSelectedChips() == "Events"){
+                } else if (showSelectedChips() == "Events") {
                     viewModel.searchInEvent(inputText)
                 }
 
@@ -65,14 +69,15 @@ class SearchFragment : BaseFragment<FragmentSearchBinding, SearchViewModel>() {
             return@setOnKeyListener false
         }
     }
-    private fun showSelectedChips() :String{
+
+    private fun showSelectedChips(): String {
         val selectedChipsIds = binding.filterChipComponent.checkedChipIds
         val selectedChips = mutableListOf<String>()
         for (id in selectedChipsIds) {
             val chip = binding.filterChipComponent.findViewById<Chip>(id)
             selectedChips.add(chip.text.toString())
         }
-        return   selectedChips.joinToString(", ")
+        return selectedChips.joinToString(", ")
     }
 
 

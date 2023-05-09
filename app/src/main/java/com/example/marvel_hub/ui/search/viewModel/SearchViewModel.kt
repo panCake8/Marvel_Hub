@@ -25,28 +25,28 @@ class SearchViewModel : BaseViewModel() {
     private val _result = MutableLiveData<String>()
     val result:LiveData<String> = _result
 
-    fun searchInComics(text: String) {
+    fun searchInComics(text: CharSequence) {
 
         disposable.add(
-            repository.searchComics(text)
+            repository.searchComics(text.toString())
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(::onGetComicsSuccess, ::onGetComicsError)
         )
     }
 
-    fun searchInEvent(text: String) {
+    fun searchInEvent(text: CharSequence) {
         disposable.add(
-            repository.searchEvents(text)
+            repository.searchEvents(text.toString())
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(::onGetEventsSuccess, ::onGetEventsError)
         )
     }
 
-    fun searchInCreators(text: String) {
+    fun searchInCreators(text: CharSequence) {
         disposable.add(
-            repository.searchCreators(text)
+            repository.searchCreators(text.toString())
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(::onGetCreatorsSuccess, ::onGetCreatorsError)

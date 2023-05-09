@@ -26,7 +26,6 @@
                 android:id="@+id/image_search_result"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:contentDescription="@string/image_description"
                 android:foreground="@drawable/card_foreground"
                 android:scaleType="centerCrop"
                 android:src="@{item.thumbnail.path}"
