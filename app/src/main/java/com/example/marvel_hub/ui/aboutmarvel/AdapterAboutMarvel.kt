@@ -8,10 +8,10 @@ class AboutMarvelAdapter(items: List<CreatorModel>, listener: BaseAdapterListene
     BaseAdapter<CreatorModel>(items, listener) {
 
     override val getLayoutId: Int
-    get() =  R.layout.item_about_marvel
+        get() = R.layout.item_about_marvel
 
 }
 
-interface onClickMarvel : BaseAdapter.BaseAdapterListener {
+interface OnClickMarvel : BaseAdapter.BaseAdapterListener {
     fun onClickMarvel(comics: CreatorModel)
 }
