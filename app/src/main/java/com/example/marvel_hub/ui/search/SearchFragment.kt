@@ -1,15 +1,14 @@
 package com.example.marvel_hub.ui.search
 
 import android.os.Bundle
-import android.util.Log
+import android.view.KeyEvent
 import android.view.View
-import androidx.appcompat.widget.SearchView
-import androidx.appcompat.widget.SearchView.OnQueryTextListener
 import androidx.fragment.app.viewModels
 import com.example.marvel_hub.R
 import com.example.marvel_hub.databinding.FragmentSearchBinding
 import com.example.marvel_hub.ui.base.BaseFragment
 import com.example.marvel_hub.ui.search.viewModel.SearchViewModel
+import com.google.android.material.chip.Chip
 
 class SearchFragment : BaseFragment<FragmentSearchBinding, SearchViewModel>() {
 
@@ -22,26 +21,44 @@ class SearchFragment : BaseFragment<FragmentSearchBinding, SearchViewModel>() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        binding.searchBar.setOnQueryTextListener(object : OnQueryTextListener{
-            override fun onQueryTextSubmit(query: String?): Boolean {
 
-                return false
-            }
 
-            override fun onQueryTextChange(newText: String?): Boolean {
-                filterList(newText)
-                return true
-            }
+        searchHandel()
 
-        })
 
     }
 
+    private fun searchHandel(){
+        binding.searchBar.setOnKeyListener { _, keyCode, event ->
+            if (event.action == KeyEvent.ACTION_UP && keyCode == KeyEvent.KEYCODE_ENTER) {
+                // Do something when the Enter key is pressed
+                val inputText = binding.searchBar.text.toString()
+                if(showSelectedChips() == "Comics"){
+                    viewModel.searchInComics(inputText)
+                }
+                else if(showSelectedChips() == "Creators"){
+                    viewModel.searchInCreators(inputText)
+                }
 
-    private fun filterList(query:String?){
-        if(query != null){
+                else if(showSelectedChips() == "Events"){
+                    viewModel.searchInEvent(inputText)
+                }
 
 
+                return@setOnKeyListener true
+            }
+            return@setOnKeyListener false
         }
     }
+    private fun showSelectedChips() :String{
+        val selectedChipsIds = binding.filterChipComponent.checkedChipIds
+        val selectedChips = mutableListOf<String>()
+        for (id in selectedChipsIds) {
+            val chip = binding.filterChipComponent.findViewById<Chip>(id)
+            selectedChips.add(chip.text.toString())
+        }
+        return   selectedChips.joinToString(", ")
+    }
+
+
 }
