@@ -11,7 +11,7 @@ import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
 import io.reactivex.rxjava3.kotlin.addTo
 import io.reactivex.rxjava3.schedulers.Schedulers
 
-class AboutMarvelViewModel: BaseViewModel(), onClickMarvel {
+class AboutMarvelViewModel: BaseViewModel(), OnClickMarvel {
 
 
     private val _Marvel = MutableLiveData<DataState<BaseResponse<CreatorModel>>>()
