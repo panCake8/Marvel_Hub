@@ -4,13 +4,16 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
+        <variable
+            name="item"
+            type="com.example.marvel_hub.data.model.ComicModel" />
 
     </data>
 
     <androidx.cardview.widget.CardView
         android:layout_height="@dimen/search_card_height"
         android:layout_width="match_parent"
-        android:layout_marginHorizontal="@dimen/margin_small"
+        android:layout_marginHorizontal="@dimen/small_margin"
         android:layout_marginVertical="@dimen/margin_medium"
         app:cardCornerRadius="@dimen/medium_radius">
 
@@ -26,6 +29,7 @@
                 android:contentDescription="@string/image_description"
                 android:foreground="@drawable/card_foreground"
                 android:scaleType="centerCrop"
+                android:src="@{item.thumbnail.path}"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="1.0"
@@ -38,7 +42,7 @@
                 android:id="@+id/text_result_name"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/search_result_text_name"
+                android:text="@{item.name}"
                 android:textSize="@dimen/card_text_size"
                 android:textColor="@color/search_result_text_color"
                 android:layout_marginBottom="@dimen/margin_medium"
