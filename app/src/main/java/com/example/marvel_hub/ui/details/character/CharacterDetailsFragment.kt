@@ -15,10 +15,4 @@ class CharacterDetailsFragment : BaseFragment<FragmentCharacterDetailsBinding, C
         super.onViewCreated(view, savedInstanceState)
     }
 
-
-    companion object {
-        const val FIRST_Item = 0
-        const val SCONDE_Item = 1
-    }
-
 }
