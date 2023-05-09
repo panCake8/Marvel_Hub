@@ -1,6 +1,7 @@
 package com.example.marvel_hub.ui.search
 
 import android.os.Bundle
+import android.util.Log
 import android.view.KeyEvent
 import android.view.View
 import androidx.fragment.app.viewModels
@@ -9,6 +10,8 @@ import com.example.marvel_hub.databinding.FragmentSearchBinding
 import com.example.marvel_hub.ui.base.BaseFragment
 import com.example.marvel_hub.ui.search.viewModel.SearchViewModel
 import com.google.android.material.chip.Chip
+import io.reactivex.rxjava3.core.Observable
+import java.util.concurrent.TimeUnit
 
 class SearchFragment : BaseFragment<FragmentSearchBinding, SearchViewModel>() {
 
@@ -26,7 +29,19 @@ class SearchFragment : BaseFragment<FragmentSearchBinding, SearchViewModel>() {
         searchHandel()
 
 
+        val debounceOperator = Observable.create { emitter ->
+            binding.searchBar .doOnTextChanged { text, start, before, count ->
+                emitter.onNext(text.toString())
+            }
+        }.debounce (1, TimeUnit.SECONDS)
+        debounceOperator.subscribe { t -> Log.i("TAG", "on next:$t") }
+
+
     }
+
+    }
+
+
 
     private fun searchHandel(){
         binding.searchBar.setOnKeyListener { _, keyCode, event ->

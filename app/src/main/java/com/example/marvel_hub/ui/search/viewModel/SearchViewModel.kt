@@ -22,7 +22,11 @@ class SearchViewModel : BaseViewModel() {
     private val _event = MutableLiveData<DataState<BaseResponse<EventModel>>>(DataState.Loading)
     val event: LiveData<DataState<BaseResponse<EventModel>>> = _event
 
+    private val _result = MutableLiveData<String>()
+    val result:LiveData<String> = _result
+
     fun searchInComics(text: String) {
+
         disposable.add(
             repository.searchComics(text)
                 .subscribeOn(Schedulers.io())

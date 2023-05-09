@@ -7,6 +7,7 @@ import com.example.marvel_hub.data.model.EventModel
 import com.example.marvel_hub.data.model.SeriesModel
 import com.example.marvel_hub.data.model.StoriesModel
 import com.example.marvel_hub.data.model.BaseResponse
+import io.reactivex.rxjava3.core.Observable
 import io.reactivex.rxjava3.core.Single
 import retrofit2.http.GET
 import retrofit2.http.Path
@@ -49,7 +50,7 @@ interface MarvelApiService {
     @GET("comics")
     fun searchComics(
         @Query("titleStartsWith") titleStartsWith: String,
-    ): Single<BaseResponse<ComicModel>>
+    ): Observable<BaseResponse<ComicModel>>
 
     @GET("comics/{comicId}")
     fun getComicsById(
@@ -83,7 +84,7 @@ interface MarvelApiService {
     @GET("creators")
     fun searchCreators(
         @Query("nameStartsWith") nameStartsWith: String,
-    ): Single<BaseResponse<CreatorModel>>
+    ): Observable<BaseResponse<CreatorModel>>
 
     @GET("creators/{creatorId}")
     fun getCreatorById(
@@ -117,7 +118,7 @@ interface MarvelApiService {
     @GET("events")
     fun searchEvent(
         @Query("nameStartsWith") nameStartsWith: String,
-    ): Single<BaseResponse<EventModel>>
+    ): Observable<BaseResponse<EventModel>>
 
 
     @GET("events/{eventId}")

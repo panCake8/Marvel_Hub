@@ -29,6 +29,7 @@
             android:drawablePadding="@dimen/medium_margin"
             android:hint="@string/search_hint"
             android:importantForAutofill="no"
+            android:text="@={viewModel.result}"
             android:inputType="text"
             android:maxLength="50"
             android:paddingHorizontal="@dimen/large_margin"
