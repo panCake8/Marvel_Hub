@@ -25,12 +25,12 @@
             app:layout_constraintTop_toTopOf="parent"
             app:title="Creators" />
 
+
         <com.google.android.material.imageview.ShapeableImageView
             android:id="@+id/imageview_creator"
             android:layout_width="@dimen/width_image_item_creator"
             android:layout_height="@dimen/height_image_item_creator"
             android:layout_marginTop="@dimen/large_margin"
-            android:adjustViewBounds="true"
             android:scaleType="centerCrop"
             app:imageUrl="@{viewModel.creator.toData().data.results[0].thubnail}"
             app:layout_constraintEnd_toEndOf="parent"

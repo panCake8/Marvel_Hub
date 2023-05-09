@@ -13,7 +13,7 @@
     <!--round imageview -->
     <style name="roundimageview">
         <item name="cornerFamily">rounded</item>
-        <item name="cornerSize">90dp</item>
+        <item name="cornerSize">30dp</item>
         <item name="color">@color/white_100</item>
 
     </style>
