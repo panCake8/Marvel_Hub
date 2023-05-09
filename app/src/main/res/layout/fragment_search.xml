@@ -17,39 +17,28 @@
         android:layout_height="match_parent"
         android:background="@color/background_color">
 
-        <com.google.android.material.card.MaterialCardView
-            android:id="@+id/card_search_bar"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            app:cardCornerRadius="8dp"
-            app:cardElevation="8dp"
-            app:cardUseCompatPadding="true"
+
+        <EditText
+            android:id="@+id/search_bar"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/search_bar_height"
+            android:layout_marginHorizontal="@dimen/margin_large"
+            android:layout_marginTop="@dimen/margin_medium"
+            android:background="@drawable/search_bar_background"
+            android:drawableLeft="@drawable/ic_search"
+            android:drawablePadding="@dimen/medium_margin"
+            android:hint="@string/search_hint"
+            android:importantForAutofill="no"
+            android:inputType="text"
+            android:maxLength="50"
+            android:paddingHorizontal="@dimen/large_margin"
+            android:textColor="@color/input_text_color"
+            android:textColorHint="@color/hint_color"
+            android:textSize="@dimen/input_text_size"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-
-            >
-
-            <androidx.appcompat.widget.SearchView
-                android:id="@+id/search_bar"
-                android:layout_width="match_parent"
-                android:layout_height="@dimen/search_bar_height"
-                android:background="@drawable/search_bar_background"
-                android:inputType="text"
-                android:maxLength="50"
-                android:textColor="@color/input_text_color"
-                android:textColorHint="@color/hint_color"
-                android:textSize="@dimen/input_text_size"
-                app:iconifiedByDefault="false"
-                app:queryBackground="@android:color/transparent"
-                app:queryHint="@string/search_hint"
-                tools:ignore="RtlHardcoded"
-
-
-                />
-
-        </com.google.android.material.card.MaterialCardView>
+            tools:ignore="RtlHardcoded" />
 
 
         <com.google.android.material.chip.ChipGroup
@@ -57,8 +46,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:padding="@dimen/medium_padding"
-
-            app:layout_constraintTop_toBottomOf="@+id/card_search_bar"
+            app:checkedChip="@id/chip_comics"
+            app:layout_constraintTop_toBottomOf="@+id/search_bar"
             app:singleSelection="true">
 
 
@@ -116,6 +105,8 @@
             android:clipToPadding="false"
             android:orientation="vertical"
             android:visibility="visible"
+            app:recyclerItems="@{viewModel.comics.toData().data.results}"
+
             app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
@@ -124,7 +115,7 @@
             app:layout_constraintTop_toBottomOf="@+id/filter_chip_component"
             app:layout_constraintVertical_bias="0.04"
             app:spanCount="2"
-            tools:listitem="@layout/item_search_result" />
+            tools:listitem="@layout/item_search_creators" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
