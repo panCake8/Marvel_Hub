@@ -9,6 +9,7 @@ import androidx.recyclerview.widget.RecyclerView.ViewHolder
 import com.example.marvel_hub.R
 import com.example.marvel_hub.databinding.ItemRecyclerCharacterDetailsComicsBinding
 import com.example.marvel_hub.databinding.ItemRecyclerCharacterDetailsInfoBinding
+import com.example.marvel_hub.databinding.ItemRecyclerCharacterDetailsStoriesBinding
 import com.example.marvel_hub.databinding.ItemRecyclerCharcterDetailsEventsBinding
 import com.example.marvel_hub.databinding.ItemRecyclerCharcterDetailsSeriesBinding
 
@@ -44,6 +45,15 @@ class ParentCharacterAdapter() :
                 )
             )
 
+            FOURTH_ITEM -> StoriesViewHolder(
+                DataBindingUtil.inflate(
+                    LayoutInflater.from(parent.context),
+                    R.layout.item_recycler_character_details_stories,
+                    parent,
+                    false
+                )
+            )
+
             else -> EventsViewHolder(
                 DataBindingUtil.inflate(
                     LayoutInflater.from(parent.context),
@@ -66,6 +76,7 @@ class ParentCharacterAdapter() :
             is ComicViewHolder -> bindComics(holder.binding)
             is SeriesViewHolder -> bindSeries(holder.binding)
             is EventsViewHolder -> bindEvents(holder.binding)
+            is StoriesViewHolder -> bindStories(holder.binding)
         }
     }
 
@@ -73,6 +84,7 @@ class ParentCharacterAdapter() :
     private fun bindComics(binding: ItemRecyclerCharacterDetailsComicsBinding) {}
     private fun bindSeries(binding: ItemRecyclerCharcterDetailsSeriesBinding) {}
     private fun bindEvents(binding: ItemRecyclerCharcterDetailsEventsBinding) {}
+    private fun bindStories(binding: ItemRecyclerCharacterDetailsStoriesBinding) {}
 
 
     abstract class BaseCharacterViewHolder(binding: ViewDataBinding) : ViewHolder(binding.root)
@@ -88,12 +100,16 @@ class ParentCharacterAdapter() :
     class ComicViewHolder(val binding: ItemRecyclerCharacterDetailsComicsBinding) :
         BaseCharacterViewHolder(binding)
 
+    class StoriesViewHolder(val binding: ItemRecyclerCharacterDetailsStoriesBinding) :
+        BaseCharacterViewHolder(binding)
+
 
     companion object {
         const val FIRST_ITEM = 0
         const val SECOND_ITEM = 1
         const val THIRD_ITEM = 2
-        const val ITEMS_COUNT = 4
+        const val FOURTH_ITEM = 3
+        const val ITEMS_COUNT = 5
 
     }
 }
