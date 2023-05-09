@@ -95,4 +95,14 @@
         <item name="spanCount">2</item>
         <item name="android:orientation">vertical</item>
     </style>
+
+    <!-- app bar-->
+    <style name="AppBar">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">@dimen/app_bar_height</item>
+        <item name="android:backgroundTint">@color/background_color</item>
+        <item name="titleTextColor">@color/black_100</item>
+        <item name="elevation">@dimen/elevation_small</item>
+        <item name="navigationIcon">@drawable/ic_back_button_34</item>
+    </style>
 </resources>
