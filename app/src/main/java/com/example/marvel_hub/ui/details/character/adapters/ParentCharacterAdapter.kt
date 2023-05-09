@@ -13,7 +13,7 @@ import com.example.marvel_hub.databinding.ItemRecyclerCharcterDetailsEventsBindi
 import com.example.marvel_hub.databinding.ItemRecyclerCharcterDetailsSeriesBinding
 
 class ParentCharacterAdapter() :
-    Adapter<ParentSeriesAdapter.BaseCharacterViewHolder>() {
+    Adapter<ParentCharacterAdapter.BaseCharacterViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): BaseCharacterViewHolder {
         return when (viewType) {

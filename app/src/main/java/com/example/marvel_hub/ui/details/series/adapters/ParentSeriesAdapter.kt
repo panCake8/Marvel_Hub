@@ -1,4 +1,4 @@
-package com.example.marvel_hub.ui.details.character.adapters
+package com.example.marvel_hub.ui.details.series.adapters
 
 import android.view.LayoutInflater
 import android.view.ViewGroup

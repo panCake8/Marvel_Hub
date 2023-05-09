@@ -13,6 +13,11 @@ class SeriesDetailsFragment : BaseFragment<FragmentSeriesDetailsBinding, SeriesD
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        setUpRecycler()
+    }
+
+    private fun setUpRecycler() {
+
     }
 
 }
