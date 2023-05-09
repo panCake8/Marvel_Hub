@@ -5,8 +5,8 @@
 
     <data>
         <variable
-            name="series"
-            type="com.example.marvel_hub.data.model.SeriesModel" />
+            name="story"
+            type="com.example.marvel_hub.data.model.StoriesModel" />
         <variable
             name="listener"
             type= "com.example.marvel_hub.ui.stories.StoriesInteractionListener"/>
@@ -17,7 +17,7 @@
         android:layout_height="@dimen/height_item_comics_card"
         android:layout_marginStart="@dimen/margin_large"
         android:layout_marginEnd="@dimen/margin_medium"
-        android:onClick="@{ () -> listener.onClickStory(series) }"
+        android:onClick="@{()-> listener.onClickStory(story)}"
         android:layout_marginBottom="@dimen/margin_large"
         app:cardCornerRadius="@dimen/radius_medium">
 
@@ -32,7 +32,7 @@
                 android:layout_height="match_parent"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:imageUrl="@{series.thumbnail.image}"
+                app:imageUrl="@{story.thumbnail.image}"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
                 tools:src="@drawable/story" />

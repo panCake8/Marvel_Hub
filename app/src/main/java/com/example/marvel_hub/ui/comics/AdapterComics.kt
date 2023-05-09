@@ -12,6 +12,6 @@ class ComicsAdapter(items: List<ComicModel>, listener: BaseAdapterListener) :
 
 }
 
-interface onClickComic : BaseAdapter.BaseAdapterListener {
+interface OnClickComic : BaseAdapter.BaseAdapterListener {
     fun onClickComic(comic: ComicModel)
 }
