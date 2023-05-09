@@ -5,6 +5,7 @@
     <dimen name="body_text">14sp</dimen>
     <dimen name="body_text_small">12sp</dimen>
 
+    <dimen name="tiny_small_margin">2dp</dimen>
     <dimen name="small_margin">4dp</dimen>
     <dimen name="medium_margin">8dp</dimen>
     <dimen name="large_margin">16dp</dimen>
@@ -47,13 +48,52 @@
     <dimen name="icon_search_result_height">40dp</dimen>
     <dimen name="icon_search_result_width">40dp</dimen>
 
+    <dimen name="transparent_circle_radius">100dp</dimen>
+
     <dimen name="height_button">56dp</dimen>
     <dimen name="input_text_field_description">114dp</dimen>
 
+
+    <dimen name="movie_card_height">200dp</dimen>
+    <dimen name="movie_card_width">160dp</dimen>
+
+    <dimen name="large_card_height">180dp</dimen>
+    <dimen name="large_card_width">328dp</dimen>
+
+    <dimen name="small_icon_width">16dp</dimen>
+    <dimen name="small_icon_height">16dp</dimen>
+
+    <dimen name="large_icon_width">16dp</dimen>
+    <dimen name="large_icon_height">16dp</dimen>
+
+    <dimen name="image_hero_width">131dp</dimen>
+    <dimen name="image_hero_height">151dp</dimen>
+
     <dimen name="no_height">0dp</dimen>
+    <dimen name="no_width">0dp</dimen>
+
+    <dimen name="horizontal_padding">12dp</dimen>
 
     <dimen name="edit_text_height">36dp</dimen>
 
+    <dimen name="normal_corner_radius">12dp</dimen>
+
     <dimen name="lottie_height">140dp</dimen>
+    <dimen name="margin_large">16dp</dimen>
+    <dimen name="margin_medium">8dp</dimen>
+    <dimen name="radius_medium">12dp</dimen>
+    <dimen name="height_item_comics_card">220dp</dimen>
+    <dimen name="width_image_item_comics">160dp</dimen>
+    <dimen name="text_creator">14sp</dimen>
+    <dimen name="width_image_item_creator">130dp</dimen>
+    <dimen name="height_image_item_creator">130dp</dimen>
+    <dimen name="elevation_small">8dp</dimen>
+
+    <dimen name="card_height">240dp</dimen>
+
+    <dimen name="width_error_image">80dp</dimen>
+    <dimen name="height_error_image">80dp</dimen>
+    <dimen name="width_image_comics">80dp</dimen>
+    <dimen name="hight_image_comics">80dp</dimen>
 
 </resources>

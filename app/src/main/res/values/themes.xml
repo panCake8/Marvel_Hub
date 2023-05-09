@@ -13,4 +13,64 @@
         <item name="android:statusBarColor">?attr/colorPrimaryVariant</item>
         <!-- Customize your theme here. -->
     </style>
+
+
+
+    <!-- app bar-->
+    <style name="AppBar">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">@dimen/app_bar_height</item>
+        <item name="android:backgroundTint">@color/background_color</item>
+        <item name="titleTextColor">@color/app_bar_text_color</item>
+        <item name="elevation">@dimen/elevation_small</item>
+        <item name="navigationIcon">@drawable/ic_back_black</item>
+    </style>
+
+    <!-- app bar stroke-->
+    <style name="AppBarStroke">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">@dimen/small_stroke</item>
+        <item name="android:background">@color/stroke_app_bar</item>
+    </style>
+
+
+    <style name="RecyclerStyle">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">match_parent</item>
+        <item name="android:layout_marginStart">@dimen/margin_large</item>
+        <item name="android:layout_marginEnd">@dimen/margin_medium</item>
+        <item name="android:layout_marginTop">@dimen/app_bar_height</item>
+        <item name="spanCount">2</item>
+        <item name="android:orientation">vertical</item>
+    </style>
+
+    <style name="RecyclerStyleCreator">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_marginStart">@dimen/margin_large</item>
+        <item name="android:layout_marginEnd">@dimen/margin_medium</item>
+        <item name="spanCount">1</item>
+        <item name="android:orientation">horizontal</item>
+    </style>
+
+    <style name="RecyclerStyleSeries">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">match_parent</item>
+        <item name="android:layout_marginStart">@dimen/margin_large</item>
+        <item name="android:layout_marginEnd">@dimen/margin_medium</item>
+        <item name="android:layout_marginTop">@dimen/app_bar_height</item>
+        <item name="spanCount">2</item>
+        <item name="android:orientation">vertical</item>
+    </style>
+
+
+    <style name="RecyclerStyleStory">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">match_parent</item>
+        <item name="android:layout_marginStart">@dimen/margin_large</item>
+        <item name="android:layout_marginEnd">@dimen/margin_medium</item>
+        <item name="android:layout_marginTop">@dimen/app_bar_height</item>
+        <item name="spanCount">2</item>
+        <item name="android:orientation">vertical</item>
+    </style>
 </resources>

@@ -6,13 +6,12 @@ import androidx.databinding.BindingAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.marvel_hub.ui.base.BaseAdapter
-import com.example.marvel_hub.ui.util.UiState
-import okhttp3.HttpUrl
+import com.example.marvel_hub.data.util.DataState
 
 @BindingAdapter(value = ["app:showWhenLoading"])
-fun <T> showWhenLoading(view: View, uiState: UiState<T>?) {
+fun <T> showWhenLoading(view: View, dataState: DataState<T>?) {
 
-    if (uiState is UiState.Loading)
+    if (dataState is DataState.Loading)
         view.visibility = View.VISIBLE
     else
         view.visibility = View.GONE
@@ -20,9 +19,9 @@ fun <T> showWhenLoading(view: View, uiState: UiState<T>?) {
 }
 
 @BindingAdapter(value = ["app:showWhenError"])
-fun <T> showWhenError(view: View, uiState: UiState<T>?) {
+fun <T> showWhenError(view: View, dataState: DataState<T>?) {
 
-    if (uiState is UiState.Error)
+    if (dataState is DataState.Error)
         view.visibility = View.VISIBLE
     else
         view.visibility = View.GONE
@@ -49,7 +48,6 @@ fun <T> setRecyclerItems(view: RecyclerView, items: List<T>?) {
 }
 
 @BindingAdapter(value = ["app:imageUrl"])
-fun setImageView(view: ImageView,url: String?){
+fun setImageFromUrl(view: ImageView, url: String?) {
     Glide.with(view).load(url).into(view)
-
 }
