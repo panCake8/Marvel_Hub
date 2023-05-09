@@ -25,8 +25,8 @@ xmlns:tools="http://schemas.android.com/tools">
 
         <com.google.android.material.imageview.ShapeableImageView
             android:id="@+id/imageview_creator"
-            android:layout_width="@dimen/width_image_creator"
-            android:layout_height="@dimen/height_image_creator"
+            android:layout_width="@dimen/width_image_item_creator"
+            android:layout_height="@dimen/height_image_item_creator"
             tools:src="@drawable/creator"
             android:adjustViewBounds="true"
             android:scaleType="centerCrop"
