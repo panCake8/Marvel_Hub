@@ -20,7 +20,7 @@ interface IMarvelRepository {
 
 
     fun getAllComics(): Single<BaseResponse<ComicModel>>
-    fun searchComics(name:String): Single<List<ComicModel>>
+    fun searchComics(name: String): Single<List<ComicModel>>
     fun getComicById(comicId: Int): Single<BaseResponse<ComicModel>>
     fun getCharactersByComicId(comicId: Int): Single<BaseResponse<CharactersModel>>
     fun getCreatorsByComicId(comicId: Int): Single<BaseResponse<CreatorModel>>
@@ -38,7 +38,7 @@ interface IMarvelRepository {
 
 
     fun getAllEvents(): Single<BaseResponse<EventModel>>
-    fun searchEvents(name:String): Single<List<EventModel>>
+    fun searchEvents(name: String): Single<List<EventModel>>
     fun getEventsById(eventId: Int): Single<BaseResponse<EventModel>>
     fun getCharactersByEventId(eventId: Int): Single<BaseResponse<CharactersModel>>
     fun getComicsByEventId(eventId: Int): Single<BaseResponse<ComicModel>>
@@ -48,7 +48,7 @@ interface IMarvelRepository {
 
 
     fun getAllSeries(): Single<BaseResponse<SeriesModel>>
-    fun searchSeries(name:String) : Single<List<CreatorModel>>
+    fun searchSeries(name: String): Single<List<SeriesModel>>
 
     fun getSeriesById(seriesId: Int): Single<BaseResponse<SeriesModel>>
     fun getCharactersBySeriesId(seriesId: Int): Single<BaseResponse<CharactersModel>>
@@ -65,6 +65,10 @@ interface IMarvelRepository {
     fun getCreatorsByStoryId(storyId: Int): Single<BaseResponse<CreatorModel>>
     fun getEventsByStoryId(storyId: Int): Single<BaseResponse<EventModel>>
     fun getSeriesByStoryId(storyId: Int): Single<BaseResponse<SeriesModel>>
-    fun fetchSearchItems(comicName:String,seriesName:String,eventName:String): Single<List<SearchItems>>
+    fun fetchSearchItems(
+        comicName: String,
+        seriesName: String,
+        eventName: String
+    ): Single<List<SearchItems>>
 
 }

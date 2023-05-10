@@ -154,7 +154,7 @@ interface MarvelApiService {
     @GET("creators")
     fun searchSeries(
         @Query("titleStartsWith") nameStartsWith: String,
-    ): Single<BaseResponse<CreatorModel>>
+    ): Single<BaseResponse<SeriesModel>>
 
     @GET("series/{seriesId}")
     fun getSeriesById(
