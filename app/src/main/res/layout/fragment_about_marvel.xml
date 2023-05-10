@@ -64,8 +64,6 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/text_creators"
-                app:recyclerItems="@{viewModel.marvel.toData().data.results}"
-                app:showWhenSuccess="@{viewModel.marvel}"
                 tools:listitem="@layout/item_about_marvel" />
 
             <TextView
