@@ -11,7 +11,7 @@
 
         <variable
             name="listener"
-            type="com.example.marvel_hub.ui.aboutmarvel.AboutMarvelViewModel" />
+            type="com.example.marvel_hub.ui.aboutmarvel.viewModel.AboutMarvelViewModel" />
     </data>
 
     <com.google.android.material.card.MaterialCardView
@@ -28,7 +28,7 @@
             android:layout_height="wrap_content"
             android:background="@color/background_color">
 
-            <ImageView
+            <com.mikhaellopez.circularimageview.CircularImageView
                 android:id="@+id/imageView"
                 android:layout_width="@dimen/width_image_item_creator"
                 android:layout_height="@dimen/height_image_item_creator"
@@ -38,7 +38,27 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                app:srcCompat="@drawable/image_stanli" />
+                app:srcCompat="@drawable/image_marvel" />
+
+            <TextView
+                android:id="@+id/text_comics_name"
+                android:layout_width="@dimen/no_width"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="@dimen/large_margin"
+                android:layout_marginBottom="@dimen/large_margin"
+                android:ellipsize="end"
+                android:fontFamily="@font/poppins_medium"
+                android:includeFontPadding="false"
+                android:text="@{item.fullName}"
+                android:textColor="@color/white_100"
+                android:textSize="@dimen/title_text"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/imageView"
+                tools:text="title" />
+
         </androidx.constraintlayout.widget.ConstraintLayout>
 
     </com.google.android.material.card.MaterialCardView>
