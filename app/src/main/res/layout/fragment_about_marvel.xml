@@ -6,7 +6,7 @@
 
         <variable
             name="viewModel"
-            type="com.example.marvel_hub.ui.aboutmarvel.AboutMarvelViewModel" />
+            type="com.example.marvel_hub.ui.aboutmarvel.viewModel.AboutMarvelViewModel" />
     </data>
 
     <ScrollView
@@ -54,7 +54,6 @@
                 app:layout_constraintStart_toStartOf="@id/image_marvel"
                 app:layout_constraintTop_toBottomOf="@id/image_marvel" />
 
-
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/recycler_characters"
                 style="@style/RecyclerStyleCreator"
@@ -100,6 +99,8 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
                 app:showWhenError="@{viewModel.marvel}" />
+
+
         </androidx.constraintlayout.widget.ConstraintLayout>
     </ScrollView>
 </layout>
