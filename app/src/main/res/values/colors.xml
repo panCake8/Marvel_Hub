@@ -31,7 +31,6 @@
     <color name="unselected_chip_color">@color/white_87</color>
 
 
-    <dimen name="elevation_small">8dp</dimen>
     <color name="back_icon_color">#121212</color>
     <color name="stroke_app_bar">#5EFFFFFF</color>
     <color name="white_back_about_marvel">#FFFFFF</color>
