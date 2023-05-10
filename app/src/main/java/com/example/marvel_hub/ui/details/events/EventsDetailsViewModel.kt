@@ -112,7 +112,7 @@ class EventsDetailsViewModel : BaseViewModel() {
         _stories.postValue(DataState.Error(error.message.toString()))
     }
 
-    fun getCharacterByEventId(characterId: Int) =
+    private fun getCharacterByEventId(characterId: Int) =
         repository.getCharacterById(characterId)
             .observeOn(Schedulers.io())
             .subscribeOn(AndroidSchedulers.mainThread())
