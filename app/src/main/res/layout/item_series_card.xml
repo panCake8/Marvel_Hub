@@ -4,13 +4,14 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
+
         <variable
-            name="series"
+            name="item"
             type="com.example.marvel_hub.data.model.SeriesModel" />
 
         <variable
             name="listener"
-            type= "com.example.marvel_hub.ui.series.SeriesViewModel"/>
+            type="com.example.marvel_hub.ui.series.SeriesViewModel" />
 
     </data>
 
@@ -19,8 +20,8 @@
         android:layout_height="@dimen/height_item_comics_card"
         android:layout_marginStart="@dimen/margin_large"
         android:layout_marginEnd="@dimen/margin_medium"
-        android:onClick="@{()-> listener.onClickSeries(series)}"
         android:layout_marginBottom="@dimen/margin_large"
+        android:onClick="@{()-> listener.onClickSeries(item)}"
         app:cardCornerRadius="@dimen/radius_medium">
 
         <androidx.constraintlayout.widget.ConstraintLayout
@@ -32,9 +33,10 @@
                 android:id="@+id/image_item_series_card"
                 android:layout_width="@dimen/width_image_item_comics"
                 android:layout_height="match_parent"
+                android:scaleType="fitXY"
+                app:imageUrl="@{item.thumbnail.image}"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:imageUrl="@{series.thumbnail.image}"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
                 tools:src="@drawable/series" />
