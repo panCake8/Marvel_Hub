@@ -3,11 +3,15 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/navigation"
-    app:startDestination="@id/homeFragment">
+    app:startDestination="@id/seriesFragment">
 
     <fragment
         android:id="@+id/homeFragment"
         android:name="com.example.marvel_hub.ui.home.HomeFragment"
         android:label="HomeFragment"
         tools:layout="@layout/fragment_home" />
+    <fragment
+        android:id="@+id/seriesFragment"
+        android:name="com.example.marvel_hub.ui.series.SeriesFragment"
+        android:label="SeriesFragment" />
 </navigation>

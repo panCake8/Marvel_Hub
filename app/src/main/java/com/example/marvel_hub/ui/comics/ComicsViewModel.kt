@@ -13,7 +13,7 @@ import io.reactivex.rxjava3.schedulers.Schedulers
 
 class ComicsViewModel() : BaseViewModel(), OnClickComic {
 
-    private val _Comics = MutableLiveData<DataState<BaseResponse<ComicModel>>>()
+    private val _Comics = MutableLiveData<DataState<BaseResponse<ComicModel>>>(DataState.Loading)
     val comics: LiveData<DataState<BaseResponse<ComicModel>>>
         get() = _Comics
 

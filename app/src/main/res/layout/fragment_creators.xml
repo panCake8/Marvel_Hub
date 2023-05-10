@@ -1,19 +1,21 @@
 <?xml version="1.0" encoding="utf-8"?>
 
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
-xmlns:app="http://schemas.android.com/apk/res-auto"
-xmlns:tools="http://schemas.android.com/tools">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
 
-<data>
-    <variable
-        name="viewModel"
-        type="com.example.marvel_hub.ui.creators.CreatorsViewModel" />
+    <data>
 
-</data>
+        <variable
+            name="viewModel"
+            type="com.example.marvel_hub.ui.creators.CreatorsViewModel" />
+
+    </data>
+
     <androidx.constraintlayout.widget.ConstraintLayout
-        android:background="@color/background_color"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:background="@color/background_color">
 
         <com.google.android.material.appbar.MaterialToolbar
             android:id="@+id/app_bar_creators"
@@ -23,28 +25,27 @@ xmlns:tools="http://schemas.android.com/tools">
             app:layout_constraintTop_toTopOf="parent"
             app:title="Creators" />
 
+
         <com.google.android.material.imageview.ShapeableImageView
             android:id="@+id/imageview_creator"
             android:layout_width="@dimen/width_image_item_creator"
             android:layout_height="@dimen/height_image_item_creator"
-            tools:src="@drawable/creator"
-            android:src="@{viewModel.creator.toData().data.results[0]}"
-            android:adjustViewBounds="true"
-            android:scaleType="centerCrop"
             android:layout_marginTop="@dimen/large_margin"
-            app:shapeAppearanceOverlay="@style/roundimageview"
+            android:scaleType="centerCrop"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/app_bar_creators" />
+            app:layout_constraintTop_toBottomOf="@+id/app_bar_creators"
+            app:shapeAppearanceOverlay="@style/roundimageview"
+            app:showWhenSuccess="@{viewModel.creator}"
+            tools:src="@drawable/creator" />
 
         <TextView
             android:id="@+id/text_creator_name"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@{viewModel.creator.toData().data.results[0].fullName}"
-            android:textSize="@dimen/large_text"
-            android:textColor="@color/black_87"
             android:layout_marginTop="@dimen/large_margin"
+            android:textColor="@color/black_87"
+            android:textSize="@dimen/large_text"
             app:layout_constraintEnd_toEndOf="@+id/imageview_creator"
             app:layout_constraintStart_toStartOf="@+id/imageview_creator"
             app:layout_constraintTop_toBottomOf="@+id/imageview_creator"
@@ -55,11 +56,11 @@ xmlns:tools="http://schemas.android.com/tools">
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="@dimen/large_margin"
+            android:text="@string/about_creator"
             android:textColor="@color/red"
             android:textSize="@dimen/large_text"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/text_creator_name"
-            android:text="@string/about_creator" />
+            app:layout_constraintTop_toBottomOf="@+id/text_creator_name" />
 
         <TextView
             android:id="@+id/text_about_creator_paragraph"
@@ -81,16 +82,16 @@ xmlns:tools="http://schemas.android.com/tools">
             android:layout_width="match_parent"
             android:layout_height="@dimen/height_button"
             android:layout_margin="@dimen/large_margin"
+            android:background="@drawable/button_background"
+            android:text="@string/products"
             android:textAllCaps="false"
             android:textColor="@color/white_100"
             android:textSize="@dimen/title_text"
-            android:background="@drawable/button_background"
-            app:layout_constraintCircleRadius="@dimen/large_radius"
-            android:text="@string/products"
             app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintCircleRadius="@dimen/large_radius"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            />
+            app:layout_constraintStart_toStartOf="parent" />
+
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
