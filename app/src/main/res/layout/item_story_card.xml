@@ -11,7 +11,7 @@
 
         <variable
             name="listener"
-            type="com.example.marvel_hub.ui.stories.StoriesInteractionListener" />
+            type="com.example.marvel_hub.ui.stories.adapter.StoriesInteractionListener" />
     </data>
 
     <com.google.android.material.card.MaterialCardView
@@ -20,7 +20,7 @@
         android:layout_marginStart="@dimen/margin_large"
         android:layout_marginEnd="@dimen/margin_medium"
         android:layout_marginBottom="@dimen/margin_large"
-        android:onClick="@{()-> listener.onClickStory(item)}"
+        android:onClick="@{()-> listener.onClickStoryItem(item)}"
         app:cardCornerRadius="@dimen/radius_medium">
 
         <androidx.constraintlayout.widget.ConstraintLayout
@@ -38,7 +38,8 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                tools:src="@drawable/story" />
+                tools:src="@drawable/story"
+                android:contentDescription="@string/story" />
         </androidx.constraintlayout.widget.ConstraintLayout>
 
     </com.google.android.material.card.MaterialCardView>
