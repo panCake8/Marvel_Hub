@@ -6,6 +6,8 @@ import androidx.fragment.app.viewModels
 import com.example.marvel_hub.R
 import com.example.marvel_hub.databinding.FragmentSeriesBinding
 import com.example.marvel_hub.ui.base.BaseFragment
+import com.example.marvel_hub.ui.series.adapter.SeriesAdapter
+import com.example.marvel_hub.ui.series.viewModel.SeriesViewModel
 import com.example.marvel_hub.util.EventObserver
 
 class SeriesFragment : BaseFragment<FragmentSeriesBinding, SeriesViewModel>() {

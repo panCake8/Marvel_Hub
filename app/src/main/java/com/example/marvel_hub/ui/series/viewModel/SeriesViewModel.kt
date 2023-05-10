@@ -1,4 +1,4 @@
-package com.example.marvel_hub.ui.series
+package com.example.marvel_hub.ui.series.viewModel
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
@@ -6,6 +6,7 @@ import com.example.marvel_hub.data.model.BaseResponse
 import com.example.marvel_hub.data.model.SeriesModel
 import com.example.marvel_hub.data.util.DataState
 import com.example.marvel_hub.ui.base.BaseViewModel
+import com.example.marvel_hub.ui.series.adapter.SeriesInteractionListener
 import com.example.marvel_hub.util.Event
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
 import io.reactivex.rxjava3.kotlin.addTo
