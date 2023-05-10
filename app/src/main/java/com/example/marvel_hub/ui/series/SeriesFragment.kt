@@ -19,12 +19,15 @@ class SeriesFragment : BaseFragment<FragmentSeriesBinding, SeriesViewModel>() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        val adapter = SeriesAdapter(mutableListOf(),viewModel)
-        binding.recyclerSeries.adapter = adapter
+        setUpRecyclerView()
 
-
-        viewModel.selectedSeriesItem.observe(viewLifecycleOwner,EventObserver{
+        viewModel.selectedSeriesItem.observe(viewLifecycleOwner, EventObserver {
             //Todo
         })
+    }
+
+    private fun setUpRecyclerView() {
+        val adapter = SeriesAdapter(mutableListOf(), viewModel)
+        binding.recyclerSeries.adapter = adapter
     }
 }
