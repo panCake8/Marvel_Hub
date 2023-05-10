@@ -30,7 +30,8 @@ class SeriesViewModel: BaseViewModel(), SeriesInteractionListener {
         repository.getAllSeries()
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
-            .subscribe(::onSuccess,::onFail).addTo(disposable)
+            .subscribe(::onSuccess,::onFail)
+            .addTo(disposable)
     }
 
     private fun onSuccess(series: BaseResponse<SeriesModel>){
