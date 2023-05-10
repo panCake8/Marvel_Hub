@@ -41,7 +41,7 @@ class SeriesViewModel: BaseViewModel(), SeriesInteractionListener {
         _series.postValue(DataState.Error(error.message.toString()))
     }
 
-    override fun onClickSeries(series: SeriesModel) {
+    override fun onClickSeriesItem(series: SeriesModel) {
         _selectedSeriesItem.postValue(Event(series))
     }
 }

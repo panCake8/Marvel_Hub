@@ -21,7 +21,7 @@
         android:layout_marginStart="@dimen/margin_large"
         android:layout_marginEnd="@dimen/margin_medium"
         android:layout_marginBottom="@dimen/margin_large"
-        android:onClick="@{()-> listener.onClickSeries(item)}"
+        android:onClick="@{()-> listener.onClickSeriesItem(item)}"
         app:cardCornerRadius="@dimen/radius_medium">
 
         <androidx.constraintlayout.widget.ConstraintLayout
