@@ -49,19 +49,7 @@
         android:textSize="@dimen/body_text"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/screen_description" />
-    <TextView
-        android:id="@+id/stories_related"
-        android:text="@string/related"
-        app:layout_constraintTop_toBottomOf="@+id/story_description"
-        app:layout_constraintStart_toStartOf="parent"
-        android:layout_marginStart="@dimen/medium_margin"
-        android:layout_marginTop="@dimen/medium_margin"
-        android:textColor="@color/black_100"
 
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-
-        />
 
 
 

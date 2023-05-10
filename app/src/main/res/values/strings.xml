@@ -15,10 +15,12 @@
     <string name="error_image">error image</string>
     <string name="description">Description</string>
     <string name="related_comics">related Comics</string>
-    <string name="related_events">relted Events</string>
-    <string name="related_series">relted Series</string>
+    <string name="related_events">related Events</string>
+    <string name="related_series">related Series</string>
+    <string name="related_characters">related Characters</string>
     <string name="details">Details</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="related_stories">related Stories</string>
+    <string name="related">related</string>
 </resources>
