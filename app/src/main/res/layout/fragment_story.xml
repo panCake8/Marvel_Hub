@@ -6,7 +6,7 @@
     <data>
         <variable
             name="viewModel"
-            type="com.example.marvel_hub.ui.stories.StoryViewModel" />
+            type="com.example.marvel_hub.ui.stories.viewModel.StoryViewModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -50,7 +50,8 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:showWhenError="@{viewModel.story}" />
+            app:showWhenError="@{viewModel.story}"
+            android:contentDescription="@string/error_image" />
 
         <ProgressBar
             android:id="@+id/progress_bar"
