@@ -106,8 +106,6 @@
             android:clipToPadding="false"
             android:orientation="vertical"
             android:visibility="visible"
-            app:recyclerItems="@{viewModel.comics.toData().data.results}"
-
             app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
@@ -116,7 +114,8 @@
             app:layout_constraintTop_toBottomOf="@+id/filter_chip_component"
             app:layout_constraintVertical_bias="0.04"
             app:spanCount="2"
-            tools:listitem="@layout/item_search_creators" />
+            tools:listitem="@layout/item_search_creators"
+            />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
