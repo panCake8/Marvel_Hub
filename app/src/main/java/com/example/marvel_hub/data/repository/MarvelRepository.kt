@@ -72,7 +72,7 @@ class MarvelRepository : IMarvelRepository {
     override fun getStoriesByEventId(eventId: Int) = API.apiService.getStoriesByEventId(eventId)
     override fun getAllSeries() = API.apiService.getAllSeries()
 
-    override fun searchSeries(name: String) = API.apiService.searchSeries(name)
+    override fun searchSeries(name: String) = API.apiService.searchSeries(name).map { it?.data?.results }
 
     override fun getSeriesById(seriesId: Int) = API.apiService.getSeriesById(seriesId)
 
