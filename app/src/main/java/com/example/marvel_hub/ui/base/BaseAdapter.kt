@@ -1,6 +1,5 @@
 package com.example.marvel_hub.ui.base
 
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
@@ -8,7 +7,6 @@ import androidx.databinding.ViewDataBinding
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.RecyclerView.ViewHolder
-import com.example.marvel_hub.BR
 
 abstract class BaseAdapter<T>(
     private var items: List<T>,
@@ -30,10 +28,15 @@ abstract class BaseAdapter<T>(
 
     override fun onBindViewHolder(holder: BaseViewHolder, position: Int) {
         when (holder) {
-            is ItemViewHolder -> {
-                val item = items[position]
-                holder.binding.setVariable(BR.item, item)
-            }
+            is ItemViewHolder -> bind(holder, position)
+
+        }
+    }
+
+    open fun bind(holder: ItemViewHolder, position: Int) {
+        holder.binding.apply {
+            val currentItem = items[position]
+            setVariable(BR.item, currentItem)
         }
     }
 
