@@ -50,7 +50,7 @@ interface MarvelApiService {
     @GET("comics")
     fun searchComics(
         @Query("titleStartsWith") titleStartsWith: String,
-    ): Observable<BaseResponse<ComicModel>>
+    ): Single<BaseResponse<ComicModel>>
 
     @GET("comics/{comicId}")
     fun getComicsById(
@@ -81,10 +81,6 @@ interface MarvelApiService {
 
     @GET("creators")
     fun getAllCreators(): Single<BaseResponse<CreatorModel>>
-    @GET("creators")
-    fun searchCreators(
-        @Query("nameStartsWith") nameStartsWith: String,
-    ): Observable<BaseResponse<CreatorModel>>
 
     @GET("creators/{creatorId}")
     fun getCreatorById(
@@ -115,10 +111,11 @@ interface MarvelApiService {
     // ===================== events ========================
     @GET("events")
     fun getAllEvents(): Single<BaseResponse<EventModel>>
+
     @GET("events")
     fun searchEvent(
         @Query("nameStartsWith") nameStartsWith: String,
-    ): Observable<BaseResponse<EventModel>>
+    ): Single<BaseResponse<EventModel>>
 
 
     @GET("events/{eventId}")
@@ -154,6 +151,11 @@ interface MarvelApiService {
     //===================== series =======================
     @GET("series")
     fun getAllSeries(): Single<BaseResponse<SeriesModel>>
+
+    @GET("creators")
+    fun searchSeries(
+        @Query("titleStartsWith") nameStartsWith: String,
+    ): Single<BaseResponse<CreatorModel>>
 
     @GET("series/{seriesId}")
     fun getSeriesById(
