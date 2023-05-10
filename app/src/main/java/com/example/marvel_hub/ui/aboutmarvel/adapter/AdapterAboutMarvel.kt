@@ -1,4 +1,4 @@
-package com.example.marvel_hub.ui.aboutmarvel
+package com.example.marvel_hub.ui.aboutmarvel.adapter
 
 import com.example.marvel_hub.R
 import com.example.marvel_hub.data.model.CreatorModel
@@ -10,8 +10,4 @@ class AboutMarvelAdapter(items: List<CreatorModel>, listener: BaseAdapterListene
     override val getLayoutId: Int
         get() = R.layout.item_about_marvel
 
-}
-
-interface OnClickMarvel : BaseAdapter.BaseAdapterListener {
-    fun onClickMarvel(comics: CreatorModel)
 }
