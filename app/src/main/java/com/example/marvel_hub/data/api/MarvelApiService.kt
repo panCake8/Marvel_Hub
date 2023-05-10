@@ -7,7 +7,6 @@ import com.example.marvel_hub.data.model.CreatorModel
 import com.example.marvel_hub.data.model.EventModel
 import com.example.marvel_hub.data.model.SeriesModel
 import com.example.marvel_hub.data.model.StoriesModel
-import io.reactivex.rxjava3.core.Observable
 import io.reactivex.rxjava3.core.Single
 import retrofit2.http.GET
 import retrofit2.http.Path
