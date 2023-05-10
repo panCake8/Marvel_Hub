@@ -4,6 +4,7 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.databinding.ViewDataBinding
+import androidx.databinding.library.baseAdapters.BR
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.RecyclerView.ViewHolder
@@ -28,10 +29,15 @@ abstract class BaseAdapter<T>(
 
     override fun onBindViewHolder(holder: BaseViewHolder, position: Int) {
         when (holder) {
-            is ItemViewHolder -> {
-                val item = items[position]
+            is ItemViewHolder -> bind(holder, position)
 
-            }
+        }
+    }
+
+    open fun bind(holder: ItemViewHolder, position: Int) {
+        holder.binding.apply {
+            val currentItem = items[position]
+            setVariable(BR.item, currentItem)
         }
     }
 

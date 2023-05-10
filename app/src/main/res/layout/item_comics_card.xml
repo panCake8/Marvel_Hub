@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
+
         <variable
             name="item"
             type="com.example.marvel_hub.data.model.ComicModel" />
@@ -31,7 +32,7 @@
                 android:id="@+id/image_item_comics_card"
                 android:layout_width="@dimen/width_image_item_comics"
                 android:layout_height="match_parent"
-                android:scaleType="centerCrop"
+                android:scaleType="fitXY"
                 app:imageUrl="@{item.thumbnail.image}"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
