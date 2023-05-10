@@ -3,6 +3,7 @@ package com.example.marvel_hub.ui.search.adapter
 import com.example.marvel_hub.R
 import com.example.marvel_hub.data.model.EventModel
 import com.example.marvel_hub.ui.base.BaseAdapter
+import com.example.marvel_hub.ui.search.adapter.interactions.EventInteractionListener
 
 class EventAdapter(items: List<EventModel>, listener: EventInteractionListener) :
     BaseAdapter<EventModel>(items, listener) {
@@ -12,6 +13,3 @@ class EventAdapter(items: List<EventModel>, listener: EventInteractionListener) 
 
 }
 
-interface EventInteractionListener : BaseAdapter.BaseAdapterListener {
-    fun onClickEvent(event: EventModel)
-}
