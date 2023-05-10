@@ -13,7 +13,7 @@ import io.reactivex.rxjava3.schedulers.Schedulers
 
 class SeriesViewModel: BaseViewModel(), SeriesInteractionListener {
 
-    private val _series = MutableLiveData<DataState<BaseResponse<SeriesModel>>>()
+    private val _series = MutableLiveData<DataState<BaseResponse<SeriesModel>>>(DataState.Loading)
     val series: LiveData<DataState<BaseResponse<SeriesModel>>>
         get() = _series
 
