@@ -18,6 +18,8 @@ class SearchViewModel : BaseViewModel(), EventInteractionListener,
     ComicInteractionListener,
     CreatorInteractionListener {
 
+    val searchInput = MutableLiveData<String>()
+
 
     private val _comics = MutableLiveData<DataState<BaseResponse<ComicModel>>>(DataState.Loading)
     val comics: LiveData<DataState<BaseResponse<ComicModel>>> = _comics
@@ -29,9 +31,7 @@ class SearchViewModel : BaseViewModel(), EventInteractionListener,
     private val _event = MutableLiveData<DataState<BaseResponse<EventModel>>>(DataState.Loading)
     val event: LiveData<DataState<BaseResponse<EventModel>>> = _event
 
-    private val _searchInput = MutableLiveData<String>()
-    val result: LiveData<String> = _searchInput
-
+//===============================search In comics ===================================
     fun searchInComics(text: CharSequence) {
         disposable.add(
             repository.searchComics(text.toString())
@@ -40,6 +40,13 @@ class SearchViewModel : BaseViewModel(), EventInteractionListener,
                 .subscribe(::onGetComicsSuccess, ::onGetComicsError)
         )
     }
+
+    private fun onGetComicsSuccess(comics: BaseResponse<ComicModel>) =
+        _comics.postValue(DataState.Success(comics))
+
+    private fun onGetComicsError(throwable: Throwable) =
+        DataState.Error(throwable.message.toString())
+//===============================search In event ===================================
 
     fun searchInEvent(text: CharSequence) {
         disposable.add(
@@ -50,6 +57,14 @@ class SearchViewModel : BaseViewModel(), EventInteractionListener,
         )
     }
 
+    private fun onGetEventsSuccess(events: BaseResponse<EventModel>) =
+        _event.postValue(DataState.Success(events))
+
+    private fun onGetEventsError(throwable: Throwable) =
+        DataState.Error(throwable.message.toString())
+
+//===============================search In creators ===================================
+
     fun searchInCreators(text: CharSequence) {
         disposable.add(
             repository.searchCreators(text.toString())
@@ -59,34 +74,19 @@ class SearchViewModel : BaseViewModel(), EventInteractionListener,
         )
     }
 
-    private fun onGetComicsSuccess(comics: BaseResponse<ComicModel>) =
-        _comics.postValue(DataState.Success(comics))
-
-    private fun onGetComicsError(throwable: Throwable) =
-        DataState.Error(throwable.message.toString())
-
 
     private fun onGetCreatorsSuccess(creators: BaseResponse<CreatorModel>) =
         _creators.postValue(DataState.Success(creators))
 
-    private fun onGetCreatorsError(throwable: Throwable) = DataState.Error(throwable.message.toString())
+    private fun onGetCreatorsError(throwable: Throwable) =
+        DataState.Error(throwable.message.toString())
 
 
-    private fun onGetEventsSuccess(events: BaseResponse<EventModel>) = _event.postValue(DataState.Success(events))
+    override fun onClickComic(comic: ComicModel) {}
 
-    private fun onGetEventsError(throwable: Throwable) = DataState.Error(throwable.message.toString())
+    override fun onClickCreator(creator: CreatorModel) {}
 
-    override fun onClickComic(comic: ComicModel) {
-
-    }
-
-    override fun onClickCreator(creator: CreatorModel) {
-        TODO("Not yet implemented")
-    }
-
-    override fun onClickEvent(event: EventModel) {
-        TODO("Not yet implemented")
-    }
+    override fun onClickEvent(event: EventModel) {}
 
 
 }

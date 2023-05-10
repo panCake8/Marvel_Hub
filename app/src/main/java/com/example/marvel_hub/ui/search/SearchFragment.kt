@@ -10,6 +10,7 @@ import com.example.marvel_hub.ui.base.BaseFragment
 import com.example.marvel_hub.ui.search.adapter.CreatorAdapter
 import com.example.marvel_hub.ui.search.adapter.EventAdapter
 import com.example.marvel_hub.ui.search.viewModel.SearchViewModel
+import com.google.android.material.chip.Chip
 import io.reactivex.rxjava3.core.Observable
 import java.util.concurrent.TimeUnit
 
@@ -34,9 +35,17 @@ class SearchFragment : BaseFragment<FragmentSearchBinding, SearchViewModel>() {
         onSelectCreatorChip()
         onSelectEventChip()
 
-        viewModel.result.observe(viewLifecycleOwner) {
-            onSelectEventChip()
-            onSelectCreatorChip()
+
+
+        viewModel.searchInput.observe(viewLifecycleOwner) { text ->
+
+            if (showSelectedChips() == "Comics") viewModel.searchInComics(text)
+
+            else if (showSelectedChips() == "Events") viewModel.searchInEvent(text)
+
+            else if (showSelectedChips() == "Creators") viewModel.searchInCreators(text)
+
+
         }
     }
 
@@ -62,12 +71,17 @@ class SearchFragment : BaseFragment<FragmentSearchBinding, SearchViewModel>() {
         }
 
     }
-    val debounceOperator = Observable.create {emitter ->
-        binding.searchBar.doOnTextChanged { text, start, before, count ->
-            emitter.onNext(text.toString())
-        }
-    }.debounce (1,TimeUnit.SECONDS)
 
+    private fun showSelectedChips(): String {
+        val selectedChipsIds = binding.filterChipComponent.checkedChipIds
+        val selectedChips = mutableListOf<String>()
+        for (id in selectedChipsIds) {
+            val chip = binding.filterChipComponent.findViewById<Chip>(id).text.toString()
+
+        }
+
+        return selectedChips.joinToString(", ")
+    }
 
 
 }
