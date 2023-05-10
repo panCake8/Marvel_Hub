@@ -9,6 +9,7 @@ import com.example.marvel_hub.data.model.EventModel
 import com.example.marvel_hub.data.util.DataState
 import com.example.marvel_hub.ui.base.BaseViewModel
 import com.example.marvel_hub.ui.search.ComicInteractionListener
+import com.example.marvel_hub.ui.search.SearchItems
 import com.example.marvel_hub.ui.search.adapter.CreatorInteractionListener
 import com.example.marvel_hub.ui.search.adapter.EventInteractionListener
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
@@ -23,28 +24,11 @@ class SearchViewModel : BaseViewModel(), EventInteractionListener,
     val dataType: LiveData<Int> = _dataType
 
 
-    private val _comics =
-        MutableLiveData<DataState<BaseResponse<ComicModel>>>(DataState.Loading)
-    val comics: LiveData<DataState<BaseResponse<ComicModel>>> = _comics
-
-    private val _creators =
-        MutableLiveData<DataState<BaseResponse<CreatorModel>>>(DataState.Loading)
-    val creators: LiveData<DataState<BaseResponse<CreatorModel>>> = _creators
-
-    private val _events =
-        MutableLiveData<DataState<BaseResponse<EventModel>>>(DataState.Loading)
-    val event: LiveData<DataState<BaseResponse<EventModel>>> = _events
-
-    val searchInput = MutableLiveData<String>()
+    private val _searchResult =
+        MutableLiveData<DataState<BaseResponse<SearchItems>>>(DataState.Loading)
+    val searchResult: LiveData<DataState<BaseResponse<SearchItems>>> = _searchResult
 
 
-    init {
-
-        getEvent("")
-        getCreators("")
-        getComics("")
-
-    }
 
 
     private fun getComics(text: String) {
@@ -56,42 +40,10 @@ class SearchViewModel : BaseViewModel(), EventInteractionListener,
         )
     }
 
-    private fun onGetComicsSuccess(comics: BaseResponse<ComicModel>) =
-        _comics.postValue(DataState.Success(comics))
+    private fun onGetComicsSuccess(result: BaseResponse<SearchItems>) =
+        _searchResult.postValue(DataState.Success(result))
 
     private fun onGetComicsError(throwable: Throwable) =
-        DataState.Error(throwable.message.toString())
-
-
-    private fun getEvent(text: String) {
-        disposable.add(
-            repository.searchEvents(text)
-                .subscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(::onGetEventsSuccess, ::onGetEventsError)
-        )
-    }
-
-    private fun onGetEventsSuccess(events: BaseResponse<EventModel>) =
-        _events.postValue(DataState.Success(events))
-
-    private fun onGetEventsError(throwable: Throwable) =
-        DataState.Error(throwable.message.toString())
-
-    private fun getCreators(text: String) {
-        disposable.add(
-            repository.searchCreators(text)
-                .subscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(::onGetCreatorsSuccess, ::onGetCreatorsError)
-        )
-    }
-
-
-    private fun onGetCreatorsSuccess(creators: BaseResponse<CreatorModel>) =
-        _creators.postValue(DataState.Success(creators))
-
-    private fun onGetCreatorsError(throwable: Throwable) =
         DataState.Error(throwable.message.toString())
 
 
@@ -116,7 +68,7 @@ class SearchViewModel : BaseViewModel(), EventInteractionListener,
 
     }
 
-    override fun onClickEvent(comic: EventModel) {
+    override fun onClickEvent(event: EventModel) {
 
     }
 }
