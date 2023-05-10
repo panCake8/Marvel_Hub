@@ -41,7 +41,7 @@ class CharacterViewModel : BaseViewModel(), CharacterInteractionListener {
         _characterMarvel.postValue(DataState.Error(throwable.message.toString()))
     }
 
-    override fun onClickCharacter(character: CharactersModel) {
+    override fun onClickCharacterItem(character: CharactersModel) {
         _selectedCharacterItem.postValue(Event(character.id))
     }
 
