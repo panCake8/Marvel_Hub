@@ -13,10 +13,10 @@ import com.example.marvel_hub.databinding.ItemRecyclerCharacterDetailsStoriesBin
 import com.example.marvel_hub.databinding.ItemRecyclerCharcterDetailsEventsBinding
 import com.example.marvel_hub.databinding.ItemRecyclerCharcterDetailsSeriesBinding
 
-class ParentComicsAdapter() :
-    Adapter<ParentComicsAdapter.BaseCharacterViewHolder>() {
+class ParentComicAdapter() :
+    Adapter<ParentComicAdapter.BaseComicViewHolder>() {
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): BaseCharacterViewHolder {
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int):BaseComicViewHolder {
         return when (viewType) {
             FIRST_ITEM -> InfoViewHolder(
                 DataBindingUtil.inflate(
@@ -27,7 +27,7 @@ class ParentComicsAdapter() :
                 )
             )
 
-            SECOND_ITEM -> ComicViewHolder(
+            SECOND_ITEM -> CharacterViewHolder(
                 DataBindingUtil.inflate(
                     LayoutInflater.from(parent.context),
                     R.layout.item_recycler_character_details_comics,
@@ -70,10 +70,10 @@ class ParentComicsAdapter() :
 
     override fun getItemViewType(position: Int) = position
 
-    override fun onBindViewHolder(holder: BaseCharacterViewHolder, position: Int) {
+    override fun onBindViewHolder(holder: BaseComicViewHolder, position: Int) {
         when (holder) {
             is InfoViewHolder -> bindInfo(holder.binding)
-            is ComicViewHolder -> bindComics(holder.binding)
+            is CharacterViewHolder -> bindComics(holder.binding)
             is SeriesViewHolder -> bindSeries(holder.binding)
             is EventsViewHolder -> bindEvents(holder.binding)
             is StoriesViewHolder -> bindStories(holder.binding)
@@ -87,21 +87,21 @@ class ParentComicsAdapter() :
     private fun bindStories(binding: ItemRecyclerCharacterDetailsStoriesBinding) {}
 
 
-    abstract class BaseCharacterViewHolder(binding: ViewDataBinding) : ViewHolder(binding.root)
+    abstract class BaseComicViewHolder(binding: ViewDataBinding) : ViewHolder(binding.root)
     class InfoViewHolder(val binding: ItemRecyclerCharacterDetailsInfoBinding) :
-        BaseCharacterViewHolder(binding)
+        BaseComicViewHolder(binding)
 
     class EventsViewHolder(val binding: ItemRecyclerCharcterDetailsEventsBinding) :
-        BaseCharacterViewHolder(binding)
+        BaseComicViewHolder(binding)
 
     class SeriesViewHolder(val binding: ItemRecyclerCharcterDetailsSeriesBinding) :
-        BaseCharacterViewHolder(binding)
+        BaseComicViewHolder(binding)
 
-    class ComicViewHolder(val binding: ItemRecyclerCharacterDetailsComicsBinding) :
-        BaseCharacterViewHolder(binding)
+    class CharacterViewHolder(val binding: ItemRecyclerCharacterDetailsComicsBinding) :
+        BaseComicViewHolder(binding)
 
     class StoriesViewHolder(val binding: ItemRecyclerCharacterDetailsStoriesBinding) :
-        BaseCharacterViewHolder(binding)
+        BaseComicViewHolder(binding)
 
 
     companion object {
