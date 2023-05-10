@@ -18,44 +18,41 @@ class SearchViewModel : BaseViewModel(), EventInteractionListener,
     ComicInteractionListener,
     CreatorInteractionListener {
 
+    private val _dataType =
+        MutableLiveData<Int>()
+    val dataType: LiveData<Int> = _dataType
 
-    private val _comics = MutableLiveData<DataState<BaseResponse<ComicModel>>>(DataState.Loading)
+
+    private val _comics =
+        MutableLiveData<DataState<BaseResponse<ComicModel>>>(DataState.Loading)
     val comics: LiveData<DataState<BaseResponse<ComicModel>>> = _comics
 
     private val _creators =
         MutableLiveData<DataState<BaseResponse<CreatorModel>>>(DataState.Loading)
     val creators: LiveData<DataState<BaseResponse<CreatorModel>>> = _creators
 
-    private val _event = MutableLiveData<DataState<BaseResponse<EventModel>>>(DataState.Loading)
-    val event: LiveData<DataState<BaseResponse<EventModel>>> = _event
+    private val _events =
+        MutableLiveData<DataState<BaseResponse<EventModel>>>(DataState.Loading)
+    val event: LiveData<DataState<BaseResponse<EventModel>>> = _events
 
-    private val _searchInput = MutableLiveData<String>()
-    val result: LiveData<String> = _searchInput
+    val searchInput = MutableLiveData<String>()
 
-    fun searchInComics(text: CharSequence) {
+
+    init {
+
+        getEvent("")
+        getCreators("")
+        getComics("")
+
+    }
+
+
+    private fun getComics(text: String) {
         disposable.add(
-            repository.searchComics(text.toString())
+            repository.searchComics(text)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(::onGetComicsSuccess, ::onGetComicsError)
-        )
-    }
-
-    fun searchInEvent(text: CharSequence) {
-        disposable.add(
-            repository.searchEvents(text.toString())
-                .subscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(::onGetEventsSuccess, ::onGetEventsError)
-        )
-    }
-
-    fun searchInCreators(text: CharSequence) {
-        disposable.add(
-            repository.searchCreators(text.toString())
-                .subscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(::onGetCreatorsSuccess, ::onGetCreatorsError)
         )
     }
 
@@ -66,27 +63,61 @@ class SearchViewModel : BaseViewModel(), EventInteractionListener,
         DataState.Error(throwable.message.toString())
 
 
+    private fun getEvent(text: String) {
+        disposable.add(
+            repository.searchEvents(text)
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(::onGetEventsSuccess, ::onGetEventsError)
+        )
+    }
+
+    private fun onGetEventsSuccess(events: BaseResponse<EventModel>) =
+        _events.postValue(DataState.Success(events))
+
+    private fun onGetEventsError(throwable: Throwable) =
+        DataState.Error(throwable.message.toString())
+
+    private fun getCreators(text: String) {
+        disposable.add(
+            repository.searchCreators(text)
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(::onGetCreatorsSuccess, ::onGetCreatorsError)
+        )
+    }
+
+
     private fun onGetCreatorsSuccess(creators: BaseResponse<CreatorModel>) =
         _creators.postValue(DataState.Success(creators))
 
-    private fun onGetCreatorsError(throwable: Throwable) = DataState.Error(throwable.message.toString())
+    private fun onGetCreatorsError(throwable: Throwable) =
+        DataState.Error(throwable.message.toString())
 
 
-    private fun onGetEventsSuccess(events: BaseResponse<EventModel>) = _event.postValue(DataState.Success(events))
+    fun onClickComicChip() {
+        _dataType.postValue(1)
+    }
 
-    private fun onGetEventsError(throwable: Throwable) = DataState.Error(throwable.message.toString())
+    fun onClickEventChip() {
+        _dataType.postValue(2)
+    }
+
+    fun onClickCreatorChip() {
+        _dataType.postValue(3)
+    }
+
 
     override fun onClickComic(comic: ComicModel) {
 
     }
 
     override fun onClickCreator(comic: CreatorModel) {
-        TODO("Not yet implemented")
+
     }
 
     override fun onClickEvent(comic: EventModel) {
-        TODO("Not yet implemented")
+
     }
-
-
 }
+

@@ -19,7 +19,7 @@ class SearchFragment : BaseFragment<FragmentSearchBinding, SearchViewModel>() {
 
     private val eventAdapter = EventAdapter(mutableListOf(), viewModel)
 
-   private val comicAdapter = ComicsAdapter(mutableListOf(), viewModel)
+    private val comicAdapter = ComicsAdapter(mutableListOf(), viewModel)
 
     private val creatorAdapter = CreatorAdapter(mutableListOf(), viewModel)
 
@@ -29,46 +29,20 @@ class SearchFragment : BaseFragment<FragmentSearchBinding, SearchViewModel>() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
-        onSelectComicChip()
-        onSelectCreatorChip()
-        onSelectEventChip()
-
-        viewModel.result.observe(viewLifecycleOwner) {
-            onSelectEventChip()
-            onSelectCreatorChip()
-        }
+        setAdapter()
     }
 
-
-    private fun onSelectComicChip() {
-        binding.chipComics.setOnClickListener {
-            binding.recyclerSearchResult.adapter = comicAdapter
+    private fun setAdapter() {
+        viewModel.dataType.observe(viewLifecycleOwner) {
+            binding.recyclerSearchResult.adapter =
+                when (viewModel.dataType.value) {
+                    1 -> comicAdapter
+                    2 -> eventAdapter
+                    3 -> creatorAdapter
+                    else -> null
+                }
         }
-
-
     }
-
-    private fun onSelectEventChip() {
-        binding.chipEvents.setOnClickListener {
-            binding.recyclerSearchResult.adapter = eventAdapter
-        }
-
-    }
-
-    private fun onSelectCreatorChip() {
-        binding.chipCreators.setOnClickListener {
-            binding.recyclerSearchResult.adapter = creatorAdapter
-        }
-
-    }
-    val debounceOperator = Observable.create {emitter ->
-        binding.searchBar.doOnTextChanged { text, start, before, count ->
-            emitter.onNext(text.toString())
-        }
-    }.debounce (1,TimeUnit.SECONDS)
-
-
 
 }
 
