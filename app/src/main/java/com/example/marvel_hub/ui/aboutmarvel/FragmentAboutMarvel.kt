@@ -18,8 +18,6 @@ class FragmentAboutMarvel : BaseFragment<FragmentAboutMarvelBinding, AboutMarvel
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        val adapter = AboutMarvelAdapter(mutableListOf(), viewModel)
-        binding.recyclerCharacters.adapter = adapter
         setupRecyclerView()
         viewModel.selectedMarvelItem.observe(viewLifecycleOwner,EventObserver{
             //Todo
