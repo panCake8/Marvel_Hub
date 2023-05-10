@@ -4,6 +4,9 @@
 
     <data>
 
+        <variable
+            name="viewModel"
+            type="com.example.marvel_hub.ui.details.character.CharacterDetailsViewModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -12,47 +15,47 @@
 
         <androidx.appcompat.widget.AppCompatImageView
             android:id="@+id/character_image"
-            app:layout_constraintTop_toTopOf="parent"
             android:layout_width="match_parent"
             android:layout_height="200dp"
             android:scaleType="centerCrop"
-            android:src="@drawable/marvel_logo" />
+            app:imageUrl="@{viewModel.character.thumbnail.image}"
+            app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
             android:id="@+id/character_title"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/character_image"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/large_margin"
             android:layout_marginTop="@dimen/medium_margin"
-            android:text="captin amireca"
+            android:text="@{viewModel.character.name}"
             android:textColor="@color/black_100"
-            android:textSize="20sp" />
+            android:textSize="20sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/character_image" />
 
         <TextView
             android:id="@+id/screen_description"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/character_title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/large_margin"
             android:layout_marginTop="@dimen/medium_margin"
             android:text="@string/description"
             android:textColor="@color/light_red"
-            android:textSize="@dimen/large_text" />
+            android:textSize="@dimen/large_text"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/character_title" />
 
         <TextView
             android:id="@+id/character_description"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/screen_description"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/large_margin"
             android:layout_marginTop="@dimen/medium_margin"
-            android:text="@string/description"
+            android:text="@{viewModel.character.description}"
             android:textColor="@color/black_60"
-            android:textSize="@dimen/body_text" />
+            android:textSize="@dimen/body_text"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/screen_description" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

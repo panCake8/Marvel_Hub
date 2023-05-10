@@ -5,6 +5,7 @@ import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
 import com.example.marvel_hub.R
 import com.example.marvel_hub.databinding.ActivityHomeBinding
 import com.example.marvel_hub.ui.base.BaseActivity
+import com.example.marvel_hub.ui.details.character.CharacterDetailsFragment
 
 class HomeActivity : BaseActivity<ActivityHomeBinding>() {
     override val layoutId: Int
@@ -13,5 +14,7 @@ class HomeActivity : BaseActivity<ActivityHomeBinding>() {
     override fun onCreate(savedInstanceState: Bundle?) {
         installSplashScreen()
         super.onCreate(savedInstanceState)
+        supportFragmentManager.beginTransaction().add(R.id.main, CharacterDetailsFragment())
+            .commit()
     }
 }
