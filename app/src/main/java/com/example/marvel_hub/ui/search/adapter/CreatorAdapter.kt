@@ -1,8 +1,7 @@
 package com.example.marvel_hub.ui.search.adapter
+
 import com.example.marvel_hub.ui.base.BaseAdapter
 import com.example.marvel_hub.R
-
-import com.example.marvel_hub.data.model.ComicModel
 import com.example.marvel_hub.data.model.CreatorModel
 
 class CreatorAdapter(items: List<CreatorModel>, listener: CreatorInteractionListener) :
@@ -14,5 +13,5 @@ class CreatorAdapter(items: List<CreatorModel>, listener: CreatorInteractionList
 }
 
 interface CreatorInteractionListener : BaseAdapter.BaseAdapterListener {
-    fun onClickCreator(comic: CreatorModel)
+    fun onClickCreator(creator: CreatorModel)
 }

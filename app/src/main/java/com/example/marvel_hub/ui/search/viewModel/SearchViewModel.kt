@@ -80,11 +80,11 @@ class SearchViewModel : BaseViewModel(), EventInteractionListener,
 
     }
 
-    override fun onClickCreator(comic: CreatorModel) {
+    override fun onClickCreator(creator: CreatorModel) {
         TODO("Not yet implemented")
     }
 
-    override fun onClickEvent(comic: EventModel) {
+    override fun onClickEvent(event: EventModel) {
         TODO("Not yet implemented")
     }
 

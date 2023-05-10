@@ -13,5 +13,5 @@ class EventAdapter(items: List<EventModel>, listener: EventInteractionListener) 
 }
 
 interface EventInteractionListener : BaseAdapter.BaseAdapterListener {
-    fun onClickEvent(comic: EventModel)
+    fun onClickEvent(event: EventModel)
 }
