@@ -13,5 +13,7 @@
     <string name="about_creator">About Creator</string>
     <string name="products">Products</string>
     <string name="error_image">error image</string>
+    <string name="logo">logo</string>
+    <string name="comic">Comic</string>
     <string name="search_hint">search</string>
 </resources>

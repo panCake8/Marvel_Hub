@@ -6,6 +6,8 @@ import androidx.fragment.app.viewModels
 import com.example.marvel_hub.R
 import com.example.marvel_hub.databinding.FragmentSeriesBinding
 import com.example.marvel_hub.ui.base.BaseFragment
+import com.example.marvel_hub.ui.series.adapter.SeriesAdapter
+import com.example.marvel_hub.ui.series.viewModel.SeriesViewModel
 import com.example.marvel_hub.util.EventObserver
 
 class SeriesFragment : BaseFragment<FragmentSeriesBinding, SeriesViewModel>() {
@@ -17,12 +19,15 @@ class SeriesFragment : BaseFragment<FragmentSeriesBinding, SeriesViewModel>() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        val adapter = SeriesAdapter(mutableListOf(),viewModel)
-        binding.recyclerSeries.adapter = adapter
+        setUpRecyclerView()
 
-
-        viewModel.selectedSeriesItem.observe(viewLifecycleOwner,EventObserver{
+        viewModel.selectedSeriesItem.observe(viewLifecycleOwner, EventObserver {
             //Todo
         })
+    }
+
+    private fun setUpRecyclerView() {
+        val adapter = SeriesAdapter(mutableListOf(), viewModel)
+        binding.recyclerSeries.adapter = adapter
     }
 }
