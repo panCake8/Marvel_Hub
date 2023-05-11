@@ -3,40 +3,47 @@ package com.example.marvel_hub.ui.details.comics
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.example.marvel_hub.data.model.BaseResponse
+import com.example.marvel_hub.data.model.CharactersModel
 import com.example.marvel_hub.data.model.ComicModel
 import com.example.marvel_hub.data.model.EventModel
 import com.example.marvel_hub.data.model.SeriesModel
 import com.example.marvel_hub.data.model.StoriesModel
 import com.example.marvel_hub.data.util.DataState
 import com.example.marvel_hub.ui.base.BaseViewModel
+import com.example.marvel_hub.ui.details.listeners.CharacterListener
+import com.example.marvel_hub.ui.details.listeners.EventsListener
+import com.example.marvel_hub.ui.details.listeners.SeriesListener
+import com.example.marvel_hub.ui.details.listeners.StoryListener
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
 import io.reactivex.rxjava3.kotlin.addTo
 import io.reactivex.rxjava3.schedulers.Schedulers
 
-class ComicsDetailsViewModel: BaseViewModel() {
+class ComicsDetailsViewModel
+    : BaseViewModel()
+    ,EventsListener, SeriesListener, StoryListener,CharacterListener {
     private val _comics =
-        MutableLiveData<DataState<BaseResponse<ComicModel>>>(DataState.Loading)
-    val comics: LiveData<DataState<BaseResponse<ComicModel>>>
+        MutableLiveData<DataState<ComicModel>>(DataState.Loading)
+    val comics: LiveData<DataState<ComicModel>>
         get() = _comics
 
     private val _character =
-        MutableLiveData<DataState<BaseResponse<ComicModel>>>(DataState.Loading)
-    val character: LiveData<DataState<BaseResponse<ComicModel>>>
+        MutableLiveData<DataState<List<CharactersModel>>>(DataState.Loading)
+    val character: LiveData<DataState<List<CharactersModel>>>
         get() = _character
 
     private val _series =
-        MutableLiveData<DataState<BaseResponse<SeriesModel>>>(DataState.Loading)
-    val series: LiveData<DataState<BaseResponse<SeriesModel>>>
+        MutableLiveData<DataState<List<SeriesModel>>>(DataState.Loading)
+    val series: LiveData<DataState<List<SeriesModel>>>
         get() = _series
 
     private val _events =
-        MutableLiveData<DataState<BaseResponse<EventModel>>>(DataState.Loading)
-    val events: LiveData<DataState<BaseResponse<EventModel>>>
+        MutableLiveData<DataState<List<EventModel>>>(DataState.Loading)
+    val events: LiveData<DataState<List<EventModel>>>
         get() = _events
 
     private val _stories =
-        MutableLiveData<DataState<BaseResponse<StoriesModel>>>(DataState.Loading)
-    val stories: LiveData<DataState<BaseResponse<StoriesModel>>>
+        MutableLiveData<DataState<List<StoriesModel>>>(DataState.Loading)
+    val stories: LiveData<DataState<List<StoriesModel>>>
         get() = _stories
 
     fun getComicById(comicId: Int) =
@@ -45,8 +52,8 @@ class ComicsDetailsViewModel: BaseViewModel() {
             .subscribe(::comicOnSuccess, ::comicOnError).addTo(disposable)
 
     private fun comicOnSuccess(comic: BaseResponse<ComicModel>) {
-        _character.postValue(DataState.Success(comic))
-        val comicId = comic.data?.results?.get(FIRST_ITEM)?.id!!
+        _comics.postValue(DataState.Success(comic.data?.results?.get(0)!!))
+        val comicId = comic.data.results[FIRST_ITEM].id!!
         getCharacterByComicId(comicId)
         getSeriesByComicId(comicId)
         getEventsByByComicId(comicId)
@@ -54,16 +61,16 @@ class ComicsDetailsViewModel: BaseViewModel() {
     }
 
     private fun comicOnError(error: Throwable) {
-        _character.postValue(DataState.Error(error.message.toString()))
+        _comics.postValue(DataState.Error(error.message.toString()))
     }
 
     private fun getCharacterByComicId(comicId: Int) =
-        repository.getComicsByCharacterId(comicId).observeOn(Schedulers.io())
+        repository.getCharactersByComicId(comicId).observeOn(Schedulers.io())
             .subscribeOn(AndroidSchedulers.mainThread())
             .subscribe(::characterOnSuccess, ::characterOnError).addTo(disposable)
 
-    private fun characterOnSuccess(character: BaseResponse<ComicModel>) {
-        _character.postValue(DataState.Success(character))
+    private fun characterOnSuccess(character: BaseResponse<CharactersModel>) {
+        _character.postValue(DataState.Success(character.data?.results!!))
     }
 
     private fun characterOnError(error: Throwable) {
@@ -76,7 +83,7 @@ class ComicsDetailsViewModel: BaseViewModel() {
             .subscribe(::seriesOnSuccess, ::seriesOnError).addTo(disposable)
 
     private fun seriesOnSuccess(series: BaseResponse<SeriesModel>) {
-        _series.postValue(DataState.Success(series))
+        _series.postValue(DataState.Success(series.data?.results!!))
     }
 
     private fun seriesOnError(error: Throwable) {
@@ -89,7 +96,7 @@ class ComicsDetailsViewModel: BaseViewModel() {
             .subscribe(::eventsOnSuccess, ::eventsOnError).addTo(disposable)
 
     private fun eventsOnSuccess(events: BaseResponse<EventModel>) {
-        _events.postValue(DataState.Success(events))
+        _events.postValue(DataState.Success(events.data?.results!!))
     }
 
     private fun eventsOnError(error: Throwable) {
@@ -102,7 +109,7 @@ class ComicsDetailsViewModel: BaseViewModel() {
             .subscribe(::storiesOnSuccess, ::storiesOnError).addTo(disposable)
 
     private fun storiesOnSuccess(events: BaseResponse<StoriesModel>) {
-        _stories.postValue(DataState.Success(events))
+        _stories.postValue(DataState.Success(events.data?.results!!))
     }
 
     private fun storiesOnError(error: Throwable) {
@@ -111,5 +118,21 @@ class ComicsDetailsViewModel: BaseViewModel() {
 
     companion object {
         const val FIRST_ITEM = 0
+    }
+
+    override fun onCharacterClick(character: CharactersModel) {
+
+    }
+
+    override fun onEventClick(event: EventModel) {
+
+    }
+
+    override fun onSeriesClick(series: SeriesModel) {
+
+    }
+
+    override fun onStoryClick(story: StoriesModel) {
+
     }
 }
