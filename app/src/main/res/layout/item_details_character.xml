@@ -8,6 +8,10 @@
         <variable
             name="item"
             type="com.example.marvel_hub.data.model.CharactersModel" />
+
+        <variable
+            name="listener"
+            type="com.example.marvel_hub.ui.details.listeners.CharacterListener" />
     </data>
 
     <androidx.cardview.widget.CardView
@@ -39,6 +43,7 @@
 
             <TextView
                 android:id="@+id/text"
+                style="@style/card_title"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/poppins_medium"

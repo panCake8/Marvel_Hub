@@ -1,6 +1,5 @@
 package com.example.marvel_hub.ui.details.character
 
-import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.example.marvel_hub.data.model.BaseResponse
@@ -11,11 +10,15 @@ import com.example.marvel_hub.data.model.SeriesModel
 import com.example.marvel_hub.data.model.StoriesModel
 import com.example.marvel_hub.data.util.DataState
 import com.example.marvel_hub.ui.base.BaseViewModel
+import com.example.marvel_hub.ui.details.listeners.ComicListener
+import com.example.marvel_hub.ui.details.listeners.EventListener
+import com.example.marvel_hub.ui.details.listeners.SeriesListener
+import com.example.marvel_hub.ui.details.listeners.StoryListener
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
 import io.reactivex.rxjava3.kotlin.addTo
 import io.reactivex.rxjava3.schedulers.Schedulers
 
-class CharacterDetailsViewModel : BaseViewModel() {
+class CharacterDetailsViewModel : BaseViewModel(), ComicListener,EventListener,SeriesListener,StoryListener {
 
     private val _character = MutableLiveData<DataState<CharactersModel>>(DataState.Loading)
     val character: LiveData<DataState<CharactersModel>>
@@ -99,11 +102,26 @@ class CharacterDetailsViewModel : BaseViewModel() {
     }
 
     private fun storiesOnError(error: Throwable) {
-        Log.e("ahmed", error.message.toString())
         _stories.postValue(DataState.Error(error.message.toString()))
     }
 
     companion object {
         const val FIRST_ITEM = 0
+    }
+
+    override fun onComicClick(comic: ComicModel) {
+
+    }
+
+    override fun onEventClick(event: EventModel) {
+
+    }
+
+    override fun onSeriesClick(series: SeriesModel) {
+
+    }
+
+    override fun onStoryClick(story: StoriesModel) {
+
     }
 }

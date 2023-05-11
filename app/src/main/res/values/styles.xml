@@ -4,6 +4,31 @@
     <style name="screen_title" parent="Widget.AppCompat.TextView">
         <item name="android:textSize">@dimen/large_text</item>
         <item name="android:textColor">@color/black_87</item>
+        <item name="fontFamily">@font/poppins_semi-bold</item>
+    </style>
+
+    <style name="details_title" parent="Widget.AppCompat.TextView">
+        <item name="android:textSize">@dimen/large_text</item>
+        <item name="android:textColor">@color/black_87</item>
+        <item name="fontFamily">@font/poppins_semi-bold</item>
+    </style>
+
+    <style name="secondary_description" parent="Widget.AppCompat.TextView">
+        <item name="android:textSize">@dimen/body_text</item>
+        <item name="android:textColor">@color/black_60</item>
+        <item name="fontFamily">@font/poppins_medium</item>
+    </style>
+
+    <style name="details_description" parent="Widget.AppCompat.TextView">
+        <item name="android:textSize">@dimen/title_text</item>
+        <item name="android:textColor">@color/light_red</item>
+        <item name="fontFamily">@font/poppins_medium</item>
+    </style>
+
+    <style name="card_title" parent="Widget.AppCompat.TextView">
+        <item name="android:textSize">@dimen/body_text</item>
+        <item name="android:textColor">@color/white_87</item>
+        <item name="fontFamily">@font/poppins_medium</item>
     </style>
     <!--round imageview -->
     <style name="roundimageview">
