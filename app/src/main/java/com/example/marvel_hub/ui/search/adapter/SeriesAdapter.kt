@@ -9,7 +9,7 @@ class SeriesAdapter(items: List<SeriesModel>, listener: SeriesInteractionListene
     BaseAdapter<SeriesModel>(items, listener) {
 
     override val getLayoutId: Int
-        get() =  R.layout.item_search_creators
+        get() =  R.layout.item_search_series
 
 }
 

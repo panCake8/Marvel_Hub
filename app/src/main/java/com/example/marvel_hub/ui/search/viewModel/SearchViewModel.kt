@@ -2,7 +2,6 @@ package com.example.marvel_hub.ui.search.viewModel
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
-import com.example.marvel_hub.data.model.BaseResponse
 import com.example.marvel_hub.data.model.ComicModel
 import com.example.marvel_hub.data.model.EventModel
 import com.example.marvel_hub.data.model.SeriesModel
@@ -25,8 +24,8 @@ class SearchViewModel : BaseViewModel(), EventInteractionListener,
 
 
     private val _searchResult =
-        MutableLiveData<DataState<BaseResponse<SearchItems>>>(DataState.Loading)
-    val searchResult: LiveData<DataState<BaseResponse<SearchItems>>> = _searchResult
+        MutableLiveData<DataState<List<SearchItems>>>(DataState.Loading)
+    val searchResult: LiveData<DataState<List<SearchItems>>> = _searchResult
 
 
 
@@ -40,7 +39,7 @@ class SearchViewModel : BaseViewModel(), EventInteractionListener,
         )
     }
 
-    private fun onGetComicsSuccess(result: BaseResponse<SearchItems>) =
+    private fun onGetComicsSuccess(result: List<SearchItems>) =
         _searchResult.postValue(DataState.Success(result))
 
     private fun onGetComicsError(throwable: Throwable) =
