@@ -29,7 +29,7 @@
             android:drawablePadding="@dimen/medium_margin"
             android:hint="@string/search_hint"
             android:importantForAutofill="no"
-            android:text="@={}"
+            android:text="@={viewModel.searchInput}"
             android:inputType="text"
             android:maxLength="50"
             android:paddingHorizontal="@dimen/large_margin"
@@ -57,37 +57,37 @@
                 style="@style/Widget.MaterialComponents.Chip.Filter"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:height="83dp"
+                android:height="@dimen/height_chip"
                 android:onClick="@{() -> viewModel.onClickComicChip()}"
-                android:text="@string/comics"
+                android:text="@string/text_comic_chip"
                 android:textColor="@color/chip_text_color"
                 android:textSize="@dimen/body_text"
                 app:chipBackgroundColor="@color/chip_background"
                 app:chipCornerRadius="8dp"
                 app:chipStrokeColor="@color/red"
-                app:chipStrokeWidth="1dp" />
+                app:chipStrokeWidth="@dimen/chip_stroke" />
 
             <com.google.android.material.chip.Chip
                 android:id="@+id/chip_creators"
                 style="@style/Widget.MaterialComponents.Chip.Filter"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:height="83dp"
-                android:onClick="@{() -> viewModel.onClickCreatorChip()}"
-                android:text="@string/creators"
+                android:height="@dimen/height_chip"
+                android:onClick="@{() -> viewModel.onClickSeriesChip()}"
+                android:text="@string/text_series_chip"
                 android:textColor="@color/chip_text_color"
                 android:textSize="@dimen/body_text"
                 app:chipBackgroundColor="@color/chip_background"
                 app:chipCornerRadius="8dp"
                 app:chipStrokeColor="@color/red"
-                app:chipStrokeWidth="1dp" />
+                app:chipStrokeWidth="@dimen/chip_stroke" />
 
             <com.google.android.material.chip.Chip
                 android:id="@+id/chip_events"
                 style="@style/Widget.MaterialComponents.Chip.Filter"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:height="83dp"
+                android:height="@dimen/height_chip"
                 android:onClick="@{() -> viewModel.onClickEventChip()}"
                 android:text="@string/text_events"
                 android:textColor="@color/chip_text_color"
@@ -95,7 +95,7 @@
                 app:chipBackgroundColor="@color/chip_background"
                 app:chipCornerRadius="8dp"
                 app:chipStrokeColor="@color/red"
-                app:chipStrokeWidth="1dp" />
+                app:chipStrokeWidth="@dimen/chip_stroke" />
 
 
         </com.google.android.material.chip.ChipGroup>
@@ -109,7 +109,7 @@
             android:clipToPadding="false"
             android:orientation="vertical"
             android:visibility="visible"
-            app:recyclerItems="@{viewModel.searchResult.toData().data.results}"
+            app:recyclerItems="@{viewModel.searchResult.toData()}"
             app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"

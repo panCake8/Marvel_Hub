@@ -65,10 +65,6 @@ interface IMarvelRepository {
     fun getCreatorsByStoryId(storyId: Int): Single<BaseResponse<CreatorModel>>
     fun getEventsByStoryId(storyId: Int): Single<BaseResponse<EventModel>>
     fun getSeriesByStoryId(storyId: Int): Single<BaseResponse<SeriesModel>>
-    fun fetchSearchItems(
-        comicName: String,
-        seriesName: String,
-        eventName: String
-    ): Single<List<SearchItems>>
+
 
 }
