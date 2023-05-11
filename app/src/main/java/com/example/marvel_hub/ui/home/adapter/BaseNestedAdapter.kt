@@ -6,7 +6,6 @@ import android.view.ViewGroup
 import androidx.annotation.LayoutRes
 import androidx.databinding.DataBindingUtil
 import androidx.databinding.ViewDataBinding
-import androidx.databinding.library.baseAdapters.BR
 import androidx.recyclerview.widget.RecyclerView
 
 abstract class BaseNestedAdapter<T>(
@@ -35,7 +34,7 @@ abstract class BaseNestedAdapter<T>(
         val currentItem = items[position]
         when (holder) {
             is ItemViewHolder -> {
-                holder.binding.setVariable(BR.item, currentItem)
+                holder.binding.setVariable(com.example.marvel_hub.BR.item, currentItem)
             }
         }
     }

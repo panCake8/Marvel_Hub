@@ -55,13 +55,10 @@ fun setImageFromUrl(view: ImageView, url: String?) {
 
 @BindingAdapter(value = ["app:nestedRecyclerItems"])
 fun setNestedRecyclerItems(recyclerView: RecyclerView, items: State<HomeItem>?) {
-    if (items != null)
+    items?.let {
         if (items is State.SuccessList) {
-            items.toDataList()?.let { it1 -> (recyclerView.adapter as HomeAdapter).addItem(it1) }
-        } else {
-            (recyclerView.adapter as HomeAdapter).addItem(listOf())
+            (recyclerView.adapter as HomeAdapter).addItem(items.data as MutableList<HomeItem>)
         }
-    else
-        (recyclerView.adapter as HomeAdapter).addItem(listOf())
+    }
 
 }

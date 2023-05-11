@@ -1,5 +1,6 @@
 package com.example.marvel_hub.ui.home.viewModel
 
+import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.example.marvel_hub.ui.base.BaseViewModel
@@ -32,6 +33,7 @@ class HomeViewModel : BaseViewModel(), HomeInteractionListener {
 
     private fun onError(error: Throwable) {
         _homeItem.postValue(State.Error(error.message.toString()))
+        Log.i("KAMLE", error.message.toString())
     }
 
     override fun onEventItemClick(id: Int) {

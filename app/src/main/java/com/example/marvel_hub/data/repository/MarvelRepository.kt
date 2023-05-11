@@ -121,8 +121,6 @@ class MarvelRepository : IMarvelRepository {
                 HomeItem.Series(series),
                 HomeItem.Comics(comics),
                 HomeItem.Events(events),
-                HomeItem.Banner(),
-                HomeItem.QuizGameBanner(),
             )
         }
     }

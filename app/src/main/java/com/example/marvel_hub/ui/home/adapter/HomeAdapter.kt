@@ -4,15 +4,11 @@ import android.annotation.SuppressLint
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
-import androidx.recyclerview.widget.PagerSnapHelper
-import androidx.recyclerview.widget.RecyclerView
 import com.example.marvel_hub.BR
 import com.example.marvel_hub.R
 import com.example.marvel_hub.data.model.ComicModel
 import com.example.marvel_hub.data.model.EventModel
 import com.example.marvel_hub.data.model.SeriesModel
-import com.example.marvel_hub.databinding.ItemBannerBinding
-import com.example.marvel_hub.databinding.ItemQuizBinding
 import com.example.marvel_hub.databinding.ListComicsBinding
 import com.example.marvel_hub.databinding.ListEventsBinding
 import com.example.marvel_hub.databinding.ListSeriesBinding
@@ -35,15 +31,6 @@ class HomeAdapter(
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): BaseViewHolder {
         val inflater = LayoutInflater.from(parent.context)
         return when (viewType) {
-            BANNER -> {
-                val binding = DataBindingUtil.inflate<ItemBannerBinding>(
-                    inflater,
-                    R.layout.item_banner,
-                    parent,
-                    false
-                )
-                BannerViewHolder(binding)
-            }
 
             COMICS -> {
                 val binding = DataBindingUtil.inflate<ListComicsBinding>(
@@ -65,7 +52,7 @@ class HomeAdapter(
                 EventViewHolder(binding)
             }
 
-            SERIES -> {
+            else -> {
                 val binding = DataBindingUtil.inflate<ListSeriesBinding>(
                     inflater,
                     R.layout.list_series,
@@ -74,26 +61,16 @@ class HomeAdapter(
                 )
                 SeriesViewHolder(binding)
             }
-
-            else -> {
-                val binding = DataBindingUtil.inflate<ItemQuizBinding>(
-                    inflater,
-                    R.layout.item_quiz,
-                    parent,
-                    false
-                )
-                QuizGameBannerViewHolder(binding)
-            }
         }
+
     }
 
     override fun getItemViewType(position: Int): Int {
         return when (getItems()[position]) {
-            is HomeItem.Banner -> BANNER
             is HomeItem.Comics -> COMICS
             is HomeItem.Events -> EVENTS
             is HomeItem.Series -> SERIES
-            else -> QUIZ_GAME_BANNER
+
         }
     }
 
@@ -102,73 +79,48 @@ class HomeAdapter(
             is HomeItem.Events -> bindEvent(current.data, holder as EventViewHolder)
             is HomeItem.Comics -> bindComic(current.data, holder as ComicViewHolder)
             is HomeItem.Series -> bindSeries(current.data, holder as SeriesViewHolder)
-            is HomeItem.Banner -> bindBanner(holder as BannerViewHolder)
-            is HomeItem.QuizGameBanner -> bindQuizGameBanner(holder as QuizGameBannerViewHolder)
         }
 
     }
 
     private fun bindComic(current: List<ComicModel>, holder: ComicViewHolder) {
-        HomeComicsAdapter(listener).also {
-            it.setItems(current)
-            holder.binding.setVariable(BR.adapterRecycler, it)
-        }
+        val adapterRecycler = HomeComicsAdapter(listener)
+        adapterRecycler.setItems(current)
+        holder.binding.setVariable(BR.adapterRecycler, adapterRecycler)
+
     }
 
     private fun bindEvent(current: List<EventModel>, holder: EventViewHolder) {
-        HomeEventsAdapter(listener).also {
-            it.setItems(current)
-            holder.binding.setVariable(BR.adapterRecycler, it)
-        }
+        val adapterRecycler = HomeEventsAdapter(listener)
+        adapterRecycler.setItems(current)
+        holder.binding.setVariable(BR.adapterRecycler, adapterRecycler)
+
     }
 
     private fun bindSeries(current: List<SeriesModel>, holder: SeriesViewHolder) {
-        HomeSeriesAdapter(listener).also {
-            it.setItems(current)
-            holder.binding.setVariable(BR.adapterRecycler, it)
-        }
+        val adapterRecycler = HomeSeriesAdapter(listener)
+        adapterRecycler.setItems(current)
+        holder.binding.setVariable(BR.adapterRecycler, adapterRecycler)
+
     }
 
-    private fun bindBanner(holder: BannerViewHolder) {}
-    private fun bindQuizGameBanner(holder: QuizGameBannerViewHolder) {}
-
-
-//    private fun setSnapHelper(recyclerView: RecyclerView) {
-//        try {
-//            val snapHelper = PagerSnapHelper()
-//            snapHelper.attachToRecyclerView(recyclerView)
-//        } catch (_: IllegalStateException) {
-//        }
-//    }
-
     companion object {
-        private const val BANNER = 0
         private const val COMICS = 1
         private const val EVENTS = 2
         private const val SERIES = 3
-        private const val QUIZ_GAME_BANNER = 4
     }
 }
 
 
 class ComicViewHolder(
     val binding: ListComicsBinding
-) :
-    BaseNestedAdapter.BaseViewHolder(binding)
+) : BaseNestedAdapter.BaseViewHolder(binding)
 
 class EventViewHolder(
     val binding: ListEventsBinding
-) :
-    BaseNestedAdapter.BaseViewHolder(binding)
+) : BaseNestedAdapter.BaseViewHolder(binding)
 
 class SeriesViewHolder(
     val binding: ListSeriesBinding
-) :
-    BaseNestedAdapter.BaseViewHolder(binding)
-
-class BannerViewHolder(binding: ItemBannerBinding) :
-    BaseNestedAdapter.BaseViewHolder(binding)
-
-class QuizGameBannerViewHolder(binding: ItemQuizBinding) :
-    BaseNestedAdapter.BaseViewHolder(binding)
+) : BaseNestedAdapter.BaseViewHolder(binding)
 
