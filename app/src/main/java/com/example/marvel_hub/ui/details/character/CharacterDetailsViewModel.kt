@@ -11,14 +11,14 @@ import com.example.marvel_hub.data.model.StoriesModel
 import com.example.marvel_hub.data.util.DataState
 import com.example.marvel_hub.ui.base.BaseViewModel
 import com.example.marvel_hub.ui.details.listeners.ComicListener
-import com.example.marvel_hub.ui.details.listeners.EventListener
+import com.example.marvel_hub.ui.details.listeners.EventsListener
 import com.example.marvel_hub.ui.details.listeners.SeriesListener
 import com.example.marvel_hub.ui.details.listeners.StoryListener
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
 import io.reactivex.rxjava3.kotlin.addTo
 import io.reactivex.rxjava3.schedulers.Schedulers
 
-class CharacterDetailsViewModel : BaseViewModel(), ComicListener,EventListener,SeriesListener,StoryListener {
+class CharacterDetailsViewModel : BaseViewModel(), ComicListener,EventsListener,SeriesListener,StoryListener {
 
     private val _character = MutableLiveData<DataState<CharactersModel>>(DataState.Loading)
     val character: LiveData<DataState<CharactersModel>>
