@@ -29,10 +29,10 @@
             android:drawablePadding="@dimen/medium_margin"
             android:hint="@string/search_hint"
             android:importantForAutofill="no"
-            android:text="@={viewModel.searchInput}"
             android:inputType="text"
             android:maxLength="50"
             android:paddingHorizontal="@dimen/large_margin"
+            android:text="@={viewModel.searchInput}"
             android:textColor="@color/input_text_color"
             android:textColorHint="@color/hint_color"
             android:textSize="@dimen/input_text_size"
@@ -58,7 +58,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:height="@dimen/height_chip"
-                android:onClick="@{() -> viewModel.onClickComicChip()}"
+                android:onClick="@{()-> viewModel.onClickComicChip()}"
                 android:text="@string/text_comic_chip"
                 android:textColor="@color/chip_text_color"
                 android:textSize="@dimen/body_text"
@@ -73,7 +73,6 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:height="@dimen/height_chip"
-                android:onClick="@{() -> viewModel.onClickSeriesChip()}"
                 android:text="@string/text_series_chip"
                 android:textColor="@color/chip_text_color"
                 android:textSize="@dimen/body_text"
@@ -88,7 +87,6 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:height="@dimen/height_chip"
-                android:onClick="@{() -> viewModel.onClickEventChip()}"
                 android:text="@string/text_events"
                 android:textColor="@color/chip_text_color"
                 android:textSize="@dimen/body_text"
@@ -109,7 +107,6 @@
             android:clipToPadding="false"
             android:orientation="vertical"
             android:visibility="visible"
-            app:recyclerItems="@{viewModel.searchResult.toData()}"
             app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
@@ -117,9 +114,9 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/filter_chip_component"
             app:layout_constraintVertical_bias="0.04"
+            app:recyclerItems="@{viewModel.searchResult.toData()}"
             app:spanCount="2"
-            tools:listitem="@layout/item_search_comics"
-            />
+            tools:listitem="@layout/item_search_comics" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

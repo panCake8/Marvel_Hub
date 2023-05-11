@@ -1,7 +1,9 @@
 package com.example.marvel_hub.ui.search.viewModel
 
+import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
+import com.example.marvel_hub.data.model.BaseResponse
 import com.example.marvel_hub.data.model.CharactersModel
 import com.example.marvel_hub.data.model.ComicModel
 import com.example.marvel_hub.data.model.EventModel
@@ -58,7 +60,8 @@ class SearchViewModel : BaseViewModel(), EventInteractionListener,
 
     }
 
-    private fun getComicData(text: String) {
+     fun getComicData(text: String) {
+        Log.i("testData","$text")
         disposable.add(
             repository.searchComics(text)
                 .subscribeOn(Schedulers.io())
@@ -66,15 +69,15 @@ class SearchViewModel : BaseViewModel(), EventInteractionListener,
                 .subscribe(::onGetComicsSuccess, ::onGetComicsError)
         )
     }
-    private fun onGetComicsSuccess(result: List<ComicModel>) =
-        _comics.postValue(DataState.Success(result))
+    private fun onGetComicsSuccess(result: BaseResponse<ComicModel>) =
+        _comics.postValue(DataState.Success(result.data?.results!!))
 
     private fun onGetComicsError(throwable: Throwable) =
         DataState.Error(throwable.message.toString())
 
 
 
-    private fun getSeriesData(text: String) {
+     fun getSeriesData(text: String) {
         disposable.add(
             repository.searchSeries(text)
                 .subscribeOn(Schedulers.io())
@@ -82,14 +85,14 @@ class SearchViewModel : BaseViewModel(), EventInteractionListener,
                 .subscribe(::onGetSeriesSuccess, ::onGetSeriesError)
         )
     }
-   private fun onGetSeriesSuccess(series: List<SeriesModel>) =
-        _series.postValue(DataState.Success(series))
+   private fun onGetSeriesSuccess(series: BaseResponse<SeriesModel>) =
+        _series.postValue(DataState.Success(series.data?.results!!))
 
     private fun onGetSeriesError(throwable: Throwable) =
         DataState.Error(throwable.message.toString())
 
 
-    private fun getEventData(text: String) {
+     fun getEventData(text: String) {
         disposable.add(
             repository.searchEvents(text)
                 .subscribeOn(Schedulers.io())
@@ -97,8 +100,8 @@ class SearchViewModel : BaseViewModel(), EventInteractionListener,
                 .subscribe(::onGetEventSuccess, ::onGetEventError)
         )
     }
-    private fun onGetEventSuccess(series: List<EventModel>) =
-        _event.postValue(DataState.Success(series))
+    private fun onGetEventSuccess(series: BaseResponse<EventModel>) =
+        _event.postValue(DataState.Success(series.data?.results!!))
 
     private fun onGetEventError(throwable: Throwable) =
         DataState.Error(throwable.message.toString())

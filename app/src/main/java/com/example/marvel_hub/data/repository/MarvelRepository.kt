@@ -27,7 +27,7 @@ class MarvelRepository : IMarvelRepository {
 
     override fun getAllComics() = API.apiService.getAllComics()
     override fun searchComics(name: String) =
-        API.apiService.searchComics(name).map { it?.data?.results!! }
+        API.apiService.searchComics(name)
 
     override fun getComicById(comicId: Int) = API.apiService.getComicsById(comicId)
 
@@ -58,7 +58,7 @@ class MarvelRepository : IMarvelRepository {
 
     override fun getAllEvents() = API.apiService.getAllEvents()
     override fun searchEvents(name: String) =
-        API.apiService.searchEvent(name).map { it?.data?.results!! }
+        API.apiService.searchEvent(name)
 
     override fun getEventsById(eventId: Int) = API.apiService.getEventsById(eventId)
 
@@ -74,8 +74,7 @@ class MarvelRepository : IMarvelRepository {
     override fun getStoriesByEventId(eventId: Int) = API.apiService.getStoriesByEventId(eventId)
     override fun getAllSeries() = API.apiService.getAllSeries()
 
-    override fun searchSeries(name: String) =
-        API.apiService.searchSeries(name).map { it?.data?.results!! }
+    override fun searchSeries(name: String) = API.apiService.searchSeries(name)
 
     override fun getSeriesById(seriesId: Int) = API.apiService.getSeriesById(seriesId)
 
@@ -105,23 +104,5 @@ class MarvelRepository : IMarvelRepository {
 
     override fun getSeriesByStoryId(storyId: Int) = API.apiService.getSeriesByStoryId(storyId)
 
-    override fun fetchSearchItems(
-        comicName: String,
-        seriesName: String,
-        eventName: String
-    ): Single<List<SearchItems>> {
-        return Single.zip(
-            searchComics(comicName),
-            searchEvents(eventName),
-            searchSeries(seriesName),
-        ) { comics: List<ComicModel>, events: List<EventModel>, series: List<SeriesModel> ->
-            listOf(
-                SearchItems.Comics(comics),
-                SearchItems.Events(events),
-                SearchItems.Series(series),
 
-
-                )
-        }
-    }
 }
