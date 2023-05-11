@@ -9,9 +9,6 @@
             name="item"
             type="com.example.marvel_hub.data.model.EventModel" />
 
-        <variable
-            name="listener"
-            type="com.example.marvel_hub.ui.home.adapter.intreactions.HomeEventInteractionsListener" />
     </data>
 
     <com.google.android.material.card.MaterialCardView

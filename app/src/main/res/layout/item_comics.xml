@@ -9,10 +9,6 @@
             name="item"
             type="com.example.marvel_hub.data.model.ComicModel" />
 
-        <variable
-            name="listener"
-            type="com.example.marvel_hub.ui.home.adapter.intreactions.HomeComicInteractionsListener" />
-
     </data>
 
     <com.google.android.material.card.MaterialCardView

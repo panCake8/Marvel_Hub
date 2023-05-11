@@ -8,10 +8,6 @@
         <variable
             name="item"
             type="com.example.marvel_hub.data.model.SeriesModel" />
-
-        <variable
-            name="listener"
-            type="com.example.marvel_hub.ui.home.adapter.intreactions.HomeSeriesInteractionsListener" />
     </data>
 
     <com.google.android.material.card.MaterialCardView

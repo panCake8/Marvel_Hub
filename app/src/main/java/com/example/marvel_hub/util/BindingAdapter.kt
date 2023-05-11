@@ -57,11 +57,11 @@ fun setImageFromUrl(view: ImageView, url: String?) {
 fun setNestedRecyclerItems(recyclerView: RecyclerView, items: State<HomeItem>?) {
     if (items != null)
         if (items is State.SuccessList) {
-            items.toDataList()?.let { it1 -> (recyclerView.adapter as HomeAdapter).setItems(it1) }
+            items.toDataList()?.let { it1 -> (recyclerView.adapter as HomeAdapter).addItem(it1) }
         } else {
-            (recyclerView.adapter as HomeAdapter).setItems(listOf())
+            (recyclerView.adapter as HomeAdapter).addItem(listOf())
         }
     else
-        (recyclerView.adapter as HomeAdapter).setItems(listOf())
+        (recyclerView.adapter as HomeAdapter).addItem(listOf())
 
 }

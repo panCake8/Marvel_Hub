@@ -17,7 +17,7 @@ class HomeFragment : BaseFragment<FragmentHomeBinding, HomeViewModel>() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        val adapter = HomeAdapter(mutableListOf(), viewModel)
+        val adapter = HomeAdapter(viewModel)
         binding.recyclerHome.adapter = adapter
     }
 }

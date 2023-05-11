@@ -1,9 +1,11 @@
 package com.example.marvel_hub.ui.home.adapter
 
+import android.annotation.SuppressLint
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
+import androidx.recyclerview.widget.PagerSnapHelper
+import androidx.recyclerview.widget.RecyclerView
 import com.example.marvel_hub.BR
 import com.example.marvel_hub.R
 import com.example.marvel_hub.data.model.ComicModel
@@ -14,24 +16,28 @@ import com.example.marvel_hub.databinding.ItemQuizBinding
 import com.example.marvel_hub.databinding.ListComicsBinding
 import com.example.marvel_hub.databinding.ListEventsBinding
 import com.example.marvel_hub.databinding.ListSeriesBinding
-import com.example.marvel_hub.ui.base.BaseAdapter
-import com.example.marvel_hub.ui.home.adapter.intreactions.HomeComicInteractionsListener
-import com.example.marvel_hub.ui.home.adapter.intreactions.HomeEventInteractionsListener
-import com.example.marvel_hub.ui.home.adapter.intreactions.HomeSeriesInteractionsListener
+import com.example.marvel_hub.ui.home.adapter.intreactions.HomeInteractionListener
 import com.example.marvel_hub.ui.home.util.HomeItem
 
 class HomeAdapter(
-    private var items: List<HomeItem>,
-    private val listener: BaseAdapterListener,
-) : BaseAdapter<HomeItem>(items, listener) {
-    override val getLayoutId: Int
-        get() = 0
+    private val listener: HomeInteractionListener,
+) : BaseNestedAdapter<HomeItem>(listener) {
+
+    override val layoutId = 0
+
+
+    @SuppressLint("NotifyDataSetChanged")
+    fun addItem(newItems: List<HomeItem>) {
+        setItems(newItems.sortedBy { it.rank })
+        notifyDataSetChanged()
+    }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): BaseViewHolder {
+        val inflater = LayoutInflater.from(parent.context)
         return when (viewType) {
             BANNER -> {
                 val binding = DataBindingUtil.inflate<ItemBannerBinding>(
-                    LayoutInflater.from(parent.context),
+                    inflater,
                     R.layout.item_banner,
                     parent,
                     false
@@ -41,37 +47,37 @@ class HomeAdapter(
 
             COMICS -> {
                 val binding = DataBindingUtil.inflate<ListComicsBinding>(
-                    LayoutInflater.from(parent.context),
+                    inflater,
                     R.layout.list_comics,
                     parent,
                     false
                 )
-                ComicViewHolder(binding, listener as HomeComicInteractionsListener)
+                ComicViewHolder(binding)
             }
 
             EVENTS -> {
                 val binding = DataBindingUtil.inflate<ListEventsBinding>(
-                    LayoutInflater.from(parent.context),
+                    inflater,
                     R.layout.list_events,
                     parent,
                     false
                 )
-                EventViewHolder(binding, listener as HomeEventInteractionsListener)
+                EventViewHolder(binding)
             }
 
             SERIES -> {
                 val binding = DataBindingUtil.inflate<ListSeriesBinding>(
-                    LayoutInflater.from(parent.context),
+                    inflater,
                     R.layout.list_series,
                     parent,
                     false
                 )
-                SeriesViewHolder(binding, listener as HomeSeriesInteractionsListener)
+                SeriesViewHolder(binding)
             }
 
             else -> {
                 val binding = DataBindingUtil.inflate<ItemQuizBinding>(
-                    LayoutInflater.from(parent.context),
+                    inflater,
                     R.layout.item_quiz,
                     parent,
                     false
@@ -82,7 +88,7 @@ class HomeAdapter(
     }
 
     override fun getItemViewType(position: Int): Int {
-        return when (items[position]) {
+        return when (getItems()[position]) {
             is HomeItem.Banner -> BANNER
             is HomeItem.Comics -> COMICS
             is HomeItem.Events -> EVENTS
@@ -92,42 +98,48 @@ class HomeAdapter(
     }
 
     override fun onBindViewHolder(holder: BaseViewHolder, position: Int) {
-        super.onBindViewHolder(holder, position)
-        bindItem(holder, items[position])
+        when (val current = getItems()[position]) {
+            is HomeItem.Events -> bindEvent(current.data, holder as EventViewHolder)
+            is HomeItem.Comics -> bindComic(current.data, holder as ComicViewHolder)
+            is HomeItem.Series -> bindSeries(current.data, holder as SeriesViewHolder)
+            is HomeItem.Banner -> bindBanner(holder as BannerViewHolder)
+            is HomeItem.QuizGameBanner -> bindQuizGameBanner(holder as QuizGameBannerViewHolder)
+        }
+
     }
 
-
-    private fun bindItem(holder: BaseViewHolder, item: HomeItem) {
-        when (item) {
-            is HomeItem.Banner -> {
-                (holder as BannerViewHolder).bind()
-            }
-
-            is HomeItem.Comics -> {
-                (holder as ComicViewHolder).bind(item.data)
-            }
-
-            is HomeItem.Events -> {
-                (holder as EventViewHolder).bind(item.data)
-            }
-
-            is HomeItem.Series -> {
-                (holder as SeriesViewHolder).bind(item.data)
-            }
-
-            is HomeItem.QuizGameBanner -> (holder as QuizGameBannerViewHolder)
+    private fun bindComic(current: List<ComicModel>, holder: ComicViewHolder) {
+        HomeComicsAdapter(listener).also {
+            it.setItems(current)
+            holder.binding.setVariable(BR.adapterRecycler, it)
         }
     }
 
-    override fun setItems(newItems: List<HomeItem>) {
-        items = newItems
-        items.apply {
-            sortedBy(::sortItem)
+    private fun bindEvent(current: List<EventModel>, holder: EventViewHolder) {
+        HomeEventsAdapter(listener).also {
+            it.setItems(current)
+            holder.binding.setVariable(BR.adapterRecycler, it)
         }
     }
 
-    private fun sortItem(item: HomeItem) = item.rank
+    private fun bindSeries(current: List<SeriesModel>, holder: SeriesViewHolder) {
+        HomeSeriesAdapter(listener).also {
+            it.setItems(current)
+            holder.binding.setVariable(BR.adapterRecycler, it)
+        }
+    }
 
+    private fun bindBanner(holder: BannerViewHolder) {}
+    private fun bindQuizGameBanner(holder: QuizGameBannerViewHolder) {}
+
+
+//    private fun setSnapHelper(recyclerView: RecyclerView) {
+//        try {
+//            val snapHelper = PagerSnapHelper()
+//            snapHelper.attachToRecyclerView(recyclerView)
+//        } catch (_: IllegalStateException) {
+//        }
+//    }
 
     companion object {
         private const val BANNER = 0
@@ -138,44 +150,25 @@ class HomeAdapter(
     }
 }
 
+
 class ComicViewHolder(
-    private val binding: ListComicsBinding,
-    private val listener: HomeComicInteractionsListener
+    val binding: ListComicsBinding
 ) :
-    BaseAdapter.BaseViewHolder(binding) {
-    fun bind(items: List<ComicModel>) {
-        binding.setVariable(BR.adapterRecycler, HomeComicsAdapter(items, listener))
-        binding.setVariable(BR.listener, listener)
-    }
-}
+    BaseNestedAdapter.BaseViewHolder(binding)
 
 class EventViewHolder(
-    private val binding: ListEventsBinding,
-    private val listener: HomeEventInteractionsListener
+    val binding: ListEventsBinding
 ) :
-    BaseAdapter.BaseViewHolder(binding) {
-    fun bind(items: List<EventModel>) {
-        binding.setVariable(BR.adapterRecycler, HomeEventsAdapter(items, listener))
-        binding.setVariable(BR.listener, listener)
-    }
-}
+    BaseNestedAdapter.BaseViewHolder(binding)
 
 class SeriesViewHolder(
-    private val binding: ListSeriesBinding,
-    private val listener: HomeSeriesInteractionsListener
+    val binding: ListSeriesBinding
 ) :
-    BaseAdapter.BaseViewHolder(binding) {
-    fun bind(items: List<SeriesModel>) {
-        binding.setVariable(BR.adapterRecycler, HomeSeriesAdapter(items, listener))
-        binding.setVariable(BR.listener, listener)
-    }
-}
+    BaseNestedAdapter.BaseViewHolder(binding)
 
-class BannerViewHolder(private val binding: ItemBannerBinding) :
-    BaseAdapter.BaseViewHolder(binding) {
-    fun bind() {
-        binding.imageBanner.visibility = View.VISIBLE
-    }
-}
+class BannerViewHolder(binding: ItemBannerBinding) :
+    BaseNestedAdapter.BaseViewHolder(binding)
 
-class QuizGameBannerViewHolder(binding: ItemQuizBinding) : BaseAdapter.BaseViewHolder(binding)
+class QuizGameBannerViewHolder(binding: ItemQuizBinding) :
+    BaseNestedAdapter.BaseViewHolder(binding)
+
