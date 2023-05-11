@@ -24,6 +24,12 @@ class SeriesDetailsFragment : BaseFragment<FragmentSeriesDetailsBinding, SeriesD
 
     private fun setupAdapter() {
         binding.mainRecycler.adapter = ParentSeriesAdapter(viewModel, viewLifecycleOwner)
+        viewModel.getSeriesById(26024)
+        viewModel.getCharactersBySeriesId(26024)
+        viewModel.getComicsBySeriesId(26024)
+        viewModel.getStoriesBySeriesId(26024)
+        viewModel.getEventsBySeriesId(26024)
+
     }
 
 }
