@@ -8,6 +8,7 @@ import com.example.marvel_hub.databinding.FragmentSearchBinding
 import com.example.marvel_hub.ui.base.BaseFragment
 import com.example.marvel_hub.ui.search.adapter.SeriesAdapter
 import com.example.marvel_hub.ui.search.adapter.EventAdapter
+import com.example.marvel_hub.ui.search.viewModel.SearchData
 import com.example.marvel_hub.ui.search.viewModel.SearchViewModel
 
 
@@ -34,9 +35,9 @@ class SearchFragment : BaseFragment<FragmentSearchBinding, SearchViewModel>() {
         viewModel.dataType.observe(viewLifecycleOwner) {
             binding.recyclerSearchResult.adapter =
                 when (viewModel.dataType.value) {
-                    1 -> comicAdapter
-                    2 -> eventAdapter
-                    3 -> seriesAdapter
+                    SearchData.COMIC -> comicAdapter
+                    SearchData.EVENT -> eventAdapter
+                    SearchData.SERIES -> seriesAdapter
                     else -> null
                 }
         }

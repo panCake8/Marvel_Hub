@@ -19,8 +19,8 @@ class SearchViewModel : BaseViewModel(), EventInteractionListener,
     SeriesInteractionListener {
 
     private val _dataType =
-        MutableLiveData<Int>()
-    val dataType: LiveData<Int> = _dataType
+        MutableLiveData<Enum<Data>>()
+    val dataType: LiveData<Enum<Data>> = _dataType
 
 
     private val _searchResult =
@@ -47,15 +47,15 @@ class SearchViewModel : BaseViewModel(), EventInteractionListener,
 
 
     fun onClickComicChip() {
-        _dataType.postValue(1)
+        _dataType.postValue(Data.COMIC)
     }
 
     fun onClickEventChip() {
-        _dataType.postValue(2)
+        _dataType.postValue(Data.EVENT)
     }
 
-    fun onClickCreatorChip() {
-        _dataType.postValue(3)
+    fun onClickSeriesChip() {
+        _dataType.postValue(Data.SERIES)
     }
 
 
