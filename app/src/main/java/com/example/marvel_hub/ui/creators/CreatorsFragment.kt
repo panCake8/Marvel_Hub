@@ -10,14 +10,14 @@ import com.example.marvel_hub.ui.base.BaseFragment
 class CreatorsFragment : BaseFragment<FragmentCreatorsBinding, CreatorsViewModel>() {
 
     override val viewModel: CreatorsViewModel by viewModels()
+
     override val layoutId: Int
         get() = R.layout.fragment_creators
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-
-        viewModel.getCreator(30)
+        viewModel.getCreator(9716)
 
         binding.buttonProducts.setOnClickListener {
 

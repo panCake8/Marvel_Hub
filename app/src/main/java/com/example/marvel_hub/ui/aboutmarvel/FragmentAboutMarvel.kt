@@ -19,12 +19,12 @@ class FragmentAboutMarvel : BaseFragment<FragmentAboutMarvelBinding, AboutMarvel
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         setupRecyclerView()
-        viewModel.selectedMarvelItem.observe(viewLifecycleOwner,EventObserver{
+        viewModel.selectedMarvelItem.observe(viewLifecycleOwner, EventObserver {
             //Todo
         })
     }
 
-    fun setupRecyclerView(){
+    private fun setupRecyclerView() {
         val adapter = AboutMarvelAdapter(mutableListOf(), viewModel)
         binding.recyclerCharacters.adapter = adapter
     }
