@@ -3,7 +3,7 @@ package com.example.marvel_hub.ui.stories.viewModel
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
-import com.example.marvel_hub.data.model.BaseResponse
+import com.example.marvel_hub.data.model.List
 import com.example.marvel_hub.data.model.StoriesModel
 import com.example.marvel_hub.data.util.DataState
 import com.example.marvel_hub.ui.base.BaseViewModel
@@ -15,8 +15,8 @@ import io.reactivex.rxjava3.schedulers.Schedulers
 
 class StoryViewModel : BaseViewModel(), StoriesInteractionListener {
 
-    private val _story = MutableLiveData<DataState<BaseResponse<StoriesModel>>>(DataState.Loading)
-    val story: LiveData<DataState<BaseResponse<StoriesModel>>>
+    private val _story = MutableLiveData<DataState<List<StoriesModel>>>(DataState.Loading)
+    val story: LiveData<DataState<List<StoriesModel>>>
         get() = _story
 
     private val _selectedStoryItem = MutableLiveData<Event<StoriesModel>>()
@@ -39,7 +39,7 @@ class StoryViewModel : BaseViewModel(), StoriesInteractionListener {
             .addTo(disposable)
     }
 
-    private fun onSuccess(story: BaseResponse<StoriesModel>) {
+    private fun onSuccess(story: List<StoriesModel>) {
         _story.postValue(DataState.Success(story))
     }
 

@@ -5,13 +5,16 @@
 
     <data>
 
+        <variable
+            name="viewModel"
+            type="com.example.marvel_hub.ui.details.stories.StoriesDetailsViewModel" />
+
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_marginTop="@dimen/large_margin"
-        >
+        android:layout_marginTop="@dimen/large_margin">
 
         <TextView
             android:id="@+id/child_characters_related_text"
@@ -30,6 +33,8 @@
             />
 
         <androidx.recyclerview.widget.RecyclerView
+            app:recyclerItems="@{viewModel.comics.toData()}"
+            app:showWhenSuccess="@{viewModel.comics"
             android:id="@+id/child_comic_recycler"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"

@@ -8,7 +8,9 @@ import com.example.marvel_hub.databinding.FragmentStoriesDetailsBinding
 import com.example.marvel_hub.ui.base.BaseFragment
 import com.example.marvel_hub.ui.details.stories.adapters.ParentStoriesDetailsAdapter
 
-class StoriesDetailsFragment :BaseFragment<FragmentStoriesDetailsBinding,StoriesDetailsViewModel>() {
+class StoriesDetailsFragment :
+    BaseFragment<FragmentStoriesDetailsBinding, StoriesDetailsViewModel>() {
+
     override val viewModel: StoriesDetailsViewModel by viewModels()
     override val layoutId: Int = R.layout.fragment_stories_details
 
@@ -18,10 +20,9 @@ class StoriesDetailsFragment :BaseFragment<FragmentStoriesDetailsBinding,Stories
     }
 
 
-
     private fun setUp() {
 
-        binding.mainRecycler.adapter = ParentStoriesDetailsAdapter(viewModel,this)
+        binding.mainRecycler.adapter = ParentStoriesDetailsAdapter(viewModel, this)
 
 
     }

@@ -4,6 +4,10 @@
 
     <data>
 
+        <variable
+            name="viewModel"
+            type="com.example.marvel_hub.ui.details.stories.StoriesDetailsViewModel" />
+
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -29,9 +33,13 @@
             />
 
         <androidx.recyclerview.widget.RecyclerView
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+            android:orientation="horizontal"
+            app:recyclerItems="@{viewModel.series.toData()}"
             android:id="@+id/child_series_recycler"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            app:showWhenSuccess="@{viewModel.series}"
             app:layout_constraintTop_toBottomOf="@+id/child_series_related_text" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>

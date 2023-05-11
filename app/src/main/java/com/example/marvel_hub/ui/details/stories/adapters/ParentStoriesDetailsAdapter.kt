@@ -16,7 +16,10 @@ import com.example.marvel_hub.databinding.ItemRecyclerStoriesDetailsInfoBinding
 import com.example.marvel_hub.databinding.ItemRecyclerStoriesDetailsSeriesBinding
 import com.example.marvel_hub.ui.details.stories.StoriesDetailsViewModel
 
-class ParentStoriesDetailsAdapter(viewModel: StoriesDetailsViewModel,lifecycleOwner: LifecycleOwner) :
+class ParentStoriesDetailsAdapter(
+    val viewModel: StoriesDetailsViewModel,
+    val lifecycleOwner: LifecycleOwner,
+) :
     Adapter<ParentStoriesDetailsAdapter.BaseStoriesViewHolder>() {
 
 
@@ -84,16 +87,39 @@ class ParentStoriesDetailsAdapter(viewModel: StoriesDetailsViewModel,lifecycleOw
             is ComicsViewHolder -> bindComics(holder.binding)
             is SeriesViewHolder -> bindSeries(holder.binding)
             is CharactersVIewHolder -> bindCharacters(holder.binding)
-
+            else -> throw IllegalArgumentException("invalid Item")
         }
     }
 
 
-    private fun bindInfo(binding: ItemRecyclerStoriesDetailsInfoBinding) {}
-    private fun bindEvents(binding: ItemRecyclerStoriesDetailsEventsBinding) {}
-    private fun bindComics(binding: ItemRecyclerStoriesDetailsComicsBinding) {}
-    private fun bindSeries(binding: ItemRecyclerStoriesDetailsSeriesBinding) {}
-    private fun bindCharacters(binding: ItemRecyclerStoriesDetailsCharactersBinding) {}
+    private fun bindInfo(binding: ItemRecyclerStoriesDetailsInfoBinding) {
+        binding.viewModel = viewModel
+        binding.lifecycleOwner = lifecycleOwner
+    }
+
+    private fun bindEvents(binding: ItemRecyclerStoriesDetailsEventsBinding) {
+        binding.viewModel = viewModel
+        binding.lifecycleOwner = lifecycleOwner
+//        binding.childEventRecycler.adapter=ChildStoriesEventsAdapter()
+    }
+
+    private fun bindComics(binding: ItemRecyclerStoriesDetailsComicsBinding) {
+        binding.viewModel = viewModel
+        binding.lifecycleOwner = lifecycleOwner
+//        binding.childComicRecycler.adapter=ChildStoriesComicsAdapter()
+    }
+
+    private fun bindSeries(binding: ItemRecyclerStoriesDetailsSeriesBinding) {
+        binding.viewModel = viewModel
+        binding.lifecycleOwner = lifecycleOwner
+//        binding.childSeriesRecycler.adapter=ChildStoriesSeriesAdapter()
+    }
+
+    private fun bindCharacters(binding: ItemRecyclerStoriesDetailsCharactersBinding) {
+        binding.viewModel = viewModel
+        binding.lifecycleOwner = lifecycleOwner
+//        binding.childCharacterRecycler.adapter=ChildStoriesCharactersAdapter()
+    }
 
     abstract class BaseStoriesViewHolder(binding: ViewDataBinding) : ViewHolder(binding.root)
 

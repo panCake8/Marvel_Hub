@@ -5,6 +5,9 @@
 
     <data>
 
+        <variable
+            name="viewModel"
+            type="com.example.marvel_hub.ui.details.stories.StoriesDetailsViewModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -28,7 +31,10 @@
             app:layout_constraintTop_toTopOf="parent"
 
             />
+
         <androidx.recyclerview.widget.RecyclerView
+            app:recyclerItems="@{viewModel.characters.toData()}"
+            app:showWhenSuccess="@{viewModel.characters}"
             android:id="@+id/child_character_recycler"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
