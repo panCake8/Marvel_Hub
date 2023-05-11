@@ -40,7 +40,8 @@
                 android:src="@drawable/image_marvel"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/toolbar_stroke" />
+                app:layout_constraintTop_toBottomOf="@+id/toolbar_stroke"
+                android:contentDescription="@string/logo" />
 
             <TextView
                 android:id="@+id/text_creators"
@@ -99,7 +100,8 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                app:showWhenError="@{viewModel.marvel}" />
+                app:showWhenError="@{viewModel.marvel}"
+                android:contentDescription="@string/logo" />
 
 
         </androidx.constraintlayout.widget.ConstraintLayout>

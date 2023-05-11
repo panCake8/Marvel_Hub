@@ -19,12 +19,12 @@ class FragmentComics : BaseFragment<FragmentComicsBinding, ComicsViewModel>() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         setupRecyclerView()
-        viewModel.selectedComicItem.observe(viewLifecycleOwner,EventObserver{
+        viewModel.selectedComicItem.observe(viewLifecycleOwner, EventObserver {
             //Todo
         })
     }
 
-    fun setupRecyclerView(){
+    private fun setupRecyclerView() {
         val adapter = ComicsAdapter(mutableListOf(), viewModel)
         binding.recyclerComics.adapter = adapter
     }
