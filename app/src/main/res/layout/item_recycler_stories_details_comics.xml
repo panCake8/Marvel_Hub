@@ -34,7 +34,7 @@
 
         <androidx.recyclerview.widget.RecyclerView
             app:recyclerItems="@{viewModel.comics.toData()}"
-            app:showWhenSuccess="@{viewModel.comics"
+            app:showWhenSuccess="@{viewModel.comics}"
             android:id="@+id/child_comic_recycler"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
