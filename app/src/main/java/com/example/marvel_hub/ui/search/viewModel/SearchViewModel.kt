@@ -61,7 +61,7 @@ class SearchViewModel : BaseViewModel(), EventInteractionListener,
     }
 
      fun getComicData(text: String) {
-        Log.i("testData","$text")
+        Log.i("testInputComic","$text")
         disposable.add(
             repository.searchComics(text)
                 .subscribeOn(Schedulers.io())
@@ -78,7 +78,9 @@ class SearchViewModel : BaseViewModel(), EventInteractionListener,
 
 
      fun getSeriesData(text: String) {
-        disposable.add(
+         Log.i("testInputSeries","$text")
+
+         disposable.add(
             repository.searchSeries(text)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
@@ -93,7 +95,9 @@ class SearchViewModel : BaseViewModel(), EventInteractionListener,
 
 
      fun getEventData(text: String) {
-        disposable.add(
+         Log.i("testInputEvent","$text")
+
+         disposable.add(
             repository.searchEvents(text)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
@@ -105,8 +109,6 @@ class SearchViewModel : BaseViewModel(), EventInteractionListener,
 
     private fun onGetEventError(throwable: Throwable) =
         DataState.Error(throwable.message.toString())
-
-
 
 
     fun onClickComicChip() {

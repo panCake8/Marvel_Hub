@@ -11,11 +11,12 @@ import com.example.marvel_hub.ui.search.adapter.SeriesAdapter
 import com.example.marvel_hub.ui.search.adapter.EventAdapter
 import com.example.marvel_hub.ui.search.viewModel.Data
 import com.example.marvel_hub.ui.search.viewModel.SearchViewModel
+import com.google.android.material.chip.Chip
 
 
 class SearchFragment : BaseFragment<FragmentSearchBinding, SearchViewModel>() {
 
-    override val viewModel: SearchViewModel by viewModels({requireActivity()})
+    override val viewModel: SearchViewModel by viewModels({ requireActivity() })
 
 
     override val layoutId: Int
@@ -28,11 +29,16 @@ class SearchFragment : BaseFragment<FragmentSearchBinding, SearchViewModel>() {
         getData()
 
     }
-    private fun getData(){
+
+    private fun getData() {
         binding.searchBar.doOnTextChanged { text, start, before, count ->
-            viewModel.getComicData(text.toString())
+
+            if (showSelectedChips() == "Comics") viewModel.getComicData(text.toString())
+            else if (showSelectedChips() == "Series") viewModel.getSeriesData(text.toString())
+            else if (showSelectedChips() == "Events") viewModel.getEventData(text.toString())
 
         }
+
 
     }
 
@@ -41,18 +47,29 @@ class SearchFragment : BaseFragment<FragmentSearchBinding, SearchViewModel>() {
 
         val eventAdapter = EventAdapter(mutableListOf(), viewModel)
 
-         val comicAdapter = ComicsAdapter(mutableListOf(), viewModel)
+        val comicAdapter = ComicsAdapter(mutableListOf(), viewModel)
 
-         val seriesAdapter = SeriesAdapter(mutableListOf(), viewModel)
+        val seriesAdapter = SeriesAdapter(mutableListOf(), viewModel)
         viewModel.dataType.observe(viewLifecycleOwner) {
             binding.recyclerSearchResult.adapter =
                 when (viewModel.dataType.value) {
                     Data.COMIC -> comicAdapter
                     Data.EVENT -> eventAdapter
-                   else -> seriesAdapter
+                    else -> seriesAdapter
 
                 }
         }
+    }
+
+    private fun showSelectedChips(): String {
+        val selectedChipsIds = binding.filterChipComponent.checkedChipIds
+        val selectedChips = mutableListOf<String>()
+        for (id in selectedChipsIds) {
+            val chip = binding.filterChipComponent.findViewById<Chip>(id)
+            selectedChips.add(chip.text.toString())
+        }
+
+        return selectedChips.joinToString(", ")
     }
 
 }

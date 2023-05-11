@@ -68,11 +68,13 @@
                 app:chipStrokeWidth="@dimen/chip_stroke" />
 
             <com.google.android.material.chip.Chip
-                android:id="@+id/chip_creators"
+                android:id="@+id/chip_series"
                 style="@style/Widget.MaterialComponents.Chip.Filter"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:height="@dimen/height_chip"
+                android:onClick="@{()-> viewModel.onClickSeriesChip()}"
+
                 android:text="@string/text_series_chip"
                 android:textColor="@color/chip_text_color"
                 android:textSize="@dimen/body_text"
@@ -87,6 +89,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:height="@dimen/height_chip"
+                android:onClick="@{()-> viewModel.onClickEventChip()}"
+
                 android:text="@string/text_events"
                 android:textColor="@color/chip_text_color"
                 android:textSize="@dimen/body_text"
