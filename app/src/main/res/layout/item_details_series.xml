@@ -8,6 +8,10 @@
         <variable
             name="item"
             type="com.example.marvel_hub.data.model.SeriesModel" />
+
+        <variable
+            name="listener"
+            type="com.example.marvel_hub.ui.details.listeners.SeriesListener" />
     </data>
 
     <com.google.android.material.card.MaterialCardView
@@ -46,6 +50,8 @@
                 android:fontFamily="@font/poppins_medium"
                 android:maxLines="1"
                 android:text="@{item.title}"
+                style="@style/card_title"
+
                 android:textColor="@color/white_100"
                 android:textSize="@dimen/body_text"
                 app:layout_constraintBottom_toTopOf="@+id/text_duration_time"
