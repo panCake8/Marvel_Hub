@@ -102,4 +102,27 @@
         <item name="spanCount">2</item>
         <item name="android:orientation">vertical</item>
     </style>
+
+    //chips style
+    <style name="Widget.App.Chip" parent="Widget.MaterialComponents.Chip.Filter">
+        <item name="android:checkable">true</item>
+        <item name="chipIconVisible">false</item>
+        <item name="closeIconVisible">false</item>
+        <item name="chipBackgroundColor">@color/chip_background</item>
+        <item name="android:textColor">@color/chip_text_color</item>
+        <item name="android:textSize">@dimen/body_text</item>
+        <item name="height">@dimen/chip_height</item>
+        <item name="chipCornerRadius">@dimen/medium_radius</item>
+        <item name="chipStrokeColor">@color/red</item>
+        <item name="chipStrokeWidth">@dimen/chip_stroke</item>
+    </style>
+
+    <style name="RecyclerStyleSearch">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_marginTop">@dimen/app_bar_height</item>
+        <item name="spanCount">2</item>
+        <item name="android:orientation">vertical</item>
+
+    </style>
 </resources>

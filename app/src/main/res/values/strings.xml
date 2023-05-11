@@ -15,5 +15,6 @@
     <string name="error_image">error image</string>
     <string name="logo">logo</string>
     <string name="comic">Comic</string>
-    <string name="search_hint">search</string>
+    <string name="search_hint">Search</string>
+    <string name="chip_characters">Characters</string>
 </resources>

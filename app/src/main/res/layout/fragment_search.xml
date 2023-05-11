@@ -15,111 +15,120 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@color/background_color">
+        android:background="@color/background_color"
+        android:padding="@dimen/large_padding">
 
-
-        <EditText
+        <SearchView
             android:id="@+id/search_bar"
             android:layout_width="match_parent"
-            android:layout_height="@dimen/search_bar_height"
-            android:layout_marginHorizontal="@dimen/margin_large"
-            android:layout_marginTop="@dimen/margin_medium"
+            android:layout_height="wrap_content"
             android:background="@drawable/search_bar_background"
-            android:drawableLeft="@drawable/ic_search"
-            android:drawablePadding="@dimen/medium_margin"
-            android:hint="@string/search_hint"
-            android:importantForAutofill="no"
-            android:text="@={}"
-            android:inputType="text"
-            android:maxLength="50"
-            android:paddingHorizontal="@dimen/large_margin"
-            android:textColor="@color/input_text_color"
-            android:textColorHint="@color/hint_color"
-            android:textSize="@dimen/input_text_size"
-            app:layout_constraintEnd_toEndOf="parent"
+            android:iconifiedByDefault="false"
+            android:queryBackground="@android:color/transparent"
+            android:queryHint="@string/search_hint"
+            app:layout_constraintEnd_toStartOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintHorizontal_chainStyle="packed"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            tools:ignore="RtlHardcoded" />
+            app:onTextChange="@{viewModel}" />
 
-
-        <com.google.android.material.chip.ChipGroup
-            android:id="@+id/filter_chip_component"
+        <HorizontalScrollView
+            android:id="@+id/view_chips_group"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:padding="@dimen/medium_padding"
-            app:checkedChip="@id/chip_comics"
-            app:layout_constraintTop_toBottomOf="@+id/search_bar"
-            app:singleSelection="true">
+            app:layout_constraintTop_toBottomOf="@+id/search_bar">
 
-
-            <com.google.android.material.chip.Chip
-                android:id="@+id/chip_comics"
-                style="@style/Widget.MaterialComponents.Chip.Filter"
+            <com.google.android.material.chip.ChipGroup
+                android:id="@+id/filter_chip_component"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:height="83dp"
-                android:onClick="@{() -> viewModel.onClickComicChip()}"
-                android:text="@string/comics"
-                android:textColor="@color/chip_text_color"
-                android:textSize="@dimen/body_text"
-                app:chipBackgroundColor="@color/chip_background"
-                app:chipCornerRadius="8dp"
-                app:chipStrokeColor="@color/red"
-                app:chipStrokeWidth="1dp" />
-
-            <com.google.android.material.chip.Chip
-                android:id="@+id/chip_creators"
-                style="@style/Widget.MaterialComponents.Chip.Filter"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:height="83dp"
-                android:onClick="@{() -> viewModel.onClickCreatorChip()}"
-                android:text="@string/creators"
-                android:textColor="@color/chip_text_color"
-                android:textSize="@dimen/body_text"
-                app:chipBackgroundColor="@color/chip_background"
-                app:chipCornerRadius="8dp"
-                app:chipStrokeColor="@color/red"
-                app:chipStrokeWidth="1dp" />
-
-            <com.google.android.material.chip.Chip
-                android:id="@+id/chip_events"
-                style="@style/Widget.MaterialComponents.Chip.Filter"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:height="83dp"
-                android:onClick="@{() -> viewModel.onClickEventChip()}"
-                android:text="@string/text_events"
-                android:textColor="@color/chip_text_color"
-                android:textSize="@dimen/body_text"
-                app:chipBackgroundColor="@color/chip_background"
-                app:chipCornerRadius="8dp"
-                app:chipStrokeColor="@color/red"
-                app:chipStrokeWidth="1dp" />
+                android:paddingTop="@dimen/medium_padding"
+                android:paddingBottom="@dimen/medium_padding"
+                app:checkedChip="@id/chip_comics"
+                app:layout_constraintTop_toBottomOf="@+id/search_bar"
+                app:singleSelection="true">
 
 
-        </com.google.android.material.chip.ChipGroup>
+                <com.google.android.material.chip.Chip
+                    android:id="@+id/chip_comics"
+                    style="@style/Widget.App.Chip"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:onClick="@{() -> viewModel.onClickComicChip()}"
+                    android:text="@string/comics" />
+
+                <com.google.android.material.chip.Chip
+                    android:id="@+id/chip_creators"
+                    style="@style/Widget.App.Chip"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:onClick="@{() -> viewModel.onClickCreatorChip()}"
+                    android:text="@string/creators" />
+
+                <com.google.android.material.chip.Chip
+                    android:id="@+id/chip_character"
+                    style="@style/Widget.App.Chip"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:checked="true"
+                    android:text="@string/chip_characters" />
+
+                <com.google.android.material.chip.Chip
+                    android:id="@+id/chip_events"
+                    style="@style/Widget.App.Chip"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:onClick="@{() -> viewModel.onClickEventChip()}"
+                    android:text="@string/text_events" />
+
+
+            </com.google.android.material.chip.ChipGroup>
+
+        </HorizontalScrollView>
 
         <androidx.recyclerview.widget.RecyclerView
+
             android:id="@+id/recycler_search_result"
+            style="@style/RecyclerStyleSearch"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginHorizontal="@dimen/margin_search_recyclerview"
-            android:layout_marginTop="@dimen/small_margin"
-            android:clipToPadding="false"
-            android:orientation="vertical"
-            android:visibility="visible"
-            app:recyclerItems="@{viewModel.searchResult.toData().data.results}"
             app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.053"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/filter_chip_component"
-            app:layout_constraintVertical_bias="0.04"
-            app:spanCount="2"
-            tools:listitem="@layout/item_search_comics"
-            />
+            app:layout_constraintTop_toBottomOf="@+id/view_chips_group"
+            app:layout_constraintVertical_bias="0.37"
+            app:recyclerItems="@{viewModel.searchResult.toData().data.results}"
+
+            tools:listitem="@layout/item_search_comics" />
+
+        <ProgressBar
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:visibility="gone"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:showWhenLoading="@{viewModel.itemList}" />
+
+
+        <com.airbnb.lottie.LottieAnimationView
+            android:id="@+id/view_lottie_layer"
+            android:layout_width="@dimen/lotti_width"
+            android:layout_height="wrap_content"
+            android:visibility="visible"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:lottie_autoPlay="true"
+            app:lottie_loop="true"
+            app:lottie_rawRes="@raw/search_empty"
+            app:showWhenEmpty="@{viewModel.itemList}" />
+
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
