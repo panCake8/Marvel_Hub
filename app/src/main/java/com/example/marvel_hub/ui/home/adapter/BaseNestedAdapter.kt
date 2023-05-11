@@ -39,7 +39,7 @@ abstract class BaseNestedAdapter<T>(
         }
     }
 
-    override fun getItemCount() = items.size
+    override fun getItemCount() = items.size ?: 0
 
     abstract class BaseViewHolder(binding: ViewDataBinding) : RecyclerView.ViewHolder(binding.root)
     open class ItemViewHolder(val binding: ViewDataBinding) : BaseViewHolder(binding)

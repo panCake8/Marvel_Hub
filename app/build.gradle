@@ -92,7 +92,7 @@ dependencies {
     implementation "androidx.navigation:navigation-ui-ktx:2.5.3"
     //Glide
     annotationProcessor 'com.github.bumptech.glide:compiler:4.14.1'
-    implementation 'com.github.bumptech.glide:glide:4.14.1'
+    implementation 'com.github.bumptech.glide:glide:4.15.1'
     //circleImage
     implementation 'com.mikhaellopez:circularimageview:4.3.0'
 }

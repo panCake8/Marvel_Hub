@@ -7,6 +7,6 @@ import com.example.marvel_hub.ui.home.adapter.intreactions.HomeInteractionListen
 class HomeSeriesAdapter(listener: HomeInteractionListener) :
     BaseNestedAdapter<SeriesModel>(listener) {
     override val layoutId: Int
-        get() = R.layout.item_comics
+        get() = R.layout.item_series
 
 }

@@ -15,15 +15,15 @@
         android:layout_height="match_parent"
         android:background="@color/white_100">
 
+
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/recycler_home"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:clipToPadding="false"
             android:orientation="vertical"
-            app:nestedRecyclerItems="@{viewModel.homeItem}"
             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-            app:showWhenSuccess="@{viewModel.homeItem}"
+            app:nestedRecyclerItems="@{viewModel.homeItem}"
+            app:showWhenSuccessList="@{viewModel.homeItem}"
             tools:listitem="@layout/item_banner" />
 
         <ProgressBar

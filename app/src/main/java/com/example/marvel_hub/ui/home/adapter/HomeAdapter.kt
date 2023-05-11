@@ -20,7 +20,18 @@ class HomeAdapter(
 ) : BaseNestedAdapter<HomeItem>(listener) {
 
     override val layoutId = 0
+    private fun getTypeView(item: HomeItem): Int {
+        return when (item) {
+            is HomeItem.Comics -> COMICS
+            is HomeItem.Events -> EVENTS
+            is HomeItem.Series -> SERIES
 
+        }
+    }
+
+    override fun getItemViewType(position: Int): Int {
+        return getTypeView(getItems()[position])
+    }
 
     @SuppressLint("NotifyDataSetChanged")
     fun addItem(newItems: List<HomeItem>) {
@@ -63,15 +74,6 @@ class HomeAdapter(
             }
         }
 
-    }
-
-    override fun getItemViewType(position: Int): Int {
-        return when (getItems()[position]) {
-            is HomeItem.Comics -> COMICS
-            is HomeItem.Events -> EVENTS
-            is HomeItem.Series -> SERIES
-
-        }
     }
 
     override fun onBindViewHolder(holder: BaseViewHolder, position: Int) {

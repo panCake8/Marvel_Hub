@@ -39,6 +39,16 @@ fun <T> showWhenSuccess(view: View, state: State<T>?) {
 
 }
 
+@BindingAdapter(value = ["app:showWhenSuccessList"])
+fun <T> showWhenSuccessList(view: View, state: State<T>?) {
+
+    if (state is State.SuccessList)
+        view.visibility = View.VISIBLE
+    else
+        view.visibility = View.GONE
+
+}
+
 @BindingAdapter(value = ["app:recyclerItems"])
 fun <T> setRecyclerItems(recyclerView: RecyclerView, items: List<T>?) {
     if (items != null) {
