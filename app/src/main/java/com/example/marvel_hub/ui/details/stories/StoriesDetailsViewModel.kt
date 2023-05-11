@@ -2,7 +2,7 @@ package com.example.marvel_hub.ui.details.stories
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
-import com.example.marvel_hub.data.model.List
+import com.example.marvel_hub.data.model.BaseResponse
 import com.example.marvel_hub.data.model.CharactersModel
 import com.example.marvel_hub.data.model.ComicModel
 import com.example.marvel_hub.data.model.EventModel
@@ -24,26 +24,26 @@ class StoriesDetailsViewModel : BaseViewModel() {
 
 
     private val _characters =
-        MutableLiveData<DataState<kotlin.collections.List<CharactersModel>?>>(DataState.Loading)
-    val characters: LiveData<DataState<kotlin.collections.List<CharactersModel>?>>
+        MutableLiveData<DataState<List<CharactersModel>?>>(DataState.Loading)
+    val characters: LiveData<DataState<List<CharactersModel>?>>
         get() = _characters
 
 
     private val _comics =
-        MutableLiveData<DataState<kotlin.collections.List<ComicModel>?>>(DataState.Loading)
-    val comics: LiveData<DataState<kotlin.collections.List<ComicModel>?>>
+        MutableLiveData<DataState<List<ComicModel>?>>(DataState.Loading)
+    val comics: LiveData<DataState<List<ComicModel>?>>
         get() = _comics
 
 
     private val _series =
-        MutableLiveData<DataState<kotlin.collections.List<SeriesModel>?>>(DataState.Loading)
-    val series: LiveData<DataState<kotlin.collections.List<SeriesModel>?>>
+        MutableLiveData<DataState<List<SeriesModel>?>>(DataState.Loading)
+    val series: LiveData<DataState<List<SeriesModel>?>>
         get() = _series
 
 
     private val _events =
-        MutableLiveData<DataState<kotlin.collections.List<EventModel>?>>(DataState.Loading)
-    val events: LiveData<DataState<kotlin.collections.List<EventModel>?>>
+        MutableLiveData<DataState<List<EventModel>?>>(DataState.Loading)
+    val events: LiveData<DataState<List<EventModel>?>>
         get() = _events
 
 
@@ -55,7 +55,7 @@ class StoriesDetailsViewModel : BaseViewModel() {
                 ::storyOnError
             ).addTo(disposable)
 
-    private fun storyOnSuccess(story: List<StoriesModel>) {
+    private fun storyOnSuccess(story: BaseResponse<StoriesModel>) {
         _story.postValue(story.data?.results?.get(0).let { DataState.Success(it!!) })
     }
     private fun storyOnError(error: Throwable) {
@@ -68,10 +68,10 @@ class StoriesDetailsViewModel : BaseViewModel() {
             .observeOn(AndroidSchedulers.mainThread())
             .subscribe(
                 ::charactersOnSuccess,
-                this::charactersOnError
+                ::charactersOnError
             ).addTo(disposable)
 
-    private fun charactersOnSuccess(characters: List<CharactersModel>) {
+    private fun charactersOnSuccess(characters: BaseResponse<CharactersModel>) {
         _characters.postValue(characters.data?.results.let { DataState.Success(it) })
     }
     private fun charactersOnError(error: Throwable) {
@@ -85,7 +85,7 @@ class StoriesDetailsViewModel : BaseViewModel() {
             .subscribe(this::comicOnSuccess, this::comicOnError)
             .addTo(disposable)
 
-    private fun comicOnSuccess(comics: List<ComicModel>) {
+    private fun comicOnSuccess(comics: BaseResponse<ComicModel>) {
         _comics.postValue(comics.data?.results.let { DataState.Success(it) })
     }
     private fun comicOnError(error: Throwable) {
@@ -99,7 +99,7 @@ class StoriesDetailsViewModel : BaseViewModel() {
             .subscribe(this::seriesOnSuccess, this::seriesOnError)
             .addTo(disposable)
 
-    private fun seriesOnSuccess(series: List<SeriesModel>) {
+    private fun seriesOnSuccess(series: BaseResponse<SeriesModel>) {
         _series.postValue(series.data?.results.let { DataState.Success(it) })
     }
     private fun seriesOnError(error: Throwable) {
@@ -113,7 +113,7 @@ class StoriesDetailsViewModel : BaseViewModel() {
             .subscribe(this::eventOnSuccess, this::eventOnError)
             .addTo(disposable)
 
-    private fun eventOnSuccess(events: List<EventModel>) {
+    private fun eventOnSuccess(events: BaseResponse<EventModel>) {
         _events.postValue(events.data?.results.let { DataState.Success(it) })
     }
     private fun eventOnError(error: Throwable) {
