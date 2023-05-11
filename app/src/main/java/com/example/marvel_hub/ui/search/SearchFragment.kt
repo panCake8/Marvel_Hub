@@ -6,7 +6,7 @@ import androidx.fragment.app.viewModels
 import com.example.marvel_hub.R
 import com.example.marvel_hub.databinding.FragmentSearchBinding
 import com.example.marvel_hub.ui.base.BaseFragment
-import com.example.marvel_hub.ui.search.adapter.CreatorAdapter
+import com.example.marvel_hub.ui.search.adapter.SeriesAdapter
 import com.example.marvel_hub.ui.search.adapter.EventAdapter
 import com.example.marvel_hub.ui.search.viewModel.SearchViewModel
 
@@ -19,7 +19,7 @@ class SearchFragment : BaseFragment<FragmentSearchBinding, SearchViewModel>() {
 
     private val comicAdapter = ComicsAdapter(mutableListOf(), viewModel)
 
-    private val creatorAdapter = CreatorAdapter(mutableListOf(), viewModel)
+    private val seriesAdapter = SeriesAdapter(mutableListOf(), viewModel)
 
     override val layoutId: Int
         get() = R.layout.fragment_search
@@ -36,7 +36,7 @@ class SearchFragment : BaseFragment<FragmentSearchBinding, SearchViewModel>() {
                 when (viewModel.dataType.value) {
                     1 -> comicAdapter
                     2 -> eventAdapter
-                    3 -> creatorAdapter
+                    3 -> seriesAdapter
                     else -> null
                 }
         }

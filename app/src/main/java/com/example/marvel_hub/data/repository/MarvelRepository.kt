@@ -4,7 +4,7 @@ import com.example.marvel_hub.data.api.API
 import com.example.marvel_hub.data.model.ComicModel
 import com.example.marvel_hub.data.model.EventModel
 import com.example.marvel_hub.data.model.SeriesModel
-import com.example.marvel_hub.ui.search.SearchItems
+import com.example.marvel_hub.ui.search.adapter.SearchItems
 import io.reactivex.rxjava3.core.Single
 
 class MarvelRepository : IMarvelRepository {

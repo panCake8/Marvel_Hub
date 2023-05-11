@@ -4,20 +4,20 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.example.marvel_hub.data.model.BaseResponse
 import com.example.marvel_hub.data.model.ComicModel
-import com.example.marvel_hub.data.model.CreatorModel
 import com.example.marvel_hub.data.model.EventModel
+import com.example.marvel_hub.data.model.SeriesModel
 import com.example.marvel_hub.data.util.DataState
 import com.example.marvel_hub.ui.base.BaseViewModel
-import com.example.marvel_hub.ui.search.ComicInteractionListener
-import com.example.marvel_hub.ui.search.SearchItems
-import com.example.marvel_hub.ui.search.adapter.CreatorInteractionListener
-import com.example.marvel_hub.ui.search.adapter.EventInteractionListener
+import com.example.marvel_hub.ui.search.adapter.SearchItems
+import com.example.marvel_hub.ui.search.adapter.interactions.ComicInteractionListener
+import com.example.marvel_hub.ui.search.adapter.interactions.EventInteractionListener
+import com.example.marvel_hub.ui.search.adapter.interactions.SeriesInteractionListener
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
 import io.reactivex.rxjava3.schedulers.Schedulers
 
 class SearchViewModel : BaseViewModel(), EventInteractionListener,
     ComicInteractionListener,
-    CreatorInteractionListener {
+    SeriesInteractionListener {
 
     private val _dataType =
         MutableLiveData<Int>()
@@ -31,9 +31,9 @@ class SearchViewModel : BaseViewModel(), EventInteractionListener,
 
 
 
-    private fun getComics(text: String) {
+    private fun search(text: String) {
         disposable.add(
-            repository.searchComics(text)
+            repository.fetchSearchItems(text,text,text)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(::onGetComicsSuccess, ::onGetComicsError)
@@ -64,12 +64,12 @@ class SearchViewModel : BaseViewModel(), EventInteractionListener,
 
     }
 
-    override fun onClickCreator(comic: CreatorModel) {
-
-    }
 
     override fun onClickEvent(event: EventModel) {
 
+    }
+
+    override fun onClickSeries(creator: SeriesModel) {
     }
 }
 

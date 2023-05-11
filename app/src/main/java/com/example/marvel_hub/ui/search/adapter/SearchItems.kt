@@ -1,4 +1,4 @@
-package com.example.marvel_hub.ui.search
+package com.example.marvel_hub.ui.search.adapter
 
 import com.example.marvel_hub.data.model.ComicModel
 import com.example.marvel_hub.data.model.EventModel
