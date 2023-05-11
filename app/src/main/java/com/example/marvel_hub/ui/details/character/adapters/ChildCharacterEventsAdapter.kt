@@ -6,5 +6,5 @@ import com.example.marvel_hub.ui.base.BaseAdapter
 
 class ChildCharacterEventsAdapter(items: List<EventModel>, listener: BaseAdapterListener?) :
     BaseAdapter<EventModel>(items, listener) {
-    override val getLayoutId = R.layout.item_details_stories
+    override val getLayoutId = R.layout.item_details_events
 }

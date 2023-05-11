@@ -17,7 +17,7 @@ import com.example.marvel_hub.ui.details.character.CharacterDetailsViewModel
 
 class ParentCharacterAdapter(
     val viewModel: CharacterDetailsViewModel,
-    val viewLifeCycle: LifecycleOwner
+    val viewLifeCycle: LifecycleOwner,
 ) :
     Adapter<ParentCharacterAdapter.BaseCharacterViewHolder>() {
 
@@ -86,24 +86,31 @@ class ParentCharacterAdapter(
     }
 
     private fun bindInfo(binding: ItemRecyclerCharacterDetailsInfoBinding) {
-//        binding.viewModel = viewModel
-//        binding.lifecycleOwner = viewLifeCycle
+        binding.viewModel = viewModel
+        binding.lifecycleOwner = viewLifeCycle
     }
 
     private fun bindComics(binding: ItemRecyclerCharacterDetailsComicsBinding) {
-        // binding.childComicRecycler.adapter = ChildCharacterComicsAdapter(listOf(), null)
+        binding.viewModel = viewModel
+        binding.lifecycleOwner = viewLifeCycle
+        binding.childComicRecycler.adapter = ChildCharacterComicsAdapter(listOf(), null)
     }
 
     private fun bindSeries(binding: ItemRecyclerCharcterDetailsSeriesBinding) {
-        // binding.childSeriesRecycler.adapter = ChildCharacterSeriesAdapter(listOf(), null)
+        binding.viewModel = viewModel
+        binding.lifecycleOwner = viewLifeCycle
+        binding.childSeriesRecycler.adapter = ChildCharacterSeriesAdapter(listOf(), null)
     }
 
     private fun bindEvents(binding: ItemRecyclerCharcterDetailsEventsBinding) {
-        //  binding.childEventRecycler.adapter = ChildCharacterEventsAdapter(listOf(), null)
+        binding.viewModel = viewModel
+        binding.lifecycleOwner = viewLifeCycle
+        binding.childEventRecycler.adapter = ChildCharacterEventsAdapter(listOf(), null)
     }
 
     private fun bindStories(binding: ItemRecyclerCharacterDetailsStoriesBinding) {
         binding.viewModel = viewModel
+        binding.lifecycleOwner = viewLifeCycle
         binding.childStoryRecycler.adapter = ChildCharacterStoriesAdapter(listOf(), null)
     }
 

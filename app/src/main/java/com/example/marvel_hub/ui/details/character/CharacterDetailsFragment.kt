@@ -30,6 +30,9 @@ class CharacterDetailsFragment :
         // val characterId = arguments.characterId
         viewModel.getCharacterById(1009368)
         viewModel.getStoriesByCharacterId(1009368)
+        viewModel.getEventsByCharacterId(1009368)
+        viewModel.getComicsByCharacterId(1009368)
+        viewModel.getSeriesByCharacterId(1009368)
     }
 
 }
