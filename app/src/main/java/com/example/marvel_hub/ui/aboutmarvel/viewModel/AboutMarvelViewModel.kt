@@ -4,7 +4,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.example.marvel_hub.data.model.BaseResponse
 import com.example.marvel_hub.data.model.CreatorModel
-import com.example.marvel_hub.data.util.DataState
+import com.example.marvel_hub.util.State
 import com.example.marvel_hub.ui.aboutmarvel.adapter.OnClickCreator
 import com.example.marvel_hub.ui.base.BaseViewModel
 import com.example.marvel_hub.util.Event
@@ -15,8 +15,8 @@ import io.reactivex.rxjava3.schedulers.Schedulers
 class AboutMarvelViewModel: BaseViewModel(), OnClickCreator {
 
 
-    private val _marvel = MutableLiveData<DataState<BaseResponse<CreatorModel>>>(DataState.Loading)
-    val marvel: LiveData<DataState<BaseResponse<CreatorModel>>>
+    private val _marvel = MutableLiveData<State<BaseResponse<CreatorModel>>>(State.Loading)
+    val marvel: LiveData<State<BaseResponse<CreatorModel>>>
         get() = _marvel
 
 
@@ -38,11 +38,11 @@ class AboutMarvelViewModel: BaseViewModel(), OnClickCreator {
     }
 
     fun onSuccess(marvelResponse: BaseResponse<CreatorModel>) {
-        _marvel.postValue(DataState.Success(marvelResponse))
+        _marvel.postValue(State.Success(marvelResponse))
     }
 
     fun onFaild(message: Throwable) {
-        _marvel.postValue(message.localizedMessage?.let { DataState.Error(it) })
+        _marvel.postValue(message.localizedMessage?.let { State.Error(it) })
     }
 
     override fun onClickCreatorItem(creator: CreatorModel) {

@@ -5,6 +5,9 @@
 
     <data>
 
+        <variable
+            name="viewModel"
+            type="com.example.marvel_hub.ui.home.viewModel.HomeViewModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -18,9 +21,32 @@
             android:layout_height="match_parent"
             android:clipToPadding="false"
             android:orientation="vertical"
-            android:paddingBottom="@dimen/large_padding"
+            app:nestedRecyclerItems="@{viewModel.homeItem}"
             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+            app:showWhenSuccess="@{viewModel.homeItem}"
             tools:listitem="@layout/item_banner" />
+
+        <ProgressBar
+            android:id="@+id/progress_bar_loading"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:showWhenLoading="@{viewModel.homeItem}" />
+
+        <ImageView
+            android:id="@+id/image_view_error"
+            android:layout_width="@dimen/width_image_comics"
+            android:layout_height="@dimen/hight_image_comics"
+            android:contentDescription="@string/logo"
+            android:src="@drawable/baseline_error_24"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:showWhenError="@{viewModel.homeItem}" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

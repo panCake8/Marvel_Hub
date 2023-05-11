@@ -10,6 +10,7 @@ import com.example.marvel_hub.data.model.StoriesModel
 import io.reactivex.rxjava3.core.Single
 import retrofit2.http.GET
 import retrofit2.http.Path
+import retrofit2.http.Query
 
 interface MarvelApiService {
     @GET("characters")
@@ -202,4 +203,19 @@ interface MarvelApiService {
     fun getSeriesByStoryId(
         @Path("storyId") storyId: Int
     ): Single<BaseResponse<SeriesModel>>
+
+    @GET("series")
+    fun getRandomSeries(
+        @Query("limit") limit: Int,
+    ): Single<BaseResponse<SeriesModel>>
+
+    @GET("comic")
+    fun getRandomComic(
+        @Query("limit") limit: Int,
+    ): Single<BaseResponse<ComicModel>>
+
+    @GET("event")
+    fun getRandomEvent(
+        @Query("limit") limit: Int,
+    ): Single<BaseResponse<EventModel>>
 }

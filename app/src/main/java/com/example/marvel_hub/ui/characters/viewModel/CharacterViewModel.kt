@@ -4,7 +4,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.example.marvel_hub.data.model.BaseResponse
 import com.example.marvel_hub.data.model.CharactersModel
-import com.example.marvel_hub.data.util.DataState
+import com.example.marvel_hub.util.State
 import com.example.marvel_hub.ui.base.BaseViewModel
 import com.example.marvel_hub.ui.characters.adapter.CharacterInteractionListener
 import com.example.marvel_hub.util.Event
@@ -15,8 +15,8 @@ import io.reactivex.rxjava3.schedulers.Schedulers
 class CharacterViewModel : BaseViewModel(), CharacterInteractionListener {
 
     private val _characterMarvel =
-        MutableLiveData<DataState<BaseResponse<CharactersModel>>>(DataState.Loading)
-    val characterMarvel: LiveData<DataState<BaseResponse<CharactersModel>>> = _characterMarvel
+        MutableLiveData<State<BaseResponse<CharactersModel>>>(State.Loading)
+    val characterMarvel: LiveData<State<BaseResponse<CharactersModel>>> = _characterMarvel
 
     private val _selectedCharacterItem = MutableLiveData<Event<Int?>>()
     val selectedCharacterItem: LiveData<Event<Int?>> get() = _selectedCharacterItem
@@ -34,11 +34,11 @@ class CharacterViewModel : BaseViewModel(), CharacterInteractionListener {
     }
 
     private fun onSuccess(character: BaseResponse<CharactersModel>) {
-        _characterMarvel.postValue(DataState.Success(character))
+        _characterMarvel.postValue(State.Success(character))
     }
 
     private fun onError(throwable: Throwable) {
-        _characterMarvel.postValue(DataState.Error(throwable.message.toString()))
+        _characterMarvel.postValue(State.Error(throwable.message.toString()))
     }
 
     override fun onClickCharacterItem(character: CharactersModel) {

@@ -7,12 +7,11 @@
 
         <variable
             name="item"
-            type="com.example.marvel_hub.data.model.ComicModel" />
+            type="com.example.marvel_hub.data.model.SeriesModel" />
 
         <variable
             name="listener"
-            type="com.example.marvel_hub.ui.home.adapter.intreactions.HomeComicInteractionsListener" />
-
+            type="com.example.marvel_hub.ui.home.adapter.intreactions.HomeSeriesInteractionsListener" />
     </data>
 
     <com.google.android.material.card.MaterialCardView
@@ -23,12 +22,12 @@
         app:cardCornerRadius="@dimen/normal_corner_radius">
 
         <androidx.constraintlayout.widget.ConstraintLayout
-            android:id="@+id/card_movie"
+            android:id="@+id/card_series"
             android:layout_width="wrap_content"
             android:layout_height="match_parent">
 
             <ImageView
-                android:id="@+id/image_comic"
+                android:id="@+id/image_series"
                 android:layout_width="@dimen/movie_card_width"
                 android:layout_height="@dimen/movie_card_height"
                 android:contentDescription="@string/logo"
@@ -42,7 +41,7 @@
                 tools:src="@drawable/movie_photo" />
 
             <TextView
-                android:id="@+id/text_comic_name"
+                android:id="@+id/text_series_name"
                 android:layout_width="@dimen/no_width"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="@dimen/medium_margin"
@@ -51,7 +50,7 @@
                 android:ellipsize="end"
                 android:fontFamily="@font/poppins_medium"
                 android:maxLines="1"
-                android:text="@{item.name.toString()}"
+                android:text="@{item.title.toString()}"
                 android:textColor="@color/white_100"
                 android:textSize="@dimen/body_text"
                 app:layout_constraintBottom_toTopOf="@+id/text_duration_time"

@@ -4,7 +4,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.example.marvel_hub.data.model.BaseResponse
 import com.example.marvel_hub.data.model.ComicModel
-import com.example.marvel_hub.data.util.DataState
+import com.example.marvel_hub.util.State
 import com.example.marvel_hub.ui.base.BaseViewModel
 import com.example.marvel_hub.ui.comics.adapter.OnClickItemComic
 import com.example.marvel_hub.util.Event
@@ -14,8 +14,8 @@ import io.reactivex.rxjava3.schedulers.Schedulers
 
 class ComicsViewModel() : BaseViewModel(), OnClickItemComic {
 
-    private val _comics = MutableLiveData<DataState<BaseResponse<ComicModel>>>(DataState.Loading)
-    val comics: LiveData<DataState<BaseResponse<ComicModel>>>
+    private val _comics = MutableLiveData<State<BaseResponse<ComicModel>>>(State.Loading)
+    val comics: LiveData<State<BaseResponse<ComicModel>>>
         get() = _comics
 
 
@@ -37,11 +37,11 @@ class ComicsViewModel() : BaseViewModel(), OnClickItemComic {
     }
 
     fun onSuccess(comicsResponse: BaseResponse<ComicModel>) {
-        _comics.postValue(DataState.Success(comicsResponse))
+        _comics.postValue(State.Success(comicsResponse))
     }
 
     fun onFaild(message: Throwable) {
-        _comics.postValue(message.localizedMessage?.let { DataState.Error(it) })
+        _comics.postValue(message.localizedMessage?.let { State.Error(it) })
     }
 
     override fun onClickItemComic(comic: ComicModel) {

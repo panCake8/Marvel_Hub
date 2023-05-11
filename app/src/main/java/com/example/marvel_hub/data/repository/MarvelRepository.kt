@@ -1,6 +1,12 @@
 package com.example.marvel_hub.data.repository
 
 import com.example.marvel_hub.data.api.API
+import com.example.marvel_hub.data.model.BaseResponse
+import com.example.marvel_hub.data.model.ComicModel
+import com.example.marvel_hub.data.model.EventModel
+import com.example.marvel_hub.data.model.SeriesModel
+import com.example.marvel_hub.ui.home.util.HomeItem
+import io.reactivex.rxjava3.core.Single
 
 class MarvelRepository : IMarvelRepository {
     override fun getAllCharacters() = API.apiService.getAllCharacters()
@@ -8,21 +14,26 @@ class MarvelRepository : IMarvelRepository {
     override fun getCharacterById(characterId: Int) =
         API.apiService.getCharacterById(characterId = characterId)
 
-    override fun getComicsByCharacterId(characterId: Int) =  API.apiService.getComicsByCharacterId(characterId)
+    override fun getComicsByCharacterId(characterId: Int) =
+        API.apiService.getComicsByCharacterId(characterId)
 
-    override fun getEventsByCharacterId(characterId: Int) = API.apiService.getEventsByCharacterId(characterId)
+    override fun getEventsByCharacterId(characterId: Int) =
+        API.apiService.getEventsByCharacterId(characterId)
 
-    override fun getSeriesByCharacterId(characterId: Int) =API.apiService.getSeriesByCharacterId(characterId)
+    override fun getSeriesByCharacterId(characterId: Int) =
+        API.apiService.getSeriesByCharacterId(characterId)
 
-    override fun getStoriesByCharacterId(characterId: Int) =API.apiService.getStoriesByCharacterId(characterId)
+    override fun getStoriesByCharacterId(characterId: Int) =
+        API.apiService.getStoriesByCharacterId(characterId)
 
     override fun getAllComics() = API.apiService.getAllComics()
 
     override fun getComicById(comicId: Int) = API.apiService.getComicsById(comicId)
 
-    override fun getCharactersByComicId(comicId: Int) = API.apiService.getCharactersByComicId(comicId)
+    override fun getCharactersByComicId(comicId: Int) =
+        API.apiService.getCharactersByComicId(comicId)
 
-    override fun getCreatorsByComicId(comicId: Int)= API.apiService.getCreatorsByComicId(comicId)
+    override fun getCreatorsByComicId(comicId: Int) = API.apiService.getCreatorsByComicId(comicId)
 
     override fun getEventByComicId(comicId: Int) = API.apiService.getEventByComicId(comicId)
 
@@ -32,13 +43,17 @@ class MarvelRepository : IMarvelRepository {
 
     override fun getCreatorById(creatorId: Int) = API.apiService.getCreatorById(creatorId)
 
-    override fun getComicsByCreatorId(creatorId: Int) =API.apiService.getComicsByCharacterId(creatorId)
+    override fun getComicsByCreatorId(creatorId: Int) =
+        API.apiService.getComicsByCharacterId(creatorId)
 
-    override fun getEventsByCreatorId(creatorId: Int) = API.apiService.getEventsByCreatorId(creatorId)
+    override fun getEventsByCreatorId(creatorId: Int) =
+        API.apiService.getEventsByCreatorId(creatorId)
 
-    override fun getSeriesByCreatorId(creatorId: Int) = API.apiService.getSeriesByCreatorId(creatorId)
+    override fun getSeriesByCreatorId(creatorId: Int) =
+        API.apiService.getSeriesByCreatorId(creatorId)
 
-    override fun getStoriesByCreatorId(creatorId: Int) = API.apiService.getStoriesByCreatorId(creatorId)
+    override fun getStoriesByCreatorId(creatorId: Int) =
+        API.apiService.getStoriesByCreatorId(creatorId)
 
     override fun getAllEvents() = API.apiService.getAllEvents()
 
@@ -83,4 +98,32 @@ class MarvelRepository : IMarvelRepository {
     override fun getEventsByStoryId(storyId: Int) = API.apiService.getEventsByStoryId(storyId)
 
     override fun getSeriesByStoryId(storyId: Int) = API.apiService.getSeriesByStoryId(storyId)
+
+    override fun getRandomComics(): Single<List<ComicModel>> {
+        return API.apiService.getAllComics().map { it.data?.results?.take(10)!! }
+    }
+
+    override fun getRandomEvents(): Single<List<EventModel>> {
+        return API.apiService.getAllEvents().map { it.data?.results?.take(10)!! }
+    }
+
+    override fun getRandomSeries(): Single<List<SeriesModel>> {
+        return API.apiService.getAllSeries().map { it.data?.results?.take(10)!! }
+    }
+
+    override fun fetchHomeItems(): Single<List<HomeItem>> {
+        return Single.zip(
+            getRandomSeries(),
+            getRandomComics(),
+            getRandomEvents(),
+        ) { series: List<SeriesModel>, comics: List<ComicModel>, events: List<EventModel> ->
+            listOf(
+                HomeItem.Series(series),
+                HomeItem.Comics(comics),
+                HomeItem.Events(events),
+                HomeItem.Banner(),
+                HomeItem.QuizGameBanner(),
+            )
+        }
+    }
 }
