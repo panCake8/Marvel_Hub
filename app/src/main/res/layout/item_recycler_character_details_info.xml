@@ -29,8 +29,6 @@
             android:layout_marginStart="@dimen/large_margin"
             android:layout_marginTop="@dimen/medium_margin"
             android:text="@{viewModel.character.toData().name}"
-            android:textColor="@color/black_100"
-            android:textSize="20sp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/character_image"
             app:showWhenSuccess="@{viewModel.character}"
@@ -44,11 +42,9 @@
             android:layout_marginStart="@dimen/large_margin"
             android:layout_marginTop="@dimen/medium_margin"
             android:text="@string/description"
-            android:textColor="@color/light_red"
-            android:textSize="@dimen/large_text"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/character_title"
-            style="@style/secondary_description"
+            style="@style/details_description"
             />
 
         <TextView
@@ -58,12 +54,10 @@
             android:layout_marginStart="@dimen/large_margin"
             android:layout_marginTop="@dimen/medium_margin"
             android:text="@{viewModel.character.toData().description}"
-            android:textColor="@color/black_60"
-            android:textSize="@dimen/body_text"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/screen_description"
             app:showWhenSuccess="@{viewModel.character}"
-            style="@style/details_description"
+            style="@style/secondary_description"
             />
 
     </androidx.constraintlayout.widget.ConstraintLayout>

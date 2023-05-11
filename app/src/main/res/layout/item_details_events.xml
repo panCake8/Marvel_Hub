@@ -11,7 +11,7 @@
 
         <variable
             name="listener"
-            type="com.example.marvel_hub.ui.details.listeners.EventListener" />
+            type="com.example.marvel_hub.ui.details.listeners.EventsListener" />
     </data>
 
     <com.google.android.material.card.MaterialCardView
