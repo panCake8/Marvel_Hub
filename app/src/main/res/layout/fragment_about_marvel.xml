@@ -76,6 +76,7 @@
                 android:text="@string/stan_lee_28_1922_12_2018_1989_spider_man_x_men_hulk_iron_man_thor_eisner_award_2008"
                 android:textColor="@color/black_100"
                 android:textSize="@dimen/text_creator"
+                app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="@id/image_marvel"
                 app:layout_constraintTop_toBottomOf="@id/recycler_characters" />
 
