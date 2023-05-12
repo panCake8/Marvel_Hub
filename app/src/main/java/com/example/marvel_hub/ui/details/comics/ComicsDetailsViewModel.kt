@@ -52,12 +52,7 @@ class ComicsDetailsViewModel
             .subscribe(::comicOnSuccess, ::comicOnError).addTo(disposable)
 
     private fun comicOnSuccess(comic: BaseResponse<ComicModel>) {
-        _comics.postValue(DataState.Success(comic.data?.results?.get(0)!!))
-        val comicId = comic.data.results[FIRST_ITEM].id!!
-        getCharacterByComicId(comicId)
-        getSeriesByComicId(comicId)
-        getEventsByByComicId(comicId)
-        getStoriesByComicById(comicId)
+        _comics.postValue(DataState.Success(comic.data?.results?.get(FIRST_ITEM)!!))
     }
 
     private fun comicOnError(error: Throwable) {
