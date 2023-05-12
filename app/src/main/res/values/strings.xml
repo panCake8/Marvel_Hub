@@ -1,4 +1,4 @@
-<resources xmlns:tools="http://schemas.android.com/tools">
+<resources>
     <string name="app_name">Marvel Hub</string>
     <string name="about_marvel">About Marvel</string>
     <string name="text_comics">Comics</string>
@@ -28,4 +28,5 @@
     <string name="search_hint">search</string>
     <string name="text_series_chip">Series</string>
     <string name="title">title</string>
+    <string name="captain_america">captain america</string>
 </resources>
