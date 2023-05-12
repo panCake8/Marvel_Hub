@@ -15,6 +15,7 @@ import com.example.marvel_hub.ui.search.adapter.interactions.ComicInteractionLis
 import com.example.marvel_hub.ui.search.adapter.interactions.EventInteractionListener
 import com.example.marvel_hub.ui.search.adapter.interactions.SeriesInteractionListener
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
+import io.reactivex.rxjava3.kotlin.addTo
 import io.reactivex.rxjava3.schedulers.Schedulers
 
 class SearchViewModel : BaseViewModel(), EventInteractionListener,
@@ -25,9 +26,9 @@ class SearchViewModel : BaseViewModel(), EventInteractionListener,
 
 
 
-    private val _dataType =
-        MutableLiveData<Enum<Data>>()
-    val dataType: LiveData<Enum<Data>> = _dataType
+    private val _search_stautsType =
+        MutableLiveData<Enum<SearchStatus>>()
+    val searchStatusType: LiveData<Enum<SearchStatus>> = _search_stautsType
 
 
     private val _searchResult =
@@ -62,12 +63,10 @@ class SearchViewModel : BaseViewModel(), EventInteractionListener,
 
      fun getComicData(text: String) {
         Log.i("testInputComic","$text")
-        disposable.add(
-            repository.searchComics(text)
-                .subscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(::onGetComicsSuccess, ::onGetComicsError)
-        )
+         repository.searchComics(text)
+             .subscribeOn(Schedulers.io())
+             .observeOn(AndroidSchedulers.mainThread())
+             .subscribe(::onGetComicsSuccess, ::onGetComicsError).addTo(disposable)
     }
     private fun onGetComicsSuccess(result: BaseResponse<ComicModel>) =
         _comics.postValue(DataState.Success(result.data?.results!!))
@@ -80,12 +79,10 @@ class SearchViewModel : BaseViewModel(), EventInteractionListener,
      fun getSeriesData(text: String) {
          Log.i("testInputSeries","$text")
 
-         disposable.add(
-            repository.searchSeries(text)
-                .subscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(::onGetSeriesSuccess, ::onGetSeriesError)
-        )
+         repository.searchSeries(text)
+             .subscribeOn(Schedulers.io())
+             .observeOn(AndroidSchedulers.mainThread())
+             .subscribe(::onGetSeriesSuccess, ::onGetSeriesError).addTo(disposable)
     }
    private fun onGetSeriesSuccess(series: BaseResponse<SeriesModel>) =
         _series.postValue(DataState.Success(series.data?.results!!))
@@ -97,12 +94,10 @@ class SearchViewModel : BaseViewModel(), EventInteractionListener,
      fun getEventData(text: String) {
          Log.i("testInputEvent","$text")
 
-         disposable.add(
-            repository.searchEvents(text)
-                .subscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(::onGetEventSuccess, ::onGetEventError)
-        )
+         repository.searchEvents(text)
+             .subscribeOn(Schedulers.io())
+             .observeOn(AndroidSchedulers.mainThread())
+             .subscribe(::onGetEventSuccess, ::onGetEventError).addTo(disposable)
     }
     private fun onGetEventSuccess(series: BaseResponse<EventModel>) =
         _event.postValue(DataState.Success(series.data?.results!!))
@@ -112,15 +107,15 @@ class SearchViewModel : BaseViewModel(), EventInteractionListener,
 
 
     fun onClickComicChip() {
-        _dataType.postValue(Data.COMIC)
+
     }
 
     fun onClickEventChip() {
-        _dataType.postValue(Data.EVENT)
+        _search_stautsType.postValue(SearchStatus.EVENT)
     }
 
     fun onClickSeriesChip() {
-        _dataType.postValue(Data.SERIES)
+        _search_stautsType.postValue(SearchStatus.SERIES)
     }
 
 

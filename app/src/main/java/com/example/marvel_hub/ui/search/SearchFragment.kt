@@ -7,16 +7,16 @@ import androidx.fragment.app.viewModels
 import com.example.marvel_hub.R
 import com.example.marvel_hub.databinding.FragmentSearchBinding
 import com.example.marvel_hub.ui.base.BaseFragment
-import com.example.marvel_hub.ui.search.adapter.SeriesAdapter
 import com.example.marvel_hub.ui.search.adapter.EventAdapter
-import com.example.marvel_hub.ui.search.viewModel.Data
+import com.example.marvel_hub.ui.search.adapter.SeriesAdapter
+import com.example.marvel_hub.ui.search.viewModel.SearchStatus
 import com.example.marvel_hub.ui.search.viewModel.SearchViewModel
 import com.google.android.material.chip.Chip
 
 
 class SearchFragment : BaseFragment<FragmentSearchBinding, SearchViewModel>() {
 
-    override val viewModel: SearchViewModel by viewModels({ requireActivity() })
+    override val viewModel: SearchViewModel by viewModels()
 
 
     override val layoutId: Int
@@ -43,18 +43,18 @@ class SearchFragment : BaseFragment<FragmentSearchBinding, SearchViewModel>() {
     }
 
     private fun setAdapter() {
-
+        binding.enum = SearchStatus.COMIC
 
         val eventAdapter = EventAdapter(mutableListOf(), viewModel)
 
         val comicAdapter = ComicsAdapter(mutableListOf(), viewModel)
 
         val seriesAdapter = SeriesAdapter(mutableListOf(), viewModel)
-        viewModel.dataType.observe(viewLifecycleOwner) {
+        viewModel.searchStatusType.observe(viewLifecycleOwner) {
             binding.recyclerSearchResult.adapter =
-                when (viewModel.dataType.value) {
-                    Data.COMIC -> comicAdapter
-                    Data.EVENT -> eventAdapter
+                when (viewModel.searchStatusType.value) {
+                    SearchStatus.COMIC -> comicAdapter
+                    SearchStatus.EVENT -> eventAdapter
                     else -> seriesAdapter
 
                 }

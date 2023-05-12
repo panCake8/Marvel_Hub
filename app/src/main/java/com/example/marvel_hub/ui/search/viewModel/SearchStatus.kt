@@ -1,6 +1,6 @@
 package com.example.marvel_hub.ui.search.viewModel
 
-enum class Data() {
+enum class SearchStatus() {
     COMIC,
     EVENT,
     SERIES,
