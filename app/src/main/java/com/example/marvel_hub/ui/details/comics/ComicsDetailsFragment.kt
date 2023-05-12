@@ -10,8 +10,8 @@ import com.example.marvel_hub.ui.base.BaseFragment
 import com.example.marvel_hub.ui.details.comics.adapters.ParentComicAdapter
 
 
-class ComicsDetailsFragment : BaseFragment<FragmentComicsDetailsBinding,ComicsDetailsViewModel>() {
-    override val viewModel : ComicsDetailsViewModel by viewModels()
+class ComicsDetailsFragment : BaseFragment<FragmentComicsDetailsBinding, ComicsDetailsViewModel>() {
+    override val viewModel: ComicsDetailsViewModel by viewModels()
     override val layoutId = R.layout.fragment_comics_details
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -19,11 +19,12 @@ class ComicsDetailsFragment : BaseFragment<FragmentComicsDetailsBinding,ComicsDe
         setUpAdapter()
         initArguments()
     }
+
     private fun setUpAdapter() {
         binding.mainRecycler.adapter = ParentComicAdapter(viewModel, viewLifecycleOwner)
     }
 
     private fun initArguments() {
-        viewModel.getComicById(1590)
+        viewModel.getComicById(0)
     }
 }

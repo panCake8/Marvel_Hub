@@ -8,7 +8,7 @@ import com.example.marvel_hub.data.model.ComicModel
 import com.example.marvel_hub.data.model.EventModel
 import com.example.marvel_hub.data.model.SeriesModel
 import com.example.marvel_hub.data.model.StoriesModel
-import com.example.marvel_hub.data.util.DataState
+import com.example.marvel_hub.util.State
 import com.example.marvel_hub.ui.base.BaseViewModel
 import com.example.marvel_hub.ui.details.listeners.CharacterListener
 import com.example.marvel_hub.ui.details.listeners.EventsListener
@@ -22,28 +22,28 @@ class ComicsDetailsViewModel
     : BaseViewModel()
     ,EventsListener, SeriesListener, StoryListener,CharacterListener {
     private val _comics =
-        MutableLiveData<DataState<ComicModel>>(DataState.Loading)
-    val comics: LiveData<DataState<ComicModel>>
+        MutableLiveData<State<ComicModel>>(State.Loading)
+    val comics: LiveData<State<ComicModel>>
         get() = _comics
 
     private val _character =
-        MutableLiveData<DataState<List<CharactersModel>>>(DataState.Loading)
-    val character: LiveData<DataState<List<CharactersModel>>>
+        MutableLiveData<State<List<CharactersModel>>>(State.Loading)
+    val character: LiveData<State<List<CharactersModel>>>
         get() = _character
 
     private val _series =
-        MutableLiveData<DataState<List<SeriesModel>>>(DataState.Loading)
-    val series: LiveData<DataState<List<SeriesModel>>>
+        MutableLiveData<State<List<SeriesModel>>>(State.Loading)
+    val series: LiveData<State<List<SeriesModel>>>
         get() = _series
 
     private val _events =
-        MutableLiveData<DataState<List<EventModel>>>(DataState.Loading)
-    val events: LiveData<DataState<List<EventModel>>>
+        MutableLiveData<State<List<EventModel>>>(State.Loading)
+    val events: LiveData<State<List<EventModel>>>
         get() = _events
 
     private val _stories =
-        MutableLiveData<DataState<List<StoriesModel>>>(DataState.Loading)
-    val stories: LiveData<DataState<List<StoriesModel>>>
+        MutableLiveData<State<List<StoriesModel>>>(State.Loading)
+    val stories: LiveData<State<List<StoriesModel>>>
         get() = _stories
 
     fun getComicById(comicId: Int) =
@@ -52,11 +52,11 @@ class ComicsDetailsViewModel
             .subscribe(::comicOnSuccess, ::comicOnError).addTo(disposable)
 
     private fun comicOnSuccess(comic: BaseResponse<ComicModel>) {
-        _comics.postValue(DataState.Success(comic.data?.results?.get(FIRST_ITEM)!!))
+        _comics.postValue(State.Success(comic.data?.results?.get(FIRST_ITEM)!!))
     }
 
     private fun comicOnError(error: Throwable) {
-        _comics.postValue(DataState.Error(error.message.toString()))
+        _comics.postValue(State.Error(error.message.toString()))
     }
 
     private fun getCharacterByComicId(comicId: Int) =
@@ -65,11 +65,11 @@ class ComicsDetailsViewModel
             .subscribe(::characterOnSuccess, ::characterOnError).addTo(disposable)
 
     private fun characterOnSuccess(character: BaseResponse<CharactersModel>) {
-        _character.postValue(DataState.Success(character.data?.results!!))
+        _character.postValue(State.Success(character.data?.results!!))
     }
 
     private fun characterOnError(error: Throwable) {
-        _character.postValue(DataState.Error(error.message.toString()))
+        _character.postValue(State.Error(error.message.toString()))
     }
 
     private fun getSeriesByComicId(characterId: Int) =
@@ -78,11 +78,11 @@ class ComicsDetailsViewModel
             .subscribe(::seriesOnSuccess, ::seriesOnError).addTo(disposable)
 
     private fun seriesOnSuccess(series: BaseResponse<SeriesModel>) {
-        _series.postValue(DataState.Success(series.data?.results!!))
+        _series.postValue(State.Success(series.data?.results!!))
     }
 
     private fun seriesOnError(error: Throwable) {
-        _series.postValue(DataState.Error(error.message.toString()))
+        _series.postValue(State.Error(error.message.toString()))
     }
 
     private fun getEventsByByComicId(characterId: Int) =
@@ -91,11 +91,11 @@ class ComicsDetailsViewModel
             .subscribe(::eventsOnSuccess, ::eventsOnError).addTo(disposable)
 
     private fun eventsOnSuccess(events: BaseResponse<EventModel>) {
-        _events.postValue(DataState.Success(events.data?.results!!))
+        _events.postValue(State.Success(events.data?.results!!))
     }
 
     private fun eventsOnError(error: Throwable) {
-        _events.postValue(DataState.Error(error.message.toString()))
+        _events.postValue(State.Error(error.message.toString()))
     }
 
     private fun getStoriesByComicById(characterId: Int) =
@@ -104,11 +104,11 @@ class ComicsDetailsViewModel
             .subscribe(::storiesOnSuccess, ::storiesOnError).addTo(disposable)
 
     private fun storiesOnSuccess(events: BaseResponse<StoriesModel>) {
-        _stories.postValue(DataState.Success(events.data?.results!!))
+        _stories.postValue(State.Success(events.data?.results!!))
     }
 
     private fun storiesOnError(error: Throwable) {
-        _stories.postValue(DataState.Error(error.message.toString()))
+        _stories.postValue(State.Error(error.message.toString()))
     }
 
     companion object {
