@@ -9,13 +9,12 @@ import com.example.marvel_hub.data.model.ComicModel
 import com.example.marvel_hub.data.model.EventModel
 import com.example.marvel_hub.data.model.SeriesModel
 import com.example.marvel_hub.data.model.StoriesModel
-import com.example.marvel_hub.data.util.DataState
+import com.example.marvel_hub.util.State
 import com.example.marvel_hub.ui.base.BaseViewModel
 import com.example.marvel_hub.ui.details.listeners.CharacterListener
 import com.example.marvel_hub.ui.details.listeners.ComicListener
 import com.example.marvel_hub.ui.details.listeners.EventsListener
 import com.example.marvel_hub.ui.details.listeners.SeriesListener
-import com.example.marvel_hub.ui.details.listeners.StoryListener
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
 import io.reactivex.rxjava3.kotlin.addTo
 import io.reactivex.rxjava3.schedulers.Schedulers
@@ -24,33 +23,33 @@ class StoriesDetailsViewModel : BaseViewModel(), EventsListener, CharacterListen
     SeriesListener {
 
     private val _story =
-        MutableLiveData<DataState<StoriesModel>>()
+        MutableLiveData<State<StoriesModel>>()
 
-    val story: LiveData<DataState<StoriesModel>>
+    val story: LiveData<State<StoriesModel>>
         get() = _story
 
 
     private val _characters =
-        MutableLiveData<DataState<List<CharactersModel>?>>(DataState.Loading)
-    val characters: LiveData<DataState<List<CharactersModel>?>>
+        MutableLiveData<State<List<CharactersModel>?>>(State.Loading)
+    val characters: LiveData<State<List<CharactersModel>?>>
         get() = _characters
 
 
     private val _comics =
-        MutableLiveData<DataState<List<ComicModel>?>>(DataState.Loading)
-    val comics: LiveData<DataState<List<ComicModel>?>>
+        MutableLiveData<State<List<ComicModel>?>>(State.Loading)
+    val comics: LiveData<State<List<ComicModel>?>>
         get() = _comics
 
 
     private val _series =
-        MutableLiveData<DataState<List<SeriesModel>?>>(DataState.Loading)
-    val series: LiveData<DataState<List<SeriesModel>?>>
+        MutableLiveData<State<List<SeriesModel>?>>(State.Loading)
+    val series: LiveData<State<List<SeriesModel>?>>
         get() = _series
 
 
     private val _events =
-        MutableLiveData<DataState<List<EventModel>?>>(DataState.Loading)
-    val events: LiveData<DataState<List<EventModel>?>>
+        MutableLiveData<State<List<EventModel>?>>(State.Loading)
+    val events: LiveData<State<List<EventModel>?>>
         get() = _events
 
 
@@ -64,13 +63,13 @@ class StoriesDetailsViewModel : BaseViewModel(), EventsListener, CharacterListen
 
     private fun storyOnSuccess(story: BaseResponse<StoriesModel>) {
         story.data?.results?.get(0).let {
-            _story.postValue(DataState.Success(it!!))
+            _story.postValue(State.Success(it!!))
             Log.i("TAG", "${it.title}")
         }
     }
 
     private fun storyOnError(error: Throwable) {
-        _story.postValue(error.message.toString().let { DataState.Error(it) })
+        _story.postValue(error.message.toString().let { State.Error(it) })
     }
 
 
@@ -83,11 +82,11 @@ class StoriesDetailsViewModel : BaseViewModel(), EventsListener, CharacterListen
             ).addTo(disposable)
 
     private fun charactersOnSuccess(characters: BaseResponse<CharactersModel>) {
-        _characters.postValue(characters.data?.results.let { DataState.Success(it) })
+        _characters.postValue(characters.data?.results.let { State.Success(it) })
     }
 
     private fun charactersOnError(error: Throwable) {
-        _characters.postValue(error.message.toString().let { DataState.Error(it) })
+        _characters.postValue(error.message.toString().let { State.Error(it) })
     }
 
 
@@ -98,11 +97,11 @@ class StoriesDetailsViewModel : BaseViewModel(), EventsListener, CharacterListen
             .addTo(disposable)
 
     private fun comicOnSuccess(comics: BaseResponse<ComicModel>) {
-        _comics.postValue(comics.data?.results.let { DataState.Success(it) })
+        _comics.postValue(comics.data?.results.let { State.Success(it) })
     }
 
     private fun comicOnError(error: Throwable) {
-        _comics.postValue(error.message.toString().let { DataState.Error(it) })
+        _comics.postValue(error.message.toString().let { State.Error(it) })
     }
 
 
@@ -113,11 +112,11 @@ class StoriesDetailsViewModel : BaseViewModel(), EventsListener, CharacterListen
             .addTo(disposable)
 
     private fun seriesOnSuccess(series: BaseResponse<SeriesModel>) {
-        _series.postValue(series.data?.results.let { DataState.Success(it) })
+        _series.postValue(series.data?.results.let { State.Success(it) })
     }
 
     private fun seriesOnError(error: Throwable) {
-        _series.postValue(error.message.toString().let { DataState.Error(it) })
+        _series.postValue(error.message.toString().let { State.Error(it) })
     }
 
 
@@ -128,11 +127,11 @@ class StoriesDetailsViewModel : BaseViewModel(), EventsListener, CharacterListen
             .addTo(disposable)
 
     private fun eventOnSuccess(events: BaseResponse<EventModel>) {
-        _events.postValue(events.data?.results.let { DataState.Success(it) })
+        _events.postValue(events.data?.results.let { State.Success(it) })
     }
 
     private fun eventOnError(error: Throwable) {
-        _events.postValue(error.message.toString().let { DataState.Error(it) })
+        _events.postValue(error.message.toString().let { State.Error(it) })
     }
 
     override fun onCharacterClick(character: CharactersModel) {

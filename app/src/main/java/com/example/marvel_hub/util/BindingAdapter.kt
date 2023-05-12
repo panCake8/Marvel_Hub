@@ -8,7 +8,6 @@ import androidx.core.widget.doOnTextChanged
 import androidx.databinding.BindingAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
-import com.example.marvel_hub.data.util.DataState
 import com.example.marvel_hub.ui.base.BaseAdapter
 import com.example.marvel_hub.ui.search.adapter.SearchCharactersAdapter
 import com.example.marvel_hub.ui.search.adapter.SearchComicsAdapter
@@ -22,9 +21,9 @@ import io.reactivex.rxjava3.schedulers.Schedulers
 import java.util.concurrent.TimeUnit
 
 @BindingAdapter(value = ["app:showWhenLoading"])
-fun <T> showWhenLoading(view: View, dataState: DataState<T>?) {
+fun <T> showWhenLoading(view: View, state: State<T>?) {
 
-    if (dataState is DataState.Loading)
+    if (state is State.Loading)
         view.visibility = View.VISIBLE
     else
         view.visibility = View.GONE
@@ -32,9 +31,9 @@ fun <T> showWhenLoading(view: View, dataState: DataState<T>?) {
 }
 
 @BindingAdapter(value = ["app:showWhenError"])
-fun <T> showWhenError(view: View, dataState: DataState<T>?) {
+fun <T> showWhenError(view: View, state: State<T>?) {
 
-    if (dataState is DataState.Error)
+    if (state is State.Error)
         view.visibility = View.VISIBLE
     else
         view.visibility = View.GONE
@@ -42,9 +41,9 @@ fun <T> showWhenError(view: View, dataState: DataState<T>?) {
 }
 
 @BindingAdapter(value = ["app:showWhenSuccess"])
-fun <T> showWhenSuccess(view: View, dataState: DataState<T>?) {
+fun <T> showWhenSuccess(view: View, state: State<T>?) {
 
-    if (dataState is DataState.Success)
+    if (state is State.Success)
         view.visibility = View.VISIBLE
     else
         view.visibility = View.GONE

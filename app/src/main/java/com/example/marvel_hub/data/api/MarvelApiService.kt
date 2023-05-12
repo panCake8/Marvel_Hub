@@ -3,7 +3,6 @@ package com.example.marvel_hub.data.api
 import com.example.marvel_hub.data.model.BaseResponse
 import com.example.marvel_hub.data.model.CharactersModel
 import com.example.marvel_hub.data.model.ComicModel
-import com.example.marvel_hub.data.model.CreatorModel
 import com.example.marvel_hub.data.model.EventModel
 import com.example.marvel_hub.data.model.SeriesModel
 import com.example.marvel_hub.data.model.StoriesModel
@@ -66,11 +65,6 @@ interface MarvelApiService {
         @Path("comicId") comicId: Int,
     ): Single<BaseResponse<CharactersModel>>
 
-    @GET("comics/{comicId}/creators")
-    fun getCreatorsByComicId(
-        @Path("comicId") comicId: Int,
-    ): Single<BaseResponse<CreatorModel>>
-
     @GET("comics/{comicId}/events")
     fun getEventByComicId(
         @Path("comicId") comicId: Int,
@@ -82,34 +76,6 @@ interface MarvelApiService {
     ): Single<BaseResponse<StoriesModel>>
 
     // ===================== creators ========================
-
-    @GET("creators")
-    fun getAllCreators(): Single<BaseResponse<CreatorModel>>
-
-    @GET("creators/{creatorId}")
-    fun getCreatorById(
-        @Path("creatorId") creatorId: Int,
-    ): Single<BaseResponse<CreatorModel>>
-
-    @GET("creators/{creatorId}/comics")
-    fun getComicsByCreatorId(
-        @Path("creatorId") creatorId: Int,
-    ): Single<BaseResponse<ComicModel>>
-
-    @GET("creators/{creatorId}/events")
-    fun getEventsByCreatorId(
-        @Path("creatorId") creatorId: Int,
-    ): Single<BaseResponse<EventModel>>
-
-    @GET("creators/{creatorId}/series")
-    fun getSeriesByCreatorId(
-        @Path("creatorId") creatorId: Int,
-    ): Single<BaseResponse<SeriesModel>>
-
-    @GET("creators/{creatorId}/stories")
-    fun getStoriesByCreatorId(
-        @Path("creatorId") creatorId: Int,
-    ): Single<BaseResponse<StoriesModel>>
 
 
     // ===================== events ========================
@@ -136,11 +102,6 @@ interface MarvelApiService {
     fun getComicsByEventId(
         @Path("eventId") eventId: Int
     ): Single<BaseResponse<ComicModel>>
-
-    @GET("events/{eventId}/creators")
-    fun getCreatorsByEventId(
-        @Path("eventId") eventId: Int
-    ): Single<BaseResponse<CreatorModel>>
 
     @GET("events/{eventId}/series")
     fun getSeriesByEventId(
@@ -176,11 +137,6 @@ interface MarvelApiService {
         @Path("seriesId") seriesId: Int
     ): Single<BaseResponse<ComicModel>>
 
-    @GET("series/{seriesId}/creators")
-    fun getCreatorsBySeriesId(
-        @Path("seriesId") seriesId: Int
-    ): Single<BaseResponse<CreatorModel>>
-
     @GET("series/{seriesId}/events")
     fun getEventsBySeriesId(
         @Path("seriesId") seriesId: Int
@@ -209,11 +165,6 @@ interface MarvelApiService {
     fun getComicsByStoryId(
         @Path("storyId") storyId: Int
     ): Single<BaseResponse<ComicModel>>
-
-    @GET("stories/{storyId}/creators")
-    fun getCreatorsByStoryId(
-        @Path("storyId") storyId: Int
-    ): Single<BaseResponse<CreatorModel>>
 
     @GET("stories/{storyId}/events")
     fun getEventsByStoryId(

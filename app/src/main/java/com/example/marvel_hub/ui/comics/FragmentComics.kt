@@ -20,7 +20,7 @@ class FragmentComics : BaseFragment<FragmentComicsBinding, ComicsViewModel>() {
         super.onViewCreated(view, savedInstanceState)
         setupRecyclerView()
         viewModel.selectedComicItem.observe(viewLifecycleOwner, EventObserver {
-            //Todo
+
         })
     }
 

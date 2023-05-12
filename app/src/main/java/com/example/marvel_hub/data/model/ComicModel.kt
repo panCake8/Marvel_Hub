@@ -8,5 +8,5 @@ data class ComicModel(
     val thumbnail: Thumbnail? = Thumbnail(),
     val name: String? = null,
     val pageCount: Int,
-    val prices: List<PricesItem?>? = null,
+    val prices: List<PricesItemModel?>? = null,
 )

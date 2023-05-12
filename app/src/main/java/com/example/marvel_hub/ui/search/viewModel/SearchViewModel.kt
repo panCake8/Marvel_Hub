@@ -7,7 +7,7 @@ import com.example.marvel_hub.data.model.CharactersModel
 import com.example.marvel_hub.data.model.ComicModel
 import com.example.marvel_hub.data.model.EventModel
 import com.example.marvel_hub.data.model.SeriesModel
-import com.example.marvel_hub.data.util.DataState
+import com.example.marvel_hub.util.State
 import com.example.marvel_hub.ui.base.BaseViewModel
 import com.example.marvel_hub.ui.search.adapter.interactions.CharacterInteractionListener
 import com.example.marvel_hub.ui.search.adapter.interactions.ComicInteractionListener
@@ -26,12 +26,12 @@ class SearchViewModel : BaseViewModel(), EventInteractionListener,
     val searchStatus: LiveData<SearchStatus>
         get() = _searchStatus
 
-    private val _searchList = MutableLiveData<DataState<List<Any>>>(DataState.Loading)
-    val searchList: LiveData<DataState<List<Any>>>
+    private val _searchList = MutableLiveData<State<List<Any>>>(State.Loading)
+    val searchList: LiveData<State<List<Any>>>
         get() = _searchList
 
     fun getComicData(text: String) {
-        _searchList.postValue(DataState.Loading)
+        _searchList.postValue(State.Loading)
         repository.searchComics(text)
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
@@ -39,14 +39,14 @@ class SearchViewModel : BaseViewModel(), EventInteractionListener,
     }
 
     private fun onGetComicsSuccess(comics: BaseResponse<ComicModel>) {
-        _searchList.postValue(DataState.Success(comics.data?.results ?: listOf()))
+        _searchList.postValue(State.Success(comics.data?.results ?: listOf()))
     }
 
     private fun onGetComicsError(throwable: Throwable) =
-        DataState.Error(throwable.message.toString())
+        State.Error(throwable.message.toString())
 
     fun getSeriesData(text: String) {
-        _searchList.postValue(DataState.Loading)
+        _searchList.postValue(State.Loading)
         repository.searchSeries(text)
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
@@ -54,15 +54,15 @@ class SearchViewModel : BaseViewModel(), EventInteractionListener,
     }
 
     private fun onGetSeriesSuccess(series: BaseResponse<SeriesModel>) {
-        _searchList.postValue(DataState.Success(series.data?.results ?: listOf()))
+        _searchList.postValue(State.Success(series.data?.results ?: listOf()))
     }
 
     private fun onGetSeriesError(throwable: Throwable) =
-        DataState.Error(throwable.message.toString())
+        State.Error(throwable.message.toString())
 
 
     fun getEventData(text: String) {
-        _searchList.postValue(DataState.Loading)
+        _searchList.postValue(State.Loading)
         repository.searchEvents(text)
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
@@ -70,15 +70,15 @@ class SearchViewModel : BaseViewModel(), EventInteractionListener,
     }
 
     private fun onGetEventSuccess(events: BaseResponse<EventModel>) {
-        _searchList.postValue(DataState.Success(events.data?.results ?: listOf()))
+        _searchList.postValue(State.Success(events.data?.results ?: listOf()))
     }
 
 
     private fun onGetEventError(throwable: Throwable) =
-        DataState.Error(throwable.message.toString())
+        State.Error(throwable.message.toString())
 
     fun getCharacterData(text: String) {
-        _searchList.postValue(DataState.Loading)
+        _searchList.postValue(State.Loading)
         repository.searchCharacters(text)
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
@@ -86,12 +86,12 @@ class SearchViewModel : BaseViewModel(), EventInteractionListener,
     }
 
     private fun onGetCharacterSuccess(character: BaseResponse<CharactersModel>) {
-        _searchList.postValue(DataState.Success(character.data?.results ?: listOf()))
+        _searchList.postValue(State.Success(character.data?.results ?: listOf()))
     }
 
 
     private fun onGetCharacterError(throwable: Throwable) =
-        DataState.Error(throwable.message.toString())
+        State.Error(throwable.message.toString())
 
     fun onClickComicChip() {
         _searchStatus.postValue(SearchStatus.COMIC)

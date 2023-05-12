@@ -7,8 +7,8 @@ data class CharactersModel(
     val modified: String? = "",
     val name: String? = "",
     val thumbnail: Thumbnail? = Thumbnail(),
-    val comics: Info? = Info(),
-    val events: Info? = Info(),
-    val series: Info? = Info(),
-    val stories: Info? = Info(),
+    val comics: InfoModel? = InfoModel(),
+    val events: InfoModel? = InfoModel(),
+    val series: InfoModel? = InfoModel(),
+    val stories: InfoModel? = InfoModel(),
 )
