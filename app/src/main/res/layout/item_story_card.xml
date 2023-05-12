@@ -4,12 +4,14 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
+
         <variable
-            name="story"
+            name="item"
             type="com.example.marvel_hub.data.model.StoriesModel" />
+
         <variable
             name="listener"
-            type= "com.example.marvel_hub.ui.stories.StoriesInteractionListener"/>
+            type="com.example.marvel_hub.ui.stories.adapter.StoriesInteractionListener" />
     </data>
 
     <com.google.android.material.card.MaterialCardView
@@ -17,8 +19,8 @@
         android:layout_height="@dimen/height_item_comics_card"
         android:layout_marginStart="@dimen/margin_large"
         android:layout_marginEnd="@dimen/margin_medium"
-        android:onClick="@{()-> listener.onClickStory(story)}"
         android:layout_marginBottom="@dimen/margin_large"
+        android:onClick="@{()-> listener.onClickStoryItem(item)}"
         app:cardCornerRadius="@dimen/radius_medium">
 
         <androidx.constraintlayout.widget.ConstraintLayout
@@ -30,12 +32,33 @@
                 android:id="@+id/image_item_story_card"
                 android:layout_width="@dimen/width_image_item_comics"
                 android:layout_height="match_parent"
+                android:scaleType="fitXY"
+                app:imageUrl="@{item.thumbnail.image}"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:imageUrl="@{story.thumbnail.image}"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                tools:src="@drawable/story" />
+                tools:src="@drawable/story"
+                android:contentDescription="@string/story" />
+
+            <TextView
+                android:id="@+id/text_story_name"
+                android:layout_width="@dimen/no_width"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="@dimen/large_margin"
+                android:layout_marginBottom="@dimen/large_margin"
+                android:ellipsize="end"
+                android:fontFamily="@font/poppins_medium"
+                android:includeFontPadding="false"
+                android:textColor="@color/white_100"
+                android:textSize="@dimen/title_text"
+                android:text="@{item.title}"
+                android:maxLines="1"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                tools:text="title" />
         </androidx.constraintlayout.widget.ConstraintLayout>
 
     </com.google.android.material.card.MaterialCardView>

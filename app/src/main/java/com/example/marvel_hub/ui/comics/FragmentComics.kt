@@ -6,6 +6,8 @@ import androidx.fragment.app.viewModels
 import com.example.marvel_hub.R
 import com.example.marvel_hub.databinding.FragmentComicsBinding
 import com.example.marvel_hub.ui.base.BaseFragment
+import com.example.marvel_hub.ui.comics.adapter.ComicsAdapter
+import com.example.marvel_hub.ui.comics.viewModel.ComicsViewModel
 import com.example.marvel_hub.util.EventObserver
 
 class FragmentComics : BaseFragment<FragmentComicsBinding, ComicsViewModel>() {
@@ -16,14 +18,15 @@ class FragmentComics : BaseFragment<FragmentComicsBinding, ComicsViewModel>() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        val adapter = ComicsAdapter(mutableListOf(), viewModel)
-        binding.recyclerComics.adapter = adapter
-
-        viewModel.selectedComicsItem.observe(viewLifecycleOwner,EventObserver{
+        setupRecyclerView()
+        viewModel.selectedComicItem.observe(viewLifecycleOwner, EventObserver {
             //Todo
         })
     }
 
-
+    private fun setupRecyclerView() {
+        val adapter = ComicsAdapter(mutableListOf(), viewModel)
+        binding.recyclerComics.adapter = adapter
+    }
 
 }

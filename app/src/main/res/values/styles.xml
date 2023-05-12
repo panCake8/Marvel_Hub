@@ -1,21 +1,46 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <!-- app bar-->
-    <style name="AppBar">
-        <item name="android:layout_width">match_parent</item>
-        <item name="android:layout_height">@dimen/app_bar_height</item>
-        <item name="android:backgroundTint">@color/background_color</item>
-        <item name="titleTextColor">@color/black_100</item>
-        <item name="elevation">@dimen/elevation_small</item>
-        <item name="navigationIcon">@drawable/ic_back_button_34</item>
+    <style name="screen_title" parent="Widget.AppCompat.TextView">
+        <item name="android:textSize">@dimen/large_text</item>
+        <item name="android:textColor">@color/black_87</item>
+        <item name="fontFamily">@font/poppins_semibold</item>
+    </style>
+
+    <style name="details_title" parent="Widget.AppCompat.TextView">
+        <item name="android:textSize">@dimen/large_text</item>
+        <item name="android:textColor">@color/black_87</item>
+        <item name="fontFamily">@font/poppins_semibold</item>
+    </style>
+
+    <style name="secondary_description" parent="Widget.AppCompat.TextView">
+        <item name="android:textSize">@dimen/body_text</item>
+        <item name="android:textColor">@color/black_60</item>
+        <item name="fontFamily">@font/poppins_medium</item>
+    </style>
+
+    <style name="details_description" parent="Widget.AppCompat.TextView">
+        <item name="android:textSize">@dimen/title_text</item>
+        <item name="android:textColor">@color/light_red</item>
+        <item name="fontFamily">@font/poppins_medium</item>
+    </style>
+
+    <style name="card_title" parent="Widget.AppCompat.TextView">
+        <item name="android:textSize">@dimen/body_text</item>
+        <item name="android:textColor">@color/white_87</item>
+        <item name="fontFamily">@font/poppins_medium</item>
     </style>
     <!--round imageview -->
     <style name="roundimageview">
         <item name="cornerFamily">rounded</item>
-        <item name="cornerSize">90dp</item>
+        <item name="cornerSize">30dp</item>
         <item name="color">@color/white_100</item>
+    </style>
 
+
+    <style name="header" parent="Widget.AppCompat.TextView">
+        <item name="android:textSize">@dimen/title_text</item>
+        <item name="android:textColor">@color/black_60</item>
     </style>
     <!--    Card Parent-->
     <style name="CardRecItem" parent="Widget.MaterialComponents.CardView">
@@ -101,5 +126,15 @@
         <item name="android:layout_marginTop">@dimen/app_bar_height</item>
         <item name="spanCount">2</item>
         <item name="android:orientation">vertical</item>
+    </style>
+
+    <!-- app bar-->
+    <style name="AppBar">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">@dimen/app_bar_height</item>
+        <item name="android:backgroundTint">@color/background_color</item>
+        <item name="titleTextColor">@color/black_100</item>
+        <item name="elevation">@dimen/elevation_small</item>
+        <item name="navigationIcon">@drawable/ic_back_button_34</item>
     </style>
 </resources>

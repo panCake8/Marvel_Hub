@@ -1,16 +1,17 @@
 package com.example.marvel_hub.data.repository
 
-import com.example.marvel_hub.data.model.BaseResponse
 import com.example.marvel_hub.data.model.CharactersModel
 import com.example.marvel_hub.data.model.ComicModel
 import com.example.marvel_hub.data.model.CreatorModel
 import com.example.marvel_hub.data.model.EventModel
 import com.example.marvel_hub.data.model.SeriesModel
 import com.example.marvel_hub.data.model.StoriesModel
+import com.example.marvel_hub.data.model.BaseResponse
 import io.reactivex.rxjava3.core.Single
 
 interface IMarvelRepository {
     fun getAllCharacters(): Single<BaseResponse<CharactersModel>>
+    fun searchCharacters(name: String): Single<BaseResponse<CharactersModel>>
     fun getCharacterById(characterId: Int): Single<BaseResponse<CharactersModel>>
     fun getComicsByCharacterId(characterId: Int): Single<BaseResponse<ComicModel>>
     fun getEventsByCharacterId(characterId: Int): Single<BaseResponse<EventModel>>
@@ -19,6 +20,7 @@ interface IMarvelRepository {
 
 
     fun getAllComics(): Single<BaseResponse<ComicModel>>
+    fun searchComics(name: String): Single<BaseResponse<ComicModel>>
     fun getComicById(comicId: Int): Single<BaseResponse<ComicModel>>
     fun getCharactersByComicId(comicId: Int): Single<BaseResponse<CharactersModel>>
     fun getCreatorsByComicId(comicId: Int): Single<BaseResponse<CreatorModel>>
@@ -27,6 +29,7 @@ interface IMarvelRepository {
 
 
     fun getAllCreators(): Single<BaseResponse<CreatorModel>>
+
     fun getCreatorById(creatorId: Int): Single<BaseResponse<CreatorModel>>
     fun getComicsByCreatorId(creatorId: Int): Single<BaseResponse<ComicModel>>
     fun getEventsByCreatorId(creatorId: Int): Single<BaseResponse<EventModel>>
@@ -35,6 +38,7 @@ interface IMarvelRepository {
 
 
     fun getAllEvents(): Single<BaseResponse<EventModel>>
+    fun searchEvents(name: String): Single<BaseResponse<EventModel>>
     fun getEventsById(eventId: Int): Single<BaseResponse<EventModel>>
     fun getCharactersByEventId(eventId: Int): Single<BaseResponse<CharactersModel>>
     fun getComicsByEventId(eventId: Int): Single<BaseResponse<ComicModel>>
@@ -44,6 +48,8 @@ interface IMarvelRepository {
 
 
     fun getAllSeries(): Single<BaseResponse<SeriesModel>>
+    fun searchSeries(name: String): Single<BaseResponse<SeriesModel>>
+
     fun getSeriesById(seriesId: Int): Single<BaseResponse<SeriesModel>>
     fun getCharactersBySeriesId(seriesId: Int): Single<BaseResponse<CharactersModel>>
     fun getComicsBySeriesId(seriesId: Int): Single<BaseResponse<ComicModel>>
@@ -59,5 +65,6 @@ interface IMarvelRepository {
     fun getCreatorsByStoryId(storyId: Int): Single<BaseResponse<CreatorModel>>
     fun getEventsByStoryId(storyId: Int): Single<BaseResponse<EventModel>>
     fun getSeriesByStoryId(storyId: Int): Single<BaseResponse<SeriesModel>>
+
 
 }

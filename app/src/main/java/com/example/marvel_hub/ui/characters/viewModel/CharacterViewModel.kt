@@ -18,8 +18,8 @@ class CharacterViewModel : BaseViewModel(), CharacterInteractionListener {
         MutableLiveData<DataState<BaseResponse<CharactersModel>>>(DataState.Loading)
     val characterMarvel: LiveData<DataState<BaseResponse<CharactersModel>>> = _characterMarvel
 
-    private val _eventCharacter = MutableLiveData<Event<Int?>>()
-    val eventCharacter: LiveData<Event<Int?>> get() = _eventCharacter
+    private val _selectedCharacterItem = MutableLiveData<Event<Int?>>()
+    val selectedCharacterItem: LiveData<Event<Int?>> get() = _selectedCharacterItem
 
     init {
         getAllCharactersMarvel()
@@ -41,8 +41,8 @@ class CharacterViewModel : BaseViewModel(), CharacterInteractionListener {
         _characterMarvel.postValue(DataState.Error(throwable.message.toString()))
     }
 
-    override fun onClickCharacter(character: CharactersModel) {
-        _eventCharacter.postValue(Event(character.id))
+    override fun onClickCharacterItem(character: CharactersModel) {
+        _selectedCharacterItem.postValue(Event(character.id))
     }
 
 }
