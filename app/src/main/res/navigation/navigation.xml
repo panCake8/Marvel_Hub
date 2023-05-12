@@ -9,19 +9,5 @@
         android:id="@+id/homeFragment"
         android:name="com.example.marvel_hub.ui.home.HomeFragment"
         android:label="HomeFragment"
-        tools:layout="@layout/fragment_home" >
-        <action
-            android:id="@+id/action_homeFragment_to_characterDetailsFragment2"
-            app:destination="@id/characterDetailsFragment2" />
-    </fragment>
-    <fragment
-        android:id="@+id/characterDetailsFragment2"
-        android:name="com.example.marvel_hub.ui.details.character.CharacterDetailsFragment"
-        android:label="CharacterDetailsFragment"
-        tools:layout="@layout/fragment_character_details"
-        >
-        <argument
-            android:name="characterId"
-            app:argType="integer" />
-    </fragment>
+        tools:layout="@layout/fragment_home"/>
 </navigation>

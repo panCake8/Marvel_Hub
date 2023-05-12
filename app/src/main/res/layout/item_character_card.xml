@@ -11,13 +11,13 @@
 
         <variable
             name="listener"
-            type="com.example.marvel_hub.ui.characters.viewModel.CharacterViewModel" />
+            type="com.example.marvel_hub.ui.characters.adapter.CharacterInteractionListener" />
     </data>
 
 
     <com.google.android.material.card.MaterialCardView
         style="@style/CardRecItem.Character"
-      >
+        android:onClick="@{() -> listener.onClickCharacterItem(item)}">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/card_character"

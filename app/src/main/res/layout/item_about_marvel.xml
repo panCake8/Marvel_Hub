@@ -20,7 +20,7 @@
         android:layout_marginStart="@dimen/margin_large"
         android:layout_marginEnd="@dimen/margin_medium"
         android:layout_marginBottom="@dimen/margin_large"
-
+        android:onClick="@{() -> listener.onClickCreatorItem(item)}"
         app:cardCornerRadius="@dimen/radius_medium">
 
         <androidx.constraintlayout.widget.ConstraintLayout
@@ -28,7 +28,7 @@
             android:layout_height="wrap_content"
             android:background="@color/background_color">
 
-            <com.mikhaellopez.circularimageview.CircularImageView
+            <ImageView
                 android:id="@+id/imageView"
                 android:layout_width="@dimen/width_image_item_creator"
                 android:layout_height="@dimen/height_image_item_creator"
@@ -38,27 +38,8 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                app:srcCompat="@drawable/image_marvel" />
-
-            <TextView
-                android:id="@+id/text_comics_name"
-                android:layout_width="@dimen/no_width"
-                android:layout_height="wrap_content"
-                android:layout_marginHorizontal="@dimen/large_margin"
-                android:layout_marginBottom="@dimen/large_margin"
-                android:ellipsize="end"
-                android:fontFamily="@font/poppins_medium"
-                android:includeFontPadding="false"
-                android:text="@{item.fullName}"
-                android:textColor="@color/white_100"
-                android:textSize="@dimen/title_text"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintLeft_toLeftOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="@+id/imageView"
-                tools:text="title" />
-
+                app:srcCompat="@drawable/image_stanli"
+                android:contentDescription="@string/logo" />
         </androidx.constraintlayout.widget.ConstraintLayout>
 
     </com.google.android.material.card.MaterialCardView>
