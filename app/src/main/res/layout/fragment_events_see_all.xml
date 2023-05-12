@@ -52,7 +52,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:showWhenError="@{}" />
+            app:showWhenError="@{viewModel.event}" />
 
         <ProgressBar
             android:id="@+id/progress_bar"
@@ -62,7 +62,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:showWhenLoading="@{}" />
+            app:showWhenLoading="@{viewModel.event}" />
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>

@@ -19,9 +19,7 @@ class EventsViewModel : BaseViewModel(), EventsSeeAllListener {
         get() = _events
 
 
-    init {
-        fetchAllEvents()
-    }
+
 
     fun fetchAllEvents() {
         repository.getAllEvents()
