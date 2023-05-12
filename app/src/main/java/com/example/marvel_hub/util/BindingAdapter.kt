@@ -40,6 +40,7 @@ fun <T> showWhenError(view: View, state: State<T>?) {
 
 }
 
+
 @BindingAdapter(value = ["app:showWhenSuccess"])
 fun <T> showWhenSuccess(view: View, state: State<T>?) {
 
@@ -47,6 +48,15 @@ fun <T> showWhenSuccess(view: View, state: State<T>?) {
         view.visibility = View.VISIBLE
     else
         view.visibility = View.GONE
+
+}
+@BindingAdapter(value = ["app:showWhenStart"])
+fun <T> showWhenStart(view: View, state: State<T>?) {
+
+    if (state is State.Success || state is State.Loading )
+        view.visibility = View.GONE
+    else
+        view.visibility = View.VISIBLE
 
 }
 
