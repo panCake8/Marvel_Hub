@@ -98,5 +98,14 @@
     <dimen name="width_image_comics">80dp</dimen>
     <dimen name="hight_image_comics">80dp</dimen>
     <dimen name="height_image_details">220dp</dimen>
+    <dimen name="height_image_creator_profile">180dp</dimen>
+    <dimen name="width_image_creator__profile">180dp</dimen>
+    <dimen name="search_bar_height">56dp</dimen>
+    <dimen name="input_text_size">12sp</dimen>
+    <dimen name="card_text_size">14sp</dimen>
+    <dimen name="search_card_height">200dp</dimen>
+    <dimen name="margin_search_recyclerview">12dp</dimen>
+    <dimen name="height_chip">84dp</dimen>
+    <dimen name="chip_stroke">1dp</dimen>
 
 </resources>

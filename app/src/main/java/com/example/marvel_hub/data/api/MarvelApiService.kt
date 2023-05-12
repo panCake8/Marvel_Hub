@@ -10,10 +10,16 @@ import com.example.marvel_hub.data.model.StoriesModel
 import io.reactivex.rxjava3.core.Single
 import retrofit2.http.GET
 import retrofit2.http.Path
+import retrofit2.http.Query
 
 interface MarvelApiService {
     @GET("characters")
     fun getAllCharacters(): Single<BaseResponse<CharactersModel>>
+
+    @GET("characters")
+    fun searchCharacters(
+        @Query("nameStartsWith") nameStartsWith: String
+    ): Single<BaseResponse<CharactersModel>>
 
     @GET("characters/{characterId}")
     fun getCharacterById(
@@ -44,6 +50,11 @@ interface MarvelApiService {
 
     @GET("comics")
     fun getAllComics(): Single<BaseResponse<ComicModel>>
+
+    @GET("comics")
+    fun searchComics(
+        @Query("titleStartsWith") titleStartsWith: String,
+    ): Single<BaseResponse<ComicModel>>
 
     @GET("comics/{comicId}")
     fun getComicsById(
@@ -105,6 +116,12 @@ interface MarvelApiService {
     @GET("events")
     fun getAllEvents(): Single<BaseResponse<EventModel>>
 
+    @GET("events")
+    fun searchEvent(
+        @Query("nameStartsWith") nameStartsWith: String,
+    ): Single<BaseResponse<EventModel>>
+
+
     @GET("events/{eventId}")
     fun getEventsById(
         @Path("eventId") eventId: Int
@@ -138,6 +155,11 @@ interface MarvelApiService {
     //===================== series =======================
     @GET("series")
     fun getAllSeries(): Single<BaseResponse<SeriesModel>>
+
+    @GET("series")
+    fun searchSeries(
+        @Query("titleStartsWith") nameStartsWith: String,
+    ): Single<BaseResponse<SeriesModel>>
 
     @GET("series/{seriesId}")
     fun getSeriesById(

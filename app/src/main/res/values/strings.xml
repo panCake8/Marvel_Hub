@@ -25,5 +25,7 @@
     <string name="related">related</string>
     <string name="logo">logo</string>
     <string name="comic">Comic</string>
+    <string name="search_hint">search</string>
+    <string name="text_series_chip">Series</string>
     <string name="title">title</string>
 </resources>
