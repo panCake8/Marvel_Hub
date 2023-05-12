@@ -7,20 +7,19 @@ import com.example.marvel_hub.R
 import com.example.marvel_hub.databinding.FragmentComicsBinding
 import com.example.marvel_hub.ui.base.BaseFragment
 import com.example.marvel_hub.ui.comics.adapter.ComicsAdapter
-import com.example.marvel_hub.ui.comics.viewModel.ComicsViewModel
+import com.example.marvel_hub.ui.comics.viewModel.ComicViewModel
 import com.example.marvel_hub.util.EventObserver
 
-class FragmentComics : BaseFragment<FragmentComicsBinding, ComicsViewModel>() {
+class ComicFragment : BaseFragment<FragmentComicsBinding, ComicViewModel>() {
 
-    override val viewModel: ComicsViewModel by viewModels()
-
+    override val viewModel: ComicViewModel by viewModels()
     override val layoutId: Int get() = R.layout.fragment_comics
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         setupRecyclerView()
         viewModel.selectedComicItem.observe(viewLifecycleOwner, EventObserver {
-
+            //TODO
         })
     }
 
