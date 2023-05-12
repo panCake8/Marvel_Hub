@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
 
     <data>
 
@@ -10,35 +11,43 @@
 
     </data>
 
-    <androidx.cardview.widget.CardView
-        android:layout_width="match_parent"
-        android:layout_height="120dp"
-        app:cardCornerRadius="@dimen/large_radius"
-        android:layout_marginHorizontal="@dimen/large_margin">
+    <com.google.android.material.card.MaterialCardView
+        android:layout_width="@dimen/large_card_width"
+        android:layout_height="@dimen/large_card_height"
+        android:layout_marginHorizontal="@dimen/small_margin"
+        app:cardCornerRadius="@dimen/normal_corner_radius">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
             <ImageView
-                android:id="@+id/event_image"
+                android:id="@+id/image_movie"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+                android:scaleType="fitXY"
+                tools:src="@drawable/movie_photo"
+                app:imageUrl="@{event.thumbnail.image}"
+                />
 
             <TextView
-
-                android:id="@+id/title_Text_View"
-                android:layout_width="match_parent"
+                android:text="@{event.title}"
+                android:id="@+id/text_event_name"
+                android:layout_width="@dimen/no_width"
                 android:layout_height="wrap_content"
                 android:layout_marginHorizontal="@dimen/large_margin"
                 android:layout_marginBottom="@dimen/large_margin"
-                android:text="@{event.title}"
-                app:layout_constraintBottom_toBottomOf="parent" />
+                android:ellipsize="end"
+                android:fontFamily="@font/poppins_medium"
+                android:includeFontPadding="false"
+                android:textColor="@color/white_100"
+                android:textSize="@dimen/title_text"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                tools:text="title" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
-
-    </androidx.cardview.widget.CardView>
+    </com.google.android.material.card.MaterialCardView>
 </layout>
