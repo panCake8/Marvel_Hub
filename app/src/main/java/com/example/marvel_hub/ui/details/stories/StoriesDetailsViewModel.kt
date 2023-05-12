@@ -1,5 +1,6 @@
 package com.example.marvel_hub.ui.details.stories
 
+import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.example.marvel_hub.data.model.BaseResponse
@@ -10,11 +11,17 @@ import com.example.marvel_hub.data.model.SeriesModel
 import com.example.marvel_hub.data.model.StoriesModel
 import com.example.marvel_hub.data.util.DataState
 import com.example.marvel_hub.ui.base.BaseViewModel
+import com.example.marvel_hub.ui.details.listeners.CharacterListener
+import com.example.marvel_hub.ui.details.listeners.ComicListener
+import com.example.marvel_hub.ui.details.listeners.EventsListener
+import com.example.marvel_hub.ui.details.listeners.SeriesListener
+import com.example.marvel_hub.ui.details.listeners.StoryListener
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
 import io.reactivex.rxjava3.kotlin.addTo
 import io.reactivex.rxjava3.schedulers.Schedulers
 
-class StoriesDetailsViewModel : BaseViewModel() {
+class StoriesDetailsViewModel : BaseViewModel(), EventsListener, CharacterListener, ComicListener,
+    SeriesListener {
 
     private val _story =
         MutableLiveData<DataState<StoriesModel>>()
@@ -56,8 +63,12 @@ class StoriesDetailsViewModel : BaseViewModel() {
             ).addTo(disposable)
 
     private fun storyOnSuccess(story: BaseResponse<StoriesModel>) {
-        _story.postValue(story.data?.results?.get(0).let { DataState.Success(it!!) })
+        story.data?.results?.get(0).let {
+            _story.postValue(DataState.Success(it!!))
+            Log.i("TAG", "${it.title}")
+        }
     }
+
     private fun storyOnError(error: Throwable) {
         _story.postValue(error.message.toString().let { DataState.Error(it) })
     }
@@ -74,6 +85,7 @@ class StoriesDetailsViewModel : BaseViewModel() {
     private fun charactersOnSuccess(characters: BaseResponse<CharactersModel>) {
         _characters.postValue(characters.data?.results.let { DataState.Success(it) })
     }
+
     private fun charactersOnError(error: Throwable) {
         _characters.postValue(error.message.toString().let { DataState.Error(it) })
     }
@@ -88,6 +100,7 @@ class StoriesDetailsViewModel : BaseViewModel() {
     private fun comicOnSuccess(comics: BaseResponse<ComicModel>) {
         _comics.postValue(comics.data?.results.let { DataState.Success(it) })
     }
+
     private fun comicOnError(error: Throwable) {
         _comics.postValue(error.message.toString().let { DataState.Error(it) })
     }
@@ -102,6 +115,7 @@ class StoriesDetailsViewModel : BaseViewModel() {
     private fun seriesOnSuccess(series: BaseResponse<SeriesModel>) {
         _series.postValue(series.data?.results.let { DataState.Success(it) })
     }
+
     private fun seriesOnError(error: Throwable) {
         _series.postValue(error.message.toString().let { DataState.Error(it) })
     }
@@ -116,8 +130,25 @@ class StoriesDetailsViewModel : BaseViewModel() {
     private fun eventOnSuccess(events: BaseResponse<EventModel>) {
         _events.postValue(events.data?.results.let { DataState.Success(it) })
     }
+
     private fun eventOnError(error: Throwable) {
         _events.postValue(error.message.toString().let { DataState.Error(it) })
+    }
+
+    override fun onCharacterClick(character: CharactersModel) {
+        TODO("Not yet implemented")
+    }
+
+    override fun onComicClick(comic: ComicModel) {
+        TODO("Not yet implemented")
+    }
+
+    override fun onEventClick(event: EventModel) {
+        TODO("Not yet implemented")
+    }
+
+    override fun onSeriesClick(series: SeriesModel) {
+        TODO("Not yet implemented")
     }
 
 

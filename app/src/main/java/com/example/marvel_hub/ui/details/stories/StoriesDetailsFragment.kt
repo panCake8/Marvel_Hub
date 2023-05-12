@@ -24,7 +24,16 @@ class StoriesDetailsFragment :
 
         binding.mainRecycler.adapter = ParentStoriesDetailsAdapter(viewModel, this)
 
+        viewModel.getSeriesByStoryId(storyID)
+        viewModel.getCharactersByStoryId(storyID)
+        viewModel.getSeriesByStoryId(storyID)
+        viewModel.getComicsByStoryId(storyID)
+        viewModel.getEventsByStoryId(storyID)
 
+    }
+
+    companion object {
+        val storyID = 24
     }
 
 
