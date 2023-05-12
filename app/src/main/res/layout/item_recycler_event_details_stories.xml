@@ -4,6 +4,10 @@
 
     <data>
 
+        <variable
+            name="viewModel"
+            type="com.example.marvel_hub.ui.details.events.EventsDetailsViewModel" />
+
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -29,6 +33,8 @@
             android:layout_marginTop="@dimen/medium_margin"
             android:orientation="horizontal"
             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-            app:layout_constraintTop_toBottomOf="@id/text_view_title" />
+            app:layout_constraintTop_toBottomOf="@id/text_view_title"
+            app:recyclerItems="@{viewModel.stories.toData()}"
+            app:showWhenSuccess="@{viewModel.stories}" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
