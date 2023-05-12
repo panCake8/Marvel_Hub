@@ -16,6 +16,11 @@ interface MarvelApiService {
     @GET("characters")
     fun getAllCharacters(): Single<BaseResponse<CharactersModel>>
 
+    @GET("characters")
+    fun searchCharacters(
+        @Query("nameStartsWith") nameStartsWith: String
+    ): Single<BaseResponse<CharactersModel>>
+
     @GET("characters/{characterId}")
     fun getCharacterById(
         @Path("characterId") characterId: Int,

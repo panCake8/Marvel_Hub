@@ -1,14 +1,10 @@
 package com.example.marvel_hub.data.repository
 
 import com.example.marvel_hub.data.api.API
-import com.example.marvel_hub.data.model.ComicModel
-import com.example.marvel_hub.data.model.EventModel
-import com.example.marvel_hub.data.model.SeriesModel
-import com.example.marvel_hub.ui.search.adapter.SearchItems
-import io.reactivex.rxjava3.core.Single
 
 class MarvelRepository : IMarvelRepository {
     override fun getAllCharacters() = API.apiService.getAllCharacters()
+    override fun searchCharacters(name: String) = API.apiService.searchCharacters(name)
 
     override fun getCharacterById(characterId: Int) =
         API.apiService.getCharacterById(characterId = characterId)

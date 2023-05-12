@@ -1,6 +1,5 @@
 package com.example.marvel_hub.ui.search.viewModel
 
-import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.example.marvel_hub.data.model.BaseResponse
@@ -20,7 +19,7 @@ import io.reactivex.rxjava3.schedulers.Schedulers
 
 class SearchViewModel : BaseViewModel(), EventInteractionListener,
     ComicInteractionListener,
-    SeriesInteractionListener,CharacterInteractionListener {
+    SeriesInteractionListener, CharacterInteractionListener {
 
     private val _searchStatus =
         MutableLiveData(SearchStatus.COMIC)
@@ -80,14 +79,14 @@ class SearchViewModel : BaseViewModel(), EventInteractionListener,
 
     fun getCharacterData(text: String) {
         _searchList.postValue(DataState.Loading)
-        repository.searchEvents(text)
+        repository.searchCharacters(text)
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
-            .subscribe(::onGetEventSuccess, ::onGetEventError).addTo(disposable)
+            .subscribe(::onGetCharacterSuccess, ::onGetCharacterError).addTo(disposable)
     }
 
-    private fun onGetCharacterSuccess(events: BaseResponse<EventModel>) {
-        _searchList.postValue(DataState.Success(events.data?.results ?: listOf()))
+    private fun onGetCharacterSuccess(character: BaseResponse<CharactersModel>) {
+        _searchList.postValue(DataState.Success(character.data?.results ?: listOf()))
     }
 
 
@@ -97,15 +96,19 @@ class SearchViewModel : BaseViewModel(), EventInteractionListener,
     fun onClickComicChip() {
         _searchStatus.postValue(SearchStatus.COMIC)
     }
+
     fun onClickEventChip() {
         _searchStatus.postValue(SearchStatus.EVENT)
     }
+
     fun onClickSeriesChip() {
         _searchStatus.postValue(SearchStatus.SERIES)
     }
+
     fun onClickCharacterChip() {
         _searchStatus.postValue(SearchStatus.CHARACTER)
     }
+
     override fun onClickComic(comic: ComicModel) {
 
     }
@@ -113,6 +116,7 @@ class SearchViewModel : BaseViewModel(), EventInteractionListener,
     override fun onClickEvent(event: EventModel) {
 
     }
+
     override fun onClickSeries(creator: SeriesModel) {
     }
 

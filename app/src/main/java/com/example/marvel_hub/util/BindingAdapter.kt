@@ -1,7 +1,6 @@
 package com.example.marvel_hub.util
 
 import android.annotation.SuppressLint
-import android.util.Log
 import android.view.View
 import android.widget.EditText
 import android.widget.ImageView
@@ -11,6 +10,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.marvel_hub.data.util.DataState
 import com.example.marvel_hub.ui.base.BaseAdapter
+import com.example.marvel_hub.ui.search.adapter.SearchCharactersAdapter
 import com.example.marvel_hub.ui.search.adapter.SearchComicsAdapter
 import com.example.marvel_hub.ui.search.adapter.SearchEventAdapter
 import com.example.marvel_hub.ui.search.adapter.SearchSeriesAdapter
@@ -78,17 +78,18 @@ fun onSearchTextChange(view: EditText, viewModel: SearchViewModel) {
                 when (viewModel.searchStatus.value) {
                     SearchStatus.COMIC -> viewModel.getComicData(text)
                     SearchStatus.EVENT -> viewModel.getEventData(text)
-                    else -> viewModel.getSeriesData(text)
+                    SearchStatus.SERIES -> viewModel.getSeriesData(text)
+                    else -> viewModel.getCharacterData(text)
                 }
             }
         }
 }
 
-@BindingAdapter(value = ["app:setSearchAdapter" , "app:setSearchStatus"])
+@BindingAdapter(value = ["app:setSearchAdapter", "app:setSearchStatus"])
 fun setSearchRecyclerAdapter(
     view: RecyclerView,
     viewModel: SearchViewModel,
-    searchStatus : SearchStatus
+    searchStatus: SearchStatus
 ) {
     when (searchStatus) {
         SearchStatus.COMIC -> {
@@ -101,8 +102,13 @@ fun setSearchRecyclerAdapter(
             view.adapter = adapter
         }
 
-        else -> {
+        SearchStatus.SERIES -> {
             val adapter = SearchSeriesAdapter(listOf(), viewModel)
+            view.adapter = adapter
+        }
+
+        else -> {
+            val adapter = SearchCharactersAdapter(listOf(), viewModel)
             view.adapter = adapter
         }
     }
