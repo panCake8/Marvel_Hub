@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
 
     <data>
 
@@ -10,7 +11,7 @@
 
         <variable
             name="listener"
-            type="com.example.marvel_hub.ui.aboutmarvel.adapter.OnClickCreator" />
+            type="com.example.marvel_hub.ui.aboutmarvel.viewModel.AboutMarvelViewModel" />
     </data>
 
     <com.google.android.material.card.MaterialCardView

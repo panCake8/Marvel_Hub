@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="viewModel"
+            type="com.example.marvel_hub.ui.details.stories.StoriesDetailsViewModel" />
+
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="@dimen/large_margin">
+
+        <TextView
+            android:id="@+id/child_characters_related_text"
+            android:layout_width="@dimen/no_width"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/large_margin"
+            android:fontFamily="@font/poppins_semibold"
+            android:paddingBottom="@dimen/medium_padding"
+            android:text="@string/related_comics"
+            android:textColor="@color/black_87"
+            android:textSize="@dimen/body_text"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+
+            />
+
+        <androidx.recyclerview.widget.RecyclerView
+            app:recyclerItems="@{viewModel.comics.toData()}"
+            app:showWhenSuccess="@{viewModel.comics}"
+            android:id="@+id/child_comic_recycler"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:clipToPadding="false"
+            android:orientation="horizontal"
+            android:paddingHorizontal="@dimen/horizontal_padding"
+            android:paddingBottom="@dimen/large_padding"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+            app:layout_constraintTop_toBottomOf="@+id/child_characters_related_text"
+            tools:listitem="@layout/item_comics" />
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

@@ -25,18 +25,17 @@
             app:layout_constraintTop_toTopOf="parent"
             app:title="Creators" />
 
-
         <com.google.android.material.imageview.ShapeableImageView
             android:id="@+id/imageview_creator"
             android:layout_width="@dimen/width_image_item_creator"
             android:layout_height="@dimen/height_image_item_creator"
             android:layout_marginTop="@dimen/large_margin"
+            android:adjustViewBounds="true"
             android:scaleType="centerCrop"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/app_bar_creators"
             app:shapeAppearanceOverlay="@style/roundimageview"
-            app:showWhenSuccess="@{viewModel.creator}"
             tools:src="@drawable/creator" />
 
         <TextView
@@ -91,7 +90,6 @@
             app:layout_constraintCircleRadius="@dimen/large_radius"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent" />
-
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

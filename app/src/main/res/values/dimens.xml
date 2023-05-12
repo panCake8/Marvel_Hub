@@ -97,6 +97,7 @@
     <dimen name="height_error_marvel">80dp</dimen>
     <dimen name="width_image_comics">80dp</dimen>
     <dimen name="hight_image_comics">80dp</dimen>
+    <dimen name="height_image_details">220dp</dimen>
     <dimen name="height_image_creator_profile">180dp</dimen>
     <dimen name="width_image_creator__profile">180dp</dimen>
     <dimen name="search_bar_height">56dp</dimen>
