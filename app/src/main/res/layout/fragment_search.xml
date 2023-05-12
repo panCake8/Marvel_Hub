@@ -17,6 +17,16 @@
         android:layout_height="match_parent"
         android:background="@color/background_color">
 
+        <ImageView
+            android:id="@+id/on_start"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+         />
+
 
         <EditText
             android:id="@+id/search_bar"
@@ -130,6 +140,28 @@
             app:showWhenSuccess="@{viewModel.searchList}"
             app:spanCount="2"
             tools:listitem="@layout/item_search_comics" />
+        <ProgressBar
+            android:id="@+id/progress_bar_loading"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:showWhenLoading="@{viewModel.searchList}" />
+
+
+        <ImageView
+            android:id="@+id/image_view_error"
+            android:layout_width="@dimen/width_image_comics"
+            android:layout_height="@dimen/hight_image_comics"
+            android:contentDescription="@string/logo"
+            android:src="@drawable/baseline_error_24"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:showWhenError="@{viewModel.searchList}" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
