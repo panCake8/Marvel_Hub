@@ -26,7 +26,7 @@ class SearchViewModel : BaseViewModel(), EventInteractionListener,
     val searchStatus: LiveData<SearchStatus>
         get() = _searchStatus
 
-    private val _searchList = MutableLiveData<State<List<Any>>>(State.Loading)
+    private val _searchList = MutableLiveData<State<List<Any>>>()
     val searchList: LiveData<State<List<Any>>>
         get() = _searchList
 
