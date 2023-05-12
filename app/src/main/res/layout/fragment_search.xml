@@ -133,6 +133,8 @@
             android:orientation="vertical"
             app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
             app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/filter_chip_component"
             app:recyclerItems="@{viewModel.searchList.toData()}"
             app:setSearchAdapter="@{viewModel}"
@@ -162,6 +164,7 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:showWhenError="@{viewModel.searchList}" />
+
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

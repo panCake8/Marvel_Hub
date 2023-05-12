@@ -3,7 +3,7 @@
 
     <style name="Theme.MyApp.MySplash" parent="Theme.SplashScreen">
         <item name="windowSplashScreenBackground">@color/black_100</item>
-<!--        <item name="windowSplashScreenAnimatedIcon">@drawable/marvel_logo</item>-->
+        <item name="windowSplashScreenAnimatedIcon">@drawable/marvel_logo</item>
         <item name="postSplashScreenTheme">@style/Theme.Marvel_Hub</item>
         <item name="android:layout_gravity">center</item>
     </style>
