@@ -21,13 +21,14 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/margin_large"
-            android:background="@color/white_87"
             app:layout_constraintTop_toTopOf="parent">
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal">
+                android:layout_height="match_parent"
+                android:orientation="horizontal"
+                android:background="@color/white_87"
+                >
 
                 <androidx.appcompat.widget.AppCompatImageView
                     android:id="@+id/ic_back"

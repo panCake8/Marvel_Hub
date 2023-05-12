@@ -4,6 +4,9 @@
 
     <data>
 
+        <variable
+            name="viewModel"
+            type="com.example.marvel_hub.ui.details.character.CharacterDetailsViewModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -13,7 +16,7 @@
 
         <TextView
             android:id="@+id/title"
-            style="@style/header"
+            style="@style/secondary_description"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/margin_large"
@@ -28,7 +31,9 @@
             android:layout_marginTop="@dimen/medium_margin"
             android:orientation="horizontal"
             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-            app:layout_constraintTop_toBottomOf="@id/title" />
+            app:layout_constraintTop_toBottomOf="@id/title"
+            app:recyclerItems="@{viewModel.events.toData()}"
+            app:showWhenSuccess="@{viewModel.events}" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

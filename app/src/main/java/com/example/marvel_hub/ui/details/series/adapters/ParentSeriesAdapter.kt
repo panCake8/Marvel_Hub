@@ -4,6 +4,7 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.databinding.ViewDataBinding
+import androidx.lifecycle.LifecycleOwner
 import androidx.recyclerview.widget.RecyclerView.Adapter
 import androidx.recyclerview.widget.RecyclerView.ViewHolder
 import com.example.marvel_hub.R
@@ -12,8 +13,12 @@ import com.example.marvel_hub.databinding.ItemRecyclerSeriesDetailsComicsBinding
 import com.example.marvel_hub.databinding.ItemRecyclerSeriesDetailsEventsBinding
 import com.example.marvel_hub.databinding.ItemRecyclerSeriesDetailsInfoBinding
 import com.example.marvel_hub.databinding.ItemRecyclerSeriesDetailsStoriesBinding
+import com.example.marvel_hub.ui.details.series.SeriesDetailsViewModel
 
-class ParentSeriesAdapter() :
+class ParentSeriesAdapter(
+    private val viewModel: SeriesDetailsViewModel,
+    private val viewLifeCycle: LifecycleOwner
+) :
     Adapter<ParentSeriesAdapter.BaseSeriesViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): BaseSeriesViewHolder {
@@ -80,11 +85,34 @@ class ParentSeriesAdapter() :
         }
     }
 
-    private fun bindInfo(binding: ItemRecyclerSeriesDetailsInfoBinding) {}
-    private fun bindComics(binding: ItemRecyclerSeriesDetailsComicsBinding) {}
-    private fun bindCharacter(binding: ItemRecyclerSeriesDetailsCharacterBinding) {}
-    private fun bindEvents(binding: ItemRecyclerSeriesDetailsEventsBinding) {}
-    private fun bindStories(binding: ItemRecyclerSeriesDetailsStoriesBinding) {}
+    private fun bindInfo(binding: ItemRecyclerSeriesDetailsInfoBinding) {
+        binding.viewModel = viewModel
+        binding.lifecycleOwner = viewLifeCycle
+    }
+
+    private fun bindComics(binding: ItemRecyclerSeriesDetailsComicsBinding) {
+        binding.viewModel = viewModel
+        binding.lifecycleOwner = viewLifeCycle
+        binding.childComicRecycler.adapter = ChildSeriesComicsAdapter(listOf(), viewModel)
+    }
+
+    private fun bindCharacter(binding: ItemRecyclerSeriesDetailsCharacterBinding) {
+        binding.viewModel = viewModel
+        binding.lifecycleOwner = viewLifeCycle
+        binding.childCharaterRecycler.adapter = ChildSeriesCharactersAdapter(listOf(), viewModel)
+    }
+
+    private fun bindEvents(binding: ItemRecyclerSeriesDetailsEventsBinding) {
+        binding.viewModel = viewModel
+        binding.lifecycleOwner = viewLifeCycle
+        binding.childEventRecycler.adapter = ChildSeriesEventsAdapter(listOf(), viewModel)
+    }
+
+    private fun bindStories(binding: ItemRecyclerSeriesDetailsStoriesBinding) {
+        binding.viewModel = viewModel
+        binding.lifecycleOwner = viewLifeCycle
+        binding.childStoryRecycler.adapter = ChildSeriesStoriesAdapter(listOf(), viewModel)
+    }
 
 
     abstract class BaseSeriesViewHolder(binding: ViewDataBinding) : ViewHolder(binding.root)

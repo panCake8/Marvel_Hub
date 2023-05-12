@@ -10,19 +10,23 @@ import com.example.marvel_hub.ui.characters.adapter.CharacterAdapter
 import com.example.marvel_hub.ui.characters.viewModel.CharacterViewModel
 import com.example.marvel_hub.util.EventObserver
 
-class FragmentCharacters : BaseFragment<FragmentCharactersBinding, CharacterViewModel>() {
+class CharacterFragment : BaseFragment<FragmentCharactersBinding, CharacterViewModel>() {
 
     override val viewModel: CharacterViewModel by viewModels()
     override val layoutId: Int get() = R.layout.fragment_characters
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        val adapter = CharacterAdapter(mutableListOf(), viewModel)
-        binding.recyclerViewCharacters.adapter = adapter
+        setupRecyclerView()
 
-        viewModel.eventCharacter.observe(viewLifecycleOwner, EventObserver {
+        viewModel.selectedCharacterItem.observe(viewLifecycleOwner, EventObserver {
 
         })
+    }
+
+    private fun setupRecyclerView(){
+        val adapter = CharacterAdapter(mutableListOf(), viewModel)
+        binding.recyclerViewCharacters.adapter = adapter
     }
 
 }

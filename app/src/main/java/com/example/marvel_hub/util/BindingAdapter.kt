@@ -41,9 +41,9 @@ fun <T> showWhenSuccess(view: View, dataState: DataState<T>?) {
 @BindingAdapter(value = ["app:recyclerItems"])
 fun <T> setRecyclerItems(view: RecyclerView, items: List<T>?) {
     if (items != null) {
-        (view.adapter as BaseAdapter<T>).setItems(items)
+        (view.adapter as BaseAdapter<T>?)?.setItems(items)
     } else {
-        (view.adapter as BaseAdapter<T>).setItems(listOf())
+        (view.adapter as BaseAdapter<T>?)?.setItems(listOf())
     }
 }
 
