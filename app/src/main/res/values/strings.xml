@@ -3,8 +3,9 @@
     <string name="about_marvel">About Marvel</string>
     <string name="text_comics">Comics</string>
     <string name="text_events">Events</string>
+    <string name="text_character">Characters</string>
     <string name="text_series">Series</string>
-    <string name="comics">Comics</string>
+    <string name="text_comic_chip">Comics</string>
     <string name="characters">Characters</string>
     <string name="creators">Creators</string>
     <string name="stan_lee_28_1922_12_2018_1989_spider_man_x_men_hulk_iron_man_thor_eisner_award_2008" tools:ignore="TypographyDashes">ستان لي (بالإنجليزية: Stan Lee)‏ - (مولود باسم ستانلي مارتن ليبر، 28 ديسمبر 1922- 12 نوفمبر 2018) هو كاتب ومحرر قصص مصورة أمريكي، وممثل ومذيع تلفزيوني ومدبلج، والرئيس والمدير السابق لمارفل كومكس. أصبح لي الناشر والمدير في شركة القصص المصورة، وقادها من قسم صغير في شركة نشر إلى أن تكون شركة كبرى متعددة الوسائط. شارك لي للمرة الأولى بفيلم له عام 1989. قام بالتشارك مع العديد من الكتاب من أشهرهم جاك كيربي وستيف ديتكو وأخيه الأصغر لاري ليبر في صنع العديد من شخصيات الأبطال الخارقين المشهورة أمثال الرجل العنكبوت (Spider-Man)، والرجال إكس (X-Men)، والرجل الأخضر (هولك) (Hulk)، وآيرون مان (Iron Man)، وثور (Thor)، وغيرهم من الشخصيات الخيالية. كان لي رائدا في اتخاذها منهجا أكثر تعقيدا في الستينيات والسبعينيات لتأليف الأبطال الخارقين، وتحدى معايير هيئة لوائح القصص المصورة، ما ساهم بشكل غير مباشر إلى تحديث سياساتها. فازت أعماله بالعديد من الجوائز، مثل جائزة إيسنر (بالإنجليزية: Eisner Award)‏، والتي تُمنح لكتاب القصص المصورة الأمريكية. تلقى الميدالية الوطنية للفنون عام 2008. بقي رمزًا عامًا للشركة بعد تقاعده منها، وقام بالتمثيل في الأفلام في العديد من الأدوار الصغيرة، كانت أغلبها في الأفلام الخاصة بالشخصيات التي شارك في صناعتها، مثل الجزأين الأول والثالث من إكس-من، والجزء الثاني من سبايدرمان، بالإضافة إلى مشاركته في إنتاج بعض تلك الأفلام مثل غوست رايدر. ظل لي يعمل في أعمال مستقلة حتى وفاته، وقيل أنه عانى من أمراض في القلب ومشاكل بالتنفس.</string>
@@ -15,4 +16,6 @@
     <string name="error_image">error image</string>
     <string name="logo">logo</string>
     <string name="comic">Comic</string>
+    <string name="search_hint">search</string>
+    <string name="text_series_chip">Series</string>
 </resources>
