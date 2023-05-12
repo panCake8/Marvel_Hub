@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
@@ -24,8 +23,7 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-         />
+            app:layout_constraintTop_toTopOf="parent" />
 
 
         <EditText
@@ -140,21 +138,25 @@
             app:showWhenSuccess="@{viewModel.searchList}"
             app:spanCount="2"
             tools:listitem="@layout/item_search_comics" />
+
+
         <ProgressBar
             android:id="@+id/progress_bar_loading"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/margin_large"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:showWhenLoading="@{viewModel.searchList}" />
 
+            app:showWhenLoading="@{viewModel.searchList}" />
 
         <ImageView
             android:id="@+id/image_view_error"
             android:layout_width="@dimen/width_image_comics"
             android:layout_height="@dimen/hight_image_comics"
+            android:layout_marginTop="@dimen/margin_large"
             android:contentDescription="@string/logo"
             android:src="@drawable/baseline_error_24"
             app:layout_constraintBottom_toBottomOf="parent"
