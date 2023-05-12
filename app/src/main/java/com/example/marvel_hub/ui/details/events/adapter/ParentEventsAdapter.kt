@@ -4,6 +4,7 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.databinding.ViewDataBinding
+import androidx.lifecycle.LifecycleOwner
 import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.RecyclerView.Adapter
 import com.example.marvel_hub.R
@@ -12,8 +13,12 @@ import com.example.marvel_hub.databinding.ItemRecyclerEventDetailsComicsBinding
 import com.example.marvel_hub.databinding.ItemRecyclerEventDetailsInfoBinding
 import com.example.marvel_hub.databinding.ItemRecyclerEventDetailsSeriesBinding
 import com.example.marvel_hub.databinding.ItemRecyclerEventDetailsStoriesBinding
+import com.example.marvel_hub.ui.details.events.EventsDetailsViewModel
 
-class EventsParentAdapter() : Adapter<EventsParentAdapter.BaseEventViewHolder>() {
+class ParentEventsAdapter(
+    private val viewModel: EventsDetailsViewModel,
+    private val viewLifeCycle: LifecycleOwner,
+) : Adapter<ParentEventsAdapter.BaseEventViewHolder>() {
 
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): BaseEventViewHolder {
@@ -82,18 +87,32 @@ class EventsParentAdapter() : Adapter<EventsParentAdapter.BaseEventViewHolder>()
 
 
     private fun bindingInfo(binding: ItemRecyclerEventDetailsInfoBinding) {
+        binding.viewModel = viewModel
+        binding.lifecycleOwner = viewLifeCycle
     }
 
     private fun bindingCharacter(binding: ItemRecyclerEventDetailsCharactersBinding) {
+        binding.viewModel = viewModel
+        binding.lifecycleOwner = viewLifeCycle
+        binding.childCharacterRecycler.adapter = ChildEventsCharacterAdapter(listOf(), viewModel)
     }
 
     private fun bindingStories(binding: ItemRecyclerEventDetailsStoriesBinding) {
+        binding.viewModel = viewModel
+        binding.lifecycleOwner = viewLifeCycle
+        binding.childStoryRecycler.adapter = ChildEventsStoriesAdapter(listOf(), viewModel)
     }
 
     private fun bindingComics(binding: ItemRecyclerEventDetailsComicsBinding) {
+        binding.viewModel = viewModel
+        binding.lifecycleOwner = viewLifeCycle
+        binding.childComicRecycler.adapter = ChildEventsComicsAdapter(listOf(), viewModel)
     }
 
     private fun bindingSeries(binding: ItemRecyclerEventDetailsSeriesBinding) {
+        binding.viewModel = viewModel
+        binding.lifecycleOwner = viewLifeCycle
+        binding.childSeriesRecycler.adapter = ChildEventsSeriesAdapter(listOf(), viewModel)
     }
 
 
