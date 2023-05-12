@@ -13,19 +13,8 @@ class EventsSeeAllAdapter(items:List<EventModel>, listener: BaseAdapterListener?
         get() = R.layout.fragment_events_see_all_item
 
 
-
-
-
 }
 
 
-class EventsSeeAllViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
 
-    val binding = FragmentEventsSeeAllItemBinding.bind(itemView)
 
-}
-
-interface EventsInteractionListener : com.example.marvel_hub.ui.base.BaseAdapter.BaseAdapterListener{
-    fun onClickListener(event: EventModel)
-
-}

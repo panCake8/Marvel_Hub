@@ -7,11 +7,11 @@ import com.example.marvel_hub.R
 import com.example.marvel_hub.data.model.EventModel
 import com.example.marvel_hub.databinding.FragmentEventsSeeAllBinding
 import com.example.marvel_hub.ui.base.BaseFragment
+import com.example.marvel_hub.ui.events.event_recycler.EventsSeeAllAdapter
 import com.example.marvel_hub.ui.events.viewModel.EventsViewModel
-import com.example.marvel_hub.ui.events.event_recycler.EventsInteractionListener
 
 class EventsSeeAllFragment :
-    BaseFragment<FragmentEventsSeeAllBinding, EventsViewModel>(), EventsInteractionListener {
+    BaseFragment<FragmentEventsSeeAllBinding, EventsViewModel>() {
 
 
     override val viewModel: EventsViewModel by viewModels()
@@ -32,17 +32,9 @@ class EventsSeeAllFragment :
 //        val adapter = EventsSeeAllAdapter(emptyList(), this)
 //        binding.recyclerEvents.adapter=adapter
         viewModel.fetchAllEvents()
-
+        val adapter = EventsSeeAllAdapter(emptyList(), viewModel)
+        binding.recyclerEvents.adapter = adapter
     }
 
-    override fun onClickListener(event: EventModel) {
-//        val fragment = EventsDetails()
-//
-//        supportFragmentManager.beginTransaction()
-//            .replace(R.id.fragment_container, fragment)
-//            .addToBackStack(null)
-//            .commit()
-
-    }
 
 }
