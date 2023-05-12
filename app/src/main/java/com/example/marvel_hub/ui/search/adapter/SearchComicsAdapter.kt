@@ -1,11 +1,11 @@
-package com.example.marvel_hub.ui.search
+package com.example.marvel_hub.ui.search.adapter
 
 import com.example.marvel_hub.R
 import com.example.marvel_hub.data.model.ComicModel
 import com.example.marvel_hub.ui.base.BaseAdapter
 import com.example.marvel_hub.ui.search.adapter.interactions.ComicInteractionListener
 
-class ComicsAdapter(items: List<ComicModel>, listener: ComicInteractionListener) :
+class SearchComicsAdapter(items: List<ComicModel>, listener: ComicInteractionListener) :
     BaseAdapter<ComicModel>(items, listener) {
 
     override val getLayoutId: Int

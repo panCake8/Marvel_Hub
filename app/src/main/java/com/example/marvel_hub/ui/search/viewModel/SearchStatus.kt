@@ -4,5 +4,6 @@ enum class SearchStatus() {
     COMIC,
     EVENT,
     SERIES,
+    CHARACTER,
 }
 

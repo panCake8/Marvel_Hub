@@ -7,6 +7,9 @@
         <variable
             name="item"
             type="com.example.marvel_hub.data.model.ComicModel" />
+        <variable
+            name="listener"
+            type="com.example.marvel_hub.ui.search.adapter.interactions.ComicInteractionListener" />
 
     </data>
 
@@ -28,7 +31,7 @@
                 android:layout_height="match_parent"
                 android:foreground="@drawable/card_foreground"
                 android:scaleType="centerCrop"
-                android:src="@{item.thumbnail.path}"
+                app:imageUrl="@{item.thumbnail.image}"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="1.0"
@@ -41,7 +44,7 @@
                 android:id="@+id/text_result_name"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@{item.name}"
+                android:text="@{item.title}"
                 android:textSize="@dimen/card_text_size"
                 android:textColor="@color/search_result_text_color"
                 android:layout_marginBottom="@dimen/margin_medium"

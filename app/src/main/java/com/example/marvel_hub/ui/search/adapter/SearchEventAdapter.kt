@@ -5,7 +5,7 @@ import com.example.marvel_hub.data.model.EventModel
 import com.example.marvel_hub.ui.base.BaseAdapter
 import com.example.marvel_hub.ui.search.adapter.interactions.EventInteractionListener
 
-class EventAdapter(items: List<EventModel>, listener: EventInteractionListener) :
+class SearchEventAdapter(items: List<EventModel>, listener: EventInteractionListener) :
     BaseAdapter<EventModel>(items, listener) {
 
     override val getLayoutId: Int

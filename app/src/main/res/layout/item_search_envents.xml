@@ -4,15 +4,20 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
+
         <variable
             name="item"
             type="com.example.marvel_hub.data.model.EventModel" />
 
+        <variable
+            name="listener"
+            type="com.example.marvel_hub.ui.search.adapter.interactions.EventInteractionListener" />
+
     </data>
 
     <androidx.cardview.widget.CardView
-        android:layout_height="@dimen/search_card_height"
         android:layout_width="match_parent"
+        android:layout_height="@dimen/search_card_height"
         android:layout_marginHorizontal="@dimen/small_margin"
         android:layout_marginVertical="@dimen/margin_medium"
         app:cardCornerRadius="@dimen/medium_radius">
@@ -28,7 +33,7 @@
                 android:layout_height="match_parent"
                 android:foreground="@drawable/card_foreground"
                 android:scaleType="centerCrop"
-                android:src="@{item.thumbnail.path}"
+                app:imageUrl="@{item.thumbnail.image}"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="1.0"
@@ -41,15 +46,14 @@
                 android:id="@+id/text_result_name"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@{item.title}"
-                android:textSize="@dimen/card_text_size"
-                android:textColor="@color/search_result_text_color"
-                android:layout_marginBottom="@dimen/margin_medium"
                 android:layout_marginStart="@dimen/margin_medium"
+                android:layout_marginBottom="@dimen/margin_medium"
+                android:text="@{item.title}"
+                android:textColor="@color/search_result_text_color"
+                android:textSize="@dimen/card_text_size"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 tools:text="name" />
-
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 

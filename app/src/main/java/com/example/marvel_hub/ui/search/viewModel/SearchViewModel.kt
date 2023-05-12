@@ -10,7 +10,7 @@ import com.example.marvel_hub.data.model.EventModel
 import com.example.marvel_hub.data.model.SeriesModel
 import com.example.marvel_hub.data.util.DataState
 import com.example.marvel_hub.ui.base.BaseViewModel
-import com.example.marvel_hub.ui.search.adapter.SearchItems
+import com.example.marvel_hub.ui.search.adapter.interactions.CharacterInteractionListener
 import com.example.marvel_hub.ui.search.adapter.interactions.ComicInteractionListener
 import com.example.marvel_hub.ui.search.adapter.interactions.EventInteractionListener
 import com.example.marvel_hub.ui.search.adapter.interactions.SeriesInteractionListener
@@ -20,115 +20,104 @@ import io.reactivex.rxjava3.schedulers.Schedulers
 
 class SearchViewModel : BaseViewModel(), EventInteractionListener,
     ComicInteractionListener,
-    SeriesInteractionListener {
+    SeriesInteractionListener,CharacterInteractionListener {
 
-    val searchInput = MutableLiveData<String>()
+    private val _searchStatus =
+        MutableLiveData(SearchStatus.COMIC)
+    val searchStatus: LiveData<SearchStatus>
+        get() = _searchStatus
 
+    private val _searchList = MutableLiveData<DataState<List<Any>>>(DataState.Loading)
+    val searchList: LiveData<DataState<List<Any>>>
+        get() = _searchList
 
-
-    private val _search_stautsType =
-        MutableLiveData<Enum<SearchStatus>>()
-    val searchStatusType: LiveData<Enum<SearchStatus>> = _search_stautsType
-
-
-    private val _searchResult =
-        MutableLiveData<DataState<List<SearchItems>>>(DataState.Loading)
-    val searchResult: LiveData<DataState<List<SearchItems>>>
-    get() = _searchResult
-
-
-    private val _comics = MutableLiveData<DataState<List<ComicModel>>>(DataState.Loading)
-    val comics: LiveData<DataState<List<ComicModel>>>
-        get() = _comics
-
-
-    private val _event = MutableLiveData<DataState<List<EventModel>>>(DataState.Loading)
-    val event: LiveData<DataState<List<EventModel>>>
-        get() = _event
-
-
-    private val _series = MutableLiveData<DataState<List<SeriesModel>>>(DataState.Loading)
-    val series: LiveData<DataState<List<SeriesModel>>>
-        get() = _series
-
-    private val _character = MutableLiveData<DataState<List<CharactersModel>>>(DataState.Loading)
-    val character: LiveData<DataState<List<CharactersModel>>>
-        get() = _character
-
-
-
-    init {
-
+    fun getComicData(text: String) {
+        _searchList.postValue(DataState.Loading)
+        repository.searchComics(text)
+            .subscribeOn(Schedulers.io())
+            .observeOn(AndroidSchedulers.mainThread())
+            .subscribe(::onGetComicsSuccess, ::onGetComicsError).addTo(disposable)
     }
 
-     fun getComicData(text: String) {
-        Log.i("testInputComic","$text")
-         repository.searchComics(text)
-             .subscribeOn(Schedulers.io())
-             .observeOn(AndroidSchedulers.mainThread())
-             .subscribe(::onGetComicsSuccess, ::onGetComicsError).addTo(disposable)
+    private fun onGetComicsSuccess(comics: BaseResponse<ComicModel>) {
+        _searchList.postValue(DataState.Success(comics.data?.results ?: listOf()))
     }
-    private fun onGetComicsSuccess(result: BaseResponse<ComicModel>) =
-        _comics.postValue(DataState.Success(result.data?.results!!))
 
     private fun onGetComicsError(throwable: Throwable) =
         DataState.Error(throwable.message.toString())
 
-
-
-     fun getSeriesData(text: String) {
-         Log.i("testInputSeries","$text")
-
-         repository.searchSeries(text)
-             .subscribeOn(Schedulers.io())
-             .observeOn(AndroidSchedulers.mainThread())
-             .subscribe(::onGetSeriesSuccess, ::onGetSeriesError).addTo(disposable)
+    fun getSeriesData(text: String) {
+        _searchList.postValue(DataState.Loading)
+        repository.searchSeries(text)
+            .subscribeOn(Schedulers.io())
+            .observeOn(AndroidSchedulers.mainThread())
+            .subscribe(::onGetSeriesSuccess, ::onGetSeriesError).addTo(disposable)
     }
-   private fun onGetSeriesSuccess(series: BaseResponse<SeriesModel>) =
-        _series.postValue(DataState.Success(series.data?.results!!))
+
+    private fun onGetSeriesSuccess(series: BaseResponse<SeriesModel>) {
+        _searchList.postValue(DataState.Success(series.data?.results ?: listOf()))
+    }
 
     private fun onGetSeriesError(throwable: Throwable) =
         DataState.Error(throwable.message.toString())
 
 
-     fun getEventData(text: String) {
-         Log.i("testInputEvent","$text")
-
-         repository.searchEvents(text)
-             .subscribeOn(Schedulers.io())
-             .observeOn(AndroidSchedulers.mainThread())
-             .subscribe(::onGetEventSuccess, ::onGetEventError).addTo(disposable)
+    fun getEventData(text: String) {
+        _searchList.postValue(DataState.Loading)
+        repository.searchEvents(text)
+            .subscribeOn(Schedulers.io())
+            .observeOn(AndroidSchedulers.mainThread())
+            .subscribe(::onGetEventSuccess, ::onGetEventError).addTo(disposable)
     }
-    private fun onGetEventSuccess(series: BaseResponse<EventModel>) =
-        _event.postValue(DataState.Success(series.data?.results!!))
+
+    private fun onGetEventSuccess(events: BaseResponse<EventModel>) {
+        _searchList.postValue(DataState.Success(events.data?.results ?: listOf()))
+    }
+
 
     private fun onGetEventError(throwable: Throwable) =
         DataState.Error(throwable.message.toString())
 
+    fun getCharacterData(text: String) {
+        _searchList.postValue(DataState.Loading)
+        repository.searchEvents(text)
+            .subscribeOn(Schedulers.io())
+            .observeOn(AndroidSchedulers.mainThread())
+            .subscribe(::onGetEventSuccess, ::onGetEventError).addTo(disposable)
+    }
+
+    private fun onGetCharacterSuccess(events: BaseResponse<EventModel>) {
+        _searchList.postValue(DataState.Success(events.data?.results ?: listOf()))
+    }
+
+
+    private fun onGetCharacterError(throwable: Throwable) =
+        DataState.Error(throwable.message.toString())
 
     fun onClickComicChip() {
-
+        _searchStatus.postValue(SearchStatus.COMIC)
     }
-
     fun onClickEventChip() {
-        _search_stautsType.postValue(SearchStatus.EVENT)
+        _searchStatus.postValue(SearchStatus.EVENT)
     }
-
     fun onClickSeriesChip() {
-        _search_stautsType.postValue(SearchStatus.SERIES)
+        _searchStatus.postValue(SearchStatus.SERIES)
     }
-
-
+    fun onClickCharacterChip() {
+        _searchStatus.postValue(SearchStatus.CHARACTER)
+    }
     override fun onClickComic(comic: ComicModel) {
 
     }
 
-
     override fun onClickEvent(event: EventModel) {
 
     }
-
     override fun onClickSeries(creator: SeriesModel) {
+    }
+
+    override fun onClickSeries(character: CharactersModel) {
+
     }
 }
 
