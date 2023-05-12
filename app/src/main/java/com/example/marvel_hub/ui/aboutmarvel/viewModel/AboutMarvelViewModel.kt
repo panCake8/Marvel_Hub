@@ -4,7 +4,6 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.example.marvel_hub.data.model.BaseResponse
 import com.example.marvel_hub.data.model.CreatorModel
-import com.example.marvel_hub.data.util.DataState
 import com.example.marvel_hub.ui.aboutmarvel.adapter.OnClickCreator
 import com.example.marvel_hub.ui.base.BaseViewModel
 import com.example.marvel_hub.util.Event
