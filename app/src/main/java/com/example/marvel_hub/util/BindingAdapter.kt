@@ -9,6 +9,8 @@ import androidx.databinding.BindingAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.marvel_hub.ui.base.BaseAdapter
+import com.example.marvel_hub.ui.home.adapter.HomeAdapter
+import com.example.marvel_hub.ui.home.util.HomeItem
 import com.example.marvel_hub.ui.search.adapter.SearchCharactersAdapter
 import com.example.marvel_hub.ui.search.adapter.SearchComicsAdapter
 import com.example.marvel_hub.ui.search.adapter.SearchEventAdapter
@@ -19,8 +21,6 @@ import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
 import io.reactivex.rxjava3.core.Observable
 import io.reactivex.rxjava3.schedulers.Schedulers
 import java.util.concurrent.TimeUnit
-import com.example.marvel_hub.ui.home.adapter.HomeAdapter
-import com.example.marvel_hub.ui.home.util.HomeItem
 
 @BindingAdapter(value = ["app:showWhenLoading"])
 fun <T> showWhenLoading(view: View, state: State<T>?) {
@@ -55,9 +55,9 @@ fun <T> showWhenSuccess(view: View, state: State<T>?) {
 @BindingAdapter(value = ["app:recyclerItems"])
 fun <T> setRecyclerItems(recyclerView: RecyclerView, items: List<T>?) {
     if (items != null) {
-        (recyclerView.adapter as BaseAdapter<T>).setItems(items)
+        (recyclerView.adapter as BaseAdapter<T>?)?.setItems(items)
     } else {
-        (recyclerView.adapter as BaseAdapter<T>).setItems(listOf())
+        (recyclerView.adapter as BaseAdapter<T>?)?.setItems(listOf())
     }
 }
 
@@ -77,7 +77,7 @@ fun setNestedRecyclerItems(recyclerView: RecyclerView, items: State<HomeItem>?) 
 
 @SuppressLint("CheckResult")
 @BindingAdapter(value = ["app:onSearchTextChange"])
-fun onSearchTextChange(view: EditText, viewModel: SearchViewModel?) {
+fun onSearchTextChange(view: EditText, viewModel: SearchViewModel) {
     Observable.create { emitter ->
         view.doOnTextChanged { text, start, before, count ->
             emitter.onNext(text.toString())
@@ -85,11 +85,11 @@ fun onSearchTextChange(view: EditText, viewModel: SearchViewModel?) {
     }.debounce(1, TimeUnit.SECONDS).observeOn(Schedulers.io())
         .subscribeOn(AndroidSchedulers.mainThread()).subscribe { text ->
             if (text.isNotEmpty()) {
-                when (viewModel?.searchStatus?.value) {
+                when (viewModel.searchStatus.value) {
                     SearchStatus.COMIC -> viewModel.getComicData(text)
                     SearchStatus.EVENT -> viewModel.getEventData(text)
                     SearchStatus.SERIES -> viewModel.getSeriesData(text)
-                    else -> viewModel?.getCharacterData(text)
+                    else -> viewModel.getCharacterData(text)
                 }
             }
         }
@@ -98,34 +98,34 @@ fun onSearchTextChange(view: EditText, viewModel: SearchViewModel?) {
 @BindingAdapter(value = ["app:setSearchAdapter", "app:setSearchStatus"])
 fun setSearchRecyclerAdapter(
     view: RecyclerView,
-    viewModel: SearchViewModel?,
-    searchStatus: SearchStatus?
+    viewModel: SearchViewModel,
+    searchStatus: SearchStatus
 ) {
     when (searchStatus) {
         SearchStatus.COMIC -> {
-            val adapter = viewModel?.let { SearchComicsAdapter(listOf(), it) }
+            val adapter = SearchComicsAdapter(listOf(), viewModel)
             view.adapter = adapter
         }
 
         SearchStatus.EVENT -> {
-            val adapter = viewModel?.let { SearchEventAdapter(listOf(), it) }
+            val adapter = SearchEventAdapter(listOf(), viewModel)
             view.adapter = adapter
         }
 
         SearchStatus.SERIES -> {
-            val adapter = viewModel?.let { SearchSeriesAdapter(listOf(), it) }
+            val adapter = SearchSeriesAdapter(listOf(), viewModel)
             view.adapter = adapter
         }
 
         else -> {
-            val adapter = viewModel?.let { SearchCharactersAdapter(listOf(), it) }
+            val adapter = SearchCharactersAdapter(listOf(), viewModel)
             view.adapter = adapter
         }
     }
 
     @BindingAdapter(value = ["app:availableItemsVisibility"])
     fun setAvailableItemsVisibility(view: View, state: State<*>?) {
-        val availableItem = state?.let { it.toData()}
+        val availableItem = state?.let { it.toData() }
         view.visibility = if (availableItem != null) View.VISIBLE else View.GONE
     }
 
@@ -138,7 +138,7 @@ fun setSearchRecyclerAdapter(
         }
     }
 
-
+}
 
 @BindingAdapter(value = ["app:clearSearch"])
 fun clearSearch(view: EditText, text: String?) {

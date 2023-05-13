@@ -12,6 +12,7 @@ import com.example.marvel_hub.ui.search.adapter.interactions.CharacterInteractio
 import com.example.marvel_hub.ui.search.adapter.interactions.ComicInteractionListener
 import com.example.marvel_hub.ui.search.adapter.interactions.EventInteractionListener
 import com.example.marvel_hub.ui.search.adapter.interactions.SeriesInteractionListener
+import com.example.marvel_hub.util.Event
 import com.example.marvel_hub.util.State
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
 import io.reactivex.rxjava3.kotlin.addTo
@@ -34,16 +35,33 @@ class SearchViewModel : BaseViewModel(), EventInteractionListener,
     val clearSearch: LiveData<String>
         get() = _clearSearch
 
+    private val _comicEvent = MutableLiveData<Event<ComicModel>>()
+    val comicEvent: LiveData<Event<ComicModel>>
+        get() = _comicEvent
+
+    private val _characterEvent = MutableLiveData<Event<CharactersModel>>()
+    val characterEvent: LiveData<Event<CharactersModel>>
+        get() = _characterEvent
+
+    private val _eventEvent = MutableLiveData<Event<EventModel>>()
+    val eventEvent: LiveData<Event<EventModel>>
+        get() = _eventEvent
+
+    private val _seriesEvent = MutableLiveData<Event<SeriesModel>>()
+    val seriesEvent : LiveData<Event<SeriesModel>>
+        get() = _seriesEvent
+
     fun getComicData(text: String) {
+        _searchList.postValue(State.Loading)
         repository.searchComics(text)
-            .subscribeOn(Schedulers.io())
-            .observeOn(AndroidSchedulers.mainThread())
+            .observeOn(Schedulers.io())
+            .subscribeOn(AndroidSchedulers.mainThread())
             .subscribe(::onGetComicsSuccess, ::onGetComicsError)
             .addTo(disposable)
     }
 
     private fun onGetComicsSuccess(comics: BaseResponse<ComicModel>) {
-        _searchList.postValue(State.Success(comics.data?.results))
+        _searchList.postValue(State.Success(comics.data?.results ?: listOf()))
     }
 
     private fun onGetComicsError(throwable: Throwable) {
@@ -51,15 +69,16 @@ class SearchViewModel : BaseViewModel(), EventInteractionListener,
     }
 
     fun getSeriesData(text: String) {
+        _searchList.postValue(State.Loading)
         repository.searchSeries(text)
-            .subscribeOn(Schedulers.io())
-            .observeOn(AndroidSchedulers.mainThread())
+            .observeOn(Schedulers.io())
+            .subscribeOn(AndroidSchedulers.mainThread())
             .subscribe(::onGetSeriesSuccess, ::onGetSeriesError)
             .addTo(disposable)
     }
 
     private fun onGetSeriesSuccess(series: BaseResponse<SeriesModel>) {
-        _searchList.postValue(State.Success(series.data?.results))
+        _searchList.postValue(State.Success(series.data?.results ?: listOf()))
     }
 
     private fun onGetSeriesError(throwable: Throwable) {
@@ -68,15 +87,16 @@ class SearchViewModel : BaseViewModel(), EventInteractionListener,
 
 
     fun getEventData(text: String) {
+        _searchList.postValue(State.Loading)
         repository.searchEvents(text)
-            .subscribeOn(Schedulers.io())
-            .observeOn(AndroidSchedulers.mainThread())
+            .observeOn(Schedulers.io())
+            .subscribeOn(AndroidSchedulers.mainThread())
             .subscribe(::onGetEventSuccess, ::onGetEventError)
             .addTo(disposable)
     }
 
     private fun onGetEventSuccess(events: BaseResponse<EventModel>) {
-        _searchList.postValue(State.Success(events.data?.results))
+        _searchList.postValue(State.Success(events.data?.results ?: listOf()))
     }
 
 
@@ -85,15 +105,16 @@ class SearchViewModel : BaseViewModel(), EventInteractionListener,
     }
 
     fun getCharacterData(text: String) {
+        _searchList.postValue(State.Loading)
         repository.searchCharacters(text)
-            .subscribeOn(Schedulers.io())
-            .observeOn(AndroidSchedulers.mainThread())
+            .observeOn(Schedulers.io())
+            .subscribeOn(AndroidSchedulers.mainThread())
             .subscribe(::onGetCharacterSuccess, ::onGetCharacterError)
             .addTo(disposable)
     }
 
     private fun onGetCharacterSuccess(character: BaseResponse<CharactersModel>) {
-        _searchList.postValue(State.Success(character.data?.results))
+        _searchList.postValue(State.Success(character.data?.results ?: listOf()))
     }
 
 
@@ -122,17 +143,19 @@ class SearchViewModel : BaseViewModel(), EventInteractionListener,
     }
 
     override fun onClickComic(comic: ComicModel) {
-
+        _comicEvent.postValue(Event(comic))
     }
 
     override fun onClickEvent(event: EventModel) {
-
+        _eventEvent.postValue(Event(event))
     }
 
-    override fun onClickSeries(creator: SeriesModel) {
+    override fun onClickSeries(series: SeriesModel) {
+        _seriesEvent.postValue(Event(series))
     }
 
-    override fun onClickSeries(character: CharactersModel) {
+    override fun onClickCharacter(character: CharactersModel) {
+        _characterEvent.postValue(Event(character))
 
     }
 
