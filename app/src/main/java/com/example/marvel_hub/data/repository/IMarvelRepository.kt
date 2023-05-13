@@ -6,10 +6,12 @@ import com.example.marvel_hub.data.model.EventModel
 import com.example.marvel_hub.data.model.SeriesModel
 import com.example.marvel_hub.data.model.StoriesModel
 import com.example.marvel_hub.data.model.BaseResponse
+import com.example.marvel_hub.util.State
 import io.reactivex.rxjava3.core.Single
 
 interface IMarvelRepository {
     fun getAllCharacters(): Single<BaseResponse<CharactersModel>>
+    fun getAllGameCharacters(): Single<State<BaseResponse<CharactersModel>>>
     fun searchCharacters(name: String): Single<BaseResponse<CharactersModel>>
     fun getCharacterById(characterId: Int): Single<BaseResponse<CharactersModel>>
     fun getComicsByCharacterId(characterId: Int): Single<BaseResponse<ComicModel>>

@@ -20,7 +20,7 @@ class GameViewModel: BaseViewModel() {
     }
 
     private fun getAllCharactersMarvel() {
-        repository.getAllCharacters()
+        repository.getAllGameCharacters()
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
             .subscribe(::onGetQuestionsSuccess, ::onGetQuestionError)

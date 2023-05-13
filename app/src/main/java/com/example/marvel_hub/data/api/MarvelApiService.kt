@@ -6,6 +6,7 @@ import com.example.marvel_hub.data.model.ComicModel
 import com.example.marvel_hub.data.model.EventModel
 import com.example.marvel_hub.data.model.SeriesModel
 import com.example.marvel_hub.data.model.StoriesModel
+import com.example.marvel_hub.util.State
 import io.reactivex.rxjava3.core.Single
 import retrofit2.http.GET
 import retrofit2.http.Path
@@ -14,6 +15,9 @@ import retrofit2.http.Query
 interface MarvelApiService {
     @GET("characters")
     fun getAllCharacters(): Single<BaseResponse<CharactersModel>>
+
+    @GET("characters")
+    fun getAllGameCharacters(): Single<State<BaseResponse<CharactersModel>>>
 
     @GET("characters")
     fun searchCharacters(
