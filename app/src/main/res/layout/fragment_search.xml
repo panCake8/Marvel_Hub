@@ -148,6 +148,8 @@
             android:layout_width="@dimen/width_search_lottie"
             android:layout_height="@dimen/height_search_lottie"
             app:lottie_rawRes="@raw/loading_lottie"
+            app:lottie_autoPlay="true"
+            app:lottie_loop="true"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
