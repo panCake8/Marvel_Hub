@@ -12,10 +12,10 @@
     </data>
 
     <com.google.android.material.card.MaterialCardView
-        android:layout_width="@dimen/large_card_width"
+        android:layout_width="match_parent"
         android:layout_height="@dimen/large_card_height"
+        android:layout_marginHorizontal="@dimen/margin_large"
         android:layout_marginBottom="@dimen/margin_medium"
-        android:layout_marginHorizontal="@dimen/small_margin"
         app:cardCornerRadius="@dimen/normal_corner_radius">
 
         <androidx.constraintlayout.widget.ConstraintLayout
@@ -26,13 +26,15 @@
                 android:id="@+id/image_movie"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
+                android:contentDescription="@string/logo"
                 android:scaleType="fitXY"
-                tools:src="@drawable/movie_photo"
                 app:imageUrl="@{item.thumbnail.image}"
-                />
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:src="@drawable/movie_photo" />
 
             <TextView
-                android:text="@{item.title}"
                 android:id="@+id/text_event_name"
                 android:layout_width="@dimen/no_width"
                 android:layout_height="wrap_content"
@@ -41,6 +43,7 @@
                 android:ellipsize="end"
                 android:fontFamily="@font/poppins_medium"
                 android:includeFontPadding="false"
+                android:text="@{item.title}"
                 android:textColor="@color/white_100"
                 android:textSize="@dimen/title_text"
                 app:layout_constraintBottom_toBottomOf="parent"

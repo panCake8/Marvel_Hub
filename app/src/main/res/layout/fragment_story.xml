@@ -35,7 +35,7 @@
             style="@style/RecyclerStyleStory"
             app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
             app:layout_constraintEnd_toEndOf="parent"
-            app:recyclerItems="@{viewModel.story.toData().data.results}"
+            app:recyclerItems="@{viewModel.story.toData()}"
             app:showWhenSuccess="@{viewModel.story}"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/toolbar_stroke"

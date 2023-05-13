@@ -12,12 +12,8 @@ import com.example.marvel_hub.ui.search.viewModel.SearchViewModel
 class SearchFragment : BaseFragment<FragmentSearchBinding, SearchViewModel>() {
 
     override val viewModel: SearchViewModel by viewModels()
+
     override val layoutId = R.layout.fragment_search
-
-
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
-    }
 
 }
 

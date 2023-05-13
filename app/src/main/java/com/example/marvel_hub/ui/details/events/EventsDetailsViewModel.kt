@@ -31,27 +31,27 @@ class EventsDetailsViewModel : BaseViewModel(),
         get() = _events
 
     private val _character =
-        MutableLiveData<State<List<CharactersModel>>>(State.Loading)
+        MutableLiveData<State<CharactersModel>>(State.Loading)
 
-    val character: LiveData<State<List<CharactersModel>>>
+    val character: LiveData<State<CharactersModel>>
         get() = _character
 
     private val _comics =
-        MutableLiveData<State<List<ComicModel>>>(State.Loading)
+        MutableLiveData<State<ComicModel>>(State.Loading)
 
-    val comics: LiveData<State<List<ComicModel>>>
+    val comics: LiveData<State<ComicModel>>
         get() = _comics
 
     private val _series =
-        MutableLiveData<State<List<SeriesModel>>>(State.Loading)
+        MutableLiveData<State<SeriesModel>>(State.Loading)
 
-    val series: LiveData<State<List<SeriesModel>>>
+    val series: LiveData<State<SeriesModel>>
         get() = _series
 
     private val _stories =
-        MutableLiveData<State<List<StoriesModel>>>(State.Loading)
+        MutableLiveData<State<StoriesModel>>(State.Loading)
 
-    val stories: LiveData<State<List<StoriesModel>>>
+    val stories: LiveData<State<StoriesModel>>
         get() = _stories
 
     fun getEventById(eventId: Int) =
@@ -62,7 +62,7 @@ class EventsDetailsViewModel : BaseViewModel(),
             .addTo(disposable)
 
     private fun eventOnSuccess(event: BaseResponse<EventModel>) {
-        _events.postValue(State.Success(event.data?.results?.get(FIRST_ITEM)!!))
+        _events.postValue(State.Success(event.data?.results))
     }
 
     private fun eventOnError(error: Throwable) {
@@ -77,7 +77,7 @@ class EventsDetailsViewModel : BaseViewModel(),
             .addTo(disposable)
 
     private fun comicOnSuccess(comics: BaseResponse<ComicModel>) {
-        _comics.postValue(State.Success(comics.data?.results ?: listOf()))
+        _comics.postValue(State.Success(comics.data?.results))
     }
 
     private fun comicsOnError(error: Throwable) {
@@ -92,7 +92,7 @@ class EventsDetailsViewModel : BaseViewModel(),
             .addTo(disposable)
 
     private fun seriesOnSuccess(series: BaseResponse<SeriesModel>) {
-        _series.postValue(State.Success(series.data?.results ?: listOf()))
+        _series.postValue(State.Success(series.data?.results))
     }
 
     private fun seriesOnError(error: Throwable) {
@@ -107,7 +107,7 @@ class EventsDetailsViewModel : BaseViewModel(),
             .addTo(disposable)
 
     private fun storiesOnSuccess(stories: BaseResponse<StoriesModel>) {
-        _stories.postValue(State.Success(stories.data?.results ?: listOf()))
+        _stories.postValue(State.Success(stories.data?.results))
     }
 
     private fun storiesOnError(error: Throwable) {
@@ -122,31 +122,28 @@ class EventsDetailsViewModel : BaseViewModel(),
             .addTo(disposable)
 
     private fun characterOnSuccess(character: BaseResponse<CharactersModel>) {
-        _character.postValue(State.Success(character.data?.results ?: listOf()))
+        _character.postValue(State.Success(character.data?.results))
     }
 
     private fun characterOnError(error: Throwable) {
         _character.postValue(State.Error(error.message.toString()))
     }
 
-    companion object {
-        const val FIRST_ITEM = 0
-    }
 
     override fun onCharacterClick(character: CharactersModel) {
-        TODO("Not yet implemented")
+
     }
 
     override fun onComicClick(comic: ComicModel) {
-        TODO("Not yet implemented")
+
     }
 
     override fun onSeriesClick(series: SeriesModel) {
-        TODO("Not yet implemented")
+
     }
 
     override fun onStoryClick(story: StoriesModel) {
-        TODO("Not yet implemented")
+
     }
 
 }

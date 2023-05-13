@@ -1,4 +1,4 @@
-package com.example.marvel_hub.ui.home
+package com.example.marvel_hub.ui
 
 import android.os.Bundle
 import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen

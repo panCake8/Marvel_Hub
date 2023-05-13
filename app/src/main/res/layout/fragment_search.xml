@@ -57,12 +57,12 @@
                 android:layout_height="wrap_content"
                 android:height="@dimen/height_chip"
                 android:onClick="@{()-> viewModel.onClickComicChip()}"
-                android:text=""
+                android:text="@string/characters"
                 android:textColor="@color/chip_text_color"
                 android:textSize="@dimen/body_text"
                 app:chipBackgroundColor="@color/chip_background"
                 app:chipCornerRadius="8dp"
-                app:chipStrokeColor="@color/red"
+                app:chipStrokeColor="@color/red_medium"
                 app:chipStrokeWidth="@dimen/chip_stroke" />
 
             <com.google.android.material.chip.Chip
@@ -77,7 +77,7 @@
                 android:textSize="@dimen/body_text"
                 app:chipBackgroundColor="@color/chip_background"
                 app:chipCornerRadius="8dp"
-                app:chipStrokeColor="@color/red"
+                app:chipStrokeColor="@color/red_medium"
                 app:chipStrokeWidth="@dimen/chip_stroke" />
 
             <com.google.android.material.chip.Chip
@@ -92,7 +92,7 @@
                 android:textSize="@dimen/body_text"
                 app:chipBackgroundColor="@color/chip_background"
                 app:chipCornerRadius="8dp"
-                app:chipStrokeColor="@color/red"
+                app:chipStrokeColor="@color/red_medium"
                 app:chipStrokeWidth="@dimen/chip_stroke" />
 
             <com.google.android.material.chip.Chip
@@ -102,12 +102,12 @@
                 android:layout_height="wrap_content"
                 android:height="@dimen/height_chip"
                 android:onClick="@{()-> viewModel.onClickCharacterChip()}"
-                android:text=""
+                android:text="@string/comics"
                 android:textColor="@color/chip_text_color"
                 android:textSize="@dimen/body_text"
                 app:chipBackgroundColor="@color/chip_background"
                 app:chipCornerRadius="8dp"
-                app:chipStrokeColor="@color/red"
+                app:chipStrokeColor="@color/red_medium"
                 app:chipStrokeWidth="@dimen/chip_stroke" />
 
 
@@ -126,8 +126,8 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/filter_chip_component"
-            app:recyclerItems="@{viewModel.searchList.toData()}"
             app:setSearchAdapter="@{viewModel}"
+            app:recyclerItems="@{viewModel.searchList.toData()}"
             app:setSearchStatus="@{viewModel.searchStatus}"
             app:showWhenSuccess="@{viewModel.searchList}"
             app:spanCount="2"

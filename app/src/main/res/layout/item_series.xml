@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="item"
+            type="com.example.marvel_hub.data.model.SeriesModel" />
+    </data>
+
+    <com.google.android.material.card.MaterialCardView
+        android:layout_width="@dimen/marvel_card_width"
+        android:layout_height="@dimen/marvel_card_height"
+        android:layout_marginVertical="@dimen/small_margin"
+        android:layout_marginEnd="@dimen/margin_medium"
+        android:background="@android:color/transparent"
+        app:cardCornerRadius="@dimen/normal_corner_radius"
+        app:cardElevation="@dimen/no_elevation">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/card_series"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <ImageView
+                android:id="@+id/image_series"
+                android:layout_width="@dimen/marvel_card_width"
+                android:layout_height="@dimen/marvel_card_height"
+                android:contentDescription="@string/logo"
+                android:foreground="@drawable/background_bottom_linear_transparent"
+                android:scaleType="fitXY"
+                app:imageUrl="@{item.thumbnail.image}"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:src="@drawable/movie_photo" />
+
+            <TextView
+                android:id="@+id/text_series_name"
+                android:layout_width="@dimen/no_width"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/medium_margin"
+                android:layout_marginEnd="@dimen/margin_medium"
+                android:layout_marginBottom="@dimen/margin_large"
+                android:ellipsize="end"
+                android:fontFamily="@font/poppins_medium"
+                android:maxLines="1"
+                android:text="@{item.title.toString()}"
+                android:textColor="#DEFAFAFA"
+                android:textSize="@dimen/body_text"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                tools:text="Tinka" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </com.google.android.material.card.MaterialCardView>
+</layout>

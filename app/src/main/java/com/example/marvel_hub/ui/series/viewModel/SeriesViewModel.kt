@@ -12,14 +12,14 @@ import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
 import io.reactivex.rxjava3.kotlin.addTo
 import io.reactivex.rxjava3.schedulers.Schedulers
 
-class SeriesViewModel: BaseViewModel(), SeriesInteractionListener {
+class SeriesViewModel : BaseViewModel(), SeriesInteractionListener {
 
-    private val _series = MutableLiveData<State<BaseResponse<SeriesModel>>>(State.Loading)
-    val series: LiveData<State<BaseResponse<SeriesModel>>>
+    private val _series = MutableLiveData<State<SeriesModel>>(State.Loading)
+    val series: LiveData<State<SeriesModel>>
         get() = _series
 
-    private val _selectedSeriesItem = MutableLiveData<Event<SeriesModel>>()
-    val selectedSeriesItem : LiveData<Event<SeriesModel>>
+    private val _selectedSeriesItem = MutableLiveData<Event<Int?>>()
+    val selectedSeriesItem: LiveData<Event<Int?>>
         get() = _selectedSeriesItem
 
     init {
@@ -30,19 +30,19 @@ class SeriesViewModel: BaseViewModel(), SeriesInteractionListener {
         repository.getAllSeries()
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
-            .subscribe(::onSuccess,::onFail)
-            .addTo(disposable)
+            .subscribe(::onSuccess, ::onFail)
+            .addTo(compositeDisposable = disposable)
     }
 
-    private fun onSuccess(series: BaseResponse<SeriesModel>){
-        _series.postValue(State.Success(series))
+    private fun onSuccess(series: BaseResponse<SeriesModel>) {
+        _series.postValue(State.Success(series.data?.results))
     }
 
-    private fun onFail(error: Throwable){
+    private fun onFail(error: Throwable) {
         _series.postValue(State.Error(error.message.toString()))
     }
 
     override fun onClickSeriesItem(series: SeriesModel) {
-        _selectedSeriesItem.postValue(Event(series))
+        _selectedSeriesItem.postValue(Event(series.id))
     }
 }

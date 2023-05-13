@@ -31,13 +31,13 @@ class CreatorsViewModel : BaseViewModel() {
 //
 //    }
 
-    private fun onGetCreatorsSuccess(creators: BaseResponse<CreatorModel>) {
-        _creator.postValue(State.Success(creators))
-
-    }
-
-    private fun onGetCreatorsFail(error: Throwable) {
-        _creator.postValue(State.Error(error.message.toString()))
-    }
+//    private fun onGetCreatorsSuccess(creators: BaseResponse<CreatorModel>) {
+//        _creator.postValue(State.Success(creators))
+//
+//    }
+//
+//    private fun onGetCreatorsFail(error: Throwable) {
+//        _creator.postValue(State.Error(error.message.toString()))
+//    }
 
 }

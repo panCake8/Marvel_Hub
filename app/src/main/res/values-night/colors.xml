@@ -22,7 +22,7 @@
     <color name="black_38">#61FAFAFA</color>
     <color name="search_bar_background">#303030</color>
     <color name="ic_search_color">#99121212</color>
-    <color name="background_color">#1c1c1c</color>
+    <color name="background_color">#121212</color>
     <color name="input_text_color">#DEFAFAFA</color>
     <color name="hint_color">#61FAFAFA</color>
     <color name="liner_color">#80121212</color>
@@ -30,7 +30,7 @@
     <color name="selected_chip_color">@color/red</color>
     <color name="unselected_chip_color">#121212</color>
     <color name="text_button_color">#DEFAFAFA</color>
-<color name="text_body">#CFE5FF</color>
+    <color name="text_body">#CFE5FF</color>
     <color name="back_icon_color">#121212</color>
     <color name="stroke_app_bar">#5EFFFFFF</color>
     <color name="white_back_about_marvel">#FFFFFF</color>

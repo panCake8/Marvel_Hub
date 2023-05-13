@@ -14,13 +14,12 @@ import io.reactivex.rxjava3.schedulers.Schedulers
 
 class ComicViewModel : BaseViewModel(), OnClickItemComic {
 
-    private val _comics = MutableLiveData<State<BaseResponse<ComicModel>>>(State.Loading)
-    val comics: LiveData<State<BaseResponse<ComicModel>>>
-        get() = _comics
+    private val _comic = MutableLiveData<State<ComicModel>>(State.Loading)
+    val comic: LiveData<State<ComicModel>>
+        get() = _comic
 
-
-    private val _selectedComicItem = MutableLiveData<Event<ComicModel>>()
-    val selectedComicItem: LiveData<Event<ComicModel>>
+    private val _selectedComicItem = MutableLiveData<Event<Int?>>()
+    val selectedComicItem: LiveData<Event<Int?>>
         get() = _selectedComicItem
 
     init {
@@ -36,15 +35,15 @@ class ComicViewModel : BaseViewModel(), OnClickItemComic {
     }
 
     private fun onSuccess(comicsResponse: BaseResponse<ComicModel>) {
-        _comics.postValue(State.Success(comicsResponse))
+        _comic.postValue(State.Success(comicsResponse.data?.results!!))
     }
 
-    private fun onFailed(message: Throwable) {
-        _comics.postValue(message.localizedMessage?.let { State.Error(it) })
+    private fun onFailed(error: Throwable) {
+        _comic.postValue(State.Error(error.message.toString()))
     }
 
     override fun onClickItemComic(comic: ComicModel) {
-        _selectedComicItem.postValue(Event(comic))
+        _selectedComicItem.postValue(Event(comic.id))
     }
 
 
