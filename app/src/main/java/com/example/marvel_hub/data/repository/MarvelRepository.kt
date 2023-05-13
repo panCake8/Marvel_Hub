@@ -117,7 +117,6 @@ class MarvelRepository : IMarvelRepository {
                 HomeItem.Comics(comics.shuffled().take(10)),
                 HomeItem.Events(events.shuffled().take(10)),
                 HomeItem.Series(series.shuffled().take(10)),
-                HomeItem.QuizGameBanner,
             )
         }
     }

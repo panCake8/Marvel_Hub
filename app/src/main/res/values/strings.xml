@@ -13,7 +13,7 @@
     <string name="about_creator">About Creator</string>
     <string name="products">Products</string>
     <string name="error_image">error image</string>
-    <string name="events_text">ُEvents</string>
+    <string name="events_text">Events</string>
     <string name="description">Description</string>
     <string name="related_comics">related Comics</string>
     <string name="related_events">related Events</string>
@@ -42,5 +42,5 @@
     <string name="home">Home</string>
     <string name="search">Search</string>
     <string name="about">About</string>
-
+    <string name="event_text">Events</string>
 </resources>

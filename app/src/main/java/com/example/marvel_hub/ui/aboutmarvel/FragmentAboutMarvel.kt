@@ -1,14 +1,15 @@
 package com.example.marvel_hub.ui.aboutmarvel
 
+
+import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
 import android.view.View
 import androidx.fragment.app.viewModels
 import com.example.marvel_hub.R
 import com.example.marvel_hub.databinding.FragmentAboutMarvelBinding
-import com.example.marvel_hub.ui.aboutmarvel.adapter.AboutMarvelAdapter
 import com.example.marvel_hub.ui.aboutmarvel.viewModel.AboutMarvelViewModel
 import com.example.marvel_hub.ui.base.BaseFragment
-import com.example.marvel_hub.util.EventObserver
 
 class FragmentAboutMarvel : BaseFragment<FragmentAboutMarvelBinding, AboutMarvelViewModel>() {
 
@@ -18,15 +19,17 @@ class FragmentAboutMarvel : BaseFragment<FragmentAboutMarvelBinding, AboutMarvel
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        setupRecyclerView()
-//        viewModel..observe(viewLifecycleOwner, EventObserver {
-//            //Todo
-//        })
+
+        binding.buttonGoToWebsite.setOnClickListener {
+            intentMarvelSite()
+        }
+
     }
 
-    private fun setupRecyclerView() {
-//        val adapter = AboutMarvelAdapter(mutableListOf(), viewModel)
-//        binding.recyclerCharacters.adapter = adapter
+    private fun intentMarvelSite(){
+        val url = "https://www.marvel.com"
+        val intent = Intent(Intent.ACTION_VIEW, Uri.parse(url))
+        startActivity(intent)
     }
 
 }
