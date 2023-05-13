@@ -122,6 +122,7 @@ fun setSearchRecyclerAdapter(
             view.adapter = adapter
         }
     }
+
     @BindingAdapter(value = ["app:availableItemsVisibility"])
     fun setAvailableItemsVisibility(view: View, state: State<*>?) {
         val availableItem = state?.let { it.toData()}
@@ -136,5 +137,11 @@ fun setSearchRecyclerAdapter(
             view.visibility = View.VISIBLE
         }
     }
+
+
+
+@BindingAdapter(value = ["app:clearSearch"])
+fun clearSearch(view: EditText, text: String?) {
+    view.setText(text)
 
 }
