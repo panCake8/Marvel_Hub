@@ -11,21 +11,52 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
+
         <ImageView
             android:id="@+id/image_banner"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:contentDescription="@string/banner"
             android:scaleType="fitXY"
-            tools:src="@drawable/image" />
+            tools:src="@drawable/background_item_quiz" />
+
+        <TextView
+            android:id="@+id/text_view_quiz"
+            android:layout_width="@dimen/text_quiz_width"
+            android:layout_height="@dimen/text_quiz_height"
+            android:layout_marginStart="@dimen/large_margin"
+            android:layout_marginTop="@dimen/large_margin"
+            android:layout_marginEnd="@dimen/margin_large"
+            android:fontFamily="@font/poppins_semibold"
+            android:lines="2"
+            android:text="@string/quiz_text"
+            android:textColor="@color/black_100"
+            android:textSize="@dimen/title_text"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
         <ImageView
+            android:id="@+id/image_view_heros"
             android:layout_width="@dimen/image_hero_width"
             android:layout_height="@dimen/image_hero_height"
             android:layout_marginTop="@dimen/large_margin"
             android:layout_marginEnd="@dimen/large_margin"
+            android:contentDescription="@string/hero"
             android:src="@drawable/heros"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
+
+        <ImageButton
+            android:id="@+id/button_start_quiz"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/large_margin"
+            android:layout_marginBottom="@dimen/huge_margin"
+            android:background="@drawable/background_start_quiz"
+            android:contentDescription="@string/start_quiz_button"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
+
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </com.google.android.material.card.MaterialCardView>
