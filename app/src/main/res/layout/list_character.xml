@@ -14,11 +14,11 @@
         android:layout_width="@dimen/no_width"
         android:layout_height="wrap_content"
         android:paddingBottom="@dimen/medium_padding"
-        android:text="@string/text_comics"
+        android:text="@string/characters"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
-    
+
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -31,7 +31,7 @@
         android:layout_marginEnd="@dimen/large_margin"/>
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/recycler_comics"
+        android:id="@+id/recycler_characters"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:clipToPadding="false"
@@ -40,6 +40,6 @@
         android:paddingBottom="@dimen/large_padding"
         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
         app:layout_constraintTop_toBottomOf="@id/text_section"
-        tools:listitem="@layout/item_comics" />
+        tools:listitem="@layout/item_character" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

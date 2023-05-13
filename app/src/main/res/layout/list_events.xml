@@ -19,6 +19,17 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/see_more"
+        android:fontFamily="@font/poppins_medium"
+        android:textSize="@dimen/body_text"
+        android:textColor="@color/black_87"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginEnd="@dimen/large_margin"/>
+
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recycler_events"
         android:layout_width="match_parent"
