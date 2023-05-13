@@ -10,8 +10,8 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@color/white_100"
-        tools:context=".ui.HomeActivity">
+        android:background="@color/background_color"
+        tools:context=".ui.home.HomeActivity">
 
         <androidx.fragment.app.FragmentContainerView
             android:id="@+id/fragment_container"

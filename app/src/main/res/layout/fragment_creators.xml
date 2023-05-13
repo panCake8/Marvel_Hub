@@ -84,7 +84,7 @@
             android:background="@drawable/button_background"
             android:text="@string/products"
             android:textAllCaps="false"
-            android:textColor="@color/white_100"
+            android:textColor="@color/text_button_color"
             android:textSize="@dimen/title_text"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintCircleRadius="@dimen/large_radius"
