@@ -7,5 +7,5 @@ import com.example.marvel_hub.ui.details.listeners.CharacterListener
 
 class ChildComicsCharacterAdapter(items: List<ComicModel>, listener: CharacterListener) :
     BaseAdapter<ComicModel>(items, listener) {
-    override val getLayoutId = R.layout.item_character_card
+    override val getLayoutId = R.layout.item_character_horizontal
 }

@@ -27,7 +27,7 @@
             app:recyclerItems="@{viewModel.characterMarvel.toData().data.results}"
             app:showWhenSuccess="@{viewModel.characterMarvel}"
             app:spanCount="2"
-            tools:listitem="@layout/item_character_card" />
+            tools:listitem="@layout/item_character_horizontal" />
 
         <ProgressBar
             android:id="@+id/progress_bar_loading"

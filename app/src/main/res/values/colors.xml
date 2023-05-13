@@ -8,7 +8,7 @@
 
 
     <color name="red">#ec1d24</color>
-    <color name="light_red">#DEE62429</color>
+    <color name="light_red">#F2264B</color>
 
     <color name="white_100">#FAFAFA</color>
     <color name="white_87">#DEFAFAFA</color>
@@ -34,5 +34,8 @@
     <color name="back_icon_color">#121212</color>
     <color name="stroke_app_bar">#5EFFFFFF</color>
     <color name="white_back_about_marvel">#FFFFFF</color>
+
+    <color name="just_white">#FAFAFA</color>
+    <color name="just_black">#121212</color>
 
 </resources>
