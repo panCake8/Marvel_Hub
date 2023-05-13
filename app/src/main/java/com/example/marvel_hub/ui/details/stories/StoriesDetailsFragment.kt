@@ -7,6 +7,7 @@ import com.example.marvel_hub.R
 import com.example.marvel_hub.databinding.FragmentStoriesDetailsBinding
 import com.example.marvel_hub.ui.base.BaseFragment
 import com.example.marvel_hub.ui.details.stories.adapters.ParentStoriesDetailsAdapter
+import com.example.marvel_hub.util.EventObserver
 
 class StoriesDetailsFragment :
     BaseFragment<FragmentStoriesDetailsBinding, StoriesDetailsViewModel>() {
@@ -32,16 +33,13 @@ class StoriesDetailsFragment :
         viewModel.getEventsByStoryId(storyID)
 
     }
+
     private fun observeEvents() {
-        viewModel.storiesDetails.observe(viewLifecycleOwner) { clickEvent ->
-            when (clickEvent) {
-//                is CharacterDetailsEvents.ClickEventEvent -> navigateToEventsDetails(clickEvent.event)
-//                is CharacterDetailsEvents.ClickComicEvent -> navigateToComicDetails(clickEvent.comic)
-//                is CharacterDetailsEvents.ClickSeriesEvent -> navigateToSeriesDetails(clickEvent.series)
-                else -> {}
+        viewModel.characterEvent.observe(viewLifecycleOwner, EventObserver {
+            if (it != null) {
+
             }
-            viewModel.clearEvents()
-        }
+        })
     }
 
     companion object {
