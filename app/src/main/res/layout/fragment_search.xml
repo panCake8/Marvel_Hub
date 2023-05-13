@@ -56,14 +56,14 @@
             android:hint="@string/search_hint"
             android:inputType="text"
             android:maxLength="50"
+            app:onSearchTextChange="@{viewModel}"
             android:paddingHorizontal="@dimen/large_margin"
             android:textColor="@color/input_text_color"
             android:textColorHint="@color/hint_color"
             android:textSize="@dimen/input_text_size"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:onSearchTextChange="@{viewModel}" />
+            app:layout_constraintTop_toTopOf="parent" />
 
 
         <com.google.android.material.chip.ChipGroup
@@ -76,7 +76,7 @@
             app:layout_constraintTop_toBottomOf="@+id/search_bar"
             app:singleSelection="true">
 
-            <com.google.android.material.chip.Chip
+                <com.google.android.material.chip.Chip
                 android:id="@+id/chip_comics"
                 style="@style/Chip_style"
                 android:onClick="@{()-> viewModel.onClickComicChip()}"
@@ -86,7 +86,7 @@
                 app:chipBackgroundColor="@color/chip_background"
                 app:chipCornerRadius="@dimen/chip_radius" />
 
-            <com.google.android.material.chip.Chip
+<com.google.android.material.chip.Chip
                 android:id="@+id/chip_series"
                 style="@style/Chip_style"
                 android:onClick="@{()-> viewModel.onClickSeriesChip()}"
@@ -96,7 +96,7 @@
                 app:chipCornerRadius="@dimen/chip_radius"
                 app:chipStrokeWidth="@dimen/chip_stroke" />
 
-            <com.google.android.material.chip.Chip
+           <com.google.android.material.chip.Chip
                 android:id="@+id/chip_events"
                 style="@style/Chip_style"
                 android:height="@dimen/height_chip"

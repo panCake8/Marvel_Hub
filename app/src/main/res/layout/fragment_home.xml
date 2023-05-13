@@ -5,22 +5,68 @@
 
     <data>
 
+        <variable
+            name="viewModel"
+            type="com.example.marvel_hub.ui.home.viewModel.HomeViewModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@color/white_100">
+        android:background="@color/background_color">
+
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/recycler_home"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:clipToPadding="false"
+            android:layout_height="@dimen/no_height"
             android:orientation="vertical"
-            android:paddingBottom="@dimen/large_padding"
             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+            app:layout_constraintBottom_toTopOf="@id/nav_bottom"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:nestedRecyclerItems="@{viewModel.homeItem}"
+            app:showWhenSuccess="@{viewModel.homeItem}"
             tools:listitem="@layout/item_banner" />
+
+        <ProgressBar
+            android:id="@+id/progress_bar_loading"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:showWhenLoading="@{viewModel.homeItem}" />
+
+        <ImageView
+            android:id="@+id/image_view_error"
+            android:layout_width="@dimen/width_image_comics"
+            android:layout_height="@dimen/hight_image_comics"
+            android:contentDescription="@string/logo"
+            android:src="@drawable/baseline_error_24"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:showWhenError="@{viewModel.homeItem}" />
+
+        <com.google.android.material.bottomnavigation.BottomNavigationView
+            android:id="@+id/nav_bottom"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/nav_bottom_height"
+            android:paddingTop="@dimen/small_padding"
+            android:paddingBottom="@dimen/small_padding"
+            app:backgroundTint="@color/background_color"
+            app:itemActiveIndicatorStyle="@style/App.Custom.Indicator"
+            app:itemIconTint="@color/black_87"
+            app:itemTextColor="@color/black_87"
+            app:labelVisibilityMode="selected"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:menu="@menu/nav_item" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

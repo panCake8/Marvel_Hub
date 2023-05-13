@@ -9,6 +9,8 @@ import androidx.databinding.BindingAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.marvel_hub.ui.base.BaseAdapter
+import com.example.marvel_hub.ui.home.adapter.HomeAdapter
+import com.example.marvel_hub.ui.home.util.HomeItem
 import com.example.marvel_hub.ui.search.adapter.SearchCharactersAdapter
 import com.example.marvel_hub.ui.search.adapter.SearchComicsAdapter
 import com.example.marvel_hub.ui.search.adapter.SearchEventAdapter
@@ -70,17 +72,26 @@ fun <T> showWhenNoResult(view: View, items: List<T>?) {
 
 
 @BindingAdapter(value = ["app:recyclerItems"])
-fun <T> setRecyclerItems(view: RecyclerView, items: List<T>?) {
+fun <T> setRecyclerItems(recyclerView: RecyclerView, items: List<T>?) {
     if (items != null) {
-        (view.adapter as BaseAdapter<T>?)?.setItems(items)
+        (recyclerView.adapter as BaseAdapter<T>?)?.setItems(items)
     } else {
-        (view.adapter as BaseAdapter<T>?)?.setItems(listOf())
+        (recyclerView.adapter as BaseAdapter<T>?)?.setItems(listOf())
     }
 }
 
 @BindingAdapter(value = ["app:imageUrl"])
 fun setImageFromUrl(view: ImageView, url: String?) {
     Glide.with(view).load(url).into(view)
+}
+
+@BindingAdapter(value = ["app:nestedRecyclerItems"])
+fun setNestedRecyclerItems(recyclerView: RecyclerView, items: State<HomeItem>?) {
+    items?.let {
+        if (items is State.Success) {
+            (recyclerView.adapter as HomeAdapter).addItem(items.data as MutableList<HomeItem>)
+        }
+    }
 }
 
 @SuppressLint("CheckResult")
@@ -130,4 +141,26 @@ fun setSearchRecyclerAdapter(
             view.adapter = adapter
         }
     }
+
+    @BindingAdapter(value = ["app:availableItemsVisibility"])
+    fun setAvailableItemsVisibility(view: View, state: State<*>?) {
+        val availableItem = state?.let { it.toData() }
+        view.visibility = if (availableItem != null) View.VISIBLE else View.GONE
+    }
+
+    @BindingAdapter(value = ["visibilityIfNotBlank"])
+    fun visibilityIfNotBlank(view: View, text: String?) {
+        if (text.isNullOrEmpty()) {
+            view.visibility = View.GONE
+        } else {
+            view.visibility = View.VISIBLE
+        }
+    }
+
 }
+
+@BindingAdapter(value = ["app:clearSearch"])
+fun clearSearch(view: EditText, text: String?) {
+    view.setText(text)
+
+    }

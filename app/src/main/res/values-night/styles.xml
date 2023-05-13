@@ -1,0 +1,161 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:tools="http://schemas.android.com/tools">
+
+    <style name="screen_title" parent="Widget.AppCompat.TextView">
+        <item name="android:textSize">@dimen/large_text</item>
+        <item name="android:textColor">@color/black_87</item>
+        <item name="fontFamily">@font/poppins_semibold</item>
+    </style>
+
+    <style name="details_title" parent="Widget.AppCompat.TextView">
+        <item name="android:textSize">@dimen/large_text</item>
+        <item name="android:textColor">@color/black_87</item>
+        <item name="fontFamily">@font/poppins_semibold</item>
+    </style>
+
+    <style name="secondary_description" parent="Widget.AppCompat.TextView">
+        <item name="android:textSize">@dimen/body_text</item>
+        <item name="android:textColor">@color/black_60</item>
+        <item name="fontFamily">@font/poppins_medium</item>
+    </style>
+
+    <style name="details_description" parent="Widget.AppCompat.TextView">
+        <item name="android:textSize">@dimen/title_text</item>
+        <item name="android:textColor">@color/light_red</item>
+        <item name="fontFamily">@font/poppins_medium</item>
+    </style>
+
+    <style name="card_title" parent="Widget.AppCompat.TextView">
+        <item name="android:textSize">@dimen/body_text</item>
+        <item name="android:textColor">@color/white_87</item>
+        <item name="fontFamily">@font/poppins_medium</item>
+    </style>
+    <!--round imageview -->
+    <style name="roundimageview">
+        <item name="cornerFamily">rounded</item>
+        <item name="cornerSize">30dp</item>
+        <item name="color">@color/white_100</item>
+    </style>
+
+
+    <style name="header" parent="Widget.AppCompat.TextView">
+        <item name="android:textSize">@dimen/title_text</item>
+        <item name="android:textColor">@color/black_60</item>
+    </style>
+    <!--    Card Parent-->
+    <style name="CardRecItem" parent="Widget.MaterialComponents.CardView">
+        <item name="android:layout_width">match_parent</item>
+    </style>
+    <!--    Card Character-->
+    <style name="CardRecItem.Character">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">@dimen/card_height</item>
+        <item name="android:layout_marginEnd">@dimen/medium_margin</item>
+        <item name="android:layout_marginBottom">@dimen/medium_margin</item>
+        <item name="cardCornerRadius">@dimen/radius_medium</item>
+        <item name="elevation">@dimen/small_elevation</item>
+    </style>
+    <!--    ImageView Character-->
+    <style name="ImageViewCharacter">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">match_parent</item>
+        <item name="android:scaleType">centerCrop</item>
+    </style>
+    <!--    textView Character Name-->
+    <style name="TextViewCharacterName">
+        <item name="android:layout_width">@dimen/no_size</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_marginStart">@dimen/medium_margin</item>
+        <item name="android:layout_marginBottom">@dimen/medium_margin</item>
+        <item name="android:ellipsize">end</item>
+        <item name="maxLines">1</item>
+        <item name="android:textColor">@color/white_87</item>
+        <item name="android:textSize">@dimen/body_text</item>
+    </style>
+    <!--    RecyclerView Character-->
+    <style name="RecyclerViewCharacters">
+        <item name="android:layout_width">@dimen/no_size</item>
+        <item name="android:layout_height">@dimen/no_size</item>
+        <item name="android:clipToPadding">false</item>
+        <item name="android:padding">@dimen/small_padding</item>
+    </style>
+
+    <!-- app bar stroke-->
+    <style name="AppBarStroke">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">@dimen/small_stroke</item>
+        <item name="android:background">@color/stroke_app_bar</item>
+    </style>
+
+
+    <style name="RecyclerStyle">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">match_parent</item>
+        <item name="android:layout_marginStart">@dimen/margin_large</item>
+        <item name="android:layout_marginEnd">@dimen/margin_medium</item>
+        <item name="android:layout_marginTop">@dimen/app_bar_height</item>
+        <item name="spanCount">2</item>
+        <item name="android:orientation">vertical</item>
+    </style>
+
+    <style name="RecyclerStyleCreator">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_marginStart">@dimen/margin_large</item>
+        <item name="android:layout_marginEnd">@dimen/margin_medium</item>
+        <item name="spanCount">1</item>
+        <item name="android:orientation">horizontal</item>
+    </style>
+
+    <style name="RecyclerStyleSeries">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">match_parent</item>
+        <item name="android:layout_marginStart">@dimen/margin_large</item>
+        <item name="android:layout_marginEnd">@dimen/margin_medium</item>
+        <item name="android:layout_marginTop">@dimen/app_bar_height</item>
+        <item name="spanCount">2</item>
+        <item name="android:orientation">vertical</item>
+    </style>
+
+
+    <style name="RecyclerStyleStory">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">match_parent</item>
+        <item name="android:layout_marginStart">@dimen/margin_large</item>
+        <item name="android:layout_marginEnd">@dimen/margin_medium</item>
+        <item name="android:layout_marginTop">@dimen/app_bar_height</item>
+        <item name="spanCount">2</item>
+        <item name="android:orientation">vertical</item>
+    </style>
+
+    <!-- app bar-->
+    <style name="AppBar">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">@dimen/app_bar_height</item>
+        <item name="android:backgroundTint">@color/search_bar_background</item>
+        <item name="titleTextColor">@color/black_100</item>
+        <item name="elevation">@dimen/elevation_small</item>
+        <item name="navigationIcon">@drawable/ic_back_button_34</item>
+    </style>
+
+    <!-- nav bottom style-->
+    <style name="Widget.Material3.BottomNavigationView.ActiveIndicator" parent="">
+        <item name="android:width" tools:ignore="PrivateResource">
+            56dp
+        </item>
+        <item name="android:height" tools:ignore="PrivateResource">
+            32dp
+        </item>
+        <item name="marginHorizontal" tools:ignore="PrivateResource">
+            @dimen/m3_bottom_nav_item_active_indicator_margin_horizontal
+        </item>
+        <item name="shapeAppearance">
+            @style/ShapeAppearance.Material3.NavigationBarView.ActiveIndicator
+        </item>
+        <item name="android:color">@color/background_color</item>
+    </style>
+
+    <style name="App.Custom.Indicator" parent="Widget.Material3.BottomNavigationView.ActiveIndicator">
+        <item name="android:color">@color/red_medium</item>
+    </style>
+</resources>

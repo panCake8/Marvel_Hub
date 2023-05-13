@@ -13,7 +13,7 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@color/white_100">
+        android:background="@color/background_color">
 
 
         <com.google.android.material.appbar.MaterialToolbar
@@ -21,15 +21,20 @@
             style="@style/AppBar"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:title="@string/series" />
+            app:layout_constraintTop_toTopOf="parent" />
 
-        <View
-            android:id="@+id/toolbar_stroke"
-            style="@style/AppBarStroke"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/toolbar_series" />
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/series"
+            android:textColor="@color/black_100"
+            android:fontFamily="@font/poppins_semibold"
+            android:textSize="@dimen/large_text"
+            android:layout_marginStart="54dp"
+            app:layout_constraintTop_toTopOf="parent"
+            android:layout_marginTop="14dp"/>
+
+
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/recycler_series"
@@ -37,10 +42,11 @@
             app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/toolbar_stroke"
-            app:recyclerItems="@{viewModel.series.toData().data.results}"
+            app:layout_constraintTop_toBottomOf="@id/toolbar_series"
+            app:recyclerItems="@{viewModel.series.toData()}"
             app:showWhenSuccess="@{viewModel.series}"
-            tools:listitem="@layout/item_series_card" />
+            tools:listitem="@layout/item_series_card"
+            />
 
         <ImageView
             android:id="@+id/image_view_error"

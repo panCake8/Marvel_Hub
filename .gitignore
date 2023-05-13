@@ -43,3 +43,7 @@ local.properties
 
  # Android Profiling
  *.hprof
+/.idea/compiler.xml
+/.idea/gradle.xml
+/.idea/kotlinc.xml
+/.idea/misc.xml

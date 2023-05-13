@@ -1,5 +1,6 @@
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
 
     <data>
 
@@ -8,67 +9,74 @@
             type="com.example.marvel_hub.ui.aboutmarvel.viewModel.AboutMarvelViewModel" />
     </data>
 
-
-    <androidx.constraintlayout.widget.ConstraintLayout
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:background="@color/background_color">
 
-        <com.google.android.material.appbar.MaterialToolbar
-            android:id="@+id/toolbar_about_marvel"
-            style="@style/AppBar"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:title="@string/about_marvel" />
-
-        <View
-            android:id="@+id/toolbar_stroke"
-            style="@style/AppBarStroke"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/toolbar_about_marvel" />
-
-        <ImageView
-            android:id="@+id/image_marvel"
-            android:layout_width="@dimen/no_height"
-            android:layout_height="@dimen/image_sing_up_height"
-            android:contentDescription="@string/logo"
-            android:scaleType="fitXY"
-            android:src="@drawable/image_marvel"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/toolbar_stroke" />
-
-        <TextView
-            android:id="@+id/marvel_details"
+        <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_margin="@dimen/medium_radius"
-            android:layout_marginTop="@dimen/small_padding"
-            android:fontFamily="@font/poppins_semibold"
-            android:text="@string/about_marvel_paragraph"
-            android:textColor="@color/black_60"
-            android:textSize="@dimen/text_creator"
-            app:layout_goneMarginTop="@dimen/large_margin"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            android:layout_marginStart="@dimen/large_margin"
-            app:layout_constraintTop_toBottomOf="@id/image_marvel" />
+            android:layout_height="wrap_content">
 
-        <androidx.appcompat.widget.AppCompatButton
-            android:id="@+id/button_go_to_website"
-            android:layout_width="match_parent"
-            android:layout_height="@dimen/height_button"
-            android:layout_margin="@dimen/large_margin"
-            android:background="@drawable/button_background"
-            android:text="@string/go_to_website"
-            android:textAllCaps="false"
-            android:textColor="@color/white_100"
-            android:textSize="@dimen/title_text"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintCircleRadius="@dimen/large_radius"
-            app:layout_constraintEnd_toEndOf="parent"
-            android:layout_marginBottom="@dimen/huge_margin" />
+            <com.google.android.material.appbar.MaterialToolbar
+                android:id="@+id/toolbar_about_marvel"
+                style="@style/AppBar"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:title="@string/about_marvel" />
 
-    </androidx.constraintlayout.widget.ConstraintLayout>
+            <View
+                android:id="@+id/toolbar_stroke"
+                style="@style/AppBarStroke"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/toolbar_about_marvel" />
+
+            <ImageView
+                android:id="@+id/image_marvel"
+                android:layout_width="@dimen/no_height"
+                android:layout_height="@dimen/image_sing_up_height"
+                android:contentDescription="@string/logo"
+                android:src="@drawable/image_marvel"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/toolbar_stroke" />
+
+            <TextView
+                android:id="@+id/marvel_details"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/medium_radius"
+                android:layout_marginStart="@dimen/large_margin"
+                android:layout_marginTop="@dimen/small_padding"
+                android:fontFamily="@font/poppins_semibold"
+                android:text="@string/about_marvel_paragraph"
+                android:textColor="@color/black_60"
+                android:textSize="@dimen/text_creator"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/image_marvel"
+                app:layout_goneMarginTop="@dimen/large_margin" />
+
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/button_go_to_website"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/height_button"
+                android:layout_margin="@dimen/large_margin"
+                android:layout_marginBottom="@dimen/huge_margin"
+                android:background="@drawable/button_background"
+                android:text="@string/go_to_website"
+                android:textAllCaps="false"
+                android:textColor="@color/white_100"
+                android:textSize="@dimen/title_text"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintCircleRadius="@dimen/large_radius"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/marvel_details" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </ScrollView>
 </layout>

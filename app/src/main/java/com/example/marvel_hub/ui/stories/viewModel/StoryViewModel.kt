@@ -15,12 +15,12 @@ import io.reactivex.rxjava3.schedulers.Schedulers
 
 class StoryViewModel : BaseViewModel(), StoriesInteractionListener {
 
-    private val _story = MutableLiveData<State<BaseResponse<StoriesModel>>>(State.Loading)
-    val story: LiveData<State<BaseResponse<StoriesModel>>>
+    private val _story = MutableLiveData<State<StoriesModel>>(State.Loading)
+    val story: LiveData<State<StoriesModel>>
         get() = _story
 
-    private val _selectedStoryItem = MutableLiveData<Event<StoriesModel>>()
-    val selectedStoryItem: LiveData<Event<StoriesModel>>
+    private val _selectedStoryItem = MutableLiveData<Event<Int?>>()
+    val selectedStoryItem: LiveData<Event<Int?>>
         get() = _selectedStoryItem
 
     init {
@@ -32,11 +32,11 @@ class StoryViewModel : BaseViewModel(), StoriesInteractionListener {
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
             .subscribe(::onSuccess, ::onFail)
-            .addTo(disposable)
+            .addTo(compositeDisposable = disposable)
     }
 
     private fun onSuccess(story: BaseResponse<StoriesModel>) {
-        _story.postValue(State.Success(story))
+        _story.postValue(State.Success(story.data?.results))
     }
 
     private fun onFail(error: Throwable) {
@@ -44,6 +44,6 @@ class StoryViewModel : BaseViewModel(), StoriesInteractionListener {
     }
 
     override fun onClickStoryItem(story: StoriesModel) {
-        _selectedStoryItem.postValue(Event(story))
+        _selectedStoryItem.postValue(Event(story.id))
     }
 }

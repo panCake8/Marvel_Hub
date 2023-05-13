@@ -17,6 +17,7 @@ class EventsDetailsFragment: BaseFragment<FragmentEventsDetailsBinding,EventsDet
         super.onViewCreated(view, savedInstanceState)
         setUpAdapter()
         initArguments()
+        observeEvents()
 
     }
     private fun setUpAdapter(){
@@ -25,5 +26,16 @@ class EventsDetailsFragment: BaseFragment<FragmentEventsDetailsBinding,EventsDet
 
     private fun initArguments(){
         //viewModel.getEventById()
+    }
+    private fun observeEvents() {
+        viewModel.eventDetails.observe(viewLifecycleOwner) { clickEvent ->
+            when (clickEvent) {
+//                is CharacterDetailsEvents.ClickEventEvent -> navigateToEventsDetails(clickEvent.event)
+//                is CharacterDetailsEvents.ClickComicEvent -> navigateToComicDetails(clickEvent.comic)
+//                is CharacterDetailsEvents.ClickSeriesEvent -> navigateToSeriesDetails(clickEvent.series)
+                else -> {}
+            }
+            viewModel.clearEvents()
+        }
     }
 }

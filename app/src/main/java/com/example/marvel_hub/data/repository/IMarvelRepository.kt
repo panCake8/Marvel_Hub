@@ -6,6 +6,7 @@ import com.example.marvel_hub.data.model.EventModel
 import com.example.marvel_hub.data.model.SeriesModel
 import com.example.marvel_hub.data.model.StoriesModel
 import com.example.marvel_hub.data.model.BaseResponse
+import com.example.marvel_hub.ui.home.util.HomeItem
 import io.reactivex.rxjava3.core.Single
 
 interface IMarvelRepository {
@@ -52,5 +53,11 @@ interface IMarvelRepository {
     fun getEventsByStoryId(storyId: Int): Single<BaseResponse<EventModel>>
     fun getSeriesByStoryId(storyId: Int): Single<BaseResponse<SeriesModel>>
 
+
+    fun getRandomComics(): Single<List<ComicModel>>
+    fun getRandomEvents(): Single<List<EventModel>>
+    fun getRandomSeries(): Single<List<SeriesModel>>
+    fun getRandomCharacters(): Single<List<CharactersModel>>
+    fun fetchHomeItems(): Single<List<HomeItem>>
 
 }

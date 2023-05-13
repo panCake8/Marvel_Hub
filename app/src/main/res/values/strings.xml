@@ -7,11 +7,13 @@
     <string name="comics">Comics</string>
     <string name="characters">Characters</string>
     <string name="creators">Creators</string>
+    <string name="stan_lee_28_1922_12_2018_1989_spider_man_x_men_hulk_iron_man_thor_eisner_award_2008" tools:ignore="TypographyDashes">ستان لي (بالإنجليزية: Stan Lee)‏ - (مولود باسم ستانلي مارتن ليبر، 28 ديسمبر 1922- 12 نوفمبر 2018) هو كاتب ومحرر قصص مصورة أمريكي، وممثل ومذيع تلفزيوني ومدبلج، والرئيس والمدير السابق لمارفل كومكس. أصبح لي الناشر والمدير في شركة القصص المصورة، وقادها من قسم صغير في شركة نشر إلى أن تكون شركة كبرى متعددة الوسائط. شارك لي للمرة الأولى بفيلم له عام 1989. قام بالتشارك مع العديد من الكتاب من أشهرهم جاك كيربي وستيف ديتكو وأخيه الأصغر لاري ليبر في صنع العديد من شخصيات الأبطال الخارقين المشهورة أمثال الرجل العنكبوت (Spider-Man)، والرجال إكس (X-Men)، والرجل الأخضر (هولك) (Hulk)، وآيرون مان (Iron Man)، وثور (Thor)، وغيرهم من الشخصيات الخيالية. كان لي رائدا في اتخاذها منهجا أكثر تعقيدا في الستينيات والسبعينيات لتأليف الأبطال الخارقين، وتحدى معايير هيئة لوائح القصص المصورة، ما ساهم بشكل غير مباشر إلى تحديث سياساتها. فازت أعماله بالعديد من الجوائز، مثل جائزة إيسنر (بالإنجليزية: Eisner Award)‏، والتي تُمنح لكتاب القصص المصورة الأمريكية. تلقى الميدالية الوطنية للفنون عام 2008. بقي رمزًا عامًا للشركة بعد تقاعده منها، وقام بالتمثيل في الأفلام في العديد من الأدوار الصغيرة، كانت أغلبها في الأفلام الخاصة بالشخصيات التي شارك في صناعتها، مثل الجزأين الأول والثالث من إكس-من، والجزء الثاني من سبايدرمان، بالإضافة إلى مشاركته في إنتاج بعض تلك الأفلام مثل غوست رايدر. ظل لي يعمل في أعمال مستقلة حتى وفاته، وقيل أنه عانى من أمراض في القلب ومشاكل بالتنفس.</string>
     <string name="series">Series</string>
     <string name="story">Story</string>
     <string name="about_creator">About Creator</string>
     <string name="products">Products</string>
     <string name="error_image">error image</string>
+    <string name="events_text">ُEvents</string>
     <string name="description">Description</string>
     <string name="related_comics">related Comics</string>
     <string name="related_events">related Events</string>
@@ -36,6 +38,9 @@
     <string name="about_marvel_paragraph">Marvel Comics is an American comic book publisher and the property of The Walt Disney Company since December 31, 2009. Evolving from Timely Comics in 1939, Magazine Management/Atlas Comics in 1951 and its predecessor, Marvel Mystery Comics, the Marvel Comics title/name/brand was first used in June 1961. Marvel was started in 1939 by Martin Goodman as Timely Comics, and by 1951 had generally become known as Atlas Comics. The Marvel era began in June 1961 with the launch of The Fantastic Four and other superhero titles created by Stan Lee, Jack Kirby, Steve Ditko and many others. The Marvel brand, which had been used over the years and decades, was solidified as the company\'s primary brand.</string>
     <string name="go_to_website">Go to Website</string>
     <string name="hero_marvel">hero_marvel</string>
-    <string name="text_error">please try again</string>
     <string name="description_search_image">TODO</string>
+    <string name="home">Home</string>
+    <string name="search">Search</string>
+    <string name="about">About</string>
+
 </resources>

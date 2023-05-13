@@ -1,5 +1,6 @@
 package com.example.marvel_hub.ui.details.character
 
+import android.app.usage.UsageEvents.Event
 import android.os.Bundle
 import android.view.View
 import androidx.fragment.app.viewModels
@@ -18,10 +19,22 @@ class CharacterDetailsFragment :
         super.onViewCreated(view, savedInstanceState)
         setUpAdapter()
         initArguments()
+        observeEvents()
     }
 
     private fun setUpAdapter() {
         binding.mainRecycler.adapter = ParentCharacterAdapter(viewModel, viewLifecycleOwner)
+    }
+    private fun observeEvents() {
+        viewModel.characterDetails.observe(viewLifecycleOwner) { clickEvent ->
+            when (clickEvent) {
+//                is CharacterDetailsEvents.ClickEventEvent -> navigateToEventsDetails(clickEvent.event)
+//                is CharacterDetailsEvents.ClickComicEvent -> navigateToComicDetails(clickEvent.comic)
+//                is CharacterDetailsEvents.ClickSeriesEvent -> navigateToSeriesDetails(clickEvent.series)
+                else -> {}
+            }
+            viewModel.clearEvents()
+        }
     }
 
     private fun initArguments() {

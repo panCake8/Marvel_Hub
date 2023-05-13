@@ -30,7 +30,7 @@
 
             <ImageView
                 android:id="@+id/image_item_story_card"
-                android:layout_width="@dimen/width_image_item_comics"
+                android:layout_width="200dp"
                 android:layout_height="match_parent"
                 android:scaleType="fitXY"
                 app:imageUrl="@{item.thumbnail.image}"

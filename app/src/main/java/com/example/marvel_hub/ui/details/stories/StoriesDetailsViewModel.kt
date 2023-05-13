@@ -11,6 +11,7 @@ import com.example.marvel_hub.data.model.SeriesModel
 import com.example.marvel_hub.data.model.StoriesModel
 import com.example.marvel_hub.util.State
 import com.example.marvel_hub.ui.base.BaseViewModel
+import com.example.marvel_hub.ui.details.events.EventsDetailsEvents
 import com.example.marvel_hub.ui.details.listeners.CharacterListener
 import com.example.marvel_hub.ui.details.listeners.ComicListener
 import com.example.marvel_hub.ui.details.listeners.EventsListener
@@ -30,27 +31,31 @@ class StoriesDetailsViewModel : BaseViewModel(), EventsListener, CharacterListen
 
 
     private val _characters =
-        MutableLiveData<State<List<CharactersModel>?>>(State.Loading)
-    val characters: LiveData<State<List<CharactersModel>?>>
+        MutableLiveData<State<CharactersModel>>(State.Loading)
+    val characters: LiveData<State<CharactersModel>>
         get() = _characters
 
 
     private val _comics =
-        MutableLiveData<State<List<ComicModel>?>>(State.Loading)
-    val comics: LiveData<State<List<ComicModel>?>>
+        MutableLiveData<State<ComicModel>>(State.Loading)
+    val comics: LiveData<State<ComicModel>>
         get() = _comics
 
 
     private val _series =
-        MutableLiveData<State<List<SeriesModel>?>>(State.Loading)
-    val series: LiveData<State<List<SeriesModel>?>>
+        MutableLiveData<State<SeriesModel>>(State.Loading)
+    val series: LiveData<State<SeriesModel>>
         get() = _series
 
 
     private val _events =
-        MutableLiveData<State<List<EventModel>?>>(State.Loading)
-    val events: LiveData<State<List<EventModel>?>>
+        MutableLiveData<State<EventModel>>(State.Loading)
+    val events: LiveData<State<EventModel>>
         get() = _events
+
+    private val _storyDetails: MutableLiveData<StoriesDetailsEvents> = MutableLiveData()
+    val storiesDetails: LiveData<StoriesDetailsEvents>
+        get() = _storyDetails
 
 
     fun getStoryById(storyId: Int) =
@@ -62,10 +67,7 @@ class StoriesDetailsViewModel : BaseViewModel(), EventsListener, CharacterListen
             ).addTo(disposable)
 
     private fun storyOnSuccess(story: BaseResponse<StoriesModel>) {
-        story.data?.results?.get(0).let {
-            _story.postValue(State.Success(it!!))
-            Log.i("TAG", "${it.title}")
-        }
+        _story.postValue(State.Success(story.data?.results))
     }
 
     private fun storyOnError(error: Throwable) {
@@ -135,19 +137,24 @@ class StoriesDetailsViewModel : BaseViewModel(), EventsListener, CharacterListen
     }
 
     override fun onCharacterClick(character: CharactersModel) {
-        TODO("Not yet implemented")
+        _storyDetails.postValue(StoriesDetailsEvents.ClickCharacterStory(character))
+
     }
 
     override fun onComicClick(comic: ComicModel) {
-        TODO("Not yet implemented")
+        _storyDetails.postValue(StoriesDetailsEvents.ClickComicStory(comic))
+
+    }
+    override fun onSeriesClick(series: SeriesModel) {
+        _storyDetails.postValue(StoriesDetailsEvents.ClickSeriesStory(series))
     }
 
     override fun onEventClick(event: EventModel) {
-        TODO("Not yet implemented")
+        _storyDetails.postValue(StoriesDetailsEvents.ClickEventStory(event))
     }
-
-    override fun onSeriesClick(series: SeriesModel) {
-        TODO("Not yet implemented")
+    fun clearEvents() {
+        if (_storyDetails.value != StoriesDetailsEvents.ReadyState)
+            _storyDetails.postValue(StoriesDetailsEvents.ReadyState)
     }
 
 

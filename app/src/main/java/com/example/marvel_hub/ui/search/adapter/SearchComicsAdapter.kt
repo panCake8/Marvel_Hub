@@ -8,8 +8,7 @@ import com.example.marvel_hub.ui.search.adapter.interactions.ComicInteractionLis
 class SearchComicsAdapter(items: List<ComicModel>, listener: ComicInteractionListener) :
     BaseAdapter<ComicModel>(items, listener) {
 
-    override val getLayoutId: Int
-    get() =  R.layout.item_search_comics
+    override val getLayoutId = R.layout.item_search_comics
 
 }
 

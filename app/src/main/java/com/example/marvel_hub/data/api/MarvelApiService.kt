@@ -13,7 +13,9 @@ import retrofit2.http.Query
 
 interface MarvelApiService {
     @GET("characters")
-    fun getAllCharacters(): Single<BaseResponse<CharactersModel>>
+    fun fetchCharacters(
+        @Query("limit") limit: Int
+    ): Single<BaseResponse<CharactersModel>>
 
     @GET("characters")
     fun searchCharacters(
@@ -21,34 +23,36 @@ interface MarvelApiService {
     ): Single<BaseResponse<CharactersModel>>
 
     @GET("characters/{characterId}")
-    fun getCharacterById(
+    fun fetchCharacterById(
         @Path("characterId") characterId: Int,
     ): Single<BaseResponse<CharactersModel>>
 
     @GET("characters/{characterId}/comics")
-    fun getComicsByCharacterId(
+    fun fetchComicsByCharacterId(
         @Path("characterId") characterId: Int,
     ): Single<BaseResponse<ComicModel>>
 
     @GET("characters/{characterId}/events")
-    fun getEventsByCharacterId(
+    fun fetchEventsByCharacterId(
         @Path("characterId") characterId: Int,
     ): Single<BaseResponse<EventModel>>
 
     @GET("characters/{characterId}/series")
-    fun getSeriesByCharacterId(
+    fun fetchSeriesByCharacterId(
         @Path("characterId") characterId: Int,
     ): Single<BaseResponse<SeriesModel>>
 
     @GET("characters/{characterId}/stories")
-    fun getStoriesByCharacterId(
+    fun fetchStoriesByCharacterId(
         @Path("characterId") characterId: Int,
     ): Single<BaseResponse<StoriesModel>>
 
 // ===================== comic  ============================================
 
     @GET("comics")
-    fun getAllComics(): Single<BaseResponse<ComicModel>>
+    fun fetchComics(
+        @Query("limit") limit: Int
+    ): Single<BaseResponse<ComicModel>>
 
     @GET("comics")
     fun searchComics(
@@ -56,22 +60,22 @@ interface MarvelApiService {
     ): Single<BaseResponse<ComicModel>>
 
     @GET("comics/{comicId}")
-    fun getComicsById(
+    fun fetchComicsById(
         @Path("comicId") comicId: Int,
     ): Single<BaseResponse<ComicModel>>
 
     @GET("comics/{comicId}/characters")
-    fun getCharactersByComicId(
+    fun fetchCharactersByComicId(
         @Path("comicId") comicId: Int,
     ): Single<BaseResponse<CharactersModel>>
 
     @GET("comics/{comicId}/events")
-    fun getEventByComicId(
+    fun fetchEventByComicId(
         @Path("comicId") comicId: Int,
     ): Single<BaseResponse<EventModel>>
 
     @GET("comics/{comicId}/stories")
-    fun getStoriesByComicId(
+    fun fetchStoriesByComicId(
         @Path("comicId") comicId: Int,
     ): Single<BaseResponse<StoriesModel>>
 
@@ -80,7 +84,9 @@ interface MarvelApiService {
 
     // ===================== events ========================
     @GET("events")
-    fun getAllEvents(): Single<BaseResponse<EventModel>>
+    fun fetchEvents(
+        @Query("limit") limit: Int
+    ): Single<BaseResponse<EventModel>>
 
     @GET("events")
     fun searchEvent(
@@ -89,33 +95,35 @@ interface MarvelApiService {
 
 
     @GET("events/{eventId}")
-    fun getEventsById(
+    fun fetchEventsById(
         @Path("eventId") eventId: Int
     ): Single<BaseResponse<EventModel>>
 
     @GET("events/{eventId}/characters")
-    fun getCharactersByEventId(
+    fun fetchCharactersByEventId(
         @Path("eventId") eventId: Int
     ): Single<BaseResponse<CharactersModel>>
 
     @GET("events/{eventId}/comics")
-    fun getComicsByEventId(
+    fun fetchComicsByEventId(
         @Path("eventId") eventId: Int
     ): Single<BaseResponse<ComicModel>>
 
     @GET("events/{eventId}/series")
-    fun getSeriesByEventId(
+    fun fetchSeriesByEventId(
         @Path("eventId") eventId: Int
     ): Single<BaseResponse<SeriesModel>>
 
     @GET("events/{eventId}/stories")
-    fun getStoriesByEventId(
+    fun fetchStoriesByEventId(
         @Path("eventId") eventId: Int
     ): Single<BaseResponse<StoriesModel>>
 
     //===================== series =======================
     @GET("series")
-    fun getAllSeries(): Single<BaseResponse<SeriesModel>>
+    fun fetchSeries(
+        @Query("limit") limit: Int
+    ): Single<BaseResponse<SeriesModel>>
 
     @GET("series")
     fun searchSeries(
@@ -123,56 +131,58 @@ interface MarvelApiService {
     ): Single<BaseResponse<SeriesModel>>
 
     @GET("series/{seriesId}")
-    fun getSeriesById(
+    fun fetchSeriesById(
         @Path("seriesId") seriesId: Int
     ): Single<BaseResponse<SeriesModel>>
 
     @GET("series/{seriesId}/characters")
-    fun getCharactersBySeriesId(
+    fun fetchCharactersBySeriesId(
         @Path("seriesId") seriesId: Int
     ): Single<BaseResponse<CharactersModel>>
 
     @GET("series/{seriesId}/comics")
-    fun getComicsBySeriesId(
+    fun fetchComicsBySeriesId(
         @Path("seriesId") seriesId: Int
     ): Single<BaseResponse<ComicModel>>
 
     @GET("series/{seriesId}/events")
-    fun getEventsBySeriesId(
+    fun fetchEventsBySeriesId(
         @Path("seriesId") seriesId: Int
     ): Single<BaseResponse<EventModel>>
 
     @GET("series/{seriesId}/stories")
-    fun getStoriesBySeriesId(
+    fun fetchStoriesBySeriesId(
         @Path("seriesId") seriesId: Int
     ): Single<BaseResponse<StoriesModel>>
 
     //======================== stories ========================
     @GET("stories")
-    fun getAllStories(): Single<BaseResponse<StoriesModel>>
+    fun fetchStories(
+        @Query("limit") limit: Int
+    ): Single<BaseResponse<StoriesModel>>
 
     @GET("stories/{storyId}")
-    fun getStoryById(
+    fun fetchStoryById(
         @Path("storyId") storyId: Int
     ): Single<BaseResponse<StoriesModel>>
 
     @GET("stories/{storyId}/characters")
-    fun getCharactersByStoryId(
+    fun fetchCharactersByStoryId(
         @Path("storyId") storyId: Int
     ): Single<BaseResponse<CharactersModel>>
 
     @GET("stories/{storyId}/comics")
-    fun getComicsByStoryId(
+    fun fetchComicsByStoryId(
         @Path("storyId") storyId: Int
     ): Single<BaseResponse<ComicModel>>
 
     @GET("stories/{storyId}/events")
-    fun getEventsByStoryId(
+    fun fetchEventsByStoryId(
         @Path("storyId") storyId: Int
     ): Single<BaseResponse<EventModel>>
 
     @GET("stories/{storyId}/series")
-    fun getSeriesByStoryId(
+    fun fetchSeriesByStoryId(
         @Path("storyId") storyId: Int
     ): Single<BaseResponse<SeriesModel>>
 }

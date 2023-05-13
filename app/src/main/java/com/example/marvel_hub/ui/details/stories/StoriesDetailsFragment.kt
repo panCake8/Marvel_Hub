@@ -17,6 +17,7 @@ class StoriesDetailsFragment :
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         setUp()
+        observeEvents()
     }
 
 
@@ -30,6 +31,17 @@ class StoriesDetailsFragment :
         viewModel.getComicsByStoryId(storyID)
         viewModel.getEventsByStoryId(storyID)
 
+    }
+    private fun observeEvents() {
+        viewModel.storiesDetails.observe(viewLifecycleOwner) { clickEvent ->
+            when (clickEvent) {
+//                is CharacterDetailsEvents.ClickEventEvent -> navigateToEventsDetails(clickEvent.event)
+//                is CharacterDetailsEvents.ClickComicEvent -> navigateToComicDetails(clickEvent.comic)
+//                is CharacterDetailsEvents.ClickSeriesEvent -> navigateToSeriesDetails(clickEvent.series)
+                else -> {}
+            }
+            viewModel.clearEvents()
+        }
     }
 
     companion object {
