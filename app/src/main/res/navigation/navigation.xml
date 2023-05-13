@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/navigation"
     app:startDestination="@id/homeFragment">
     <fragment
@@ -31,7 +30,19 @@
             app:destination="@id/eventsDetailsFragment" />
         <action
             android:id="@+id/action_homeFragment_to_seriesDetailsFragment"
-            app:destination="@id/seriesDetailsFragment" />
+            app:destination="@id/seriesDetailsFragment"
+            app:enterAnim="@android:anim/slide_in_left"
+            app:exitAnim="@android:anim/slide_out_right" />
+        <action
+            android:id="@+id/action_homeFragment_to_searchFragment"
+            app:destination="@id/searchFragment"
+            app:enterAnim="@android:anim/fade_in"
+            app:exitAnim="@android:anim/fade_out"
+            app:popEnterAnim="@android:anim/fade_out"
+            app:popExitAnim="@android:anim/fade_in" />
+        <action
+            android:id="@+id/action_homeFragment_to_fragmentAboutMarvel"
+            app:destination="@id/fragmentAboutMarvel" />
     </fragment>
     <fragment
         android:id="@+id/characterFragment"
@@ -81,4 +92,12 @@
             android:name="id"
             app:argType="integer" />
     </fragment>
+    <fragment
+        android:id="@+id/searchFragment"
+        android:name="com.example.marvel_hub.ui.search.SearchFragment"
+        android:label="SearchFragment" />
+    <fragment
+        android:id="@+id/fragmentAboutMarvel"
+        android:name="com.example.marvel_hub.ui.aboutmarvel.FragmentAboutMarvel"
+        android:label="FragmentAboutMarvel" />
 </navigation>
