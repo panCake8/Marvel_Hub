@@ -58,6 +58,7 @@ interface IMarvelRepository {
     fun getRandomComics(): Single<List<ComicModel>>
     fun getRandomEvents(): Single<List<EventModel>>
     fun getRandomSeries(): Single<List<SeriesModel>>
+    fun getRandomCharacters(): Single<List<CharactersModel>>
     fun fetchHomeItems(): Single<List<HomeItem>>
 
 }

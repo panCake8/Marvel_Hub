@@ -6,17 +6,18 @@ import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import com.example.marvel_hub.BR
 import com.example.marvel_hub.R
+import com.example.marvel_hub.data.model.CharactersModel
 import com.example.marvel_hub.data.model.ComicModel
 import com.example.marvel_hub.data.model.EventModel
 import com.example.marvel_hub.data.model.SeriesModel
 import com.example.marvel_hub.databinding.ItemBannerBinding
 import com.example.marvel_hub.databinding.ItemQuizBinding
+import com.example.marvel_hub.databinding.ListCharacterBinding
 import com.example.marvel_hub.databinding.ListComicsBinding
 import com.example.marvel_hub.databinding.ListEventsBinding
 import com.example.marvel_hub.databinding.ListSeriesBinding
 import com.example.marvel_hub.ui.home.adapter.intreactions.HomeInteractionListener
 import com.example.marvel_hub.ui.home.util.HomeItem
-import com.example.marvel_hub.util.Constants
 import com.example.marvel_hub.util.GlideImageLoaderFactory
 import com.ouattararomuald.slider.SliderAdapter
 
@@ -32,6 +33,7 @@ class HomeAdapter(
             is HomeItem.Events -> EVENTS
             is HomeItem.Series -> SERIES
             is HomeItem.QuizGameBanner -> QUIZ_GAME_BANNER
+            is HomeItem.Character -> CHARACTER
         }
     }
 
@@ -57,6 +59,16 @@ class HomeAdapter(
                     false
                 )
                 BannerViewHolder(binding)
+            }
+
+            CHARACTER -> {
+                val binding = DataBindingUtil.inflate<ListCharacterBinding>(
+                    inflater,
+                    R.layout.list_character,
+                    parent,
+                    false
+                )
+                CharacterViewHolder(binding)
             }
 
             COMICS -> {
@@ -109,8 +121,15 @@ class HomeAdapter(
             is HomeItem.Series -> bindSeries(current.data, holder as SeriesViewHolder)
             is HomeItem.Banner -> bindBanner(current.data, holder as BannerViewHolder)
             is HomeItem.QuizGameBanner -> bindQuizGameBanner()
+            is HomeItem.Character -> bindCharacter(current.data, holder as CharacterViewHolder)
         }
 
+    }
+
+    private fun bindCharacter(current: List<CharactersModel>, holder: CharacterViewHolder) {
+        val adapterRecycler = HomeCharacterAdapter(listener)
+        adapterRecycler.setItems(current)
+        holder.binding.setVariable(BR.adapterRecycler, adapterRecycler)
     }
 
     private fun bindQuizGameBanner() {
@@ -154,6 +173,7 @@ class HomeAdapter(
         private const val EVENTS = 2
         private const val SERIES = 3
         private const val QUIZ_GAME_BANNER = 4
+        private const val CHARACTER = 5
     }
 }
 
@@ -173,4 +193,7 @@ class SeriesViewHolder(
 class BannerViewHolder(val binding: ItemBannerBinding) : BaseNestedAdapter.BaseViewHolder(binding)
 
 class QuizGameBannerViewHolder(val binding: ItemQuizBinding) :
+    BaseNestedAdapter.BaseViewHolder(binding)
+
+class CharacterViewHolder(val binding: ListCharacterBinding) :
     BaseNestedAdapter.BaseViewHolder(binding)

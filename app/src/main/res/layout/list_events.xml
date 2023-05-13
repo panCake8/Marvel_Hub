@@ -54,3 +54,4 @@
             tools:listitem="@layout/item_events" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

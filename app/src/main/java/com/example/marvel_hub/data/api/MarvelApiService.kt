@@ -190,4 +190,9 @@ interface MarvelApiService {
     fun getRandomEvent(
         @Query("limit") limit: Int,
     ): Single<BaseResponse<EventModel>>
+
+    @GET("characters")
+    fun getRandomCharacters(
+        @Query("limit") limit: Int,
+    ): Single<BaseResponse<CharactersModel>>
 }

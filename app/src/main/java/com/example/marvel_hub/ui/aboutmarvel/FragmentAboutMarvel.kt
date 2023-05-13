@@ -26,7 +26,7 @@ class FragmentAboutMarvel : BaseFragment<FragmentAboutMarvelBinding, AboutMarvel
 
     private fun setupRecyclerView() {
         val adapter = AboutMarvelAdapter(mutableListOf(), viewModel)
-        binding.recyclerCharacters.adapter = adapter
+//        binding.recyclerCharacters.adapter = adapter
     }
 
 }

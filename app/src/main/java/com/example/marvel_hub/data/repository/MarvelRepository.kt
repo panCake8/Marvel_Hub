@@ -1,7 +1,7 @@
 package com.example.marvel_hub.data.repository
 
 import com.example.marvel_hub.data.api.API
-import com.example.marvel_hub.data.model.BaseResponse
+import com.example.marvel_hub.data.model.CharactersModel
 import com.example.marvel_hub.data.model.ComicModel
 import com.example.marvel_hub.data.model.EventModel
 import com.example.marvel_hub.data.model.SeriesModel
@@ -95,12 +95,20 @@ class MarvelRepository : IMarvelRepository {
         return API.apiService.getAllSeries().map { it.data?.results!! }
     }
 
+    override fun getRandomCharacters(): Single<List<CharactersModel>> {
+        return API.apiService.getAllCharacters().map { it.data?.results!! }
+    }
+
     override fun fetchHomeItems(): Single<List<HomeItem>> {
         return Single.zip(
             getRandomSeries(),
             getRandomComics(),
             getRandomEvents(),
-        ) { series: List<SeriesModel>, comics: List<ComicModel>, events: List<EventModel> ->
+            getRandomCharacters(),
+        ) { series: List<SeriesModel>,
+            comics: List<ComicModel>,
+            events: List<EventModel>,
+            characters: List<CharactersModel> ->
             listOf(
                 HomeItem.Series(series.shuffled().take(10)),
                 HomeItem.Comics(comics.shuffled().take(10)),
@@ -114,7 +122,8 @@ class MarvelRepository : IMarvelRepository {
                         Constants.MARVEL_IMAGE_DEAD_POOL,
                         Constants.MARVEL_IMAGE_SPIDER_MAN
                     ).shuffled()
-                )
+                ),
+                HomeItem.Character(characters.shuffled().take(10))
             )
         }
     }
