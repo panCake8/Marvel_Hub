@@ -41,6 +41,7 @@
             android:orientation="vertical"
             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
             app:recyclerItems="@{viewModel.event.toData()}"
+            app:showWhenSuccess="@{viewModel.event}"
             tools:listitem="@layout/fragment_events_see_all_item" />
 
         <ImageView
