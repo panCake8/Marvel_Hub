@@ -115,13 +115,7 @@ class MarvelRepository : IMarvelRepository {
                 HomeItem.Events(events.shuffled().take(10)),
                 HomeItem.QuizGameBanner,
                 HomeItem.Banner(
-                    listOf(
-                        Constants.MARVEL_IMAGE_COMIC,
-                        Constants.MARVEL_IMAGE_STORY,
-                        Constants.MARVEL_IMAGE_THANOS,
-                        Constants.MARVEL_IMAGE_DEAD_POOL,
-                        Constants.MARVEL_IMAGE_SPIDER_MAN
-                    ).shuffled()
+                    Constants.MARVEL_IMAGES.shuffled().take(5)
                 ),
                 HomeItem.Character(characters.shuffled().take(10))
             )
