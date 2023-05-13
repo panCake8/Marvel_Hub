@@ -89,11 +89,7 @@
     <fragment
         android:id="@+id/seriesFragment"
         android:name="com.example.marvel_hub.ui.series.SeriesFragment"
-        android:label="SeriesFragment" >
-        <action
-            android:id="@+id/action_seriesFragment_to_characterDetailsFragment"
-            app:destination="@id/characterDetailsFragment" />
-    </fragment>
+        android:label="SeriesFragment" />
     <fragment
         android:id="@+id/eventsSeeAllFragment"
         android:name="com.example.marvel_hub.ui.events.EventsSeeAllFragment"
@@ -105,21 +101,6 @@
         <argument
             android:name="id"
             app:argType="integer" />
-        <action
-            android:id="@+id/action_characterDetailsFragment_to_eventsDetailsFragment"
-            app:destination="@id/eventsDetailsFragment" />
-        <action
-            android:id="@+id/action_characterDetailsFragment_to_comicsDetailsFragment"
-            app:destination="@id/comicsDetailsFragment" />
-        <action
-            android:id="@+id/action_characterDetailsFragment_to_seriesDetailsFragment"
-            app:destination="@id/seriesDetailsFragment" />
-        <action
-            android:id="@+id/action_characterDetailsFragment_to_comicsDetailsFragment2"
-            app:destination="@id/comicsDetailsFragment" />
-        <action
-            android:id="@+id/action_characterDetailsFragment_to_storiesDetailsFragment"
-            app:destination="@id/storiesDetailsFragment" />
     </fragment>
     <fragment
         android:id="@+id/comicsDetailsFragment"
@@ -148,18 +129,6 @@
         <argument
             android:name="id"
             app:argType="integer" />
-        <action
-            android:id="@+id/action_eventsDetailsFragment_to_characterDetailsFragment"
-            app:destination="@id/characterDetailsFragment" />
-        <action
-            android:id="@+id/action_eventsDetailsFragment_to_comicsDetailsFragment"
-            app:destination="@id/comicsDetailsFragment" />
-        <action
-            android:id="@+id/action_eventsDetailsFragment_to_storiesDetailsFragment"
-            app:destination="@id/storiesDetailsFragment" />
-        <action
-            android:id="@+id/action_eventsDetailsFragment_to_seriesDetailsFragment"
-            app:destination="@id/seriesDetailsFragment" />
     </fragment>
     <fragment
         android:id="@+id/seriesDetailsFragment"
