@@ -8,7 +8,7 @@
 
 
     <color name="red">#ec1d24</color>
-    <color name="light_red">#e62429</color>
+    <color name="light_red">#DEE62429</color>
 
     <color name="white_100">#FAFAFA</color>
     <color name="white_87">#DEFAFAFA</color>
@@ -20,10 +20,17 @@
     <color name="black_87">#DE121212</color>
     <color name="black_60">#99121212</color>
     <color name="black_38">#61121212</color>
-
-
-    <color name="app_bar_text_color">#121212</color>
+    <color name="search_bar_background">#ffffff</color>
+    <color name="ic_search_color">#99121212</color>
     <color name="background_color">#FAFAFA</color>
+    <color name="input_text_color">#DE121212</color>
+    <color name="hint_color">#99121212</color>
+    <color name="liner_color">#80121212</color>
+    <color name="search_result_text_color">#DEFAFAFA</color>
+    <color name="selected_chip_color">@color/red</color>
+    <color name="unselected_chip_color">@color/white_87</color>
+
+
     <color name="back_icon_color">#121212</color>
     <color name="stroke_app_bar">#5EFFFFFF</color>
     <color name="white_back_about_marvel">#FFFFFF</color>

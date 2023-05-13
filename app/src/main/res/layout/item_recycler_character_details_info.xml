@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <variable
+            name="viewModel"
+            type="com.example.marvel_hub.ui.details.character.CharacterDetailsViewModel" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/character_image"
+            android:layout_width="match_parent"
+            android:layout_height="200dp"
+            android:scaleType="centerCrop"
+            app:imageUrl="@{viewModel.character.toData().thumbnail.image}"
+            app:layout_constraintTop_toTopOf="parent"
+            app:showWhenSuccess="@{viewModel.character}" />
+
+        <TextView
+            android:id="@+id/character_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/large_margin"
+            android:layout_marginTop="@dimen/medium_margin"
+            android:text="@{viewModel.character.toData().name}"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/character_image"
+            app:showWhenSuccess="@{viewModel.character}"
+            style="@style/details_title"
+            />
+
+        <TextView
+            android:id="@+id/screen_description"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/large_margin"
+            android:layout_marginTop="@dimen/medium_margin"
+            android:text="@string/description"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/character_title"
+            style="@style/details_description"
+            />
+
+        <TextView
+            android:id="@+id/character_description"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/large_margin"
+            android:layout_marginTop="@dimen/medium_margin"
+            android:text="@{viewModel.character.toData().description}"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/screen_description"
+            app:showWhenSuccess="@{viewModel.character}"
+            style="@style/secondary_description"
+            />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

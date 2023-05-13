@@ -9,6 +9,7 @@
     <dimen name="small_margin">4dp</dimen>
     <dimen name="medium_margin">8dp</dimen>
     <dimen name="large_margin">16dp</dimen>
+    <dimen name="huge_margin">32dp</dimen>
 
     <dimen name="small_padding">4dp</dimen>
     <dimen name="medium_padding">8dp</dimen>
@@ -69,6 +70,9 @@
     <dimen name="image_hero_width">131dp</dimen>
     <dimen name="image_hero_height">151dp</dimen>
 
+    <dimen name="text_quiz_width">200dp</dimen>
+    <dimen name="text_quiz_height">48dp</dimen>
+
     <dimen name="no_height">0dp</dimen>
     <dimen name="no_width">0dp</dimen>
 
@@ -97,5 +101,16 @@
     <dimen name="height_error_marvel">80dp</dimen>
     <dimen name="width_image_comics">80dp</dimen>
     <dimen name="hight_image_comics">80dp</dimen>
+    <dimen name="height_image_details">220dp</dimen>
+    <dimen name="height_image_creator_profile">180dp</dimen>
+    <dimen name="width_image_creator__profile">180dp</dimen>
+    <dimen name="search_bar_height">56dp</dimen>
+    <dimen name="input_text_size">12sp</dimen>
+    <dimen name="card_text_size">14sp</dimen>
+    <dimen name="search_card_height">200dp</dimen>
+    <dimen name="margin_search_recyclerview">12dp</dimen>
+    <dimen name="height_chip">84dp</dimen>
+    <dimen name="chip_stroke">1dp</dimen>
+    <dimen name="nav_bottom_height">80dp</dimen>
 
 </resources>

@@ -24,7 +24,7 @@ class CharacterFragment : BaseFragment<FragmentCharactersBinding, CharacterViewM
         })
     }
 
-    private fun setupRecyclerView(){
+    private fun setupRecyclerView() {
         val adapter = CharacterAdapter(mutableListOf(), viewModel)
         binding.recyclerViewCharacters.adapter = adapter
     }

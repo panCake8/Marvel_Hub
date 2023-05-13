@@ -9,7 +9,7 @@ class MatchDiffUtils<T>(val oldList: List<T>, val newList: List<T>) : DiffUtil.C
     override fun getNewListSize() = newList.size
 
     override fun areItemsTheSame(oldItemPosition: Int, newItemPosition: Int): Boolean {
-        return (oldList[oldItemPosition]) == (newList[newItemPosition])
+        return oldList[oldItemPosition] == newList[newItemPosition]
     }
 
     override fun areContentsTheSame(oldItemPosition: Int, newItemPosition: Int) = true

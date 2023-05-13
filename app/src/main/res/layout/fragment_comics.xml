@@ -7,7 +7,7 @@
 
         <variable
             name="viewModel"
-            type="com.example.marvel_hub.ui.comics.viewModel.ComicsViewModel" />
+            type="com.example.marvel_hub.ui.comics.viewModel.ComicViewModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -63,6 +63,7 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:showWhenError="@{viewModel.comics}" />
+
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>
