@@ -14,11 +14,11 @@
     <com.google.android.material.card.MaterialCardView
         android:layout_width="@dimen/marvel_card_width"
         android:layout_height="@dimen/marvel_card_height"
-        app:cardElevation="@dimen/no_elevation"
-        android:background="@android:color/transparent"
         android:layout_marginVertical="@dimen/small_margin"
         android:layout_marginEnd="@dimen/margin_medium"
-        app:cardCornerRadius="@dimen/normal_corner_radius">
+        android:background="@android:color/transparent"
+        app:cardCornerRadius="@dimen/normal_corner_radius"
+        app:cardElevation="@dimen/no_elevation">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/card_movie"
@@ -50,7 +50,7 @@
                 android:fontFamily="@font/poppins_medium"
                 android:maxLines="1"
                 android:text="@{item.title.toString()}"
-                android:textColor="@color/white_87"
+                android:textColor="#DEFAFAFA"
                 android:textSize="@dimen/body_text"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintLeft_toLeftOf="parent"
