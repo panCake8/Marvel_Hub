@@ -148,6 +148,7 @@
         <item name="chipIconVisible">false</item>
         <item name="closeIconVisible">false</item>
         <item name="android:height">@dimen/height_chip</item>
+    </style>
 
 
 

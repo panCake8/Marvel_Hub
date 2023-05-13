@@ -17,13 +17,29 @@
             android:id="@+id/fragment_container"
             android:name="androidx.navigation.fragment.NavHostFragment"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="@dimen/no_height"
             app:defaultNavHost="true"
-            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintBottom_toTopOf="@id/nav_bottom"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:navGraph="@navigation/navigation" />
+
+        <com.google.android.material.bottomnavigation.BottomNavigationView
+            android:id="@+id/nav_bottom"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/nav_bottom_height"
+            android:paddingTop="@dimen/small_padding"
+            android:paddingBottom="@dimen/small_padding"
+            app:backgroundTint="@color/background_color"
+            app:itemActiveIndicatorStyle="@style/App.Custom.Indicator"
+            app:itemIconTint="@color/black_87"
+            app:itemTextColor="@color/black_87"
+            app:labelVisibilityMode="selected"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:menu="@menu/nav_item" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

@@ -1,6 +1,8 @@
 package com.example.marvel_hub.ui.search
 
 
+import android.os.Bundle
+import android.view.View
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import com.example.marvel_hub.R

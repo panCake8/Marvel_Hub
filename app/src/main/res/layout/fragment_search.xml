@@ -56,6 +56,7 @@
             android:hint="@string/search_hint"
             android:inputType="text"
             android:maxLength="50"
+            app:clearSearch="@{viewModel.clearSearch}"
             app:onSearchTextChange="@{viewModel}"
             android:paddingHorizontal="@dimen/large_margin"
             android:textColor="@color/input_text_color"
