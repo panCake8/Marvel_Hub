@@ -11,6 +11,4 @@ sealed class HomeItem(val rank: Int) {
     data class Comics(val data: List<ComicModel>) : HomeItem(2)
     data class Events(val data: List<EventModel>) : HomeItem(3)
     data class Series(val data: List<SeriesModel>) : HomeItem(4)
-
-    object QuizGameBanner : HomeItem(4)
 }
