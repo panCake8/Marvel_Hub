@@ -20,6 +20,7 @@ class ComicFragment : BaseFragment<FragmentComicsBinding, ComicViewModel>() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         setupRecyclerView()
+        backClick()
         viewModel.selectedComicItem.observe(viewLifecycleOwner, EventObserver {
             if (it != null) {
                 val nav =
@@ -30,7 +31,11 @@ class ComicFragment : BaseFragment<FragmentComicsBinding, ComicViewModel>() {
             }
         })
     }
-
+    private fun backClick(){
+        binding.toolbarComics.setNavigationOnClickListener{
+            findNavController().popBackStack()
+        }
+    }
     private fun setupRecyclerView() {
         val adapter = ComicsAdapter(mutableListOf(), viewModel)
         binding.recyclerComics.adapter = adapter

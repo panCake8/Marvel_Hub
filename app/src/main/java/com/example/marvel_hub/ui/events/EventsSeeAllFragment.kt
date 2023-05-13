@@ -21,6 +21,7 @@ class EventsSeeAllFragment :
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         setUpAdapter()
+        backClick()
         viewModel.selectedEventItem.observe(viewLifecycleOwner, EventObserver {
             if (it != null) {
                 val nav =
@@ -32,7 +33,11 @@ class EventsSeeAllFragment :
         })
     }
 
-
+    private fun backClick(){
+        binding.toolbarEvents.setNavigationOnClickListener{
+            findNavController().popBackStack()
+        }
+    }
     private fun setUpAdapter() {
         binding.recyclerEvents.adapter = EventsSeeAllAdapter(emptyList(), viewModel)
     }

@@ -26,10 +26,16 @@ class CharacterDetailsFragment :
         setUpAdapter()
         initArguments()
         observeEvents()
+        backClick()
     }
 
     private fun setUpAdapter() {
         binding.mainRecycler.adapter = ParentCharacterAdapter(viewModel, viewLifecycleOwner)
+    }
+    private fun backClick(){
+        binding.toolbarCharacterDetails.setNavigationOnClickListener{
+            findNavController().popBackStack()
+        }
     }
 
     private fun initArguments() {

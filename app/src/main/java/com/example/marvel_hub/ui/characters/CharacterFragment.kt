@@ -19,6 +19,7 @@ class CharacterFragment : BaseFragment<FragmentCharactersBinding, CharacterViewM
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         setupRecyclerView()
+        backClick()
 
         viewModel.selectedCharacterItem.observe(viewLifecycleOwner, EventObserver {
             if (it != null) {
@@ -30,7 +31,11 @@ class CharacterFragment : BaseFragment<FragmentCharactersBinding, CharacterViewM
             }
         })
     }
-
+    private fun backClick(){
+        binding.toolbarCharacter.setNavigationOnClickListener{
+            findNavController().popBackStack()
+        }
+    }
     private fun setupRecyclerView() {
         val adapter = CharacterAdapter(emptyList(), viewModel)
         binding.recyclerViewCharacters.adapter = adapter

@@ -22,6 +22,7 @@ class SeriesFragment : BaseFragment<FragmentSeriesBinding, SeriesViewModel>() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         setUpRecyclerView()
+        backClick()
 
         viewModel.selectedSeriesItem.observe(viewLifecycleOwner, EventObserver {
             if (it != null) {
@@ -33,7 +34,11 @@ class SeriesFragment : BaseFragment<FragmentSeriesBinding, SeriesViewModel>() {
             }
         })
     }
-
+    private fun backClick(){
+        binding.toolbarSeries.setNavigationOnClickListener{
+            findNavController().popBackStack()
+        }
+    }
     private fun setUpRecyclerView() {
         val adapter = SeriesAdapter(mutableListOf(), viewModel)
         binding.recyclerSeries.adapter = adapter

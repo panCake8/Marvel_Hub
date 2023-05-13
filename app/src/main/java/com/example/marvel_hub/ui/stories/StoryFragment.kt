@@ -3,6 +3,7 @@ package com.example.marvel_hub.ui.stories
 import android.os.Bundle
 import android.view.View
 import androidx.fragment.app.viewModels
+import androidx.navigation.fragment.findNavController
 import com.example.marvel_hub.R
 import com.example.marvel_hub.databinding.FragmentStoryBinding
 import com.example.marvel_hub.ui.base.BaseFragment
@@ -23,8 +24,13 @@ class StoryFragment : BaseFragment<FragmentStoryBinding, StoryViewModel>() {
         viewModel.selectedStoryItem.observe(viewLifecycleOwner, EventObserver {
             //Todo
         })
+        backClick()
     }
-
+    private fun backClick(){
+        binding.toolbarStory.setNavigationOnClickListener{
+            findNavController().popBackStack()
+        }
+    }
     private fun setupRecyclerView() {
         val adapter = StoriesAdapter(mutableListOf(), viewModel)
         binding.recyclerStory.adapter = adapter
