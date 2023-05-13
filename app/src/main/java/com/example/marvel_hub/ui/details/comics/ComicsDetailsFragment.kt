@@ -8,6 +8,7 @@ import com.example.marvel_hub.R
 import com.example.marvel_hub.databinding.FragmentComicsDetailsBinding
 import com.example.marvel_hub.ui.base.BaseFragment
 import com.example.marvel_hub.ui.details.comics.adapters.ParentComicAdapter
+import com.example.marvel_hub.util.EventObserver
 
 
 class ComicsDetailsFragment : BaseFragment<FragmentComicsDetailsBinding, ComicsDetailsViewModel>() {
@@ -29,14 +30,10 @@ class ComicsDetailsFragment : BaseFragment<FragmentComicsDetailsBinding, ComicsD
         viewModel.getComicById(0)
     }
     private fun observeEvents() {
-        viewModel.comicDetails.observe(viewLifecycleOwner) { clickEvent ->
-            when (clickEvent) {
-//                is CharacterDetailsEvents.ClickEventEvent -> navigateToEventsDetails(clickEvent.event)
-//                is CharacterDetailsEvents.ClickComicEvent -> navigateToComicDetails(clickEvent.comic)
-//                is CharacterDetailsEvents.ClickSeriesEvent -> navigateToSeriesDetails(clickEvent.series)
-                else -> {}
+        viewModel.characterEvent.observe(viewLifecycleOwner, EventObserver{
+            if (it != null){
+
             }
-            viewModel.clearEvents()
-        }
+        })
     }
 }
