@@ -31,13 +31,6 @@ class CharacterDetailsFragment :
     private fun setUpAdapter() {
         binding.mainRecycler.adapter = ParentCharacterAdapter(viewModel, viewLifecycleOwner)
     }
-    private fun setUpTransition() {
-        viewModel.comicEvent.observe(viewLifecycleOwner, EventObserver{
-            if (it != null){
-
-            }
-        })
-    }
 
     private fun initArguments() {
         viewModel.getCharacterById(arguments.id)
