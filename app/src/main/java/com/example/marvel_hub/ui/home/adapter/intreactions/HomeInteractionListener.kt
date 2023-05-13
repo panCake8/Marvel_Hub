@@ -7,4 +7,5 @@ interface HomeInteractionListener : BaseInteractListener {
     fun onEventItemClick(id: Int)
     fun onComicItemClick(id: Int)
     fun onCharacterItemClick(id: Int)
+    fun onSeriesItemClick(id: Int)
 }

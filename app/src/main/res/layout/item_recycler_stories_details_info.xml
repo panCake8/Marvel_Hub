@@ -15,7 +15,7 @@
         android:layout_height="match_parent">
 
         <androidx.appcompat.widget.AppCompatImageView
-            app:imageUrl="@{viewModel.story.toData().thumbnail.image}"
+            app:imageUrl="@{viewModel.story.toData()[0].thumbnail.image}"
             android:id="@+id/stories_image"
             android:layout_width="match_parent"
             android:layout_height="@dimen/height_image_details"
@@ -29,7 +29,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/large_margin"
             android:layout_marginTop="@dimen/medium_margin"
-            android:text="@{viewModel.story.toData().title}"
+            android:text="@{viewModel.story.toData()[0].title}"
             tools:text="@string/title"
             android:textColor="@color/black_87"
             android:textSize="@dimen/large_text"
@@ -57,7 +57,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/large_margin"
             android:layout_marginTop="@dimen/medium_margin"
-            android:text="@{viewModel.story.toData().description}"
+            android:text="@{viewModel.story.toData()[0].description}"
             tools:text="@string/description"
             android:textColor="@color/black_60"
             android:textSize="@dimen/body_text"

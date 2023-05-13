@@ -52,22 +52,12 @@ fun <T> showWhenSuccess(view: View, state: State<T>?) {
 
 }
 
-@BindingAdapter(value = ["app:showWhenSuccessList"])
-fun <T> showWhenSuccessList(view: View, state: State<T>?) {
-
-    if (state is State.SuccessList)
-        view.visibility = View.VISIBLE
-    else
-        view.visibility = View.GONE
-
-}
-
 @BindingAdapter(value = ["app:recyclerItems"])
 fun <T> setRecyclerItems(recyclerView: RecyclerView, items: List<T>?) {
     if (items != null) {
         (recyclerView.adapter as BaseAdapter<T>).setItems(items)
     } else {
-        (recyclerView.adapter as BaseAdapter<T>).setItems(listOf())
+        (recyclerView.adapter as BaseAdapter<*>).setItems(emptyList())
     }
 }
 
@@ -79,16 +69,15 @@ fun setImageFromUrl(view: ImageView, url: String?) {
 @BindingAdapter(value = ["app:nestedRecyclerItems"])
 fun setNestedRecyclerItems(recyclerView: RecyclerView, items: State<HomeItem>?) {
     items?.let {
-        if (items is State.SuccessList) {
+        if (items is State.Success) {
             (recyclerView.adapter as HomeAdapter).addItem(items.data as MutableList<HomeItem>)
         }
     }
-
 }
 
 @SuppressLint("CheckResult")
 @BindingAdapter(value = ["app:onSearchTextChange"])
-fun onSearchTextChange(view: EditText, viewModel: SearchViewModel) {
+fun onSearchTextChange(view: EditText, viewModel: SearchViewModel?) {
     Observable.create { emitter ->
         view.doOnTextChanged { text, start, before, count ->
             emitter.onNext(text.toString())
@@ -96,11 +85,11 @@ fun onSearchTextChange(view: EditText, viewModel: SearchViewModel) {
     }.debounce(1, TimeUnit.SECONDS).observeOn(Schedulers.io())
         .subscribeOn(AndroidSchedulers.mainThread()).subscribe { text ->
             if (text.isNotEmpty()) {
-                when (viewModel.searchStatus.value) {
-                    SearchStatus.COMIC -> viewModel.getComicData(text)
-                    SearchStatus.EVENT -> viewModel.getEventData(text)
-                    SearchStatus.SERIES -> viewModel.getSeriesData(text)
-                    else -> viewModel.getCharacterData(text)
+                when (viewModel?.searchStatus?.value) {
+                    SearchStatus.COMIC -> viewModel?.getComicData(text)
+                    SearchStatus.EVENT -> viewModel?.getEventData(text)
+                    SearchStatus.SERIES -> viewModel?.getSeriesData(text)
+                    else -> viewModel?.getCharacterData(text)
                 }
             }
         }
@@ -109,27 +98,27 @@ fun onSearchTextChange(view: EditText, viewModel: SearchViewModel) {
 @BindingAdapter(value = ["app:setSearchAdapter", "app:setSearchStatus"])
 fun setSearchRecyclerAdapter(
     view: RecyclerView,
-    viewModel: SearchViewModel,
-    searchStatus: SearchStatus
+    viewModel: SearchViewModel?,
+    searchStatus: SearchStatus?
 ) {
     when (searchStatus) {
         SearchStatus.COMIC -> {
-            val adapter = SearchComicsAdapter(listOf(), viewModel)
+            val adapter = viewModel?.let { SearchComicsAdapter(listOf(), it) }
             view.adapter = adapter
         }
 
         SearchStatus.EVENT -> {
-            val adapter = SearchEventAdapter(listOf(), viewModel)
+            val adapter = viewModel?.let { SearchEventAdapter(listOf(), it) }
             view.adapter = adapter
         }
 
         SearchStatus.SERIES -> {
-            val adapter = SearchSeriesAdapter(listOf(), viewModel)
+            val adapter = viewModel?.let { SearchSeriesAdapter(listOf(), it) }
             view.adapter = adapter
         }
 
         else -> {
-            val adapter = SearchCharactersAdapter(listOf(), viewModel)
+            val adapter = viewModel?.let { SearchCharactersAdapter(listOf(), it) }
             view.adapter = adapter
         }
     }

@@ -38,8 +38,8 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/toolbar_stroke"
-            app:recyclerItems="@{viewModel.comics.toData().data.results}"
-            app:showWhenSuccess="@{viewModel.comics}"
+            app:recyclerItems="@{viewModel.comic.toData()}"
+            app:showWhenSuccess="@{viewModel.comic}"
             tools:listitem="@layout/item_comics_card" />
 
         <ProgressBar
@@ -50,7 +50,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:showWhenLoading="@{viewModel.comics}" />
+            app:showWhenLoading="@{viewModel.comic}" />
 
         <ImageView
             android:id="@+id/image_view_error"
@@ -62,7 +62,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:showWhenError="@{viewModel.comics}" />
+            app:showWhenError="@{viewModel.comic}" />
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>

@@ -3,11 +3,25 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/navigation"
-    app:startDestination="@id/eventsSeeAllFragment">
-
+    app:startDestination="@id/searchFragment2">
     <fragment
-        android:id="@+id/eventsSeeAllFragment"
-        android:name="com.example.marvel_hub.ui.events.EventsSeeAllFragment"
-        android:label="EventsSeeAllFragment"
-        tools:layout="@layout/fragment_events_see_all" />
+        android:id="@+id/homeFragment"
+        android:name="com.example.marvel_hub.ui.home.HomeFragment"
+        android:label="HomeFragment" />
+    <fragment
+        android:id="@+id/searchFragment2"
+        android:name="com.example.marvel_hub.ui.search.SearchFragment"
+        android:label="SearchFragment" />
+    <fragment
+        android:id="@+id/comicFragment2"
+        android:name="com.example.marvel_hub.ui.comics.ComicFragment"
+        android:label="ComicFragment" />
+    <fragment
+        android:id="@+id/seriesFragment"
+        android:name="com.example.marvel_hub.ui.series.SeriesFragment"
+        android:label="SeriesFragment" />
+    <fragment
+        android:id="@+id/storyFragment"
+        android:name="com.example.marvel_hub.ui.stories.StoryFragment"
+        android:label="StoryFragment" />
 </navigation>

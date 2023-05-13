@@ -18,7 +18,7 @@
             android:layout_width="match_parent"
             android:layout_height="200dp"
             android:scaleType="centerCrop"
-            app:imageUrl="@{viewModel.comics.toData().thumbnail.image}"
+            app:imageUrl="@{viewModel.comics.toData()[0].thumbnail.image}"
             app:layout_constraintTop_toTopOf="parent"
             app:showWhenSuccess="@{viewModel.comics}" />
 
@@ -28,7 +28,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/large_margin"
             android:layout_marginTop="@dimen/medium_margin"
-            android:text="@{viewModel.comics.toData().name}"
+            android:text="@{viewModel.comics.toData()[0].name}"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/comic_image"
             app:showWhenSuccess="@{viewModel.character}"
@@ -53,7 +53,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/large_margin"
             android:layout_marginTop="@dimen/medium_margin"
-            android:text="@{viewModel.comics.toData().description}"
+            android:text="@{viewModel.comics.toData()[0].description}"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/screen_description"
             app:showWhenSuccess="@{viewModel.character}"

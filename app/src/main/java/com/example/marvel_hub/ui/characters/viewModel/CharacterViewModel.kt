@@ -14,18 +14,18 @@ import io.reactivex.rxjava3.schedulers.Schedulers
 
 class CharacterViewModel : BaseViewModel(), CharacterInteractionListener {
 
-    private val _characterMarvel =
-        MutableLiveData<State<BaseResponse<CharactersModel>>>(State.Loading)
-    val characterMarvel: LiveData<State<BaseResponse<CharactersModel>>> = _characterMarvel
+    private val _character = MutableLiveData<State<CharactersModel?>>(State.Loading)
+    val character: LiveData<State<CharactersModel?>>
+        get() = _character
 
     private val _selectedCharacterItem = MutableLiveData<Event<Int?>>()
     val selectedCharacterItem: LiveData<Event<Int?>> get() = _selectedCharacterItem
 
     init {
-        getAllCharactersMarvel()
+        getAllCharacters()
     }
 
-    private fun getAllCharactersMarvel() {
+    private fun getAllCharacters() {
         repository.getAllCharacters()
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
@@ -33,12 +33,12 @@ class CharacterViewModel : BaseViewModel(), CharacterInteractionListener {
             .addTo(compositeDisposable = disposable)
     }
 
-    private fun onSuccess(character: BaseResponse<CharactersModel>) {
-        _characterMarvel.postValue(State.Success(character))
+    private fun onSuccess(hero: BaseResponse<CharactersModel>) {
+        _character.postValue(hero.data?.results?.let { State.Success(it) })
     }
 
-    private fun onError(throwable: Throwable) {
-        _characterMarvel.postValue(State.Error(throwable.message.toString()))
+    private fun onError(error: Throwable) {
+        _character.postValue(error.message.toString().let { State.Error(it) })
     }
 
     override fun onClickCharacterItem(character: CharactersModel) {

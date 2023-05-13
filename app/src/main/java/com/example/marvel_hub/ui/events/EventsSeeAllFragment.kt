@@ -8,6 +8,7 @@ import com.example.marvel_hub.databinding.FragmentEventsSeeAllBinding
 import com.example.marvel_hub.ui.base.BaseFragment
 import com.example.marvel_hub.ui.events.event_recycler.EventsSeeAllAdapter
 import com.example.marvel_hub.ui.events.viewModel.EventsViewModel
+import com.example.marvel_hub.util.EventObserver
 
 class EventsSeeAllFragment :
     BaseFragment<FragmentEventsSeeAllBinding, EventsViewModel>() {
@@ -18,11 +19,13 @@ class EventsSeeAllFragment :
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         setUpAdapter()
+        viewModel.selectedEventItem.observe(viewLifecycleOwner, EventObserver {
+            //TODO()
+        })
     }
 
 
     private fun setUpAdapter() {
-        binding.viewModel = viewModel
         binding.recyclerEvents.adapter = EventsSeeAllAdapter(emptyList(), viewModel)
     }
 

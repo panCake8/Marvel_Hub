@@ -18,74 +18,79 @@ import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
 import io.reactivex.rxjava3.kotlin.addTo
 import io.reactivex.rxjava3.schedulers.Schedulers
 
-class CharacterDetailsViewModel : BaseViewModel(), ComicListener,EventsListener,SeriesListener,StoryListener {
+class CharacterDetailsViewModel : BaseViewModel(), ComicListener, EventsListener, SeriesListener,
+    StoryListener {
 
     private val _character = MutableLiveData<State<CharactersModel>>(State.Loading)
     val character: LiveData<State<CharactersModel>>
         get() = _character
 
-    private val _comics = MutableLiveData<State<List<ComicModel>>>(State.Loading)
-    val comics: LiveData<State<List<ComicModel>>>
+    private val _comics = MutableLiveData<State<ComicModel>>(State.Loading)
+    val comics: LiveData<State<ComicModel>>
         get() = _comics
 
-    private val _series = MutableLiveData<State<List<SeriesModel>>>(State.Loading)
-    val series: LiveData<State<List<SeriesModel>>>
+    private val _series = MutableLiveData<State<SeriesModel>>(State.Loading)
+    val series: LiveData<State<SeriesModel>>
         get() = _series
 
-    private val _events = MutableLiveData<State<List<EventModel>>>(State.Loading)
-    val events: LiveData<State<List<EventModel>>>
+    private val _events = MutableLiveData<State<EventModel>>(State.Loading)
+    val events: LiveData<State<EventModel>>
         get() = _events
 
-    private val _stories = MutableLiveData<State<List<StoriesModel>>>(State.Loading)
-    val stories: LiveData<State<List<StoriesModel>>>
+    private val _stories = MutableLiveData<State<StoriesModel>>(State.Loading)
+    val stories: LiveData<State<StoriesModel>>
         get() = _stories
 
     fun getCharacterById(characterId: Int) =
         repository.getCharacterById(characterId).observeOn(Schedulers.io())
             .subscribeOn(AndroidSchedulers.mainThread())
-            .subscribe(::characterOnSuccess, ::characterOnError).addTo(disposable)
+            .subscribe(::characterOnSuccess, ::characterOnError)
+            .addTo(disposable)
 
     private fun characterOnSuccess(character: BaseResponse<CharactersModel>) {
-        _character.postValue(State.Success(character.data?.results?.get(FIRST_ITEM)!!))
+        _character.postValue(State.Success(character.data?.results))
     }
 
     private fun characterOnError(error: Throwable) {
         _character.postValue(State.Error(error.message.toString()))
     }
 
-     fun getComicsByCharacterId(characterId: Int) =
+    fun getComicsByCharacterId(characterId: Int) =
         repository.getComicsByCharacterId(characterId).observeOn(Schedulers.io())
             .subscribeOn(AndroidSchedulers.mainThread())
-            .subscribe(::comicOnSuccess, ::comicsOnError).addTo(disposable)
+            .subscribe(::comicOnSuccess, ::comicsOnError)
+            .addTo(disposable)
 
     private fun comicOnSuccess(comics: BaseResponse<ComicModel>) {
-        _comics.postValue(State.Success(comics.data?.results ?: listOf()))
+        _comics.postValue(State.Success(comics.data?.results))
     }
 
     private fun comicsOnError(error: Throwable) {
         _comics.postValue(State.Error(error.message.toString()))
     }
 
-     fun getSeriesByCharacterId(characterId: Int) =
+    fun getSeriesByCharacterId(characterId: Int) =
         repository.getSeriesByCharacterId(characterId).observeOn(Schedulers.io())
             .subscribeOn(AndroidSchedulers.mainThread())
-            .subscribe(::seriesOnSuccess, ::seriesOnError).addTo(disposable)
+            .subscribe(::seriesOnSuccess, ::seriesOnError)
+            .addTo(disposable)
 
     private fun seriesOnSuccess(series: BaseResponse<SeriesModel>) {
-        _series.postValue(State.Success(series.data?.results ?: listOf()))
+        _series.postValue(State.Success(series.data?.results))
     }
 
     private fun seriesOnError(error: Throwable) {
         _series.postValue(State.Error(error.message.toString()))
     }
 
-     fun getEventsByCharacterId(characterId: Int) =
+    fun getEventsByCharacterId(characterId: Int) =
         repository.getEventsByCharacterId(characterId).observeOn(Schedulers.io())
             .subscribeOn(AndroidSchedulers.mainThread())
-            .subscribe(::eventsOnSuccess, ::eventsOnError).addTo(disposable)
+            .subscribe(::eventsOnSuccess, ::eventsOnError)
+            .addTo(disposable)
 
     private fun eventsOnSuccess(events: BaseResponse<EventModel>) {
-        _events.postValue(State.Success(events.data?.results ?: listOf()))
+        _events.postValue(State.Success(events.data?.results))
     }
 
     private fun eventsOnError(error: Throwable) {
@@ -95,18 +100,15 @@ class CharacterDetailsViewModel : BaseViewModel(), ComicListener,EventsListener,
     fun getStoriesByCharacterId(characterId: Int) =
         repository.getStoriesByCharacterId(characterId).observeOn(Schedulers.io())
             .subscribeOn(AndroidSchedulers.mainThread())
-            .subscribe(::storiesOnSuccess, ::storiesOnError).addTo(disposable)
+            .subscribe(::storiesOnSuccess, ::storiesOnError)
+            .addTo(disposable)
 
     private fun storiesOnSuccess(stories: BaseResponse<StoriesModel>) {
-        _stories.postValue(State.Success(stories.data?.results ?: listOf()))
+        _stories.postValue(State.Success(stories.data?.results))
     }
 
     private fun storiesOnError(error: Throwable) {
         _stories.postValue(State.Error(error.message.toString()))
-    }
-
-    companion object {
-        const val FIRST_ITEM = 0
     }
 
     override fun onComicClick(comic: ComicModel) {

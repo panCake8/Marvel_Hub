@@ -1,6 +1,5 @@
 package com.example.marvel_hub.ui.home.viewModel
 
-import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.example.marvel_hub.ui.base.BaseViewModel
@@ -24,16 +23,15 @@ class HomeViewModel : BaseViewModel(), HomeInteractionListener {
             .subscribeOn(Schedulers.computation())
             .observeOn(AndroidSchedulers.mainThread())
             .subscribe(::onSuccess, ::onError)
-            .addTo(disposable)
+            .addTo(compositeDisposable = disposable)
     }
 
-    private fun onSuccess(items: List<HomeItem>) {
-        _homeItem.postValue(State.SuccessList(items))
+    private fun onSuccess(homeItems: List<HomeItem>) {
+        _homeItem.postValue(State.Success(homeItems))
     }
 
     private fun onError(error: Throwable) {
         _homeItem.postValue(State.Error(error.message.toString()))
-        Log.i("KAMLE", error.message.toString())
     }
 
     override fun onEventItemClick(id: Int) {
@@ -45,6 +43,10 @@ class HomeViewModel : BaseViewModel(), HomeInteractionListener {
     }
 
     override fun onCharacterItemClick(id: Int) {
+
+    }
+
+    override fun onSeriesItemClick(id: Int) {
 
     }
 }

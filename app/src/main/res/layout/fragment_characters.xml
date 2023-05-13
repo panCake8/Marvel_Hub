@@ -24,8 +24,8 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:recyclerItems="@{viewModel.characterMarvel.toData().data.results}"
-            app:showWhenSuccess="@{viewModel.characterMarvel}"
+            app:recyclerItems="@{viewModel.character.toData()}"
+            app:showWhenSuccess="@{viewModel.character}"
             app:spanCount="2"
             tools:listitem="@layout/item_character_horizontal" />
 
@@ -37,17 +37,18 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:showWhenLoading="@{viewModel.characterMarvel}" />
+            app:showWhenLoading="@{viewModel.character}" />
 
         <ImageView
             android:id="@+id/image_view_error"
             android:layout_width="@dimen/width_error_image"
             android:layout_height="@dimen/height_error_image"
             android:contentDescription="@string/error_image"
+            android:src="@drawable/baseline_error_24"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:showWhenError="@{viewModel.characterMarvel}" />
+            app:showWhenError="@{viewModel.character}" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
