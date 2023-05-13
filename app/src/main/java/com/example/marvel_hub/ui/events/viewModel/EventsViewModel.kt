@@ -16,7 +16,7 @@ import io.reactivex.rxjava3.schedulers.Schedulers
 
 class EventsViewModel : BaseViewModel(), EventsSeeAllListener {
 
-    private val _events = MutableLiveData<State<List<EventModel>>>()
+    private val _events = MutableLiveData<State<List<EventModel>>>(State.Loading)
     val event: LiveData<State<List<EventModel>>>
         get() = _events
 
