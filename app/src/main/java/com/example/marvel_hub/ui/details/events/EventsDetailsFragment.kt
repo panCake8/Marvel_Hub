@@ -8,13 +8,11 @@ import androidx.navigation.fragment.navArgs
 import com.example.marvel_hub.R
 import com.example.marvel_hub.databinding.FragmentEventsDetailsBinding
 import com.example.marvel_hub.ui.base.BaseFragment
-import com.example.marvel_hub.ui.details.character.CharacterDetailsFragmentDirections
 import com.example.marvel_hub.ui.details.comics.ComicsDetailsFragmentArgs
 import com.example.marvel_hub.ui.details.events.adapter.ParentEventsAdapter
-import com.example.marvel_hub.ui.series.SeriesFragmentDirections
 import com.example.marvel_hub.util.EventObserver
 
-class EventsDetailsFragment: BaseFragment<FragmentEventsDetailsBinding,EventsDetailsViewModel>() {
+class EventsDetailsFragment : BaseFragment<FragmentEventsDetailsBinding, EventsDetailsViewModel>() {
     override val viewModel: EventsDetailsViewModel by viewModels()
     val arguments: ComicsDetailsFragmentArgs by navArgs()
     override val layoutId: Int
@@ -27,7 +25,8 @@ class EventsDetailsFragment: BaseFragment<FragmentEventsDetailsBinding,EventsDet
         observeEvents()
 
     }
-    private fun setUpAdapter(){
+
+    private fun setUpAdapter() {
         binding.mainRecycler.adapter = ParentEventsAdapter(viewModel, viewLifecycleOwner)
     }
 
@@ -39,12 +38,13 @@ class EventsDetailsFragment: BaseFragment<FragmentEventsDetailsBinding,EventsDet
         viewModel.getComicsByEventId(arguments.id)
 
     }
+
     private fun observeEvents() {
 
         viewModel.seriesEvent.observe(viewLifecycleOwner, EventObserver {
             if (it != null) {
                 val nav =
-                    SeriesFragmentDirections.actionSeriesFragmentToCharacterDetailsFragment(
+                    EventsDetailsFragmentDirections.actionEventsDetailsFragmentToSeriesDetailsFragment(
                         it.id!!
                     )
                 findNavController().navigate(nav)
@@ -54,7 +54,7 @@ class EventsDetailsFragment: BaseFragment<FragmentEventsDetailsBinding,EventsDet
         viewModel.storiesEvent.observe(viewLifecycleOwner, EventObserver {
             if (it != null) {
                 val nav =
-                    SeriesFragmentDirections.actionSeriesFragmentToCharacterDetailsFragment(
+                    EventsDetailsFragmentDirections.actionEventsDetailsFragmentToStoriesDetailsFragment(
                         it.id!!
                     )
                 findNavController().navigate(nav)
@@ -63,7 +63,16 @@ class EventsDetailsFragment: BaseFragment<FragmentEventsDetailsBinding,EventsDet
         viewModel.comicEvent.observe(viewLifecycleOwner, EventObserver {
             if (it != null) {
                 val nav =
-                    SeriesFragmentDirections.actionSeriesFragmentToCharacterDetailsFragment(
+                    EventsDetailsFragmentDirections.actionEventsDetailsFragmentToComicsDetailsFragment(
+                        it.id!!
+                    )
+                findNavController().navigate(nav)
+            }
+        })
+        viewModel.characterEvent.observe(viewLifecycleOwner, EventObserver {
+            if (it != null) {
+                val nav =
+                    EventsDetailsFragmentDirections.actionEventsDetailsFragmentToCharacterDetailsFragment(
                         it.id!!
                     )
                 findNavController().navigate(nav)
