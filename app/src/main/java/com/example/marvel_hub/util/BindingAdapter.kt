@@ -122,9 +122,26 @@ fun setSearchRecyclerAdapter(
             view.adapter = adapter
         }
     }
-}
+
+    @BindingAdapter(value = ["app:availableItemsVisibility"])
+    fun setAvailableItemsVisibility(view: View, state: State<*>?) {
+        val availableItem = state?.let { it.toData()}
+        view.visibility = if (availableItem != null) View.VISIBLE else View.GONE
+    }
+
+    @BindingAdapter(value = ["visibilityIfNotBlank"])
+    fun visibilityIfNotBlank(view: View, text: String?) {
+        if (text.isNullOrEmpty()) {
+            view.visibility = View.GONE
+        } else {
+            view.visibility = View.VISIBLE
+        }
+    }
+
+
 
 @BindingAdapter(value = ["app:clearSearch"])
 fun clearSearch(view: EditText, text: String?) {
     view.setText(text)
+
 }

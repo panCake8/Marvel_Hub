@@ -53,6 +53,9 @@ class EventsDetailsViewModel : BaseViewModel(),
 
     val stories: LiveData<State<StoriesModel>>
         get() = _stories
+    private val _eventDetails: MutableLiveData<EventsDetailsEvents> = MutableLiveData()
+        val eventDetails: LiveData<EventsDetailsEvents>
+        get() = _eventDetails
 
     fun getEventById(eventId: Int) =
         repository.getEventsById(eventId)
@@ -129,21 +132,29 @@ class EventsDetailsViewModel : BaseViewModel(),
         _character.postValue(State.Error(error.message.toString()))
     }
 
+    companion object {
+        const val FIRST_ITEM = 0
+    }
 
     override fun onCharacterClick(character: CharactersModel) {
+        _eventDetails.postValue(EventsDetailsEvents.ClickCharacterEvent(character))
 
     }
 
     override fun onComicClick(comic: ComicModel) {
+        _eventDetails.postValue(EventsDetailsEvents.ClickComicEvent(comic))
 
     }
-
     override fun onSeriesClick(series: SeriesModel) {
-
+        _eventDetails.postValue(EventsDetailsEvents.ClickSeriesEvent(series))
     }
 
     override fun onStoryClick(story: StoriesModel) {
-
+        _eventDetails.postValue(EventsDetailsEvents.ClickStoriesEvent(story))
+    }
+    fun clearEvents() {
+        if (_eventDetails.value != EventsDetailsEvents.ReadyState)
+            _eventDetails.postValue(EventsDetailsEvents.ReadyState)
     }
 
 }
