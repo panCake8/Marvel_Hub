@@ -29,10 +29,10 @@
     <color name="search_result_text_color">#DEFAFAFA</color>
     <color name="selected_chip_color">@color/red</color>
     <color name="unselected_chip_color">@color/white_87</color>
-
-
+    <color name="text_button_color">#DEFAFAFA</color>
+    <color name="text_body">#99121212</color>
     <color name="back_icon_color">#121212</color>
     <color name="stroke_app_bar">#5EFFFFFF</color>
     <color name="white_back_about_marvel">#FFFFFF</color>
-
+<color name="text_item_card">#99FAFAFA</color>
 </resources>

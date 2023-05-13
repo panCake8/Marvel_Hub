@@ -27,7 +27,7 @@
             android:ellipsize="end"
             android:fontFamily="@font/poppins_medium"
             android:includeFontPadding="false"
-            android:textColor="@color/white_100"
+            android:textColor="@color/text_item_card"
             android:textSize="@dimen/title_text"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
