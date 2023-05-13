@@ -1,6 +1,5 @@
 package com.example.marvel_hub.ui.search.viewModel
 
-import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.example.marvel_hub.data.model.BaseResponse
@@ -13,6 +12,7 @@ import com.example.marvel_hub.ui.search.adapter.interactions.CharacterInteractio
 import com.example.marvel_hub.ui.search.adapter.interactions.ComicInteractionListener
 import com.example.marvel_hub.ui.search.adapter.interactions.EventInteractionListener
 import com.example.marvel_hub.ui.search.adapter.interactions.SeriesInteractionListener
+import com.example.marvel_hub.util.Event
 import com.example.marvel_hub.util.State
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
 import io.reactivex.rxjava3.kotlin.addTo
@@ -34,6 +34,22 @@ class SearchViewModel : BaseViewModel(), EventInteractionListener,
     private val _clearSearch = MutableLiveData<String>()
     val clearSearch: LiveData<String>
         get() = _clearSearch
+
+    private val _comicEvent = MutableLiveData<Event<ComicModel>>()
+    val comicEvent: LiveData<Event<ComicModel>>
+        get() = _comicEvent
+
+    private val _characterEvent = MutableLiveData<Event<CharactersModel>>()
+    val characterEvent: LiveData<Event<CharactersModel>>
+        get() = _characterEvent
+
+    private val _eventEvent = MutableLiveData<Event<EventModel>>()
+    val eventEvent: LiveData<Event<EventModel>>
+        get() = _eventEvent
+
+    private val _seriesEvent = MutableLiveData<Event<SeriesModel>>()
+    val seriesEvent : LiveData<Event<SeriesModel>>
+        get() = _seriesEvent
 
     fun getComicData(text: String) {
         _searchList.postValue(State.Loading)
@@ -127,17 +143,19 @@ class SearchViewModel : BaseViewModel(), EventInteractionListener,
     }
 
     override fun onClickComic(comic: ComicModel) {
-
+        _comicEvent.postValue(Event(comic))
     }
 
     override fun onClickEvent(event: EventModel) {
-
+        _eventEvent.postValue(Event(event))
     }
 
-    override fun onClickSeries(creator: SeriesModel) {
+    override fun onClickSeries(series: SeriesModel) {
+        _seriesEvent.postValue(Event(series))
     }
 
-    override fun onClickSeries(character: CharactersModel) {
+    override fun onClickCharacter(character: CharactersModel) {
+        _characterEvent.postValue(Event(character))
 
     }
 
