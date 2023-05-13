@@ -75,6 +75,18 @@
         <argument
             android:name="id"
             app:argType="integer" />
+        <action
+            android:id="@+id/action_comicsDetailsFragment_to_eventsDetailsFragment"
+            app:destination="@id/eventsDetailsFragment" />
+        <action
+            android:id="@+id/action_comicsDetailsFragment_to_seriesDetailsFragment"
+            app:destination="@id/seriesDetailsFragment" />
+        <action
+            android:id="@+id/action_comicsDetailsFragment_to_characterDetailsFragment"
+            app:destination="@id/characterDetailsFragment" />
+        <action
+            android:id="@+id/action_comicsDetailsFragment_to_storiesDetailsFragment"
+            app:destination="@id/storiesDetailsFragment" />
     </fragment>
     <fragment
         android:id="@+id/eventsDetailsFragment"
@@ -100,4 +112,12 @@
         android:id="@+id/fragmentAboutMarvel"
         android:name="com.example.marvel_hub.ui.aboutmarvel.FragmentAboutMarvel"
         android:label="FragmentAboutMarvel" />
+    <fragment
+        android:id="@+id/storiesDetailsFragment"
+        android:name="com.example.marvel_hub.ui.details.stories.StoriesDetailsFragment"
+        android:label="StoriesDetailsFragment" >
+        <argument
+            android:name="id"
+            app:argType="integer" />
+    </fragment>
 </navigation>
