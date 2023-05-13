@@ -111,6 +111,15 @@
     <dimen name="margin_search_recyclerview">12dp</dimen>
     <dimen name="height_chip">84dp</dimen>
     <dimen name="chip_stroke">1dp</dimen>
+
+    <dimen name="chip_radius">8dp</dimen>
+    <dimen name="image_search_width">200dp</dimen>
+    <dimen name="image_search_height">200dp</dimen>
+    <dimen name="chip_text_size">14sp</dimen>
+    <dimen name="margin_search_image">30dp</dimen>
+    <dimen name="height_search_lottie">100dp</dimen>
+    <dimen name="width_search_lottie">100dp</dimen>
+
     <dimen name="nav_bottom_height">72dp</dimen>
 
 </resources>

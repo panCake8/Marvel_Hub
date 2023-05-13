@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
@@ -17,6 +16,32 @@
         android:layout_height="match_parent"
         android:background="@color/background_color">
 
+        <ImageView
+            android:id="@+id/image_on_start"
+            android:layout_width="@dimen/image_search_width"
+            android:layout_height="@dimen/image_hero_width"
+            android:importantForAccessibility="no"
+            android:src="@drawable/image_start_search"
+            android:layout_marginTop="@dimen/margin_search_image"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:showWhenStart="@{viewModel.searchList}" />
+
+        <ImageView
+            android:id="@+id/image_no_result"
+            android:layout_width="@dimen/image_search_width"
+            android:layout_height="@dimen/image_search_height"
+            android:importantForAccessibility="no"
+            android:src="@drawable/image_no_search_result"
+            android:layout_marginTop="@dimen/margin_search_image"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:showWhenNoResult="@{viewModel.searchList.toData()}" />
+
 
         <EditText
             android:id="@+id/search_bar"
@@ -24,6 +49,7 @@
             android:layout_height="@dimen/search_bar_height"
             android:layout_marginHorizontal="@dimen/margin_large"
             android:layout_marginTop="@dimen/margin_medium"
+            android:autofillHints="creditCardExpirationDate"
             android:background="@drawable/search_bar_background"
             android:drawableLeft="@drawable/ic_search"
             android:drawablePadding="@dimen/medium_margin"
@@ -44,70 +70,52 @@
             android:id="@+id/filter_chip_component"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginHorizontal="@dimen/margin_medium"
             android:padding="@dimen/medium_padding"
             app:checkedChip="@id/chip_comics"
             app:layout_constraintTop_toBottomOf="@+id/search_bar"
             app:singleSelection="true">
 
-
-            <com.google.android.material.chip.Chip
+                <com.google.android.material.chip.Chip
                 android:id="@+id/chip_comics"
-                style="@style/Widget.MaterialComponents.Chip.Filter"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:height="@dimen/height_chip"
+                style="@style/Chip_style"
                 android:onClick="@{()-> viewModel.onClickComicChip()}"
-                android:text="@string/characters"
-                android:textColor="@color/chip_text_color"
-                android:textSize="@dimen/body_text"
+                android:text="@string/text_comic_chip"
+                app:checkedIconVisible="false"
+                app:chipStrokeColor="@color/red"
                 app:chipBackgroundColor="@color/chip_background"
-                app:chipCornerRadius="8dp"
-                app:chipStrokeColor="@color/red_medium"
-                app:chipStrokeWidth="@dimen/chip_stroke" />
+                app:chipCornerRadius="@dimen/chip_radius" />
 
-            <com.google.android.material.chip.Chip
+<com.google.android.material.chip.Chip
                 android:id="@+id/chip_series"
-                style="@style/Widget.MaterialComponents.Chip.Filter"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:height="@dimen/height_chip"
+                style="@style/Chip_style"
                 android:onClick="@{()-> viewModel.onClickSeriesChip()}"
                 android:text="@string/text_series_chip"
-                android:textColor="@color/chip_text_color"
-                android:textSize="@dimen/body_text"
+                app:checkedIconVisible="false"
                 app:chipBackgroundColor="@color/chip_background"
-                app:chipCornerRadius="8dp"
-                app:chipStrokeColor="@color/red_medium"
+                app:chipCornerRadius="@dimen/chip_radius"
                 app:chipStrokeWidth="@dimen/chip_stroke" />
 
-            <com.google.android.material.chip.Chip
+           <com.google.android.material.chip.Chip
                 android:id="@+id/chip_events"
-                style="@style/Widget.MaterialComponents.Chip.Filter"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                style="@style/Chip_style"
                 android:height="@dimen/height_chip"
                 android:onClick="@{()-> viewModel.onClickEventChip()}"
                 android:text="@string/text_events"
-                android:textColor="@color/chip_text_color"
-                android:textSize="@dimen/body_text"
+                app:checkedIconVisible="false"
                 app:chipBackgroundColor="@color/chip_background"
-                app:chipCornerRadius="8dp"
-                app:chipStrokeColor="@color/red_medium"
+                app:chipCornerRadius="@dimen/chip_radius"
                 app:chipStrokeWidth="@dimen/chip_stroke" />
 
             <com.google.android.material.chip.Chip
                 android:id="@+id/chip_character"
-                style="@style/Widget.MaterialComponents.Chip.Filter"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                style="@style/Chip_style"
                 android:height="@dimen/height_chip"
                 android:onClick="@{()-> viewModel.onClickCharacterChip()}"
-                android:text="@string/comics"
-                android:textColor="@color/chip_text_color"
-                android:textSize="@dimen/body_text"
+                android:text="@string/characters"
+                app:checkedIconVisible="false"
                 app:chipBackgroundColor="@color/chip_background"
-                app:chipCornerRadius="8dp"
-                app:chipStrokeColor="@color/red_medium"
+                app:chipCornerRadius="@dimen/chip_radius"
                 app:chipStrokeWidth="@dimen/chip_stroke" />
 
 
@@ -132,6 +140,35 @@
             app:showWhenSuccess="@{viewModel.searchList}"
             app:spanCount="2"
             tools:listitem="@layout/item_search_comics" />
+
+
+
+
+        <com.airbnb.lottie.LottieAnimationView
+            android:layout_width="@dimen/width_search_lottie"
+            android:layout_height="@dimen/height_search_lottie"
+            app:lottie_rawRes="@raw/loading_lottie"
+            app:lottie_autoPlay="true"
+            app:lottie_loop="true"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:showWhenLoading="@{viewModel.searchList}"/>
+
+
+        <ImageView
+            android:id="@+id/text_view_error"
+            android:layout_width="@dimen/image_search_width"
+            android:layout_height="@dimen/image_search_height"
+            android:layout_marginTop="@dimen/margin_search_image"
+            android:contentDescription="@string/description_search_image"
+            android:src="@drawable/image_error"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:showWhenError="@{viewModel.searchList}" />
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>

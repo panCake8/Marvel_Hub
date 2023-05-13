@@ -14,7 +14,7 @@
     </style>
 
     <style name="secondary_description" parent="Widget.AppCompat.TextView">
-        <item name="android:textSize">@dimen/body_text</item>
+        <item name="android:textSize">@dimen/chip_text_size</item>
         <item name="android:textColor">@color/black_60</item>
         <item name="fontFamily">@font/poppins_medium</item>
     </style>
@@ -26,7 +26,7 @@
     </style>
 
     <style name="card_title" parent="Widget.AppCompat.TextView">
-        <item name="android:textSize">@dimen/body_text</item>
+        <item name="android:textSize">@dimen/chip_text_size</item>
         <item name="android:textColor">@color/white_87</item>
         <item name="fontFamily">@font/poppins_medium</item>
     </style>
@@ -70,7 +70,7 @@
         <item name="android:ellipsize">end</item>
         <item name="maxLines">1</item>
         <item name="android:textColor">@color/white_87</item>
-        <item name="android:textSize">@dimen/body_text</item>
+        <item name="android:textSize">@dimen/chip_text_size</item>
     </style>
     <!--    RecyclerView Character-->
     <style name="RecyclerViewCharacters">
@@ -137,6 +137,20 @@
         <item name="navigationIcon">@drawable/ic_back_button_34</item>
     </style>
 
+
+    <style name="Chip_style" parent="Base.Widget.MaterialComponents.Chip">
+        <item name="android:checkable">true</item>
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textSize">@dimen/chip_text_size</item>
+        <item name="chipStrokeColor">@color/red</item>
+        <item name="android:textColor">@color/chip_text_color</item>
+        <item name="chipIconVisible">false</item>
+        <item name="closeIconVisible">false</item>
+        <item name="android:height">@dimen/height_chip</item>
+
+
+
     <!-- nav bottom style-->
     <style name="Widget.Material3.BottomNavigationView.ActiveIndicator" parent="">
         <item name="android:width" tools:ignore="PrivateResource">
@@ -156,5 +170,6 @@
 
     <style name="App.Custom.Indicator" parent="Widget.Material3.BottomNavigationView.ActiveIndicator">
         <item name="android:color">@color/red_medium</item>
+
     </style>
 </resources>
