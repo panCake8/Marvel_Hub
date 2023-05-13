@@ -80,7 +80,7 @@ class ComicsDetailsViewModel
         _comics.postValue(State.Error(error.message.toString()))
     }
 
-    private fun getCharacterByComicId(comicId: Int) =
+     fun getCharacterByComicId(comicId: Int) =
         repository.getCharactersByComicId(comicId).observeOn(Schedulers.io())
             .subscribeOn(AndroidSchedulers.mainThread())
             .subscribe(::characterOnSuccess, ::characterOnError)
@@ -94,7 +94,7 @@ class ComicsDetailsViewModel
         _character.postValue(State.Error(error.message.toString()))
     }
 
-    private fun getSeriesByComicId(characterId: Int) =
+     fun getSeriesByComicId(characterId: Int) =
         repository.getSeriesByCharacterId(characterId).observeOn(Schedulers.io())
             .subscribeOn(AndroidSchedulers.mainThread())
             .subscribe(::seriesOnSuccess, ::seriesOnError)
@@ -108,7 +108,7 @@ class ComicsDetailsViewModel
         _series.postValue(State.Error(error.message.toString()))
     }
 
-    private fun getEventsByByComicId(characterId: Int) =
+     fun getEventsByByComicId(characterId: Int) =
         repository.getEventsByCharacterId(characterId).observeOn(Schedulers.io())
             .subscribeOn(AndroidSchedulers.mainThread())
             .subscribe(::eventsOnSuccess, ::eventsOnError)
@@ -122,7 +122,7 @@ class ComicsDetailsViewModel
         _events.postValue(State.Error(error.message.toString()))
     }
 
-    private fun getStoriesByComicById(characterId: Int) =
+     fun getStoriesByComicById(characterId: Int) =
         repository.getStoriesByCharacterId(characterId).observeOn(Schedulers.io())
             .subscribeOn(AndroidSchedulers.mainThread())
             .subscribe(::storiesOnSuccess, ::storiesOnError)

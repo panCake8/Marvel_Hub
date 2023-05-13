@@ -31,7 +31,12 @@ class ComicsDetailsFragment : BaseFragment<FragmentComicsDetailsBinding, ComicsD
     }
 
     private fun initArguments() {
-        viewModel.getComicById(arguments.id)
+        val id = arguments.id
+        viewModel.getComicById(id)
+        viewModel.getCharacterByComicId(id)
+        viewModel.getSeriesByComicId(id)
+        viewModel.getStoriesByComicById(id)
+        viewModel.getEventsByByComicId(id)
     }
 
     private fun observeEvents() {
