@@ -59,6 +59,15 @@ fun <T> showWhenStart(view: View, state: State<T>?) {
         view.visibility = View.VISIBLE
 
 }
+@BindingAdapter(value = ["app:showWhenNoResult"])
+fun <T> showWhenNoResult(view: View, items: List<T>?) {
+    if (items !=null && items.isEmpty())
+        view.visibility = View.VISIBLE
+    else
+        view.visibility = View.GONE
+
+}
+
 
 @BindingAdapter(value = ["app:recyclerItems"])
 fun <T> setRecyclerItems(view: RecyclerView, items: List<T>?) {
