@@ -2,7 +2,7 @@
 <resources>
     <dimen name="large_text">18sp</dimen>
     <dimen name="title_text">16sp</dimen>
-    <dimen name="body_text">14sp</dimen>
+    <dimen name="chip_text_size">14sp</dimen>
     <dimen name="body_text_small">12sp</dimen>
 
     <dimen name="tiny_small_margin">2dp</dimen>
@@ -107,5 +107,10 @@
     <dimen name="margin_search_recyclerview">12dp</dimen>
     <dimen name="height_chip">84dp</dimen>
     <dimen name="chip_stroke">1dp</dimen>
+    <dimen name="chip_radius">8dp</dimen>
+    <dimen name="error_text_size">16sp</dimen>
+    <dimen name="text_error_size">16sp</dimen>
+    <dimen name="image_search_width">200dp</dimen>
+    <dimen name="image_search_height">200dp</dimen>
 
 </resources>

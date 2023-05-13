@@ -29,4 +29,5 @@
     <string name="captain_america">captain america</string>
     <string name="text_comic_chip">Comics</string>
     <string name="text_character">Characters</string>
+    <string name="text_error">Please try again</string>
 </resources>
