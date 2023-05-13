@@ -8,8 +8,7 @@ import com.example.marvel_hub.ui.search.adapter.interactions.EventInteractionLis
 class SearchEventAdapter(items: List<EventModel>, listener: EventInteractionListener) :
     BaseAdapter<EventModel>(items, listener) {
 
-    override val getLayoutId: Int
-        get() =  R.layout.item_search_envents
+    override val getLayoutId = R.layout.item_search_envents
 
 }
 

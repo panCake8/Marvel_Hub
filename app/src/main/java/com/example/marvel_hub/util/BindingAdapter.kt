@@ -9,6 +9,8 @@ import androidx.databinding.BindingAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.marvel_hub.ui.base.BaseAdapter
+import com.example.marvel_hub.ui.home.adapter.HomeAdapter
+import com.example.marvel_hub.ui.home.util.HomeItem
 import com.example.marvel_hub.ui.search.adapter.SearchCharactersAdapter
 import com.example.marvel_hub.ui.search.adapter.SearchComicsAdapter
 import com.example.marvel_hub.ui.search.adapter.SearchEventAdapter
@@ -19,8 +21,6 @@ import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
 import io.reactivex.rxjava3.core.Observable
 import io.reactivex.rxjava3.schedulers.Schedulers
 import java.util.concurrent.TimeUnit
-import com.example.marvel_hub.ui.home.adapter.HomeAdapter
-import com.example.marvel_hub.ui.home.util.HomeItem
 
 @BindingAdapter(value = ["app:showWhenLoading"])
 fun <T> showWhenLoading(view: View, state: State<T>?) {
@@ -103,12 +103,12 @@ fun setSearchRecyclerAdapter(
 ) {
     when (searchStatus) {
         SearchStatus.COMIC -> {
-            val adapter =  SearchComicsAdapter(listOf(), viewModel)
+            val adapter = SearchComicsAdapter(listOf(), viewModel)
             view.adapter = adapter
         }
 
         SearchStatus.EVENT -> {
-            val adapter =  SearchEventAdapter(listOf(), viewModel)
+            val adapter = SearchEventAdapter(listOf(), viewModel)
             view.adapter = adapter
         }
 
@@ -138,10 +138,10 @@ fun setSearchRecyclerAdapter(
         }
     }
 
+}
 
-    @BindingAdapter(value = ["app:clearSearch"])
-    fun clearSearch(view: EditText, text: String?) {
-        view.setText(text)
+@BindingAdapter(value = ["app:clearSearch"])
+fun clearSearch(view: EditText, text: String?) {
+    view.setText(text)
 
-    }
 }
