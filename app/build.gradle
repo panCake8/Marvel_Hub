@@ -51,6 +51,7 @@ android {
 }
 
 dependencies {
+    implementation 'androidx.cardview:cardview:1.0.0'
     def version = "2.2.0"
     def okhttp_version = "4.9.1"
 
@@ -95,4 +96,6 @@ dependencies {
     implementation 'com.github.bumptech.glide:glide:4.15.1'
     //circleImage
     implementation 'com.mikhaellopez:circularimageview:4.3.0'
+    //image slider
+    implementation 'com.ouattararomuald:slider:3.0.1'
 }

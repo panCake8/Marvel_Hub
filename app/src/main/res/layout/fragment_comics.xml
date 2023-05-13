@@ -65,6 +65,5 @@
             app:showWhenError="@{viewModel.comics}" />
 
 
-
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

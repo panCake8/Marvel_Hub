@@ -47,7 +47,7 @@
                 android:ellipsize="end"
                 android:fontFamily="@font/poppins_medium"
                 android:maxLines="1"
-                android:text="@{item.name.toString()}"
+                android:text="@{item.title.toString()}"
                 android:textColor="@color/white_100"
                 android:textSize="@dimen/body_text"
                 app:layout_constraintBottom_toTopOf="@+id/text_duration_time"

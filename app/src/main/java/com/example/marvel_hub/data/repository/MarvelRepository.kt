@@ -6,6 +6,7 @@ import com.example.marvel_hub.data.model.ComicModel
 import com.example.marvel_hub.data.model.EventModel
 import com.example.marvel_hub.data.model.SeriesModel
 import com.example.marvel_hub.ui.home.util.HomeItem
+import com.example.marvel_hub.util.Constants
 import io.reactivex.rxjava3.core.Single
 
 class MarvelRepository : IMarvelRepository {
@@ -104,6 +105,16 @@ class MarvelRepository : IMarvelRepository {
                 HomeItem.Series(series.shuffled().take(10)),
                 HomeItem.Comics(comics.shuffled().take(10)),
                 HomeItem.Events(events.shuffled().take(10)),
+                HomeItem.QuizGameBanner,
+                HomeItem.Banner(
+                    listOf(
+                        Constants.MARVEL_IMAGE_COMIC,
+                        Constants.MARVEL_IMAGE_STORY,
+                        Constants.MARVEL_IMAGE_THANOS,
+                        Constants.MARVEL_IMAGE_DEAD_POOL,
+                        Constants.MARVEL_IMAGE_SPIDER_MAN
+                    ).shuffled()
+                )
             )
         }
     }
