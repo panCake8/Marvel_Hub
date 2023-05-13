@@ -44,8 +44,9 @@ abstract class BaseAdapter<T>(
     override fun getItemCount() = items.size
 
     open fun setItems(newItems: List<T>) {
+        val diffUtils = DiffUtil.calculateDiff(MatchDiffUtils(items, newItems))
         items = newItems
-        notifyDataSetChanged()
+        diffUtils.dispatchUpdatesTo(this)
     }
 
     interface BaseAdapterListener

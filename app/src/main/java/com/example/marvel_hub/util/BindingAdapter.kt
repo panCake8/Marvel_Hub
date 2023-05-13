@@ -57,7 +57,7 @@ fun <T> setRecyclerItems(recyclerView: RecyclerView, items: List<T>?) {
     if (items != null) {
         (recyclerView.adapter as BaseAdapter<T>).setItems(items)
     } else {
-        (recyclerView.adapter as BaseAdapter<*>).setItems(emptyList())
+        (recyclerView.adapter as BaseAdapter<T>).setItems(listOf())
     }
 }
 
@@ -86,9 +86,9 @@ fun onSearchTextChange(view: EditText, viewModel: SearchViewModel?) {
         .subscribeOn(AndroidSchedulers.mainThread()).subscribe { text ->
             if (text.isNotEmpty()) {
                 when (viewModel?.searchStatus?.value) {
-                    SearchStatus.COMIC -> viewModel?.getComicData(text)
-                    SearchStatus.EVENT -> viewModel?.getEventData(text)
-                    SearchStatus.SERIES -> viewModel?.getSeriesData(text)
+                    SearchStatus.COMIC -> viewModel.getComicData(text)
+                    SearchStatus.EVENT -> viewModel.getEventData(text)
+                    SearchStatus.SERIES -> viewModel.getSeriesData(text)
                     else -> viewModel?.getCharacterData(text)
                 }
             }

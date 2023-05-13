@@ -2,26 +2,9 @@
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/navigation"
-    app:startDestination="@id/searchFragment2">
+    android:id="@+id/navigation">
     <fragment
         android:id="@+id/homeFragment"
         android:name="com.example.marvel_hub.ui.home.HomeFragment"
         android:label="HomeFragment" />
-    <fragment
-        android:id="@+id/searchFragment2"
-        android:name="com.example.marvel_hub.ui.search.SearchFragment"
-        android:label="SearchFragment" />
-    <fragment
-        android:id="@+id/comicFragment2"
-        android:name="com.example.marvel_hub.ui.comics.ComicFragment"
-        android:label="ComicFragment" />
-    <fragment
-        android:id="@+id/seriesFragment"
-        android:name="com.example.marvel_hub.ui.series.SeriesFragment"
-        android:label="SeriesFragment" />
-    <fragment
-        android:id="@+id/storyFragment"
-        android:name="com.example.marvel_hub.ui.stories.StoryFragment"
-        android:label="StoryFragment" />
 </navigation>
