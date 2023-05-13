@@ -2,6 +2,7 @@ package com.example.marvel_hub.ui.search
 
 
 import androidx.fragment.app.viewModels
+import androidx.navigation.fragment.findNavController
 import com.example.marvel_hub.R
 import com.example.marvel_hub.databinding.FragmentSearchBinding
 import com.example.marvel_hub.ui.base.BaseFragment
@@ -23,9 +24,43 @@ class SearchFragment : BaseFragment<FragmentSearchBinding, SearchViewModel>() {
 
 
     private fun setUpTransition() {
-        viewModel.characterEvent.observe(viewLifecycleOwner, EventObserver{
-            if (it != null){
+        viewModel.characterEvent.observe(viewLifecycleOwner, EventObserver {
+            if (it != null) {
+                val nav =
+                    SearchFragmentDirections.actionSearchFragmentToCharacterDetailsFragment(
+                        it.id!!
+                    )
+                findNavController().navigate(nav)
+            }
+        })
 
+        viewModel.eventEvent.observe(viewLifecycleOwner, EventObserver {
+            if (it != null) {
+                val nav =
+                    SearchFragmentDirections.actionSearchFragmentToEventsDetailsFragment(
+                        it.id!!
+                    )
+                findNavController().navigate(nav)
+            }
+        })
+
+        viewModel.seriesEvent.observe(viewLifecycleOwner, EventObserver {
+            if (it != null) {
+                val nav =
+                    SearchFragmentDirections.actionSearchFragmentToSeriesDetailsFragment(
+                        it.id!!
+                    )
+                findNavController().navigate(nav)
+            }
+        })
+
+        viewModel.comicEvent.observe(viewLifecycleOwner, EventObserver {
+            if (it != null) {
+                val nav =
+                    SearchFragmentDirections.actionSearchFragmentToComicsDetailsFragment(
+                        it.id!!
+                    )
+                findNavController().navigate(nav)
             }
         })
     }
