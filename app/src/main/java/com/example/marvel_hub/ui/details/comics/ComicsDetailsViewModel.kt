@@ -45,6 +45,9 @@ class ComicsDetailsViewModel
         MutableLiveData<State<List<StoriesModel>>>(State.Loading)
     val stories: LiveData<State<List<StoriesModel>>>
         get() = _stories
+    private val _comicDetails: MutableLiveData<ComicsDetailsEvents> = MutableLiveData()
+    val comicDetails: LiveData<ComicsDetailsEvents>
+        get() = _comicDetails
 
     fun getComicById(comicId: Int) =
         repository.getComicById(comicId).observeOn(Schedulers.io())
@@ -116,18 +119,23 @@ class ComicsDetailsViewModel
     }
 
     override fun onCharacterClick(character: CharactersModel) {
+        _comicDetails.postValue(ComicsDetailsEvents.ClickCharacterEvent(character))
 
     }
 
     override fun onEventClick(event: EventModel) {
-
+        _comicDetails.postValue(ComicsDetailsEvents.ClickEventEvent(event))
     }
 
     override fun onSeriesClick(series: SeriesModel) {
-
+        _comicDetails.postValue(ComicsDetailsEvents.ClickSeriesEvent(series))
     }
 
     override fun onStoryClick(story: StoriesModel) {
-
+        _comicDetails.postValue(ComicsDetailsEvents.ClickStoriesEvent(story))
+    }
+    fun clearEvents() {
+        if (_comicDetails.value != ComicsDetailsEvents.ReadyState)
+            _comicDetails.postValue(ComicsDetailsEvents.ReadyState)
     }
 }

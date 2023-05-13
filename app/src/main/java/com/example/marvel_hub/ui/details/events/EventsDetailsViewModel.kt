@@ -53,6 +53,9 @@ class EventsDetailsViewModel : BaseViewModel(),
 
     val stories: LiveData<State<List<StoriesModel>>>
         get() = _stories
+    private val _eventDetails: MutableLiveData<EventsDetailsEvents> = MutableLiveData()
+        val eventDetails: LiveData<EventsDetailsEvents>
+        get() = _eventDetails
 
     fun getEventById(eventId: Int) =
         repository.getEventsById(eventId)
@@ -134,19 +137,24 @@ class EventsDetailsViewModel : BaseViewModel(),
     }
 
     override fun onCharacterClick(character: CharactersModel) {
-        TODO("Not yet implemented")
+        _eventDetails.postValue(EventsDetailsEvents.ClickCharacterEvent(character))
+
     }
 
     override fun onComicClick(comic: ComicModel) {
-        TODO("Not yet implemented")
-    }
+        _eventDetails.postValue(EventsDetailsEvents.ClickComicEvent(comic))
 
+    }
     override fun onSeriesClick(series: SeriesModel) {
-        TODO("Not yet implemented")
+        _eventDetails.postValue(EventsDetailsEvents.ClickSeriesEvent(series))
     }
 
     override fun onStoryClick(story: StoriesModel) {
-        TODO("Not yet implemented")
+        _eventDetails.postValue(EventsDetailsEvents.ClickStoriesEvent(story))
+    }
+    fun clearEvents() {
+        if (_eventDetails.value != EventsDetailsEvents.ReadyState)
+            _eventDetails.postValue(EventsDetailsEvents.ReadyState)
     }
 
 }

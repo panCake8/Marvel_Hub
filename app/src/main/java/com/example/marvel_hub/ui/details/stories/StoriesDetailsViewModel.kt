@@ -11,6 +11,7 @@ import com.example.marvel_hub.data.model.SeriesModel
 import com.example.marvel_hub.data.model.StoriesModel
 import com.example.marvel_hub.util.State
 import com.example.marvel_hub.ui.base.BaseViewModel
+import com.example.marvel_hub.ui.details.events.EventsDetailsEvents
 import com.example.marvel_hub.ui.details.listeners.CharacterListener
 import com.example.marvel_hub.ui.details.listeners.ComicListener
 import com.example.marvel_hub.ui.details.listeners.EventsListener
@@ -51,6 +52,10 @@ class StoriesDetailsViewModel : BaseViewModel(), EventsListener, CharacterListen
         MutableLiveData<State<List<EventModel>?>>(State.Loading)
     val events: LiveData<State<List<EventModel>?>>
         get() = _events
+
+    private val _storyDetails: MutableLiveData<StoriesDetailsEvents> = MutableLiveData()
+    val storiesDetails: LiveData<StoriesDetailsEvents>
+        get() = _storyDetails
 
 
     fun getStoryById(storyId: Int) =
@@ -135,19 +140,24 @@ class StoriesDetailsViewModel : BaseViewModel(), EventsListener, CharacterListen
     }
 
     override fun onCharacterClick(character: CharactersModel) {
-        TODO("Not yet implemented")
+        _storyDetails.postValue(StoriesDetailsEvents.ClickCharacterStory(character))
+
     }
 
     override fun onComicClick(comic: ComicModel) {
-        TODO("Not yet implemented")
+        _storyDetails.postValue(StoriesDetailsEvents.ClickComicStory(comic))
+
+    }
+    override fun onSeriesClick(series: SeriesModel) {
+        _storyDetails.postValue(StoriesDetailsEvents.ClickSeriesStory(series))
     }
 
     override fun onEventClick(event: EventModel) {
-        TODO("Not yet implemented")
+        _storyDetails.postValue(StoriesDetailsEvents.ClickEventStory(event))
     }
-
-    override fun onSeriesClick(series: SeriesModel) {
-        TODO("Not yet implemented")
+    fun clearEvents() {
+        if (_storyDetails.value != StoriesDetailsEvents.ReadyState)
+            _storyDetails.postValue(StoriesDetailsEvents.ReadyState)
     }
 
 
