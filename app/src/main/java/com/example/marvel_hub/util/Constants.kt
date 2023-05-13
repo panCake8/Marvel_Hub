@@ -10,7 +10,6 @@ object Constants {
         "https://c4.wallpaperflare.com/wallpaper/591/844/1024/spider-man-spider-video-games-superhero-wallpaper-preview.jpg",
         "https://c4.wallpaperflare.com/wallpaper/296/400/37/movie-avengers-infinity-war-black-panther-movie-black-widow-wallpaper-preview.jpg",
         "https://c4.wallpaperflare.com/wallpaper/535/901/196/the-avengers-avengers-endgame-avengers-endgame-iron-man-marvel-comics-hd-wallpaper-preview.jpg",
-        "https://c4.wallpaperflare.com/wallpaper/441/161/104/the-avengers-avengers-endgame-ant-man-avengers-endgame-black-panther-marvel-comics-hd-wallpaper-preview.jpg",
         "https://c4.wallpaperflare.com/wallpaper/459/712/834/movie-avengers-infinity-war-black-panther-marvel-comics-black-widow-wallpaper-preview.jpg",
         "https://c4.wallpaperflare.com/wallpaper/228/684/1/video-games-spider-man-2018-spider-man-marvel-comics-wallpaper-preview.jpg",
         "https://c4.wallpaperflare.com/wallpaper/713/13/242/movies-marvel-cinematic-universe-marvel-comics-avengers-endgame-captain-america-hd-wallpaper-preview.jpg",
