@@ -21,6 +21,7 @@
             android:layout_width="@dimen/image_search_width"
             android:layout_height="@dimen/image_hero_width"
             android:importantForAccessibility="no"
+            android:src="@drawable/start_search_image"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
