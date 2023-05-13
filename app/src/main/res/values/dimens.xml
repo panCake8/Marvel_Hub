@@ -55,8 +55,8 @@
     <dimen name="input_text_field_description">114dp</dimen>
 
 
-    <dimen name="movie_card_height">200dp</dimen>
-    <dimen name="movie_card_width">160dp</dimen>
+    <dimen name="marvel_card_height">200dp</dimen>
+    <dimen name="marvel_card_width">160dp</dimen>
 
     <dimen name="large_card_height">180dp</dimen>
     <dimen name="large_card_width">328dp</dimen>
@@ -111,5 +111,6 @@
     <dimen name="margin_search_recyclerview">12dp</dimen>
     <dimen name="height_chip">84dp</dimen>
     <dimen name="chip_stroke">1dp</dimen>
+    <dimen name="nav_bottom_height">72dp</dimen>
 
 </resources>

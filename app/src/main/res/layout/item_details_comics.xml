@@ -15,8 +15,8 @@
     </data>
 
     <com.google.android.material.card.MaterialCardView
-        android:layout_width="@dimen/movie_card_width"
-        android:layout_height="@dimen/movie_card_height"
+        android:layout_width="@dimen/marvel_card_width"
+        android:layout_height="@dimen/marvel_card_height"
         android:layout_marginHorizontal="@dimen/small_margin"
         android:layout_marginVertical="@dimen/small_margin"
         app:cardCornerRadius="@dimen/normal_corner_radius">
@@ -28,8 +28,8 @@
 
             <ImageView
                 android:id="@+id/image_movie"
-                android:layout_width="@dimen/movie_card_width"
-                android:layout_height="@dimen/movie_card_height"
+                android:layout_width="@dimen/marvel_card_width"
+                android:layout_height="@dimen/marvel_card_height"
                 android:foreground="@drawable/background_bottom_linear_transparent"
                 android:scaleType="fitXY"
                 app:imageUrl="@{item.thumbnail.image}"

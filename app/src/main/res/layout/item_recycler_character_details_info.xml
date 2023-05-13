@@ -18,48 +18,44 @@
             android:layout_width="match_parent"
             android:layout_height="200dp"
             android:scaleType="centerCrop"
-            app:imageUrl="@{viewModel.character.toData().thumbnail.image}"
+            app:imageUrl="@{viewModel.character.toData()[0].thumbnail.image}"
             app:layout_constraintTop_toTopOf="parent"
             app:showWhenSuccess="@{viewModel.character}" />
 
         <TextView
             android:id="@+id/character_title"
+            style="@style/details_title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/large_margin"
             android:layout_marginTop="@dimen/medium_margin"
-            android:text="@{viewModel.character.toData().name}"
+            android:text="@{viewModel.character.toData()[0].name}"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/character_image"
-            app:showWhenSuccess="@{viewModel.character}"
-            style="@style/details_title"
-            />
+            app:showWhenSuccess="@{viewModel.character}" />
 
         <TextView
             android:id="@+id/screen_description"
+            style="@style/details_description"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/large_margin"
             android:layout_marginTop="@dimen/medium_margin"
             android:text="@string/description"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/character_title"
-            style="@style/details_description"
-            />
+            app:layout_constraintTop_toBottomOf="@id/character_title" />
 
         <TextView
             android:id="@+id/character_description"
+            style="@style/secondary_description"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/large_margin"
             android:layout_marginTop="@dimen/medium_margin"
-            android:text="@{viewModel.character.toData().description}"
-
+            android:text="@{viewModel.character.toData()[0].description}"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/screen_description"
-            app:showWhenSuccess="@{viewModel.character}"
-            style="@style/secondary_description"
-            />
+            app:showWhenSuccess="@{viewModel.character}" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

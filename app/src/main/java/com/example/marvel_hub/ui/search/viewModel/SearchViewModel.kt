@@ -22,76 +22,80 @@ class SearchViewModel : BaseViewModel(), EventInteractionListener,
     SeriesInteractionListener, CharacterInteractionListener {
 
     private val _searchStatus =
-        MutableLiveData(SearchStatus.COMIC)
+        MutableLiveData(SearchStatus.CHARACTER)
     val searchStatus: LiveData<SearchStatus>
         get() = _searchStatus
 
-    private val _searchList = MutableLiveData<State<List<Any>>>(State.Loading)
-    val searchList: LiveData<State<List<Any>>>
+    private val _searchList = MutableLiveData<State<Any>>(State.Loading)
+    val searchList: LiveData<State<Any>>
         get() = _searchList
 
     fun getComicData(text: String) {
-        _searchList.postValue(State.Loading)
         repository.searchComics(text)
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
-            .subscribe(::onGetComicsSuccess, ::onGetComicsError).addTo(disposable)
+            .subscribe(::onGetComicsSuccess, ::onGetComicsError)
+            .addTo(disposable)
     }
 
     private fun onGetComicsSuccess(comics: BaseResponse<ComicModel>) {
-        _searchList.postValue(State.Success(comics.data?.results ?: listOf()))
+        _searchList.postValue(State.Success(comics.data?.results))
     }
 
-    private fun onGetComicsError(throwable: Throwable) =
-        State.Error(throwable.message.toString())
+    private fun onGetComicsError(throwable: Throwable) {
+        _searchList.postValue(State.Error(throwable.message.toString()))
+    }
 
     fun getSeriesData(text: String) {
-        _searchList.postValue(State.Loading)
         repository.searchSeries(text)
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
-            .subscribe(::onGetSeriesSuccess, ::onGetSeriesError).addTo(disposable)
+            .subscribe(::onGetSeriesSuccess, ::onGetSeriesError)
+            .addTo(disposable)
     }
 
     private fun onGetSeriesSuccess(series: BaseResponse<SeriesModel>) {
-        _searchList.postValue(State.Success(series.data?.results ?: listOf()))
+        _searchList.postValue(State.Success(series.data?.results))
     }
 
-    private fun onGetSeriesError(throwable: Throwable) =
-        State.Error(throwable.message.toString())
+    private fun onGetSeriesError(throwable: Throwable) {
+        _searchList.postValue(State.Error(throwable.message.toString()))
+    }
 
 
     fun getEventData(text: String) {
-        _searchList.postValue(State.Loading)
         repository.searchEvents(text)
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
-            .subscribe(::onGetEventSuccess, ::onGetEventError).addTo(disposable)
+            .subscribe(::onGetEventSuccess, ::onGetEventError)
+            .addTo(disposable)
     }
 
     private fun onGetEventSuccess(events: BaseResponse<EventModel>) {
-        _searchList.postValue(State.Success(events.data?.results ?: listOf()))
+        _searchList.postValue(State.Success(events.data?.results))
     }
 
 
-    private fun onGetEventError(throwable: Throwable) =
-        State.Error(throwable.message.toString())
+    private fun onGetEventError(throwable: Throwable) {
+        _searchList.postValue(State.Error(throwable.message.toString()))
+    }
 
     fun getCharacterData(text: String) {
-        _searchList.postValue(State.Loading)
         repository.searchCharacters(text)
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
-            .subscribe(::onGetCharacterSuccess, ::onGetCharacterError).addTo(disposable)
+            .subscribe(::onGetCharacterSuccess, ::onGetCharacterError)
+            .addTo(disposable)
     }
 
     private fun onGetCharacterSuccess(character: BaseResponse<CharactersModel>) {
-        _searchList.postValue(State.Success(character.data?.results ?: listOf()))
+        _searchList.postValue(State.Success(character.data?.results))
     }
 
 
-    private fun onGetCharacterError(throwable: Throwable) =
-        State.Error(throwable.message.toString())
+    private fun onGetCharacterError(throwable: Throwable) {
+        _searchList.postValue(State.Error(throwable.message.toString()))
+    }
 
     fun onClickComicChip() {
         _searchStatus.postValue(SearchStatus.COMIC)

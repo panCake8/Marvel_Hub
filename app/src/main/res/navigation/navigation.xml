@@ -2,12 +2,9 @@
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/navigation"
-    app:startDestination="@id/eventsSeeAllFragment">
-
+    android:id="@+id/navigation">
     <fragment
-        android:id="@+id/eventsSeeAllFragment"
-        android:name="com.example.marvel_hub.ui.events.EventsSeeAllFragment"
-        android:label="EventsSeeAllFragment"
-        tools:layout="@layout/fragment_events_see_all" />
+        android:id="@+id/homeFragment"
+        android:name="com.example.marvel_hub.ui.home.HomeFragment"
+        android:label="HomeFragment" />
 </navigation>

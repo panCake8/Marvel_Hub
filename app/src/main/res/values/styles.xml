@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<resources>
+<resources xmlns:tools="http://schemas.android.com/tools">
 
     <style name="screen_title" parent="Widget.AppCompat.TextView">
         <item name="android:textSize">@dimen/large_text</item>
@@ -21,7 +21,7 @@
 
     <style name="details_description" parent="Widget.AppCompat.TextView">
         <item name="android:textSize">@dimen/title_text</item>
-        <item name="android:textColor">@color/light_red</item>
+        <item name="android:textColor">@color/red_medium</item>
         <item name="fontFamily">@font/poppins_medium</item>
     </style>
 
@@ -136,5 +136,26 @@
         <item name="titleTextColor">@color/black_100</item>
         <item name="elevation">@dimen/elevation_small</item>
         <item name="navigationIcon">@drawable/ic_back_button_34</item>
+    </style>
+
+    <!-- nav bottom style-->
+    <style name="Widget.Material3.BottomNavigationView.ActiveIndicator" parent="">
+        <item name="android:width" tools:ignore="PrivateResource">
+            56dp
+        </item>
+        <item name="android:height" tools:ignore="PrivateResource">
+            32dp
+        </item>
+        <item name="marginHorizontal" tools:ignore="PrivateResource">
+            @dimen/m3_bottom_nav_item_active_indicator_margin_horizontal
+        </item>
+        <item name="shapeAppearance">
+            @style/ShapeAppearance.Material3.NavigationBarView.ActiveIndicator
+        </item>
+        <item name="android:color">@color/background_color</item>
+    </style>
+
+    <style name="App.Custom.Indicator" parent="Widget.Material3.BottomNavigationView.ActiveIndicator">
+        <item name="android:color">@color/red_medium</item>
     </style>
 </resources>

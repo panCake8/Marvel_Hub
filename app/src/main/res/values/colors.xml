@@ -7,8 +7,8 @@
     <color name="teal_700">#FF018786</color>
 
 
-    <color name="red">#ec1d24</color>
-    <color name="light_red">#e62429</color>
+    <color name="red_medium">#F2264B</color>
+    <color name="red">#F2264B</color>
 
     <color name="white_100">#FAFAFA</color>
     <color name="white_87">#DEFAFAFA</color>
@@ -35,4 +35,8 @@
     <color name="stroke_app_bar">#5EFFFFFF</color>
     <color name="white_back_about_marvel">#FFFFFF</color>
 <color name="text_item_card">#99FAFAFA</color>
+
+    <color name="just_white">#FAFAFA</color>
+    <color name="just_black">#121212</color>
+
 </resources>

@@ -17,7 +17,6 @@ class CreatorsFragment : BaseFragment<FragmentCreatorsBinding, CreatorsViewModel
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        viewModel.getCreator(9716)
         binding.buttonProducts.setOnClickListener {
 
         }
