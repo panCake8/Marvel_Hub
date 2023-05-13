@@ -4,10 +4,14 @@ import android.annotation.SuppressLint
 import android.view.View
 import android.widget.EditText
 import android.widget.ImageView
+import android.widget.ProgressBar
+import androidx.core.content.ContextCompat
+import androidx.core.view.isVisible
 import androidx.core.widget.doOnTextChanged
 import androidx.databinding.BindingAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
+import com.example.marvel_hub.R
 import com.example.marvel_hub.ui.base.BaseAdapter
 import com.example.marvel_hub.ui.search.adapter.SearchCharactersAdapter
 import com.example.marvel_hub.ui.search.adapter.SearchComicsAdapter
@@ -82,6 +86,19 @@ fun onSearchTextChange(view: EditText, viewModel: SearchViewModel) {
                 }
             }
         }
+}
+
+@BindingAdapter(value = ["isVisible"])
+fun showIfTrue(view: View, status: Boolean) {
+    view.isVisible = status
+}
+
+@BindingAdapter(value = ["app:progressBarDrawable"])
+fun setProgressBarDrawable(view: ProgressBar, value: Int?) {
+    view.progressDrawable = if (value!!.toInt() > 10) ContextCompat.getDrawable(
+        view.context,
+        R.drawable.circle_progress_bar
+    ) else ContextCompat.getDrawable(view.context, R.drawable.circle_red_progressbar)
 }
 
 @BindingAdapter(value = ["app:setSearchAdapter", "app:setSearchStatus"])
