@@ -1,5 +1,7 @@
 package com.example.marvel_hub.util
 
+import androidx.lifecycle.LifecycleOwner
+import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.example.marvel_hub.data.enums.AnswerState
 import com.example.marvel_hub.data.model.AnswerModel
@@ -10,4 +12,8 @@ fun CharactersModel.toAnswer(isCorrect: Boolean, answerState: AnswerState = Answ
 
 fun <T> MutableLiveData<Event<T>>.postEvent(content: T) {
     postValue(Event(content))
+}
+
+inline fun <T> LiveData<Event<T>>.observeEvent(owner: LifecycleOwner, crossinline onEventUnhandledContent: (T) -> Unit) {
+    observe(owner) { it?.getContentIfNotHandled()?.let(onEventUnhandledContent) }
 }
