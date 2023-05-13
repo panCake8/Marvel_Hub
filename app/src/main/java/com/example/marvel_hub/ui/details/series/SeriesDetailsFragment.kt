@@ -31,5 +31,16 @@ class SeriesDetailsFragment : BaseFragment<FragmentSeriesDetailsBinding, SeriesD
         viewModel.getEventsBySeriesId(26024)
 
     }
+    private fun observeEvents() {
+        viewModel.seriesDetails.observe(viewLifecycleOwner) { clickEvent ->
+            when (clickEvent) {
+//                is CharacterDetailsEvents.ClickEventEvent -> navigateToEventsDetails(clickEvent.event)
+//                is CharacterDetailsEvents.ClickComicEvent -> navigateToComicDetails(clickEvent.comic)
+//                is CharacterDetailsEvents.ClickSeriesEvent -> navigateToSeriesDetails(clickEvent.series)
+                else -> {}
+            }
+            viewModel.clearEvents()
+        }
+    }
 
 }
