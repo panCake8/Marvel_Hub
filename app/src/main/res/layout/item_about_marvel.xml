@@ -29,7 +29,7 @@
             android:background="@color/background_color">
 
             <ImageView
-                android:id="@+id/imageView"
+                android:id="@+id/imageView_character"
                 android:layout_width="@dimen/width_image_item_creator"
                 android:layout_height="@dimen/height_image_item_creator"
                 android:layout_marginEnd="@dimen/large_margin"

@@ -12,7 +12,7 @@ import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
 import io.reactivex.rxjava3.kotlin.addTo
 import io.reactivex.rxjava3.schedulers.Schedulers
 
-class ComicsViewModel : BaseViewModel(), OnClickItemComic {
+class ComicViewModel : BaseViewModel(), OnClickItemComic {
 
     private val _comics = MutableLiveData<State<BaseResponse<ComicModel>>>(State.Loading)
     val comics: LiveData<State<BaseResponse<ComicModel>>>
@@ -33,7 +33,6 @@ class ComicsViewModel : BaseViewModel(), OnClickItemComic {
             .observeOn(AndroidSchedulers.mainThread())
             .subscribe(::onSuccess, ::onFailed)
             .addTo(compositeDisposable = disposable)
-
     }
 
     private fun onSuccess(comicsResponse: BaseResponse<ComicModel>) {

@@ -6,10 +6,11 @@ import androidx.fragment.app.viewModels
 import com.example.marvel_hub.R
 import com.example.marvel_hub.databinding.FragmentStoryBinding
 import com.example.marvel_hub.ui.base.BaseFragment
+import com.example.marvel_hub.ui.stories.adapter.StoriesAdapter
 import com.example.marvel_hub.ui.stories.viewModel.StoryViewModel
 import com.example.marvel_hub.util.EventObserver
 
-class StoryFragment: BaseFragment<FragmentStoryBinding, StoryViewModel>() {
+class StoryFragment : BaseFragment<FragmentStoryBinding, StoryViewModel>() {
 
     override val viewModel: StoryViewModel by viewModels()
 
@@ -19,16 +20,13 @@ class StoryFragment: BaseFragment<FragmentStoryBinding, StoryViewModel>() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         setupRecyclerView()
-
-
-        viewModel.selectedStoryItem.observe(viewLifecycleOwner, EventObserver{
+        viewModel.selectedStoryItem.observe(viewLifecycleOwner, EventObserver {
             //Todo
         })
     }
 
-    private fun setupRecyclerView(){
-
-        val adapter = StoriesAdapter(mutableListOf(),viewModel)
+    private fun setupRecyclerView() {
+        val adapter = StoriesAdapter(mutableListOf(), viewModel)
         binding.recyclerStory.adapter = adapter
     }
 }
