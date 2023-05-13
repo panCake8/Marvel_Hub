@@ -165,5 +165,17 @@
         <argument
             android:name="id"
             app:argType="integer" />
+        <action
+            android:id="@+id/action_storiesDetailsFragment_to_seriesDetailsFragment"
+            app:destination="@id/seriesDetailsFragment" />
+        <action
+            android:id="@+id/action_storiesDetailsFragment_to_comicsDetailsFragment"
+            app:destination="@id/comicsDetailsFragment" />
+        <action
+            android:id="@+id/action_storiesDetailsFragment_to_characterDetailsFragment"
+            app:destination="@id/characterDetailsFragment" />
+        <action
+            android:id="@+id/action_storiesDetailsFragment_to_eventsDetailsFragment"
+            app:destination="@id/eventsDetailsFragment" />
     </fragment>
 </navigation>
