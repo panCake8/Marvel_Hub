@@ -112,3 +112,8 @@ fun setSearchRecyclerAdapter(
         }
     }
 }
+
+@BindingAdapter(value = ["app:clearSearch"])
+fun clearSearch(view: EditText, text: String?) {
+    view.setText(text)
+}

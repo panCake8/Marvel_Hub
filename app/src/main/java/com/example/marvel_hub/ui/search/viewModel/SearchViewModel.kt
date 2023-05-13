@@ -7,12 +7,12 @@ import com.example.marvel_hub.data.model.CharactersModel
 import com.example.marvel_hub.data.model.ComicModel
 import com.example.marvel_hub.data.model.EventModel
 import com.example.marvel_hub.data.model.SeriesModel
-import com.example.marvel_hub.util.State
 import com.example.marvel_hub.ui.base.BaseViewModel
 import com.example.marvel_hub.ui.search.adapter.interactions.CharacterInteractionListener
 import com.example.marvel_hub.ui.search.adapter.interactions.ComicInteractionListener
 import com.example.marvel_hub.ui.search.adapter.interactions.EventInteractionListener
 import com.example.marvel_hub.ui.search.adapter.interactions.SeriesInteractionListener
+import com.example.marvel_hub.util.State
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
 import io.reactivex.rxjava3.kotlin.addTo
 import io.reactivex.rxjava3.schedulers.Schedulers
@@ -29,6 +29,10 @@ class SearchViewModel : BaseViewModel(), EventInteractionListener,
     private val _searchList = MutableLiveData<State<List<Any>>>(State.Loading)
     val searchList: LiveData<State<List<Any>>>
         get() = _searchList
+
+    private val _clearSearch = MutableLiveData<String>()
+    val clearSearch: LiveData<String>
+        get() = _clearSearch
 
     fun getComicData(text: String) {
         _searchList.postValue(State.Loading)
@@ -95,18 +99,22 @@ class SearchViewModel : BaseViewModel(), EventInteractionListener,
 
     fun onClickComicChip() {
         _searchStatus.postValue(SearchStatus.COMIC)
+        _clearSearch.postValue(CLEAR_SEARCH)
     }
 
     fun onClickEventChip() {
         _searchStatus.postValue(SearchStatus.EVENT)
+        _clearSearch.postValue(CLEAR_SEARCH)
     }
 
     fun onClickSeriesChip() {
         _searchStatus.postValue(SearchStatus.SERIES)
+        _clearSearch.postValue(CLEAR_SEARCH)
     }
 
     fun onClickCharacterChip() {
         _searchStatus.postValue(SearchStatus.CHARACTER)
+        _clearSearch.postValue(CLEAR_SEARCH)
     }
 
     override fun onClickComic(comic: ComicModel) {
@@ -122,6 +130,10 @@ class SearchViewModel : BaseViewModel(), EventInteractionListener,
 
     override fun onClickSeries(character: CharactersModel) {
 
+    }
+
+    companion object {
+        const val CLEAR_SEARCH = ""
     }
 }
 
