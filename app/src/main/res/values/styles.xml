@@ -137,4 +137,12 @@
         <item name="elevation">@dimen/elevation_small</item>
         <item name="navigationIcon">@drawable/ic_back_button_34</item>
     </style>
+
+    <style name="QuestionTextStyle" parent="TextAppearance.AppCompat">
+        <item name="android:textColor">@color/black_60</item>
+        <item name="android:textSize">@dimen/large_text</item>
+        <item name="textAllCaps">false</item>
+        <item name="android:textStyle">bold</item>
+
+    </style>
 </resources>

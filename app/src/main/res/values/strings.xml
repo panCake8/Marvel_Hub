@@ -36,4 +36,33 @@
     <string name="about_marvel_paragraph">Marvel Comics is an American comic book publisher and the property of The Walt Disney Company since December 31, 2009. Evolving from Timely Comics in 1939, Magazine Management/Atlas Comics in 1951 and its predecessor, Marvel Mystery Comics, the Marvel Comics title/name/brand was first used in June 1961. Marvel was started in 1939 by Martin Goodman as Timely Comics, and by 1951 had generally become known as Atlas Comics. The Marvel era began in June 1961 with the launch of The Fantastic Four and other superhero titles created by Stan Lee, Jack Kirby, Steve Ditko and many others. The Marvel brand, which had been used over the years and decades, was solidified as the company\'s primary brand.</string>
     <string name="go_to_website">Go to Website</string>
     <string name="hero_marvel">hero_marvel</string>
+
+    <string name="play">Play</string>
+    <string name="how_to_play">How to play?</string>
+    <string name="dialog_title">How to play</string>
+    <string name="instructions_1">15 Question</string>
+    <string name="instructions_2">30 sec</string>
+    <string name="instructions_4">Use helpers</string>
+    <string name="instructions_1_sub_title">Get $1,000,000 when answer all \nquestion</string>
+    <string name="instructions_2_sub_title">Duration for each question</string>
+    <string name="instructions_4_sub_title">Delete two wrong answers (50:50) \nor replace the question.</string>
+    <string name="exit_dialog_title">Are you sure?</string>
+    <string name="exit">Exit</string>
+    <string name="exit_subtitle">If you exit now, you will lose all your points.</string>
+    <string name="score_gained">Score Gained</string>
+    <string name="_120">120</string>
+    <string name="answered_questions">Answered Questions</string>
+    <string name="_8">8</string>
+    <string name="home">Home</string>
+    <string name="a">A</string>
+    <string name="the_question">In any programming language, what is the most common way to iterate through an array?</string>
+    <string name="time">0:30</string>
+    <string name="b">B</string>
+    <string name="c">C</string>
+    <string name="d">D</string>
+    <string name="error_hint">Ooops!</string>
+    <string name="error_description">It seems there is something wrong with your Internet connection. Please connect to the Internet and try again.</string>
+    <string name="try_again">Try again</string>
+    <string name="loading">Loading…</string>
+    <string name="close_dialog">Close Dialog</string>
 </resources>
