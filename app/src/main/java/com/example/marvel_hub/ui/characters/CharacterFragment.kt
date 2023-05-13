@@ -3,6 +3,7 @@ package com.example.marvel_hub.ui.characters
 import android.os.Bundle
 import android.view.View
 import androidx.fragment.app.viewModels
+import androidx.navigation.fragment.findNavController
 import com.example.marvel_hub.R
 import com.example.marvel_hub.databinding.FragmentCharactersBinding
 import com.example.marvel_hub.ui.base.BaseFragment
@@ -20,7 +21,13 @@ class CharacterFragment : BaseFragment<FragmentCharactersBinding, CharacterViewM
         setupRecyclerView()
 
         viewModel.selectedCharacterItem.observe(viewLifecycleOwner, EventObserver {
-
+            if (it != null) {
+                val nav =
+                    CharacterFragmentDirections.actionCharacterFragmentToCharacterDetailsFragment(
+                        it
+                    )
+                findNavController().navigate(nav)
+            }
         })
     }
 

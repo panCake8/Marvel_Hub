@@ -81,23 +81,35 @@
     <fragment
         android:id="@+id/characterFragment"
         android:name="com.example.marvel_hub.ui.characters.CharacterFragment"
-        android:label="CharacterFragment" />
+        android:label="CharacterFragment" >
+        <action
+            android:id="@+id/action_characterFragment_to_characterDetailsFragment"
+            app:destination="@id/characterDetailsFragment" />
+    </fragment>
     <fragment
         android:id="@+id/comicFragment"
         android:name="com.example.marvel_hub.ui.comics.ComicFragment"
-        android:label="ComicFragment" />
+        android:label="ComicFragment" >
+        <action
+            android:id="@+id/action_comicFragment_to_comicsDetailsFragment"
+            app:destination="@id/comicsDetailsFragment" />
+    </fragment>
     <fragment
         android:id="@+id/seriesFragment"
         android:name="com.example.marvel_hub.ui.series.SeriesFragment"
         android:label="SeriesFragment" >
         <action
-            android:id="@+id/action_seriesFragment_to_characterDetailsFragment"
-            app:destination="@id/characterDetailsFragment" />
+            android:id="@+id/action_seriesFragment_to_seriesDetailsFragment"
+            app:destination="@id/seriesDetailsFragment" />
     </fragment>
     <fragment
         android:id="@+id/eventsSeeAllFragment"
         android:name="com.example.marvel_hub.ui.events.EventsSeeAllFragment"
-        android:label="EventsSeeAllFragment" />
+        android:label="EventsSeeAllFragment" >
+        <action
+            android:id="@+id/action_eventsSeeAllFragment_to_eventsDetailsFragment"
+            app:destination="@id/eventsDetailsFragment" />
+    </fragment>
     <fragment
         android:id="@+id/characterDetailsFragment"
         android:name="com.example.marvel_hub.ui.details.character.CharacterDetailsFragment"

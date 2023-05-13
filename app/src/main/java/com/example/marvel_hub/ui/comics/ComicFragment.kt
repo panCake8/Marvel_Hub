@@ -3,9 +3,11 @@ package com.example.marvel_hub.ui.comics
 import android.os.Bundle
 import android.view.View
 import androidx.fragment.app.viewModels
+import androidx.navigation.fragment.findNavController
 import com.example.marvel_hub.R
 import com.example.marvel_hub.databinding.FragmentComicsBinding
 import com.example.marvel_hub.ui.base.BaseFragment
+import com.example.marvel_hub.ui.characters.CharacterFragmentDirections
 import com.example.marvel_hub.ui.comics.adapter.ComicsAdapter
 import com.example.marvel_hub.ui.comics.viewModel.ComicViewModel
 import com.example.marvel_hub.util.EventObserver
@@ -19,7 +21,13 @@ class ComicFragment : BaseFragment<FragmentComicsBinding, ComicViewModel>() {
         super.onViewCreated(view, savedInstanceState)
         setupRecyclerView()
         viewModel.selectedComicItem.observe(viewLifecycleOwner, EventObserver {
-            //TODO
+            if (it != null) {
+                val nav =
+                    ComicFragmentDirections.actionComicFragmentToComicsDetailsFragment(
+                        it
+                    )
+                findNavController().navigate(nav)
+            }
         })
     }
 
