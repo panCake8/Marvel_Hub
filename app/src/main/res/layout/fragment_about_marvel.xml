@@ -12,7 +12,7 @@
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@color/white_100">
+        android:background="@color/background_color">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
@@ -37,11 +37,11 @@
                 android:id="@+id/image_marvel"
                 android:layout_width="@dimen/no_height"
                 android:layout_height="@dimen/image_sing_up_height"
+                android:contentDescription="@string/logo"
                 android:src="@drawable/image_marvel"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/toolbar_stroke"
-                android:contentDescription="@string/logo" />
+                app:layout_constraintTop_toBottomOf="@+id/toolbar_stroke" />
 
             <TextView
                 android:id="@+id/text_creators"
@@ -59,6 +59,7 @@
                 android:id="@+id/recycler_characters"
                 style="@style/RecyclerStyleCreator"
                 android:layout_marginTop="@dimen/medium_margin"
+
                 android:orientation="horizontal"
                 app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -72,8 +73,10 @@
                 android:layout_height="wrap_content"
                 android:layout_margin="@dimen/medium_radius"
                 android:layout_marginTop="@dimen/small_padding"
+                android:paddingStart="@dimen/large_padding"
+                android:paddingEnd="@dimen/large_padding"
                 android:text="@string/stan_lee_28_1922_12_2018_1989_spider_man_x_men_hulk_iron_man_thor_eisner_award_2008"
-                android:textColor="@color/black_100"
+                android:textColor="@color/text_body"
                 android:textSize="@dimen/text_creator"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="@id/image_marvel"
@@ -94,12 +97,12 @@
                 android:id="@+id/image_view_error"
                 android:layout_width="@dimen/width_error_marvel"
                 android:layout_height="@dimen/height_error_marvel"
+                android:contentDescription="@string/logo"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                app:showWhenError="@{viewModel.marvel}"
-                android:contentDescription="@string/logo" />
+                app:showWhenError="@{viewModel.marvel}" />
 
 
         </androidx.constraintlayout.widget.ConstraintLayout>

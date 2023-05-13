@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="purple_200">#FFBB86FC</color>
+    <color name="purple_500">#FF6200EE</color>
+    <color name="purple_700">#FF3700B3</color>
+    <color name="teal_200">#FF03DAC5</color>
+    <color name="teal_700">#FF018786</color>
+
+
+    <color name="red">#e62429</color>
+    <color name="light_red">#ec1d24</color>
+
+    <color name="white_100">#121212</color>
+    <color name="white_87">#DE121212</color>
+    <color name="white_60">#99121212</color>
+    <color name="white_38">#61121212</color>
+
+
+    <color name="black_100">#FAFAFA</color>
+    <color name="black_87">#DEFAFAFA</color>
+    <color name="black_60">#99FAFAFA</color>
+    <color name="black_38">#61FAFAFA</color>
+    <color name="search_bar_background">#303030</color>
+    <color name="ic_search_color">#99121212</color>
+    <color name="background_color">#1c1c1c</color>
+    <color name="input_text_color">#DEFAFAFA</color>
+    <color name="hint_color">#61FAFAFA</color>
+    <color name="liner_color">#80121212</color>
+    <color name="search_result_text_color">#DEFAFAFA</color>
+    <color name="selected_chip_color">@color/red</color>
+    <color name="unselected_chip_color">#121212</color>
+    <color name="text_button_color">#DEFAFAFA</color>
+<color name="text_body">#CFE5FF</color>
+    <color name="back_icon_color">#121212</color>
+    <color name="stroke_app_bar">#5EFFFFFF</color>
+    <color name="white_back_about_marvel">#FFFFFF</color>
+    <color name="text_item_card">#99FAFAFA</color>
+</resources>
