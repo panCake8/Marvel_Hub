@@ -46,7 +46,6 @@ class SearchViewModel : BaseViewModel(), EventInteractionListener,
 
     private fun onGetComicsSuccess(comics: BaseResponse<ComicModel>) {
         _searchList.postValue(State.Success(comics.data?.results ?: listOf()))
-        Log.e("ahmed", comics.data?.results.toString())
     }
 
     private fun onGetComicsError(throwable: Throwable) {
@@ -64,7 +63,6 @@ class SearchViewModel : BaseViewModel(), EventInteractionListener,
 
     private fun onGetSeriesSuccess(series: BaseResponse<SeriesModel>) {
         _searchList.postValue(State.Success(series.data?.results ?: listOf()))
-        Log.e("ahmed", series.data?.results.toString())
     }
 
     private fun onGetSeriesError(throwable: Throwable) {
@@ -83,7 +81,6 @@ class SearchViewModel : BaseViewModel(), EventInteractionListener,
 
     private fun onGetEventSuccess(events: BaseResponse<EventModel>) {
         _searchList.postValue(State.Success(events.data?.results ?: listOf()))
-        Log.e("ahmed", events.data?.results.toString())
     }
 
 
@@ -102,7 +99,6 @@ class SearchViewModel : BaseViewModel(), EventInteractionListener,
 
     private fun onGetCharacterSuccess(character: BaseResponse<CharactersModel>) {
         _searchList.postValue(State.Success(character.data?.results ?: listOf()))
-        Log.e("ahmed", character.data?.results.toString())
     }
 
 
