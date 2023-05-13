@@ -152,7 +152,7 @@
         <item name="shapeAppearance">
             @style/ShapeAppearance.Material3.NavigationBarView.ActiveIndicator
         </item>
-        <item name="android:color">?attr/colorSecondaryContainer</item>
+        <item name="android:color">@color/background_color</item>
     </style>
 
     <style name="App.Custom.Indicator" parent="Widget.Material3.BottomNavigationView.ActiveIndicator">
