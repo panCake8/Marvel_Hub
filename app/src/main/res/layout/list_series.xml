@@ -8,6 +8,11 @@
         <variable
             name="adapterRecycler"
             type="com.example.marvel_hub.ui.home.adapter.HomeSeriesAdapter" />
+
+        <variable
+            name="listener"
+            type="com.example.marvel_hub.ui.home.adapter.intreactions.HomeInteractionListener" />
+
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -33,6 +38,7 @@
             android:layout_height="wrap_content"
             android:layout_marginEnd="@dimen/large_margin"
             android:fontFamily="@font/poppins"
+            android:onClick="@{()-> listener.onSeriesViewAllClick()}"
             android:text="@string/see_more"
             android:textColor="@color/black_60"
             android:textSize="@dimen/body_text_small"

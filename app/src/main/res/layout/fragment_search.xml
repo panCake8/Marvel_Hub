@@ -35,7 +35,6 @@
             android:textColor="@color/input_text_color"
             android:textColorHint="@color/hint_color"
             android:textSize="@dimen/input_text_size"
-            app:clearSearch="@{viewModel.clearSearch}"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
@@ -127,8 +126,8 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/filter_chip_component"
-            app:setSearchAdapter="@{viewModel}"
             app:recyclerItems="@{viewModel.searchList.toData()}"
+            app:setSearchAdapter="@{viewModel}"
             app:setSearchStatus="@{viewModel.searchStatus}"
             app:showWhenSuccess="@{viewModel.searchList}"
             app:spanCount="2"

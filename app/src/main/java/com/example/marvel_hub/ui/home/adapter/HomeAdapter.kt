@@ -130,6 +130,7 @@ class HomeAdapter(
         val adapterRecycler = HomeCharacterAdapter(listener)
         adapterRecycler.setItems(current)
         holder.binding.setVariable(BR.adapterRecycler, adapterRecycler)
+        holder.binding.listener = listener
     }
 
     private fun bindQuizGameBanner() {
@@ -150,21 +151,21 @@ class HomeAdapter(
         val adapterRecycler = HomeComicsAdapter(listener)
         adapterRecycler.setItems(current)
         holder.binding.setVariable(BR.adapterRecycler, adapterRecycler)
-
+        holder.binding.listener = listener
     }
 
     private fun bindEvent(current: List<EventModel>, holder: EventViewHolder) {
         val adapterRecycler = HomeEventsAdapter(listener)
         adapterRecycler.setItems(current)
         holder.binding.setVariable(BR.adapterRecycler, adapterRecycler)
-
+        holder.binding.listener = listener
     }
 
     private fun bindSeries(current: List<SeriesModel>, holder: SeriesViewHolder) {
         val adapterRecycler = HomeSeriesAdapter(listener)
         adapterRecycler.setItems(current)
         holder.binding.setVariable(BR.adapterRecycler, adapterRecycler)
-
+        holder.binding.listener = listener
     }
 
     companion object {

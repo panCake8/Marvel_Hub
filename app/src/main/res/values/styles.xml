@@ -84,15 +84,14 @@
     <style name="AppBarStroke">
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">@dimen/small_stroke</item>
-        <item name="android:background">@color/stroke_app_bar</item>
+
     </style>
 
 
     <style name="RecyclerStyle">
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">match_parent</item>
-        <item name="android:layout_marginStart">@dimen/margin_large</item>
-        <item name="android:layout_marginEnd">@dimen/margin_medium</item>
+        <item name="android:layout_marginEnd">@dimen/margin_large</item>
         <item name="android:layout_marginTop">@dimen/app_bar_height</item>
         <item name="spanCount">2</item>
         <item name="android:orientation">vertical</item>

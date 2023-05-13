@@ -9,6 +9,11 @@
             name="item"
             type="com.example.marvel_hub.data.model.EventModel" />
 
+        <variable
+            name="listener"
+            type="com.example.marvel_hub.ui.home.adapter.intreactions.HomeInteractionListener" />
+
+
     </data>
 
     <com.google.android.material.card.MaterialCardView
@@ -16,6 +21,7 @@
         android:layout_height="@dimen/large_card_height"
         android:layout_marginHorizontal="@dimen/small_margin"
         android:layout_marginEnd="@dimen/margin_medium"
+        android:onClick="@{()-> listener.onEventItemClick(item)}"
         android:background="@android:color/transparent"
         app:cardCornerRadius="@dimen/normal_corner_radius"
         app:cardElevation="@dimen/no_elevation">

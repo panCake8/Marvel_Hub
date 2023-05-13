@@ -144,4 +144,4 @@ fun setSearchRecyclerAdapter(
 fun clearSearch(view: EditText, text: String?) {
     view.setText(text)
 
-}
+    }
