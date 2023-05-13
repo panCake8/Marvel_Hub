@@ -7,6 +7,7 @@ import com.example.marvel_hub.R
 import com.example.marvel_hub.databinding.FragmentSeriesDetailsBinding
 import com.example.marvel_hub.ui.base.BaseFragment
 import com.example.marvel_hub.ui.details.series.adapters.ParentSeriesAdapter
+import com.example.marvel_hub.util.EventObserver
 
 class SeriesDetailsFragment : BaseFragment<FragmentSeriesDetailsBinding, SeriesDetailsViewModel>() {
     override val viewModel: SeriesDetailsViewModel by viewModels()
@@ -32,15 +33,11 @@ class SeriesDetailsFragment : BaseFragment<FragmentSeriesDetailsBinding, SeriesD
 
     }
     private fun observeEvents() {
-        viewModel.seriesDetails.observe(viewLifecycleOwner) { clickEvent ->
-            when (clickEvent) {
-//                is CharacterDetailsEvents.ClickEventEvent -> navigateToEventsDetails(clickEvent.event)
-//                is CharacterDetailsEvents.ClickComicEvent -> navigateToComicDetails(clickEvent.comic)
-//                is CharacterDetailsEvents.ClickSeriesEvent -> navigateToSeriesDetails(clickEvent.series)
-                else -> {}
+        viewModel.characterEvent.observe(viewLifecycleOwner, EventObserver{
+            if (it != null){
+
             }
-            viewModel.clearEvents()
-        }
+        })
     }
 
 }

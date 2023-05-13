@@ -8,13 +8,13 @@ import com.example.marvel_hub.data.model.ComicModel
 import com.example.marvel_hub.data.model.EventModel
 import com.example.marvel_hub.data.model.SeriesModel
 import com.example.marvel_hub.data.model.StoriesModel
-import com.example.marvel_hub.util.State
 import com.example.marvel_hub.ui.base.BaseViewModel
 import com.example.marvel_hub.ui.details.listeners.CharacterListener
 import com.example.marvel_hub.ui.details.listeners.ComicListener
 import com.example.marvel_hub.ui.details.listeners.EventsListener
 import com.example.marvel_hub.ui.details.listeners.StoryListener
-import com.example.marvel_hub.ui.details.stories.StoriesDetailsEvents
+import com.example.marvel_hub.util.Event
+import com.example.marvel_hub.util.State
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
 import io.reactivex.rxjava3.kotlin.addTo
 import io.reactivex.rxjava3.schedulers.Schedulers
@@ -49,6 +49,22 @@ class SeriesDetailsViewModel : BaseViewModel(), ComicListener, EventsListener, C
     private val _seriesDetails: MutableLiveData<SeriesDetailsEvents> = MutableLiveData()
     val seriesDetails: LiveData<SeriesDetailsEvents>
         get() = _seriesDetails
+
+    private val _comicEvent = MutableLiveData<Event<ComicModel>>()
+    val comicEvent: LiveData<Event<ComicModel>>
+        get() = _comicEvent
+
+    private val _characterEvent = MutableLiveData<Event<CharactersModel>>()
+    val characterEvent: LiveData<Event<CharactersModel>>
+        get() = _characterEvent
+
+    private val _eventEvent = MutableLiveData<Event<EventModel>>()
+    val eventEvent: LiveData<Event<EventModel>>
+        get() = _eventEvent
+
+    private val _storiesEvent = MutableLiveData<Event<StoriesModel>>()
+    val storiesEvent: LiveData<Event<StoriesModel>>
+        get() = _storiesEvent
 
     fun getSeriesById(SeriesId: Int) =
         repository.getSeriesById(SeriesId).observeOn(Schedulers.io())
@@ -121,21 +137,23 @@ class SeriesDetailsViewModel : BaseViewModel(), ComicListener, EventsListener, C
     }
 
     override fun onCharacterClick(character: CharactersModel) {
-        _seriesDetails.postValue(SeriesDetailsEvents.ClickCharacterSeries(character))
+        _characterEvent.postValue(Event(character))
 
     }
 
     override fun onComicClick(comic: ComicModel) {
-        _seriesDetails.postValue(SeriesDetailsEvents.ClickComicSeries(comic))
+        _comicEvent.postValue((Event(comic)))
 
     }
+
     override fun onStoryClick(story: StoriesModel) {
-        _seriesDetails.postValue(SeriesDetailsEvents.ClickStoriesSeries(story))
+        _storiesEvent.postValue(Event(story))
     }
 
     override fun onEventClick(event: EventModel) {
-        _seriesDetails.postValue(SeriesDetailsEvents.ClickEventSeries(event))
+        _eventEvent.postValue(Event(event))
     }
+
     fun clearEvents() {
         if (_seriesDetails.value != SeriesDetailsEvents.ReadyState)
             _seriesDetails.postValue(SeriesDetailsEvents.ReadyState)
