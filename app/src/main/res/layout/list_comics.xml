@@ -8,6 +8,11 @@
         <variable
             name="adapterRecycler"
             type="com.example.marvel_hub.ui.home.adapter.HomeComicsAdapter" />
+
+        <variable
+            name="listener"
+            type="com.example.marvel_hub.ui.home.adapter.intreactions.HomeInteractionListener" />
+
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -35,6 +40,7 @@
             android:fontFamily="@font/poppins"
             android:text="@string/see_more"
             android:textColor="@color/black_60"
+            android:onClick="@{()-> listener.onComicViewAllClick()}"
             android:textSize="@dimen/body_text_small"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent" />

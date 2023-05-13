@@ -77,7 +77,7 @@ fun setNestedRecyclerItems(recyclerView: RecyclerView, items: State<HomeItem>?) 
 
 @SuppressLint("CheckResult")
 @BindingAdapter(value = ["app:onSearchTextChange"])
-fun onSearchTextChange(view: EditText, viewModel: SearchViewModel?) {
+fun onSearchTextChange(view: EditText, viewModel: SearchViewModel) {
     Observable.create { emitter ->
         view.doOnTextChanged { text, start, before, count ->
             emitter.onNext(text.toString())
@@ -85,11 +85,11 @@ fun onSearchTextChange(view: EditText, viewModel: SearchViewModel?) {
     }.debounce(1, TimeUnit.SECONDS).observeOn(Schedulers.io())
         .subscribeOn(AndroidSchedulers.mainThread()).subscribe { text ->
             if (text.isNotEmpty()) {
-                when (viewModel?.searchStatus?.value) {
+                when (viewModel.searchStatus.value) {
                     SearchStatus.COMIC -> viewModel.getComicData(text)
                     SearchStatus.EVENT -> viewModel.getEventData(text)
                     SearchStatus.SERIES -> viewModel.getSeriesData(text)
-                    else -> viewModel?.getCharacterData(text)
+                    else -> viewModel.getCharacterData(text)
                 }
             }
         }
@@ -98,34 +98,34 @@ fun onSearchTextChange(view: EditText, viewModel: SearchViewModel?) {
 @BindingAdapter(value = ["app:setSearchAdapter", "app:setSearchStatus"])
 fun setSearchRecyclerAdapter(
     view: RecyclerView,
-    viewModel: SearchViewModel?,
-    searchStatus: SearchStatus?
+    viewModel: SearchViewModel,
+    searchStatus: SearchStatus
 ) {
     when (searchStatus) {
         SearchStatus.COMIC -> {
-            val adapter = viewModel?.let { SearchComicsAdapter(listOf(), it) }
+            val adapter = viewModel.let { SearchComicsAdapter(listOf(), it) }
             view.adapter = adapter
         }
 
         SearchStatus.EVENT -> {
-            val adapter = viewModel?.let { SearchEventAdapter(listOf(), it) }
+            val adapter = viewModel.let { SearchEventAdapter(listOf(), it) }
             view.adapter = adapter
         }
 
         SearchStatus.SERIES -> {
-            val adapter = viewModel?.let { SearchSeriesAdapter(listOf(), it) }
+            val adapter = viewModel.let { SearchSeriesAdapter(listOf(), it) }
             view.adapter = adapter
         }
 
         else -> {
-            val adapter = viewModel?.let { SearchCharactersAdapter(listOf(), it) }
+            val adapter = viewModel.let { SearchCharactersAdapter(listOf(), it) }
             view.adapter = adapter
         }
     }
 
     @BindingAdapter(value = ["app:availableItemsVisibility"])
     fun setAvailableItemsVisibility(view: View, state: State<*>?) {
-        val availableItem = state?.let { it.toData()}
+        val availableItem = state?.let { it.toData() }
         view.visibility = if (availableItem != null) View.VISIBLE else View.GONE
     }
 
@@ -139,9 +139,9 @@ fun setSearchRecyclerAdapter(
     }
 
 
+    @BindingAdapter(value = ["app:clearSearch"])
+    fun clearSearch(view: EditText, text: String?) {
+        view.setText(text)
 
-@BindingAdapter(value = ["app:clearSearch"])
-fun clearSearch(view: EditText, text: String?) {
-    view.setText(text)
-
+    }
 }

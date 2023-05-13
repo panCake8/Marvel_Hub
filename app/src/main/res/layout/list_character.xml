@@ -8,6 +8,10 @@
         <variable
             name="adapterRecycler"
             type="com.example.marvel_hub.ui.home.adapter.HomeCharacterAdapter" />
+
+        <variable
+            name="listener"
+            type="com.example.marvel_hub.ui.home.adapter.intreactions.HomeInteractionListener" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -28,10 +32,12 @@
             app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
+            android:id="@+id/text_view_see_more"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginEnd="@dimen/large_margin"
             android:fontFamily="@font/poppins"
+            android:onClick="@{()-> listener.onCharacterViewAllClick()}"
             android:text="@string/see_more"
             android:textColor="@color/black_60"
             android:textSize="@dimen/body_text_small"

@@ -2,9 +2,83 @@
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/navigation">
+    android:id="@+id/navigation"
+    app:startDestination="@id/homeFragment">
     <fragment
         android:id="@+id/homeFragment"
         android:name="com.example.marvel_hub.ui.home.HomeFragment"
-        android:label="HomeFragment" />
+        android:label="HomeFragment" >
+        <action
+            android:id="@+id/action_homeFragment_to_characterFragment"
+            app:destination="@id/characterFragment" />
+        <action
+            android:id="@+id/action_homeFragment_to_comicFragment"
+            app:destination="@id/comicFragment" />
+        <action
+            android:id="@+id/action_homeFragment_to_seriesFragment"
+            app:destination="@id/seriesFragment" />
+        <action
+            android:id="@+id/action_homeFragment_to_eventsSeeAllFragment"
+            app:destination="@id/eventsSeeAllFragment" />
+        <action
+            android:id="@+id/action_homeFragment_to_characterDetailsFragment"
+            app:destination="@id/characterDetailsFragment" />
+        <action
+            android:id="@+id/action_homeFragment_to_comicsDetailsFragment"
+            app:destination="@id/comicsDetailsFragment" />
+        <action
+            android:id="@+id/action_homeFragment_to_eventsDetailsFragment"
+            app:destination="@id/eventsDetailsFragment" />
+        <action
+            android:id="@+id/action_homeFragment_to_seriesDetailsFragment"
+            app:destination="@id/seriesDetailsFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/characterFragment"
+        android:name="com.example.marvel_hub.ui.characters.CharacterFragment"
+        android:label="CharacterFragment" />
+    <fragment
+        android:id="@+id/comicFragment"
+        android:name="com.example.marvel_hub.ui.comics.ComicFragment"
+        android:label="ComicFragment" />
+    <fragment
+        android:id="@+id/seriesFragment"
+        android:name="com.example.marvel_hub.ui.series.SeriesFragment"
+        android:label="SeriesFragment" />
+    <fragment
+        android:id="@+id/eventsSeeAllFragment"
+        android:name="com.example.marvel_hub.ui.events.EventsSeeAllFragment"
+        android:label="EventsSeeAllFragment" />
+    <fragment
+        android:id="@+id/characterDetailsFragment"
+        android:name="com.example.marvel_hub.ui.details.character.CharacterDetailsFragment"
+        android:label="CharacterDetailsFragment" >
+        <argument
+            android:name="id"
+            app:argType="integer" />
+    </fragment>
+    <fragment
+        android:id="@+id/comicsDetailsFragment"
+        android:name="com.example.marvel_hub.ui.details.comics.ComicsDetailsFragment"
+        android:label="ComicsDetailsFragment" >
+        <argument
+            android:name="id"
+            app:argType="integer" />
+    </fragment>
+    <fragment
+        android:id="@+id/eventsDetailsFragment"
+        android:name="com.example.marvel_hub.ui.details.events.EventsDetailsFragment"
+        android:label="EventsDetailsFragment" >
+        <argument
+            android:name="id"
+            app:argType="integer" />
+    </fragment>
+    <fragment
+        android:id="@+id/seriesDetailsFragment"
+        android:name="com.example.marvel_hub.ui.details.series.SeriesDetailsFragment"
+        android:label="SeriesDetailsFragment" >
+        <argument
+            android:name="id"
+            app:argType="integer" />
+    </fragment>
 </navigation>
