@@ -43,7 +43,6 @@
 
 
         <ImageView
-            app:showWhenError="@{viewModel.story}"
             android:id="@+id/image_view_error"
             android:layout_width="@dimen/width_error_image"
             android:layout_height="@dimen/height_error_image"
@@ -51,17 +50,18 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent"
+            app:showWhenError="@{viewModel.story}" />
 
         <ProgressBar
-            app:showWhenLoading="@{viewModel.story}"
             android:id="@+id/progress_bar"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent"
+            app:showWhenLoading="@{viewModel.story}" />
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>

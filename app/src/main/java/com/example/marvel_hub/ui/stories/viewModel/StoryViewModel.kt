@@ -23,13 +23,9 @@ class StoryViewModel : BaseViewModel(), StoriesInteractionListener {
     val selectedStoryItem: LiveData<Event<StoriesModel>>
         get() = _selectedStoryItem
 
-
-
     init {
         getAllStories()
     }
-
-
 
     private fun getAllStories() {
         repository.getAllStories()
