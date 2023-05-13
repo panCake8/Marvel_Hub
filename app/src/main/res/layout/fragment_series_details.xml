@@ -26,9 +26,8 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:orientation="horizontal"
                 android:background="@color/white_87"
-                >
+                android:orientation="horizontal">
 
                 <androidx.appcompat.widget.AppCompatImageView
                     android:id="@+id/ic_back"
@@ -37,7 +36,7 @@
                     android:src="@drawable/ic_back" />
 
                 <TextView
-                    android:id="@+id/screen_title"
+                    android:id="@+id/screen_series_details_title"
                     style="@style/screen_title"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
