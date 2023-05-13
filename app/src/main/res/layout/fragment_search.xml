@@ -21,7 +21,8 @@
             android:layout_width="@dimen/image_search_width"
             android:layout_height="@dimen/image_hero_width"
             android:importantForAccessibility="no"
-            android:src="@drawable/start_search_image"
+            android:src="@drawable/image_start_search"
+            android:layout_marginTop="@dimen/margin_search_image"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -33,7 +34,8 @@
             android:layout_width="@dimen/image_search_width"
             android:layout_height="@dimen/image_search_height"
             android:importantForAccessibility="no"
-            android:src="@drawable/no_result_image"
+            android:src="@drawable/image_no_search_result"
+            android:layout_marginTop="@dimen/margin_search_image"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -80,6 +82,7 @@
                 android:onClick="@{()-> viewModel.onClickComicChip()}"
                 android:text="@string/text_comic_chip"
                 app:checkedIconVisible="false"
+                app:chipStrokeColor="@color/red"
                 app:chipBackgroundColor="@color/chip_background"
                 app:chipCornerRadius="@dimen/chip_radius" />
 
@@ -139,26 +142,26 @@
             tools:listitem="@layout/item_search_comics" />
 
 
-        <ProgressBar
-            android:id="@+id/progress_bar_loading"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/margin_large"
+
+
+        <com.airbnb.lottie.LottieAnimationView
+            android:layout_width="@dimen/width_search_lottie"
+            android:layout_height="@dimen/height_search_lottie"
+            app:lottie_rawRes="@raw/loading_lottie"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:showWhenLoading="@{viewModel.searchList}" />
+            app:showWhenLoading="@{viewModel.searchList}"/>
 
 
-        <TextView
+        <ImageView
             android:id="@+id/text_view_error"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/margin_large"
-            android:text="@string/text_error"
-            android:textColor="@color/red"
-            android:textSize="@dimen/text_error_size"
+            android:layout_width="@dimen/image_search_width"
+            android:layout_height="@dimen/image_search_height"
+            android:layout_marginTop="@dimen/margin_search_image"
+            android:contentDescription="@string/description_search_image"
+            android:src="@drawable/image_error"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
