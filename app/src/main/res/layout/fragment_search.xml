@@ -62,7 +62,7 @@
                 android:textSize="@dimen/body_text"
                 app:chipBackgroundColor="@color/chip_background"
                 app:chipCornerRadius="8dp"
-                app:chipStrokeColor="@color/red"
+                app:chipStrokeColor="@color/red_medium"
                 app:chipStrokeWidth="@dimen/chip_stroke" />
 
             <com.google.android.material.chip.Chip
@@ -77,7 +77,7 @@
                 android:textSize="@dimen/body_text"
                 app:chipBackgroundColor="@color/chip_background"
                 app:chipCornerRadius="8dp"
-                app:chipStrokeColor="@color/red"
+                app:chipStrokeColor="@color/red_medium"
                 app:chipStrokeWidth="@dimen/chip_stroke" />
 
             <com.google.android.material.chip.Chip
@@ -92,7 +92,7 @@
                 android:textSize="@dimen/body_text"
                 app:chipBackgroundColor="@color/chip_background"
                 app:chipCornerRadius="8dp"
-                app:chipStrokeColor="@color/red"
+                app:chipStrokeColor="@color/red_medium"
                 app:chipStrokeWidth="@dimen/chip_stroke" />
 
             <com.google.android.material.chip.Chip
@@ -107,7 +107,7 @@
                 android:textSize="@dimen/body_text"
                 app:chipBackgroundColor="@color/chip_background"
                 app:chipCornerRadius="8dp"
-                app:chipStrokeColor="@color/red"
+                app:chipStrokeColor="@color/red_medium"
                 app:chipStrokeWidth="@dimen/chip_stroke" />
 
 

@@ -22,7 +22,7 @@
                 android:layout_height="match_parent"
                 android:animateLayoutChanges="true"
                 android:animationCache="true"
-                app:indicatorFillColor="#DEF2264B"
+                app:indicatorFillColor="@color/red_medium"
                 app:indicatorPageColor="@color/just_white"
                 app:indicatorStrokeColor="@color/just_black"
                 app:indicatorStrokeWidth="0.5dp"

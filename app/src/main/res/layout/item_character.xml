@@ -14,8 +14,10 @@
     <com.google.android.material.card.MaterialCardView
         android:layout_width="@dimen/marvel_card_width"
         android:layout_height="@dimen/marvel_card_height"
-        android:layout_marginHorizontal="@dimen/small_margin"
         android:layout_marginVertical="@dimen/small_margin"
+        android:layout_marginEnd="@dimen/margin_medium"
+        android:background="@android:color/transparent"
+        app:cardElevation="@dimen/no_elevation"
         app:cardCornerRadius="@dimen/normal_corner_radius">
 
         <androidx.constraintlayout.widget.ConstraintLayout

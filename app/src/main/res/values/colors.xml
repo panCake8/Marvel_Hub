@@ -7,8 +7,8 @@
     <color name="teal_700">#FF018786</color>
 
 
-    <color name="red">#ec1d24</color>
-    <color name="light_red">#F2264B</color>
+    <color name="red_medium">#F2264B</color>
+    <color name="red">#F2264B</color>
 
     <color name="white_100">#FAFAFA</color>
     <color name="white_87">#DEFAFAFA</color>
@@ -27,7 +27,7 @@
     <color name="hint_color">#99121212</color>
     <color name="liner_color">#80121212</color>
     <color name="search_result_text_color">#DEFAFAFA</color>
-    <color name="selected_chip_color">@color/red</color>
+    <color name="selected_chip_color">@color/red_medium</color>
     <color name="unselected_chip_color">@color/white_87</color>
 
 

@@ -15,6 +15,9 @@
         android:layout_width="@dimen/large_card_width"
         android:layout_height="@dimen/large_card_height"
         android:layout_marginHorizontal="@dimen/small_margin"
+        android:layout_marginEnd="@dimen/margin_medium"
+        app:cardElevation="@dimen/no_elevation"
+        android:background="@android:color/transparent"
         app:cardCornerRadius="@dimen/normal_corner_radius">
 
         <androidx.constraintlayout.widget.ConstraintLayout

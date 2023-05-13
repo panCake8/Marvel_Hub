@@ -56,7 +56,7 @@
             android:layout_height="wrap_content"
             android:layout_margin="@dimen/large_margin"
             android:text="@string/about_creator"
-            android:textColor="@color/red"
+            android:textColor="@color/red_medium"
             android:textSize="@dimen/large_text"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/text_creator_name" />

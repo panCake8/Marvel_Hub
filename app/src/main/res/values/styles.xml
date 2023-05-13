@@ -21,7 +21,7 @@
 
     <style name="details_description" parent="Widget.AppCompat.TextView">
         <item name="android:textSize">@dimen/title_text</item>
-        <item name="android:textColor">@color/light_red</item>
+        <item name="android:textColor">@color/red_medium</item>
         <item name="fontFamily">@font/poppins_medium</item>
     </style>
 
@@ -156,6 +156,6 @@
     </style>
 
     <style name="App.Custom.Indicator" parent="Widget.Material3.BottomNavigationView.ActiveIndicator">
-        <item name="android:color">@color/light_red</item>
+        <item name="android:color">@color/red_medium</item>
     </style>
 </resources>
