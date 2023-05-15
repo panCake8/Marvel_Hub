@@ -72,8 +72,8 @@ class ComicsDetailsViewModel
     }
 
     private fun getComicById(comicId: Int) =
-        repository.getComicById(comicId).observeOn(Schedulers.io())
-            .subscribeOn(AndroidSchedulers.mainThread())
+        repository.getComicById(comicId)
+            .applySchedulers()
             .subscribe(::comicOnSuccess, ::comicOnError)
             .addTo(disposable)
 
@@ -86,8 +86,8 @@ class ComicsDetailsViewModel
     }
 
     private fun getCharacterByComicId(comicId: Int) =
-        repository.getCharactersByComicId(comicId).observeOn(Schedulers.io())
-            .subscribeOn(AndroidSchedulers.mainThread())
+        repository.getCharactersByComicId(comicId)
+            .applySchedulers()
             .subscribe(::characterOnSuccess, ::characterOnError)
             .addTo(disposable)
 
@@ -100,8 +100,8 @@ class ComicsDetailsViewModel
     }
 
     private fun getSeriesByComicId(characterId: Int) =
-        repository.getSeriesByCharacterId(characterId).observeOn(Schedulers.io())
-            .subscribeOn(AndroidSchedulers.mainThread())
+        repository.getSeriesByCharacterId(characterId)
+            .applySchedulers()
             .subscribe(::seriesOnSuccess, ::seriesOnError)
             .addTo(disposable)
 
@@ -114,8 +114,8 @@ class ComicsDetailsViewModel
     }
 
     private fun getEventsByByComicId(characterId: Int) =
-        repository.getEventsByCharacterId(characterId).observeOn(Schedulers.io())
-            .subscribeOn(AndroidSchedulers.mainThread())
+        repository.getEventsByCharacterId(characterId)
+            .applySchedulers()
             .subscribe(::eventsOnSuccess, ::eventsOnError)
             .addTo(disposable)
 
@@ -128,8 +128,8 @@ class ComicsDetailsViewModel
     }
 
     private fun getStoriesByComicById(characterId: Int) =
-        repository.getStoriesByCharacterId(characterId).observeOn(Schedulers.io())
-            .subscribeOn(AndroidSchedulers.mainThread())
+        repository.getStoriesByCharacterId(characterId)
+            .applySchedulers()
             .subscribe(::storiesOnSuccess, ::storiesOnError)
             .addTo(disposable)
 

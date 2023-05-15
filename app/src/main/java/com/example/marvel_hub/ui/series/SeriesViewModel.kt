@@ -28,8 +28,7 @@ class SeriesViewModel : BaseViewModel(), SeriesListener {
 
     private fun getAllSeries() {
         repository.getAllSeries()
-            .subscribeOn(Schedulers.io())
-            .observeOn(AndroidSchedulers.mainThread())
+            .applySchedulers()
             .subscribe(::onSuccess, ::onFail)
             .addTo(compositeDisposable = disposable)
     }

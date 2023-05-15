@@ -30,8 +30,7 @@ class EventsViewModel : BaseViewModel(), EventsListener {
 
     private fun getAllEvents() {
         repository.getAllEvents()
-            .subscribeOn(Schedulers.io())
-            .observeOn(AndroidSchedulers.mainThread())
+            .applySchedulers()
             .subscribe(::onEventSuccess, ::onError)
             .addTo(disposable)
     }

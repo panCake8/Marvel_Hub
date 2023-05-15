@@ -54,8 +54,7 @@ class SearchViewModel : BaseViewModel(), EventsListener,
     fun getComicData(text: String) {
         _searchList.postValue(State.Loading)
         repository.searchComics(text)
-            .observeOn(Schedulers.io())
-            .subscribeOn(AndroidSchedulers.mainThread())
+            .applySchedulers()
             .subscribe(::onGetComicsSuccess, ::onGetComicsError)
             .addTo(disposable)
     }
@@ -71,8 +70,7 @@ class SearchViewModel : BaseViewModel(), EventsListener,
     fun getSeriesData(text: String) {
         _searchList.postValue(State.Loading)
         repository.searchSeries(text)
-            .observeOn(Schedulers.io())
-            .subscribeOn(AndroidSchedulers.mainThread())
+            .applySchedulers()
             .subscribe(::onGetSeriesSuccess, ::onGetSeriesError)
             .addTo(disposable)
     }
@@ -89,8 +87,7 @@ class SearchViewModel : BaseViewModel(), EventsListener,
     fun getEventData(text: String) {
         _searchList.postValue(State.Loading)
         repository.searchEvents(text)
-            .observeOn(Schedulers.io())
-            .subscribeOn(AndroidSchedulers.mainThread())
+            .applySchedulers()
             .subscribe(::onGetEventSuccess, ::onGetEventError)
             .addTo(disposable)
     }
@@ -107,8 +104,7 @@ class SearchViewModel : BaseViewModel(), EventsListener,
     fun getCharacterData(text: String) {
         _searchList.postValue(State.Loading)
         repository.searchCharacters(text)
-            .observeOn(Schedulers.io())
-            .subscribeOn(AndroidSchedulers.mainThread())
+            .applySchedulers()
             .subscribe(::onGetCharacterSuccess, ::onGetCharacterError)
             .addTo(disposable)
     }

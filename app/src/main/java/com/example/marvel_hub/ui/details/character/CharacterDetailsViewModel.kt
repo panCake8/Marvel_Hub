@@ -67,8 +67,8 @@ class CharacterDetailsViewModel : BaseViewModel(), ComicListener, EventsListener
 
 
     private fun getCharacterById(characterId: Int) =
-        repository.getCharacterById(characterId).observeOn(Schedulers.io())
-            .subscribeOn(AndroidSchedulers.mainThread())
+        repository.getCharacterById(characterId)
+            .applySchedulers()
             .subscribe(::characterOnSuccess, ::characterOnError)
             .addTo(disposable)
 
@@ -81,8 +81,8 @@ class CharacterDetailsViewModel : BaseViewModel(), ComicListener, EventsListener
     }
 
     private fun getComicsByCharacterId(characterId: Int) =
-        repository.getComicsByCharacterId(characterId).observeOn(Schedulers.io())
-            .subscribeOn(AndroidSchedulers.mainThread())
+        repository.getComicsByCharacterId(characterId)
+            .applySchedulers()
             .subscribe(::comicOnSuccess, ::comicsOnError)
             .addTo(disposable)
 
@@ -95,8 +95,8 @@ class CharacterDetailsViewModel : BaseViewModel(), ComicListener, EventsListener
     }
 
     private fun getSeriesByCharacterId(characterId: Int) =
-        repository.getSeriesByCharacterId(characterId).observeOn(Schedulers.io())
-            .subscribeOn(AndroidSchedulers.mainThread())
+        repository.getSeriesByCharacterId(characterId)
+            .applySchedulers()
             .subscribe(::seriesOnSuccess, ::seriesOnError)
             .addTo(disposable)
 
@@ -109,8 +109,8 @@ class CharacterDetailsViewModel : BaseViewModel(), ComicListener, EventsListener
     }
 
     private fun getEventsByCharacterId(characterId: Int) =
-        repository.getEventsByCharacterId(characterId).observeOn(Schedulers.io())
-            .subscribeOn(AndroidSchedulers.mainThread())
+        repository.getEventsByCharacterId(characterId)
+            .applySchedulers()
             .subscribe(::eventsOnSuccess, ::eventsOnError)
             .addTo(disposable)
 
@@ -123,8 +123,8 @@ class CharacterDetailsViewModel : BaseViewModel(), ComicListener, EventsListener
     }
 
     private fun getStoriesByCharacterId(characterId: Int) =
-        repository.getStoriesByCharacterId(characterId).observeOn(Schedulers.io())
-            .subscribeOn(AndroidSchedulers.mainThread())
+        repository.getStoriesByCharacterId(characterId)
+            .applySchedulers()
             .subscribe(::storiesOnSuccess, ::storiesOnError)
             .addTo(disposable)
 

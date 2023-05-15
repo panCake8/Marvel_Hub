@@ -28,8 +28,7 @@ class ComicViewModel : BaseViewModel(), ComicListener {
 
     private fun getComics() {
         repository.getAllComics()
-            .subscribeOn(Schedulers.io())
-            .observeOn(AndroidSchedulers.mainThread())
+            .applySchedulers()
             .subscribe(::onSuccess, ::onFailed)
             .addTo(compositeDisposable = disposable)
     }
