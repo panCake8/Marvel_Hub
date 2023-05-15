@@ -7,11 +7,11 @@
 
         <variable
             name="item"
-            type="com.example.marvel_hub.data.model.EventModel" />
+            type="com.example.marvel_hub.data.model.CharactersModel" />
 
         <variable
             name="listener"
-            type="com.example.marvel_hub.ui.listeners.EventsListener" />
+            type="com.example.marvel_hub.ui.listeners.CharacterListener" />
     </data>
 
     <com.google.android.material.card.MaterialCardView
@@ -20,7 +20,7 @@
         android:layout_marginHorizontal="@dimen/small_margin"
         android:layout_marginVertical="@dimen/small_margin"
         app:cardCornerRadius="@dimen/normal_corner_radius"
-        android:onClick="@{() -> listener.onEventClick(item)}"
+        android:onClick="@{() -> listener.onCharacterClick(item)}"
         >
 
         <androidx.constraintlayout.widget.ConstraintLayout
@@ -51,7 +51,7 @@
                 android:ellipsize="end"
                 android:fontFamily="@font/poppins_medium"
                 android:maxLines="1"
-                android:text="@{item.title}"
+                android:text="@{item.name}"
                 style="@style/card_title"
                 android:textColor="@color/white_100"
                 android:textSize="@dimen/body_text"
