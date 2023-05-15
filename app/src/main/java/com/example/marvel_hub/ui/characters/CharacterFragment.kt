@@ -18,6 +18,7 @@ class CharacterFragment : BaseFragment<FragmentCharactersBinding, CharacterViewM
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         setupRecyclerView()
+        backClick()
         observeEvent()
     }
 
@@ -33,5 +34,11 @@ class CharacterFragment : BaseFragment<FragmentCharactersBinding, CharacterViewM
             findNavController().navigate(nav)
 
         })
+    }
+
+    private fun backClick() {
+        binding.toolbarCharacter.setNavigationOnClickListener {
+            findNavController().popBackStack()
+        }
     }
 }

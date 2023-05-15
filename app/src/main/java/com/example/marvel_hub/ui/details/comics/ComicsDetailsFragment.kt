@@ -24,6 +24,7 @@ class ComicsDetailsFragment : BaseFragment<FragmentComicsDetailsBinding, ComicsD
         setUpAdapter()
         getAllData()
         observeEvents()
+        BackFromTheDetailsToTheComics()
     }
 
     private fun setUpAdapter() {
@@ -67,4 +68,11 @@ class ComicsDetailsFragment : BaseFragment<FragmentComicsDetailsBinding, ComicsD
             findNavController().navigate(nav)
         })
     }
+
+    private fun BackFromTheDetailsToTheComics() {
+        binding.toolbarComicsDetails.setNavigationOnClickListener {
+            findNavController().popBackStack()
+        }
+    }
+
 }

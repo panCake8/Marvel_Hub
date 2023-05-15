@@ -24,6 +24,7 @@ class CharacterDetailsFragment :
         setUpAdapter()
         getAllData()
         observeEvents()
+        BackFromTheDetailsToTheCharacters()
     }
 
     private fun setUpAdapter() {
@@ -66,6 +67,12 @@ class CharacterDetailsFragment :
                 )
             findNavController().navigate(nav)
         })
+    }
+
+    private fun BackFromTheDetailsToTheCharacters() {
+        binding.toolbarCharacterDetails.setNavigationOnClickListener {
+            findNavController().popBackStack()
+        }
     }
 
 }
