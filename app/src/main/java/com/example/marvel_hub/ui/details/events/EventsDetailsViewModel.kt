@@ -8,14 +8,13 @@ import com.example.marvel_hub.data.model.ComicModel
 import com.example.marvel_hub.data.model.EventModel
 import com.example.marvel_hub.data.model.SeriesModel
 import com.example.marvel_hub.data.model.StoriesModel
-import com.example.marvel_hub.util.State
 import com.example.marvel_hub.ui.base.BaseViewModel
-import com.example.marvel_hub.ui.details.listeners.CharacterListener
-import com.example.marvel_hub.ui.details.listeners.ComicListener
-import com.example.marvel_hub.ui.details.listeners.SeriesListener
-import com.example.marvel_hub.ui.details.listeners.StoryListener
-import com.example.marvel_hub.ui.details.series.SeriesDetailsEvents
+import com.example.marvel_hub.ui.listeners.CharacterListener
+import com.example.marvel_hub.ui.listeners.ComicListener
+import com.example.marvel_hub.ui.listeners.SeriesListener
+import com.example.marvel_hub.ui.listeners.StoryListener
 import com.example.marvel_hub.util.Event
+import com.example.marvel_hub.util.State
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
 import io.reactivex.rxjava3.kotlin.addTo
 import io.reactivex.rxjava3.schedulers.Schedulers
@@ -72,10 +71,17 @@ class EventsDetailsViewModel : BaseViewModel(),
         get() = _seriesEvent
 
 
-    fun getEventById(eventId: Int) =
+    fun getAllDataById(id: Int) {
+        getEventById(id)
+        getCharacterByEventId(id)
+        getComicsByEventId(id)
+        getSeriesByEventId(id)
+        getStoriesByEventId(id)
+    }
+
+    private fun getEventById(eventId: Int) =
         repository.getEventsById(eventId)
-            .observeOn(Schedulers.io())
-            .subscribeOn(AndroidSchedulers.mainThread())
+            .applySchedulers()
             .subscribe(::eventOnSuccess, ::eventOnError)
             .addTo(disposable)
 
@@ -87,10 +93,9 @@ class EventsDetailsViewModel : BaseViewModel(),
         _events.postValue(State.Error(error.message.toString()))
     }
 
-     fun getComicsByEventId(characterId: Int) =
+    private fun getComicsByEventId(characterId: Int) =
         repository.getComicsByCharacterId(characterId)
-            .observeOn(Schedulers.io())
-            .subscribeOn(AndroidSchedulers.mainThread())
+            .applySchedulers()
             .subscribe(::comicOnSuccess, ::comicsOnError)
             .addTo(disposable)
 
@@ -102,10 +107,9 @@ class EventsDetailsViewModel : BaseViewModel(),
         _comics.postValue(State.Error(error.message.toString()))
     }
 
-     fun getSeriesByEventId(characterId: Int) =
+    private fun getSeriesByEventId(characterId: Int) =
         repository.getSeriesByCharacterId(characterId)
-            .observeOn(Schedulers.io())
-            .subscribeOn(AndroidSchedulers.mainThread())
+            .applySchedulers()
             .subscribe(::seriesOnSuccess, ::seriesOnError)
             .addTo(disposable)
 
@@ -117,10 +121,9 @@ class EventsDetailsViewModel : BaseViewModel(),
         _series.postValue(State.Error(error.message.toString()))
     }
 
-     fun getStoriesByEventId(characterId: Int) =
+    private fun getStoriesByEventId(characterId: Int) =
         repository.getStoriesByCharacterId(characterId)
-            .observeOn(Schedulers.io())
-            .subscribeOn(AndroidSchedulers.mainThread())
+            .applySchedulers()
             .subscribe(::storiesOnSuccess, ::storiesOnError)
             .addTo(disposable)
 
@@ -128,14 +131,13 @@ class EventsDetailsViewModel : BaseViewModel(),
         _stories.postValue(State.Success(stories.data?.results))
     }
 
-     fun storiesOnError(error: Throwable) {
+    fun storiesOnError(error: Throwable) {
         _stories.postValue(State.Error(error.message.toString()))
     }
 
-     fun getCharacterByEventId(characterId: Int) =
+    private fun getCharacterByEventId(characterId: Int) =
         repository.getCharacterById(characterId)
-            .observeOn(Schedulers.io())
-            .subscribeOn(AndroidSchedulers.mainThread())
+            .applySchedulers()
             .subscribe(::characterOnSuccess, ::characterOnError)
             .addTo(disposable)
 
@@ -147,18 +149,13 @@ class EventsDetailsViewModel : BaseViewModel(),
         _character.postValue(State.Error(error.message.toString()))
     }
 
-    companion object {
-        const val FIRST_ITEM = 0
-    }
 
     override fun onCharacterClick(character: CharactersModel) {
         _characterEvent.postValue(Event(character))
-
     }
 
     override fun onComicClick(comic: ComicModel) {
         _comicEvent.postValue((Event(comic)))
-
     }
 
     override fun onStoryClick(story: StoriesModel) {
@@ -168,6 +165,5 @@ class EventsDetailsViewModel : BaseViewModel(),
     override fun onSeriesClick(series: SeriesModel) {
         _seriesEvent.postValue(Event(series))
     }
-
 
 }

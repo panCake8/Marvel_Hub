@@ -7,9 +7,7 @@ import androidx.navigation.fragment.findNavController
 import com.example.marvel_hub.R
 import com.example.marvel_hub.databinding.FragmentEventsSeeAllBinding
 import com.example.marvel_hub.ui.base.BaseFragment
-import com.example.marvel_hub.ui.characters.CharacterFragmentDirections
-import com.example.marvel_hub.ui.events.event_recycler.EventsSeeAllAdapter
-import com.example.marvel_hub.ui.events.viewModel.EventsViewModel
+import com.example.marvel_hub.ui.events.adapter.EventsSeeAllAdapter
 import com.example.marvel_hub.util.EventObserver
 
 class EventsSeeAllFragment :
@@ -21,26 +19,20 @@ class EventsSeeAllFragment :
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         setUpAdapter()
-        backClick()
-        viewModel.selectedEventItem.observe(viewLifecycleOwner, EventObserver {
-            if (it != null) {
-                val nav =
-                    EventsSeeAllFragmentDirections.actionEventsSeeAllFragmentToEventsDetailsFragment(
-                        it
-                    )
-                findNavController().navigate(nav)
-            }
-        })
+        observeEvent()
     }
 
-    private fun backClick(){
-        binding.toolbarEvents.setNavigationOnClickListener{
-            findNavController().popBackStack()
-        }
-    }
     private fun setUpAdapter() {
         binding.recyclerEvents.adapter = EventsSeeAllAdapter(emptyList(), viewModel)
     }
 
+    private fun observeEvent() {
+        viewModel.selectedEventItem.observe(viewLifecycleOwner, EventObserver {
+            val nav =
+                EventsSeeAllFragmentDirections.actionEventsSeeAllFragmentToEventsDetailsFragment(it!!)
+            findNavController().navigate(nav)
+
+        })
+    }
 
 }
