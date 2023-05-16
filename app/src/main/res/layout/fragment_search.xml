@@ -20,9 +20,9 @@
             android:id="@+id/image_on_start"
             android:layout_width="@dimen/image_search_width"
             android:layout_height="@dimen/image_hero_width"
+            android:layout_marginTop="@dimen/margin_search_image"
             android:importantForAccessibility="no"
             android:src="@drawable/image_start_search"
-            android:layout_marginTop="@dimen/margin_search_image"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -33,9 +33,9 @@
             android:id="@+id/image_no_result"
             android:layout_width="@dimen/image_search_width"
             android:layout_height="@dimen/image_search_height"
+            android:layout_marginTop="@dimen/margin_search_image"
             android:importantForAccessibility="no"
             android:src="@drawable/image_no_search_result"
-            android:layout_marginTop="@dimen/margin_search_image"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -56,9 +56,8 @@
             android:hint="@string/search_hint"
             android:inputType="text"
             android:maxLength="50"
-            app:clearSearch="@{viewModel.clearSearch}"
-            app:onSearchTextChange="@{viewModel}"
             android:paddingHorizontal="@dimen/large_margin"
+            android:text="@={viewModel.searchText}"
             android:textColor="@color/input_text_color"
             android:textColorHint="@color/hint_color"
             android:textSize="@dimen/input_text_size"
@@ -77,17 +76,17 @@
             app:layout_constraintTop_toBottomOf="@+id/search_bar"
             app:singleSelection="true">
 
-                <com.google.android.material.chip.Chip
+            <com.google.android.material.chip.Chip
                 android:id="@+id/chip_comics"
                 style="@style/Chip_style"
                 android:onClick="@{()-> viewModel.onClickComicChip()}"
                 android:text="@string/text_comic_chip"
                 app:checkedIconVisible="false"
-                app:chipStrokeColor="@color/red"
                 app:chipBackgroundColor="@color/chip_background"
-                app:chipCornerRadius="@dimen/chip_radius" />
+                app:chipCornerRadius="@dimen/chip_radius"
+                app:chipStrokeColor="@color/red" />
 
-<com.google.android.material.chip.Chip
+            <com.google.android.material.chip.Chip
                 android:id="@+id/chip_series"
                 style="@style/Chip_style"
                 android:onClick="@{()-> viewModel.onClickSeriesChip()}"
@@ -97,7 +96,7 @@
                 app:chipCornerRadius="@dimen/chip_radius"
                 app:chipStrokeWidth="@dimen/chip_stroke" />
 
-           <com.google.android.material.chip.Chip
+            <com.google.android.material.chip.Chip
                 android:id="@+id/chip_events"
                 style="@style/Chip_style"
                 android:height="@dimen/height_chip"
@@ -140,22 +139,20 @@
             app:setSearchStatus="@{viewModel.searchStatus}"
             app:showWhenSuccess="@{viewModel.searchList}"
             app:spanCount="2"
-            tools:listitem="@layout/item_search_comics" />
-
-
+            tools:listitem="@layout/item_details_comics" />
 
 
         <com.airbnb.lottie.LottieAnimationView
             android:layout_width="@dimen/width_search_lottie"
             android:layout_height="@dimen/height_search_lottie"
-            app:lottie_rawRes="@raw/loading_lottie"
-            app:lottie_autoPlay="true"
-            app:lottie_loop="true"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:showWhenLoading="@{viewModel.searchList}"/>
+            app:lottie_autoPlay="true"
+            app:lottie_loop="true"
+            app:lottie_rawRes="@raw/loading_lottie"
+            app:showWhenLoading="@{viewModel.searchList}" />
 
 
         <ImageView

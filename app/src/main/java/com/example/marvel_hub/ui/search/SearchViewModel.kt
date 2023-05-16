@@ -14,16 +14,14 @@ import com.example.marvel_hub.ui.listeners.EventsListener
 import com.example.marvel_hub.ui.listeners.SeriesListener
 import com.example.marvel_hub.util.Event
 import com.example.marvel_hub.util.State
-import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
 import io.reactivex.rxjava3.kotlin.addTo
-import io.reactivex.rxjava3.schedulers.Schedulers
 
 class SearchViewModel : BaseViewModel(), EventsListener,
     ComicListener,
     SeriesListener, CharacterListener {
 
     private val _searchStatus =
-        MutableLiveData(SearchStatus.CHARACTER)
+        MutableLiveData(SearchStatus.COMIC)
     val searchStatus: LiveData<SearchStatus>
         get() = _searchStatus
 
@@ -31,9 +29,7 @@ class SearchViewModel : BaseViewModel(), EventsListener,
     val searchList: LiveData<State<Any>>
         get() = _searchList
 
-    private val _clearSearch = MutableLiveData<String>()
-    val clearSearch: LiveData<String>
-        get() = _clearSearch
+     val searchText = MutableLiveData<String>()
 
     private val _comicEvent = MutableLiveData<Event<ComicModel>>()
     val comicEvent: LiveData<Event<ComicModel>>
@@ -51,7 +47,17 @@ class SearchViewModel : BaseViewModel(), EventsListener,
     val seriesEvent: LiveData<Event<SeriesModel>>
         get() = _seriesEvent
 
-    fun getComicData(text: String) {
+
+    fun getDataBySearchText() {
+        when (searchStatus.value) {
+            SearchStatus.CHARACTER -> searchText.value?.let { getCharacterData(it) }
+            SearchStatus.COMIC -> searchText.value?.let { getComicData(it) }
+            SearchStatus.SERIES -> searchText.value?.let { getSeriesData(it) }
+            else -> searchText.value?.let { getEventData(it) }
+        }
+    }
+
+  private  fun getComicData(text: String) {
         _searchList.postValue(State.Loading)
         repository.searchComics(text)
             .applySchedulers()
@@ -67,7 +73,7 @@ class SearchViewModel : BaseViewModel(), EventsListener,
         _searchList.postValue(State.Error(throwable.message.toString()))
     }
 
-    fun getSeriesData(text: String) {
+    private  fun getSeriesData(text: String) {
         _searchList.postValue(State.Loading)
         repository.searchSeries(text)
             .applySchedulers()
@@ -84,7 +90,7 @@ class SearchViewModel : BaseViewModel(), EventsListener,
     }
 
 
-    fun getEventData(text: String) {
+    private  fun getEventData(text: String) {
         _searchList.postValue(State.Loading)
         repository.searchEvents(text)
             .applySchedulers()
@@ -101,7 +107,7 @@ class SearchViewModel : BaseViewModel(), EventsListener,
         _searchList.postValue(State.Error(throwable.message.toString()))
     }
 
-    fun getCharacterData(text: String) {
+    private    fun getCharacterData(text: String) {
         _searchList.postValue(State.Loading)
         repository.searchCharacters(text)
             .applySchedulers()
@@ -116,26 +122,27 @@ class SearchViewModel : BaseViewModel(), EventsListener,
 
     private fun onGetCharacterError(throwable: Throwable) {
         _searchList.postValue(State.Error(throwable.message.toString()))
+
     }
 
     fun onClickComicChip() {
         _searchStatus.postValue(SearchStatus.COMIC)
-        _clearSearch.postValue(CLEAR_SEARCH)
+        searchText.value?.let { getComicData(it) }
     }
 
     fun onClickEventChip() {
         _searchStatus.postValue(SearchStatus.EVENT)
-        _clearSearch.postValue(CLEAR_SEARCH)
+        searchText.value?.let { getEventData(it) }
     }
 
     fun onClickSeriesChip() {
         _searchStatus.postValue(SearchStatus.SERIES)
-        _clearSearch.postValue(CLEAR_SEARCH)
+        searchText.value?.let { getSeriesData(it) }
     }
 
     fun onClickCharacterChip() {
         _searchStatus.postValue(SearchStatus.CHARACTER)
-        _clearSearch.postValue(CLEAR_SEARCH)
+        searchText.value?.let { getCharacterData(it) }
     }
 
     override fun onCharacterClick(character: CharactersModel) {
@@ -154,8 +161,5 @@ class SearchViewModel : BaseViewModel(), EventsListener,
         _seriesEvent.postValue(Event(series))
     }
 
-    companion object {
-        const val CLEAR_SEARCH = ""
-    }
 }
 
