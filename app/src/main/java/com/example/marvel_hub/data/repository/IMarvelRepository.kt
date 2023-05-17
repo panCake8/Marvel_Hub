@@ -59,5 +59,4 @@ interface IMarvelRepository {
     fun getRandomSeries(): Single<List<SeriesModel>>
     fun getRandomCharacters(): Single<List<CharactersModel>>
     fun fetchHomeItems(): Single<List<HomeItem>>
-
 }
