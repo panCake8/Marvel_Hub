@@ -8,10 +8,11 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.RecyclerView.ViewHolder
 import com.example.marvel_hub.BR
+import com.example.marvel_hub.ui.adapters.MatchDiffUtils
 
 abstract class BaseAdapter<T>(
     private var items: List<T>,
-    private val listener: BaseAdapterListener?
+    private val listener: BaseAdapterListener
 ) : RecyclerView.Adapter<BaseAdapter.BaseViewHolder>() {
     abstract val getLayoutId: Int
 
@@ -44,11 +45,14 @@ abstract class BaseAdapter<T>(
     override fun getItemCount() = items.size
 
     open fun setItems(newItems: List<T>) {
-        val diffUtils = DiffUtil.calculateDiff(MatchDiffUtils(items, newItems))
+        val diffUtils = DiffUtil.calculateDiff(MatchDiffUtils(items, newItems) { oldItem, newItem ->
+            areTheSameItem(oldItem, newItem)
+        })
         items = newItems
         diffUtils.dispatchUpdatesTo(this)
     }
 
+    private fun areTheSameItem(oldItem: T, newItem: T) = oldItem?.equals(newItem) == true
     interface BaseAdapterListener
 
     abstract class BaseViewHolder(binding: ViewDataBinding) : ViewHolder(binding.root)
