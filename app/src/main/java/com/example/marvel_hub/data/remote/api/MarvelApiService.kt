@@ -1,4 +1,4 @@
-package com.example.marvel_hub.data.api
+package com.example.marvel_hub.data.remote.api
 
 import com.example.marvel_hub.data.model.BaseResponse
 import com.example.marvel_hub.data.model.CharactersModel

@@ -1,6 +1,6 @@
-package com.example.marvel_hub.data.api
+package com.example.marvel_hub.data.remote.api
 
-import com.example.marvel_hub.data.api.interceptor.AuthInterceptor
+import com.example.marvel_hub.data.remote.api.interceptor.AuthInterceptor
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
