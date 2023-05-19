@@ -12,6 +12,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:screenOrientation="portrait"
         android:supportsRtl="false"
+        android:name=".MarvelHubApplication"
         android:theme="@style/Theme.Marvel_Hub"
         android:usesCleartextTraffic="true"
         tools:replace="android:supportsRtl"

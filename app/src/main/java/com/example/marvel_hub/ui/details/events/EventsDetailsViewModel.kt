@@ -8,6 +8,7 @@ import com.example.marvel_hub.data.model.ComicModel
 import com.example.marvel_hub.data.model.EventModel
 import com.example.marvel_hub.data.model.SeriesModel
 import com.example.marvel_hub.data.model.StoriesModel
+import com.example.marvel_hub.domain.repository.IMarvelRepository
 import com.example.marvel_hub.ui.base.BaseViewModel
 import com.example.marvel_hub.ui.listeners.CharacterListener
 import com.example.marvel_hub.ui.listeners.ComicListener
@@ -15,11 +16,13 @@ import com.example.marvel_hub.ui.listeners.SeriesListener
 import com.example.marvel_hub.ui.listeners.StoryListener
 import com.example.marvel_hub.util.Event
 import com.example.marvel_hub.util.State
-import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
 import io.reactivex.rxjava3.kotlin.addTo
-import io.reactivex.rxjava3.schedulers.Schedulers
+import javax.inject.Inject
 
-class EventsDetailsViewModel : BaseViewModel(),
+class EventsDetailsViewModel  @Inject constructor(
+    private val repository: IMarvelRepository
+
+): BaseViewModel(),
     ComicListener,
     CharacterListener,
     SeriesListener,
