@@ -1,7 +1,6 @@
 package com.example.marvel_hub.data.repository
 
-import com.example.marvel_hub.data.local.MarvelDatabase
-import com.example.marvel_hub.data.remote.api.API
+import com.example.marvel_hub.data.remote.API
 import com.example.marvel_hub.data.model.CharactersModel
 import com.example.marvel_hub.data.model.ComicModel
 import com.example.marvel_hub.data.model.EventModel
