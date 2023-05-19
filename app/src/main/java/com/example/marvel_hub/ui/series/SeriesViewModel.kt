@@ -4,15 +4,18 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.example.marvel_hub.data.model.BaseResponse
 import com.example.marvel_hub.data.model.SeriesModel
+import com.example.marvel_hub.domain.repository.IMarvelRepository
 import com.example.marvel_hub.util.State
 import com.example.marvel_hub.ui.base.BaseViewModel
 import com.example.marvel_hub.ui.listeners.SeriesListener
 import com.example.marvel_hub.util.Event
-import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
 import io.reactivex.rxjava3.kotlin.addTo
-import io.reactivex.rxjava3.schedulers.Schedulers
+import javax.inject.Inject
 
-class SeriesViewModel : BaseViewModel(), SeriesListener {
+class SeriesViewModel  @Inject constructor(
+    private val repository: IMarvelRepository
+
+): BaseViewModel(), SeriesListener {
 
     private val _series = MutableLiveData<State<SeriesModel>>(State.Loading)
     val series: LiveData<State<SeriesModel>>

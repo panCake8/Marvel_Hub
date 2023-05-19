@@ -4,15 +4,18 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.example.marvel_hub.data.model.BaseResponse
 import com.example.marvel_hub.data.model.EventModel
+import com.example.marvel_hub.domain.repository.IMarvelRepository
 import com.example.marvel_hub.ui.base.BaseViewModel
 import com.example.marvel_hub.ui.listeners.EventsListener
 import com.example.marvel_hub.util.Event
 import com.example.marvel_hub.util.State
-import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
 import io.reactivex.rxjava3.kotlin.addTo
-import io.reactivex.rxjava3.schedulers.Schedulers
+import javax.inject.Inject
 
-class EventsViewModel : BaseViewModel(), EventsListener {
+class EventsViewModel  @Inject constructor(
+    private val repository: IMarvelRepository
+
+): BaseViewModel(), EventsListener {
 
     private val _event = MutableLiveData<State<EventModel>>(State.Loading)
     val event: LiveData<State<EventModel>>
