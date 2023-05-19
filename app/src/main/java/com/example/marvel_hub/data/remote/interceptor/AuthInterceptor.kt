@@ -1,4 +1,4 @@
-package com.example.marvel_hub.data.remote.api.interceptor
+package com.example.marvel_hub.data.remote.interceptor
 
 import com.example.marvel_hub.BuildConfig
 import com.example.marvel_hub.data.util.ApiKeyHashGenerator
