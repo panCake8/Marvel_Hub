@@ -4,6 +4,8 @@ plugins {
     id 'kotlin-kapt'
     id "kotlin-parcelize"
     id 'androidx.navigation.safeargs.kotlin'
+    id 'com.google.dagger.hilt.android'
+
 }
 
 android {
@@ -100,6 +102,11 @@ dependencies {
     implementation 'com.ouattararomuald:slider:3.0.1'
     //lottie
     implementation "com.airbnb.android:lottie:6.0.0"
+
+    //dagger:hilt
+    implementation "com.google.dagger:hilt-android:2.44"
+    kapt "com.google.dagger:hilt-compiler:2.44"
+
 
     //room DB
     implementation "androidx.room:room-runtime:2.5.1"
