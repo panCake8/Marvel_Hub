@@ -1,4 +1,4 @@
-package com.example.marvel_hub.data.repository
+package com.example.marvel_hub.domain.repository
 
 import com.example.marvel_hub.data.model.CharactersModel
 import com.example.marvel_hub.data.model.ComicModel
