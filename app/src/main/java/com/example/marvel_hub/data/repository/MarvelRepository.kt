@@ -110,29 +110,27 @@ class MarvelRepository @Inject constructor(
     }
 
     override fun fetchHomeItems(): Single<List<HomeItem>> {
-        return try {
-            Single.zip(
-                getRandomSeries(),
-                getRandomComics(),
-                getRandomEvents(),
-                getRandomCharacters(),
-            ) { series: List<SeriesModel>,
-                comics: List<ComicModel>,
-                events: List<EventModel>,
-                characters: List<CharactersModel> ->
-                dao.getDao().insertCharacters(characters)
-                dao.getDao().insertComics(comics)
-                dao.getDao().insertEvents(events)
-                dao.getDao().insertSeries(series)
-                listOf(
-                    HomeItem.Banner(Constants.MARVEL_IMAGES.shuffled().take(5)),
-                    HomeItem.Character(characters.shuffled().take(10)),
-                    HomeItem.Comics(comics.shuffled().take(10)),
-                    HomeItem.Events(events.shuffled().take(10)),
-                    HomeItem.Series(series.shuffled().take(10)),
-                )
-            }
-        } catch (e: Exception) {
+        return Single.zip(
+            getRandomSeries(),
+            getRandomComics(),
+            getRandomEvents(),
+            getRandomCharacters(),
+        ) { series: List<SeriesModel>,
+            comics: List<ComicModel>,
+            events: List<EventModel>,
+            characters: List<CharactersModel> ->
+            dao.getDao().insertCharacters(characters)
+            dao.getDao().insertComics(comics)
+            dao.getDao().insertEvents(events)
+            dao.getDao().insertSeries(series)
+            listOf(
+                HomeItem.Banner(Constants.MARVEL_IMAGES.shuffled().take(5)),
+                HomeItem.Character(characters.shuffled().take(10)),
+                HomeItem.Comics(comics.shuffled().take(10)),
+                HomeItem.Events(events.shuffled().take(10)),
+                HomeItem.Series(series.shuffled().take(10)),
+            )
+        }.onErrorResumeNext {
             Single.zip(
                 dao.getDao().getAllSeries(),
                 dao.getDao().getAllComics(),
