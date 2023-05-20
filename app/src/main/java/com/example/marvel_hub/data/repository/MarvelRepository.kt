@@ -1,8 +1,6 @@
 package com.example.marvel_hub.data.repository
 
 import com.example.marvel_hub.data.local.MarvelDataBase
-import com.example.marvel_hub.data.local.entities.CharacterEntity
-import com.example.marvel_hub.data.local.entities.ComicEntity
 import com.example.marvel_hub.data.local.entities.SearchKeywordEntity
 import com.example.marvel_hub.data.model.CharactersModel
 import com.example.marvel_hub.data.model.ComicModel
@@ -99,10 +97,6 @@ class MarvelRepository @Inject constructor(
         return API.fetchComics(50).map { it.data?.results!! }
     }
 
-    private fun insertRandomComics(comics: List<ComicEntity>) {
-        dao.getDao().insertComics(comics)
-    }
-
     override fun getRandomEvents(): Single<List<EventModel>> {
         return API.fetchEvents(50).map { it.data?.results!! }
     }
@@ -116,23 +110,46 @@ class MarvelRepository @Inject constructor(
     }
 
     override fun fetchHomeItems(): Single<List<HomeItem>> {
-        return Single.zip(
-            getRandomSeries(),
-            getRandomComics(),
-            getRandomEvents(),
-            getRandomCharacters(),
-        ) { series: List<SeriesModel>,
-            comics: List<ComicModel>,
-            events: List<EventModel>,
-            characters: List<CharactersModel> ->
-            listOf(
-                HomeItem.Banner(Constants.MARVEL_IMAGES.shuffled().take(5)),
-                HomeItem.Character(characters.shuffled().take(10)),
-                HomeItem.Comics(comics.shuffled().take(10)),
-                HomeItem.Events(events.shuffled().take(10)),
-                HomeItem.Series(series.shuffled().take(10)),
-            )
-
+        return try {
+            Single.zip(
+                dao.getDao().getAllSeries(),
+                dao.getDao().getAllComics(),
+                dao.getDao().getAllEvents(),
+                dao.getDao().getAllCharacters(),
+            ) { series: List<SeriesModel>,
+                comics: List<ComicModel>,
+                events: List<EventModel>,
+                characters: List<CharactersModel> ->
+                listOf(
+                    HomeItem.Banner(Constants.MARVEL_IMAGES.shuffled().take(5)),
+                    HomeItem.Character(characters.shuffled().take(10)),
+                    HomeItem.Comics(comics.shuffled().take(10)),
+                    HomeItem.Events(events.shuffled().take(10)),
+                    HomeItem.Series(series.shuffled().take(10)),
+                )
+            }
+        } catch (e: Exception) {
+            Single.zip(
+                getRandomSeries(),
+                getRandomComics(),
+                getRandomEvents(),
+                getRandomCharacters(),
+            ) { series: List<SeriesModel>,
+                comics: List<ComicModel>,
+                events: List<EventModel>,
+                characters: List<CharactersModel> ->
+                dao.getDao().insertCharacters(characters)
+                dao.getDao().insertComics(comics)
+                dao.getDao().insertEvents(events)
+                dao.getDao().insertSeries(series)
+                listOf(
+                    HomeItem.Banner(Constants.MARVEL_IMAGES.shuffled().take(5)),
+                    HomeItem.Character(characters.shuffled().take(10)),
+                    HomeItem.Comics(comics.shuffled().take(10)),
+                    HomeItem.Events(events.shuffled().take(10)),
+                    HomeItem.Series(series.shuffled().take(10)),
+                )
+            }
         }
     }
 

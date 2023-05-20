@@ -10,6 +10,10 @@ import com.example.marvel_hub.data.local.entities.ComicEntity
 import com.example.marvel_hub.data.local.entities.EventEntity
 import com.example.marvel_hub.data.local.entities.SearchKeywordEntity
 import com.example.marvel_hub.data.local.entities.SeriesEntity
+import com.example.marvel_hub.data.model.CharactersModel
+import com.example.marvel_hub.data.model.ComicModel
+import com.example.marvel_hub.data.model.EventModel
+import com.example.marvel_hub.data.model.SeriesModel
 import com.example.marvel_hub.ui.home.util.HomeItem
 import io.reactivex.rxjava3.core.Completable
 import io.reactivex.rxjava3.core.Single
@@ -26,32 +30,26 @@ interface MarvelDao {
 
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    fun insertCharacters(characters: List<CharacterEntity>): Completable
+    fun insertCharacters(characters: List<CharactersModel>): Completable
 
     @Query("SELECT * FROM CharacterEntity")
-    fun getAllCharacters(): Single<List<CharacterEntity>>
+    fun getAllCharacters(): Single<List<CharactersModel>>
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    fun insertComics(comics: List<ComicEntity>): Completable
+    fun insertComics(comics: List<ComicModel>): Completable
 
     @Query("SELECT * FROM ComicEntity")
-    fun getAllComics(): Single<List<ComicEntity>>
+    fun getAllComics(): Single<List<ComicModel>>
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    fun insertEvents(events: List<EventEntity>): Completable
+    fun insertEvents(events: List<EventModel>): Completable
 
     @Query("SELECT * FROM EventEntity")
-    fun getAllEvents(): Single<List<EventEntity>>
+    fun getAllEvents(): Single<List<EventModel>>
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    fun insertSeries(series: List<SeriesEntity>): Completable
+    fun insertSeries(series: List<SeriesModel>): Completable
 
     @Query("SELECT * FROM SeriesEntity")
-    fun getAllSeries(): Single<List<SeriesEntity>>
-
-    @Insert(onConflict = OnConflictStrategy.REPLACE)
-    fun insertBanner(series: List<BannerEntity>): Completable
-
-    @Query("SELECT * FROM SeriesEntity")
-    fun getAllBanners(): Single<List<BannerEntity>>
+    fun getAllSeries(): Single<List<SeriesModel>>
 }

@@ -12,6 +12,10 @@ import com.example.marvel_hub.data.local.entities.EventEntity
 import com.example.marvel_hub.data.local.entities.SearchKeywordEntity
 import com.example.marvel_hub.data.local.entities.SeriesEntity
 import com.example.marvel_hub.data.local.entities.StoriesEntity
+import com.example.marvel_hub.data.model.CharactersModel
+import com.example.marvel_hub.data.model.ComicModel
+import com.example.marvel_hub.data.model.EventModel
+import com.example.marvel_hub.data.model.SeriesModel
 
 @Database(
     entities = [
@@ -22,6 +26,10 @@ import com.example.marvel_hub.data.local.entities.StoriesEntity
         StoriesEntity::class,
         SearchKeywordEntity::class,
         BannerEntity::class,
+        ComicModel::class,
+        CharactersModel::class,
+        SeriesModel::class,
+        EventModel::class,
     ],
     version = 1,
     exportSchema = false
