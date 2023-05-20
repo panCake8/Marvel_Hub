@@ -124,8 +124,29 @@ class MarvelRepository @Inject constructor(
         return API.fetchCharacters(50).map { it.data?.results!! }
     }
 
+    @SuppressLint("CheckResult")
     override fun fetchHomeItems(): Single<List<HomeItem>> {
-        return try {
+        return Single.zip(
+            getRandomSeries(),
+            getRandomComics(),
+            getRandomEvents(),
+            getRandomCharacters(),
+        ) { series: List<SeriesModel>,
+            comics: List<ComicModel>,
+            events: List<EventModel>,
+            characters: List<CharactersModel> ->
+            dao.getDao().insertCharacters(characters).subscribeOn(Schedulers.io())
+            dao.getDao().insertComics(comics).subscribeOn(Schedulers.io())
+            dao.getDao().insertEvents(events).subscribeOn(Schedulers.io())
+            dao.getDao().insertSeries(series).subscribeOn(Schedulers.io())
+            listOf(
+                HomeItem.Banner(Constants.MARVEL_IMAGES.shuffled().take(5)),
+                HomeItem.Character(characters.shuffled().take(10)),
+                HomeItem.Comics(comics.shuffled().take(10)),
+                HomeItem.Events(events.shuffled().take(10)),
+                HomeItem.Series(series.shuffled().take(10)),
+            )
+        }.onErrorResumeNext {
             Single.zip(
                 dao.getDao().getAllSeries(),
                 dao.getDao().getAllComics(),
@@ -143,6 +164,7 @@ class MarvelRepository @Inject constructor(
                     HomeItem.Series(series.shuffled().take(10)),
                 )
             }
+
         } catch (e: Exception) {
             Single.zip(
                 getRandomSeries(),
@@ -241,6 +263,7 @@ class MarvelRepository @Inject constructor(
                     character = it
                 }
             }
+
         }
         return character ?: listOf()
     }
