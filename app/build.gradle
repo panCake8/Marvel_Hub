@@ -4,6 +4,7 @@ plugins {
     id 'kotlin-kapt'
     id "kotlin-parcelize"
     id 'androidx.navigation.safeargs.kotlin'
+    id "com.google.dagger.hilt.android"
 }
 
 android {
@@ -23,6 +24,7 @@ android {
         properties.load(project.rootProject.file("local.properties").newDataInputStream())
         buildConfigField "String", "PUBLIC_API_KEY", "${properties.getProperty('publicapikey')}"
         buildConfigField "String", "PRIVATE_API_KEY", "${properties.getProperty('privateapikey')}"
+        buildConfigField "String", "BASE_URL", "${properties.getProperty('baseUrl')}"
     }
 
     buildTypes {
@@ -106,4 +108,9 @@ dependencies {
     implementation("androidx.room:room-runtime:$room_version")
     kapt "androidx.room:room-compiler:$room_version"
     implementation("androidx.room:room-rxjava3:$room_version")
+
+    // hilt
+    def hilt_version = "2.44"
+    implementation("com.google.dagger:hilt-android:$hilt_version")
+    kapt("com.google.dagger:hilt-android-compiler:$hilt_version")
 }
