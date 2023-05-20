@@ -112,10 +112,10 @@ class MarvelRepository @Inject constructor(
     override fun fetchHomeItems(): Single<List<HomeItem>> {
         return try {
             Single.zip(
-                dao.getDao().getAllSeries(),
-                dao.getDao().getAllComics(),
-                dao.getDao().getAllEvents(),
-                dao.getDao().getAllCharacters(),
+                getRandomSeries(),
+                getRandomComics(),
+                getRandomEvents(),
+                getRandomCharacters(),
             ) { series: List<SeriesModel>,
                 comics: List<ComicModel>,
                 events: List<EventModel>,
@@ -130,10 +130,10 @@ class MarvelRepository @Inject constructor(
             }
         } catch (e: Exception) {
             Single.zip(
-                getRandomSeries(),
-                getRandomComics(),
-                getRandomEvents(),
-                getRandomCharacters(),
+                dao.getDao().getAllSeries(),
+                dao.getDao().getAllComics(),
+                dao.getDao().getAllEvents(),
+                dao.getDao().getAllCharacters(),
             ) { series: List<SeriesModel>,
                 comics: List<ComicModel>,
                 events: List<EventModel>,
