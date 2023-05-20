@@ -17,11 +17,13 @@ import com.example.marvel_hub.util.Event
 import com.example.marvel_hub.util.State
 import dagger.hilt.android.lifecycle.HiltViewModel
 import io.reactivex.rxjava3.kotlin.addTo
+import io.reactivex.rxjava3.schedulers.Schedulers
 import javax.inject.Inject
+
 @HiltViewModel
 class SearchViewModel @Inject constructor(
     private val repository: IMarvelRepository,
-): BaseViewModel(), EventsListener,
+) : BaseViewModel(), EventsListener,
     ComicListener,
     SeriesListener, CharacterListener {
 
@@ -34,7 +36,7 @@ class SearchViewModel @Inject constructor(
     val searchList: LiveData<State<Any>>
         get() = _searchList
 
-     val searchText = MutableLiveData<String>()
+    val searchText = MutableLiveData<String>()
 
     private val _comicEvent = MutableLiveData<Event<ComicModel>>()
     val comicEvent: LiveData<Event<ComicModel>>
@@ -60,13 +62,14 @@ class SearchViewModel @Inject constructor(
             SearchStatus.SERIES -> searchText.value?.let { getSeriesData(it) }
             else -> searchText.value?.let { getEventData(it) }
         }
+        saveSearchKeyword()
     }
 
-  private fun saveSearchKeyword(){
+    private fun saveSearchKeyword() {
+        searchText.value?.let { repository.saveSearchKeyword(it).subscribeOn(Schedulers.io()) }
+    }
 
-  }
-
-  private  fun getComicData(text: String) {
+    private fun getComicData(text: String) {
         _searchList.postValue(State.Loading)
         repository.searchComics(text)
             .addSchedulers()
@@ -82,7 +85,7 @@ class SearchViewModel @Inject constructor(
         _searchList.postValue(State.Error(throwable.message.toString()))
     }
 
-    private  fun getSeriesData(text: String) {
+    private fun getSeriesData(text: String) {
         _searchList.postValue(State.Loading)
         repository.searchSeries(text)
             .addSchedulers()
@@ -99,7 +102,7 @@ class SearchViewModel @Inject constructor(
     }
 
 
-    private  fun getEventData(text: String) {
+    private fun getEventData(text: String) {
         _searchList.postValue(State.Loading)
         repository.searchEvents(text)
             .addSchedulers()
@@ -116,7 +119,7 @@ class SearchViewModel @Inject constructor(
         _searchList.postValue(State.Error(throwable.message.toString()))
     }
 
-    private    fun getCharacterData(text: String) {
+    private fun getCharacterData(text: String) {
         _searchList.postValue(State.Loading)
         repository.searchCharacters(text)
             .addSchedulers()
