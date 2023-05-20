@@ -120,6 +120,10 @@ class MarvelRepository @Inject constructor(
                 comics: List<ComicModel>,
                 events: List<EventModel>,
                 characters: List<CharactersModel> ->
+                dao.getDao().insertCharacters(characters)
+                dao.getDao().insertComics(comics)
+                dao.getDao().insertEvents(events)
+                dao.getDao().insertSeries(series)
                 listOf(
                     HomeItem.Banner(Constants.MARVEL_IMAGES.shuffled().take(5)),
                     HomeItem.Character(characters.shuffled().take(10)),
@@ -138,10 +142,6 @@ class MarvelRepository @Inject constructor(
                 comics: List<ComicModel>,
                 events: List<EventModel>,
                 characters: List<CharactersModel> ->
-                dao.getDao().insertCharacters(characters)
-                dao.getDao().insertComics(comics)
-                dao.getDao().insertEvents(events)
-                dao.getDao().insertSeries(series)
                 listOf(
                     HomeItem.Banner(Constants.MARVEL_IMAGES.shuffled().take(5)),
                     HomeItem.Character(characters.shuffled().take(10)),
