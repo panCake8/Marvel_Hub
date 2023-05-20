@@ -6,7 +6,7 @@ import androidx.room.PrimaryKey
 
 @Entity
 data class SeriesEntity(
-    @PrimaryKey val id: Int,
+    @PrimaryKey(autoGenerate = false) val id: Int,
     @ColumnInfo val title: String,
     @ColumnInfo val description: String,
     @ColumnInfo val modified: String,
