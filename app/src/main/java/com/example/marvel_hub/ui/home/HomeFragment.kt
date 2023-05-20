@@ -10,7 +10,9 @@ import com.example.marvel_hub.ui.base.BaseFragment
 import com.example.marvel_hub.ui.home.adapter.HomeAdapter
 import com.example.marvel_hub.ui.home.viewModel.HomeViewModel
 import com.example.marvel_hub.util.EventObserver
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class HomeFragment : BaseFragment<FragmentHomeBinding, HomeViewModel>() {
 
     override val viewModel: HomeViewModel by viewModels()

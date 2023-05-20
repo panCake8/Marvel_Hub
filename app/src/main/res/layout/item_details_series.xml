@@ -11,7 +11,7 @@
 
         <variable
             name="listener"
-            type="com.example.marvel_hub.ui.details.listeners.SeriesListener" />
+            type="com.example.marvel_hub.ui.listeners.SeriesListener" />
     </data>
 
     <com.google.android.material.card.MaterialCardView
@@ -19,6 +19,7 @@
         android:layout_height="@dimen/marvel_card_height"
         android:layout_marginHorizontal="@dimen/small_margin"
         android:layout_marginVertical="@dimen/small_margin"
+        android:onClick="@{() -> listener.onSeriesClick(item)}"
         app:cardCornerRadius="@dimen/normal_corner_radius">
 
         <androidx.constraintlayout.widget.ConstraintLayout
@@ -41,6 +42,7 @@
 
             <TextView
                 android:id="@+id/text_movie_name"
+                style="@style/card_title"
                 android:layout_width="@dimen/no_width"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="@dimen/medium_margin"
@@ -50,7 +52,6 @@
                 android:fontFamily="@font/poppins_medium"
                 android:maxLines="1"
                 android:text="@{item.title}"
-                style="@style/card_title"
 
                 android:textColor="@color/white_100"
                 android:textSize="@dimen/body_text"

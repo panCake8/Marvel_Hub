@@ -13,6 +13,10 @@ import com.example.marvel_hub.databinding.ItemRecyclerEventDetailsComicsBinding
 import com.example.marvel_hub.databinding.ItemRecyclerEventDetailsInfoBinding
 import com.example.marvel_hub.databinding.ItemRecyclerEventDetailsSeriesBinding
 import com.example.marvel_hub.databinding.ItemRecyclerEventDetailsStoriesBinding
+import com.example.marvel_hub.ui.adapters.CharacterAdapter
+import com.example.marvel_hub.ui.adapters.ComicsAdapter
+import com.example.marvel_hub.ui.adapters.SeriesAdapter
+import com.example.marvel_hub.ui.adapters.StoriesAdapter
 import com.example.marvel_hub.ui.details.events.EventsDetailsViewModel
 
 class ParentEventsAdapter(
@@ -94,25 +98,25 @@ class ParentEventsAdapter(
     private fun bindingCharacter(binding: ItemRecyclerEventDetailsCharactersBinding) {
         binding.viewModel = viewModel
         binding.lifecycleOwner = viewLifeCycle
-        binding.childCharacterRecycler.adapter = ChildEventsCharacterAdapter(listOf(), viewModel)
+        binding.childCharacterRecycler.adapter = CharacterAdapter(listOf(), viewModel)
     }
 
     private fun bindingStories(binding: ItemRecyclerEventDetailsStoriesBinding) {
         binding.viewModel = viewModel
         binding.lifecycleOwner = viewLifeCycle
-        binding.childStoryRecycler.adapter = ChildEventsStoriesAdapter(listOf(), viewModel)
+        binding.childStoryRecycler.adapter = StoriesAdapter(listOf(), viewModel)
     }
 
     private fun bindingComics(binding: ItemRecyclerEventDetailsComicsBinding) {
         binding.viewModel = viewModel
         binding.lifecycleOwner = viewLifeCycle
-        binding.childComicRecycler.adapter = ChildEventsComicsAdapter(listOf(), viewModel)
+        binding.childComicRecycler.adapter = ComicsAdapter(listOf(), viewModel)
     }
 
     private fun bindingSeries(binding: ItemRecyclerEventDetailsSeriesBinding) {
         binding.viewModel = viewModel
         binding.lifecycleOwner = viewLifeCycle
-        binding.childSeriesRecycler.adapter = ChildEventsSeriesAdapter(listOf(), viewModel)
+        binding.childSeriesRecycler.adapter = SeriesAdapter(listOf(), viewModel)
     }
 
 

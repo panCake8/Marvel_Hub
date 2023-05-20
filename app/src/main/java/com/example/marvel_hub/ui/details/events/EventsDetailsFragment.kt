@@ -11,17 +11,19 @@ import com.example.marvel_hub.ui.base.BaseFragment
 import com.example.marvel_hub.ui.details.comics.ComicsDetailsFragmentArgs
 import com.example.marvel_hub.ui.details.events.adapter.ParentEventsAdapter
 import com.example.marvel_hub.util.EventObserver
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class EventsDetailsFragment : BaseFragment<FragmentEventsDetailsBinding, EventsDetailsViewModel>() {
+
     override val viewModel: EventsDetailsViewModel by viewModels()
-    val arguments: ComicsDetailsFragmentArgs by navArgs()
-    override val layoutId: Int
-        get() = R.layout.fragment_events_details
+    override val layoutId = R.layout.fragment_events_details
+    private val arguments: ComicsDetailsFragmentArgs by navArgs()
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         setUpAdapter()
-        initArguments()
+        getAllData()
         observeEvents()
 
     }
@@ -30,13 +32,8 @@ class EventsDetailsFragment : BaseFragment<FragmentEventsDetailsBinding, EventsD
         binding.mainRecycler.adapter = ParentEventsAdapter(viewModel, viewLifecycleOwner)
     }
 
-    private fun initArguments() {
-        viewModel.getEventById(arguments.id)
-        viewModel.getSeriesByEventId(arguments.id)
-        viewModel.getStoriesByEventId(arguments.id)
-        viewModel.getCharacterByEventId(arguments.id)
-        viewModel.getComicsByEventId(arguments.id)
-
+    private fun getAllData() {
+        viewModel.getAllDataById(arguments.id)
     }
 
     private fun observeEvents() {

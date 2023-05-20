@@ -1,104 +1,112 @@
 package com.example.marvel_hub.data.repository
 
-import com.example.marvel_hub.data.api.API
+import com.example.marvel_hub.data.local.MarvelDataBase
+import com.example.marvel_hub.data.local.entities.SearchKeywordEntity
 import com.example.marvel_hub.data.model.CharactersModel
 import com.example.marvel_hub.data.model.ComicModel
 import com.example.marvel_hub.data.model.EventModel
 import com.example.marvel_hub.data.model.SeriesModel
+import com.example.marvel_hub.data.remote.MarvelApiService
 import com.example.marvel_hub.ui.home.util.HomeItem
 import com.example.marvel_hub.util.Constants
+import io.reactivex.rxjava3.core.Completable
 import io.reactivex.rxjava3.core.Single
+import javax.inject.Inject
 
-class MarvelRepository : IMarvelRepository {
-    override fun getAllCharacters() = API.apiService.fetchCharacters(25)
-    override fun searchCharacters(name: String) = API.apiService.searchCharacters(name)
+class MarvelRepository @Inject constructor(
+    private val dao: MarvelDataBase,
+    private val API : MarvelApiService
+) : IMarvelRepository {
+
+    override fun getAllCharacters() = API.fetchCharacters(25)
+    override fun searchCharacters(name: String) = API.searchCharacters(name)
 
     override fun getCharacterById(characterId: Int) =
-        API.apiService.fetchCharacterById(characterId = characterId)
+        API.fetchCharacterById(characterId = characterId)
 
     override fun getComicsByCharacterId(characterId: Int) =
-        API.apiService.fetchComicsByCharacterId(characterId)
+        API.fetchComicsByCharacterId(characterId)
 
     override fun getEventsByCharacterId(characterId: Int) =
-        API.apiService.fetchEventsByCharacterId(characterId)
+        API.fetchEventsByCharacterId(characterId)
 
     override fun getSeriesByCharacterId(characterId: Int) =
-        API.apiService.fetchSeriesByCharacterId(characterId)
+        API.fetchSeriesByCharacterId(characterId)
 
     override fun getStoriesByCharacterId(characterId: Int) =
-        API.apiService.fetchStoriesByCharacterId(characterId)
+        API.fetchStoriesByCharacterId(characterId)
 
-    override fun getAllComics() = API.apiService.fetchComics(25)
+    override fun getAllComics() = API.fetchComics(25)
     override fun searchComics(name: String) =
-        API.apiService.searchComics(name)
+        API.searchComics(name)
 
-    override fun getComicById(comicId: Int) = API.apiService.fetchComicsById(comicId)
+    override fun getComicById(comicId: Int) = API.fetchComicsById(comicId)
 
     override fun getCharactersByComicId(comicId: Int) =
-        API.apiService.fetchCharactersByComicId(comicId)
+        API.fetchCharactersByComicId(comicId)
 
-    override fun getEventByComicId(comicId: Int) = API.apiService.fetchEventByComicId(comicId)
+    override fun getEventByComicId(comicId: Int) = API.fetchEventByComicId(comicId)
 
-    override fun getStoriesByComicId(comicId: Int) = API.apiService.fetchStoriesByComicId(comicId)
+    override fun getStoriesByComicId(comicId: Int) = API.fetchStoriesByComicId(comicId)
 
-    override fun getAllEvents() = API.apiService.fetchEvents(25)
+    override fun getAllEvents() = API.fetchEvents(25)
     override fun searchEvents(name: String) =
-        API.apiService.searchEvent(name)
+        API.searchEvent(name)
 
-    override fun getEventsById(eventId: Int) = API.apiService.fetchEventsById(eventId)
+    override fun getEventsById(eventId: Int) = API.fetchEventsById(eventId)
 
     override fun getCharactersByEventId(eventId: Int) =
-        API.apiService.fetchCharactersByEventId(eventId)
+        API.fetchCharactersByEventId(eventId)
 
-    override fun getComicsByEventId(eventId: Int) = API.apiService.fetchComicsByEventId(eventId)
+    override fun getComicsByEventId(eventId: Int) = API.fetchComicsByEventId(eventId)
 
-    override fun getSeriesByEventId(eventId: Int) = API.apiService.fetchSeriesByEventId(eventId)
+    override fun getSeriesByEventId(eventId: Int) = API.fetchSeriesByEventId(eventId)
 
-    override fun getStoriesByEventId(eventId: Int) = API.apiService.fetchStoriesByEventId(eventId)
-    override fun getAllSeries() = API.apiService.fetchSeries(25)
+    override fun getStoriesByEventId(eventId: Int) = API.fetchStoriesByEventId(eventId)
+    override fun getAllSeries() = API.fetchSeries(25)
 
-    override fun searchSeries(name: String) = API.apiService.searchSeries(name)
+    override fun searchSeries(name: String) = API.searchSeries(name)
 
-    override fun getSeriesById(seriesId: Int) = API.apiService.fetchSeriesById(seriesId)
+    override fun getSeriesById(seriesId: Int) = API.fetchSeriesById(seriesId)
 
     override fun getCharactersBySeriesId(seriesId: Int) =
-        API.apiService.fetchCharactersBySeriesId(seriesId)
+        API.fetchCharactersBySeriesId(seriesId)
 
-    override fun getComicsBySeriesId(seriesId: Int) = API.apiService.fetchComicsBySeriesId(seriesId)
+    override fun getComicsBySeriesId(seriesId: Int) = API.fetchComicsBySeriesId(seriesId)
 
-    override fun getEventsBySeriesId(seriesId: Int) = API.apiService.fetchEventsBySeriesId(seriesId)
+    override fun getEventsBySeriesId(seriesId: Int) = API.fetchEventsBySeriesId(seriesId)
 
     override fun getStoriesBySeriesId(seriesId: Int) =
-        API.apiService.fetchStoriesBySeriesId(seriesId)
+        API.fetchStoriesBySeriesId(seriesId)
 
-    override fun getAllStories() = API.apiService.fetchStories(25)
+    override fun getAllStories() = API.fetchStories(25)
 
-    override fun getStoryById(storyId: Int) = API.apiService.fetchStoryById(storyId)
+    override fun getStoryById(storyId: Int) = API.fetchStoryById(storyId)
 
     override fun getCharactersByStoryId(storyId: Int) =
-        API.apiService.fetchCharactersByStoryId(storyId)
+        API.fetchCharactersByStoryId(storyId)
 
-    override fun getComicsByStoryId(storyId: Int) = API.apiService.fetchComicsByStoryId(storyId)
+    override fun getComicsByStoryId(storyId: Int) = API.fetchComicsByStoryId(storyId)
 
-    override fun getEventsByStoryId(storyId: Int) = API.apiService.fetchEventsByStoryId(storyId)
+    override fun getEventsByStoryId(storyId: Int) = API.fetchEventsByStoryId(storyId)
 
-    override fun getSeriesByStoryId(storyId: Int) = API.apiService.fetchSeriesByStoryId(storyId)
+    override fun getSeriesByStoryId(storyId: Int) = API.fetchSeriesByStoryId(storyId)
 
 
     override fun getRandomComics(): Single<List<ComicModel>> {
-        return API.apiService.fetchComics(50).map { it.data?.results!! }
+        return API.fetchComics(50).map { it.data?.results!! }
     }
 
     override fun getRandomEvents(): Single<List<EventModel>> {
-        return API.apiService.fetchEvents(50).map { it.data?.results!! }
+        return API.fetchEvents(50).map { it.data?.results!! }
     }
 
     override fun getRandomSeries(): Single<List<SeriesModel>> {
-        return API.apiService.fetchSeries(50).map { it.data?.results!! }
+        return API.fetchSeries(50).map { it.data?.results!! }
     }
 
     override fun getRandomCharacters(): Single<List<CharactersModel>> {
-        return API.apiService.fetchCharacters(50).map { it.data?.results!! }
+        return API.fetchCharacters(50).map { it.data?.results!! }
     }
 
     override fun fetchHomeItems(): Single<List<HomeItem>> {
@@ -120,4 +128,9 @@ class MarvelRepository : IMarvelRepository {
             )
         }
     }
+
+    override fun saveSearchKeyword(keyword: String): Completable {
+        return dao.getDao().addSearchKeyword(SearchKeywordEntity(0, keyword))
+    }
+
 }

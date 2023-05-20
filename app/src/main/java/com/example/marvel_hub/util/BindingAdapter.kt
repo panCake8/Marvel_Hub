@@ -8,15 +8,15 @@ import androidx.core.widget.doOnTextChanged
 import androidx.databinding.BindingAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
+import com.example.marvel_hub.ui.adapters.CharacterAdapter
+import com.example.marvel_hub.ui.adapters.ComicsAdapter
+import com.example.marvel_hub.ui.adapters.EventsAdapter
+import com.example.marvel_hub.ui.adapters.SeriesAdapter
 import com.example.marvel_hub.ui.base.BaseAdapter
 import com.example.marvel_hub.ui.home.adapter.HomeAdapter
 import com.example.marvel_hub.ui.home.util.HomeItem
-import com.example.marvel_hub.ui.search.adapter.SearchCharactersAdapter
-import com.example.marvel_hub.ui.search.adapter.SearchComicsAdapter
-import com.example.marvel_hub.ui.search.adapter.SearchEventAdapter
-import com.example.marvel_hub.ui.search.adapter.SearchSeriesAdapter
-import com.example.marvel_hub.ui.search.viewModel.SearchStatus
-import com.example.marvel_hub.ui.search.viewModel.SearchViewModel
+import com.example.marvel_hub.ui.search.SearchStatus
+import com.example.marvel_hub.ui.search.SearchViewModel
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
 import io.reactivex.rxjava3.core.Observable
 import io.reactivex.rxjava3.schedulers.Schedulers
@@ -94,26 +94,6 @@ fun setNestedRecyclerItems(recyclerView: RecyclerView, items: State<HomeItem>?) 
     }
 }
 
-@SuppressLint("CheckResult")
-@BindingAdapter(value = ["app:onSearchTextChange"])
-fun onSearchTextChange(view: EditText, viewModel: SearchViewModel) {
-    Observable.create { emitter ->
-        view.doOnTextChanged { text, start, before, count ->
-            emitter.onNext(text.toString())
-        }
-    }.debounce(1, TimeUnit.SECONDS).observeOn(Schedulers.io())
-        .subscribeOn(AndroidSchedulers.mainThread()).subscribe { text ->
-            if (text.isNotEmpty()) {
-                when (viewModel.searchStatus.value) {
-                    SearchStatus.COMIC -> viewModel.getComicData(text)
-                    SearchStatus.EVENT -> viewModel.getEventData(text)
-                    SearchStatus.SERIES -> viewModel.getSeriesData(text)
-                    else -> viewModel.getCharacterData(text)
-                }
-            }
-        }
-}
-
 @BindingAdapter(value = ["app:setSearchAdapter", "app:setSearchStatus"])
 fun setSearchRecyclerAdapter(
     view: RecyclerView,
@@ -122,45 +102,37 @@ fun setSearchRecyclerAdapter(
 ) {
     when (searchStatus) {
         SearchStatus.COMIC -> {
-            val adapter = SearchComicsAdapter(listOf(), viewModel)
+            val adapter = ComicsAdapter(listOf(), viewModel)
             view.adapter = adapter
         }
 
         SearchStatus.EVENT -> {
-            val adapter = SearchEventAdapter(listOf(), viewModel)
+            val adapter = EventsAdapter(listOf(), viewModel)
             view.adapter = adapter
         }
 
         SearchStatus.SERIES -> {
-            val adapter = SearchSeriesAdapter(listOf(), viewModel)
+            val adapter = SeriesAdapter(listOf(), viewModel)
             view.adapter = adapter
         }
 
         else -> {
-            val adapter = SearchCharactersAdapter(listOf(), viewModel)
+            val adapter = CharacterAdapter(listOf(), viewModel)
             view.adapter = adapter
         }
     }
-
-    @BindingAdapter(value = ["app:availableItemsVisibility"])
-    fun setAvailableItemsVisibility(view: View, state: State<*>?) {
-        val availableItem = state?.let { it.toData() }
-        view.visibility = if (availableItem != null) View.VISIBLE else View.GONE
-    }
-
-    @BindingAdapter(value = ["visibilityIfNotBlank"])
-    fun visibilityIfNotBlank(view: View, text: String?) {
-        if (text.isNullOrEmpty()) {
-            view.visibility = View.GONE
-        } else {
-            view.visibility = View.VISIBLE
-        }
-    }
-
+}
+@BindingAdapter(value = ["app:availableItemsVisibility"])
+fun setAvailableItemsVisibility(view: View, state: State<*>?) {
+    val availableItem = state?.let { it.toData() }
+    view.visibility = if (availableItem != null) View.VISIBLE else View.GONE
 }
 
-@BindingAdapter(value = ["app:clearSearch"])
-fun clearSearch(view: EditText, text: String?) {
-    view.setText(text)
-
+@BindingAdapter(value = ["visibilityIfNotBlank"])
+fun visibilityIfNotBlank(view: View, text: String?) {
+    if (text.isNullOrEmpty()) {
+        view.visibility = View.GONE
+    } else {
+        view.visibility = View.VISIBLE
     }
+}

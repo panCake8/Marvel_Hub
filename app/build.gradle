@@ -4,6 +4,7 @@ plugins {
     id 'kotlin-kapt'
     id "kotlin-parcelize"
     id 'androidx.navigation.safeargs.kotlin'
+    id "com.google.dagger.hilt.android"
 }
 
 android {
@@ -23,6 +24,7 @@ android {
         properties.load(project.rootProject.file("local.properties").newDataInputStream())
         buildConfigField "String", "PUBLIC_API_KEY", "${properties.getProperty('publicapikey')}"
         buildConfigField "String", "PRIVATE_API_KEY", "${properties.getProperty('privateapikey')}"
+        buildConfigField "String", "BASE_URL", "${properties.getProperty('baseUrl')}"
     }
 
     buildTypes {
@@ -69,25 +71,25 @@ dependencies {
     //fragment
     implementation 'androidx.fragment:fragment-ktx:1.5.7'
     //interceptor
-    //noinspection GradleDependency
     implementation("com.squareup.okhttp3:logging-interceptor:$okhttp_version")
+
     //RxJava3
     implementation "io.reactivex.rxjava3:rxjava:3.1.6"
     implementation 'io.reactivex.rxjava3:rxandroid:3.0.2'
+
     //RxKotlin
     implementation 'io.reactivex.rxjava3:rxkotlin:3.0.1'
+
     // ViewModel
-    //noinspection GradleDependency
     implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:$version"
-    //noinspection GradleDependency
     implementation "androidx.lifecycle:lifecycle-livedata-ktx:$version"
-    //noinspection GradleDependency
     implementation "androidx.lifecycle:lifecycle-viewmodel-savedstate:$version"
+
     //retrofit
     implementation 'com.squareup.retrofit2:converter-gson:2.9.0'
     implementation 'com.squareup.retrofit2:retrofit:2.9.0'
-    //retrofit with rxjava3
     implementation 'com.squareup.retrofit2:adapter-rxjava3:2.9.0'
+
     // Navigation component
     implementation "androidx.navigation:navigation-fragment-ktx:2.5.3"
     implementation "androidx.navigation:navigation-ui-ktx:2.5.3"
@@ -100,4 +102,15 @@ dependencies {
     implementation 'com.ouattararomuald:slider:3.0.1'
     //lottie
     implementation "com.airbnb.android:lottie:6.0.0"
+
+    //room DB
+    def room_version = "2.5.1"
+    implementation("androidx.room:room-runtime:$room_version")
+    kapt "androidx.room:room-compiler:$room_version"
+    implementation("androidx.room:room-rxjava3:$room_version")
+
+    // hilt
+    def hilt_version = "2.44"
+    implementation("com.google.dagger:hilt-android:$hilt_version")
+    kapt("com.google.dagger:hilt-android-compiler:$hilt_version")
 }

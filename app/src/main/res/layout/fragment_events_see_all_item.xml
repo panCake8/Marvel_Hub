@@ -9,6 +9,10 @@
             name="item"
             type="com.example.marvel_hub.data.model.EventModel" />
 
+        <variable
+            name="listener"
+            type="com.example.marvel_hub.ui.listeners.EventsListener" />
+
     </data>
 
     <com.google.android.material.card.MaterialCardView
@@ -16,6 +20,7 @@
         android:layout_height="@dimen/large_card_height"
         android:layout_marginHorizontal="@dimen/margin_large"
         android:layout_marginBottom="@dimen/margin_medium"
+        android:onClick="@{()->listener.onEventClick(item)}"
         app:cardCornerRadius="@dimen/normal_corner_radius">
 
         <androidx.constraintlayout.widget.ConstraintLayout

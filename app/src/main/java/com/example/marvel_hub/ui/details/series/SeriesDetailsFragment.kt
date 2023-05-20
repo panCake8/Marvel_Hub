@@ -8,74 +8,64 @@ import androidx.navigation.fragment.navArgs
 import com.example.marvel_hub.R
 import com.example.marvel_hub.databinding.FragmentSeriesDetailsBinding
 import com.example.marvel_hub.ui.base.BaseFragment
-import com.example.marvel_hub.ui.details.series.adapters.ParentSeriesAdapter
+import com.example.marvel_hub.ui.details.series.adapter.ParentSeriesAdapter
 import com.example.marvel_hub.util.EventObserver
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class SeriesDetailsFragment : BaseFragment<FragmentSeriesDetailsBinding, SeriesDetailsViewModel>() {
+
     override val viewModel: SeriesDetailsViewModel by viewModels()
     override val layoutId = R.layout.fragment_series_details
-    val argument: SeriesDetailsFragmentArgs by navArgs()
+    private  val argument: SeriesDetailsFragmentArgs by navArgs()
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        setupArguments()
         setupAdapter()
+        getAllData()
+        observeEvents()
     }
 
-    private fun setupArguments() {
-
-    }
 
     private fun setupAdapter() {
         binding.mainRecycler.adapter = ParentSeriesAdapter(viewModel, viewLifecycleOwner)
-        val id = argument.id
-        viewModel.getSeriesById(id)
-        viewModel.getCharactersBySeriesId(id)
-        viewModel.getComicsBySeriesId(id)
-        viewModel.getStoriesBySeriesId(id)
-        viewModel.getEventsBySeriesId(id)
+    }
 
+    private fun getAllData() {
+        viewModel.getAllDataById(argument.id)
     }
 
     private fun observeEvents() {
         viewModel.characterEvent.observe(viewLifecycleOwner, EventObserver {
-            if (it != null) {
-                val nav =
-                    SeriesDetailsFragmentDirections.actionSeriesDetailsFragmentToCharacterDetailsFragment(
-                        it.id!!
-                    )
-                findNavController().navigate(nav)
-            }
+            val nav =
+                SeriesDetailsFragmentDirections.actionSeriesDetailsFragmentToCharacterDetailsFragment(
+                    it.id!!
+                )
+            findNavController().navigate(nav)
         })
 
         viewModel.eventEvent.observe(viewLifecycleOwner, EventObserver {
-            if (it != null) {
-                val nav =
-                    SeriesDetailsFragmentDirections.actionSeriesDetailsFragmentToEventsDetailsFragment(
-                        it.id!!
-                    )
-                findNavController().navigate(nav)
-            }
+            val nav =
+                SeriesDetailsFragmentDirections.actionSeriesDetailsFragmentToEventsDetailsFragment(
+                    it.id!!
+                )
+            findNavController().navigate(nav)
         })
 
         viewModel.comicEvent.observe(viewLifecycleOwner, EventObserver {
-            if (it != null) {
-                val nav =
-                    SeriesDetailsFragmentDirections.actionSeriesDetailsFragmentToComicsDetailsFragment(
-                        it.id!!
-                    )
-                findNavController().navigate(nav)
-            }
+            val nav =
+                SeriesDetailsFragmentDirections.actionSeriesDetailsFragmentToComicsDetailsFragment(
+                    it.id!!
+                )
+            findNavController().navigate(nav)
         })
 
         viewModel.storiesEvent.observe(viewLifecycleOwner, EventObserver {
-            if (it != null) {
-                val nav =
-                    SeriesDetailsFragmentDirections.actionSeriesDetailsFragmentToStoriesDetailsFragment(
-                        it.id!!
-                    )
-                findNavController().navigate(nav)
-            }
+            val nav =
+                SeriesDetailsFragmentDirections.actionSeriesDetailsFragmentToStoriesDetailsFragment(
+                    it.id!!
+                )
+            findNavController().navigate(nav)
         })
     }
 
