@@ -1,13 +1,19 @@
 package com.example.marvel_hub.data.repository
 
+import com.example.marvel_hub.data.local.entities.CharacterEntity
+import com.example.marvel_hub.data.local.entities.ComicEntity
+import com.example.marvel_hub.data.local.entities.EventEntity
+import com.example.marvel_hub.data.local.entities.SearchKeywordEntity
+import com.example.marvel_hub.data.local.entities.SeriesEntity
+import com.example.marvel_hub.data.model.BaseResponse
 import com.example.marvel_hub.data.model.CharactersModel
 import com.example.marvel_hub.data.model.ComicModel
 import com.example.marvel_hub.data.model.EventModel
 import com.example.marvel_hub.data.model.SeriesModel
 import com.example.marvel_hub.data.model.StoriesModel
-import com.example.marvel_hub.data.model.BaseResponse
 import com.example.marvel_hub.ui.home.util.HomeItem
 import io.reactivex.rxjava3.core.Completable
+import io.reactivex.rxjava3.core.Observable
 import io.reactivex.rxjava3.core.Single
 
 interface IMarvelRepository {
@@ -61,6 +67,18 @@ interface IMarvelRepository {
     fun getRandomCharacters(): Single<List<CharactersModel>>
     fun fetchHomeItems(): Single<List<HomeItem>>
 
-    fun saveSearchKeyword(keyword : String) : Completable
+    fun saveSearchKeyword(keyword: String, type: String): Completable
+    fun getSearchWithKeyword(keyword: String, type: String): Observable<List<SearchKeywordEntity>>
 
+    fun addSearchComics(comics: List<ComicEntity>): Completable
+    fun getLocalSearchComics(name: String, type: String): List<ComicEntity>
+
+    fun addSearchCharacters(character: List<CharacterEntity>): Completable
+    fun getLocalSearchCharacters(name: String, type: String): List<CharacterEntity>
+
+    fun addSearchEvents(event: List<EventEntity>): Completable
+    fun getLocalSearchEvents(name: String, type: String): List<EventEntity>
+
+    fun addSearchSeries(series: List<SeriesEntity>): Completable
+    fun getLocalSearchSeries(name: String, type: String): List<SeriesEntity>
 }

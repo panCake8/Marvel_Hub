@@ -2,7 +2,15 @@ package com.example.marvel_hub.data.repository
 
 import android.annotation.SuppressLint
 import com.example.marvel_hub.data.local.MarvelDataBase
+import com.example.marvel_hub.data.local.entities.CharacterEntity
+import com.example.marvel_hub.data.local.entities.ComicEntity
+import com.example.marvel_hub.data.local.entities.EventEntity
 import com.example.marvel_hub.data.local.entities.SearchKeywordEntity
+import com.example.marvel_hub.data.local.entities.SeriesEntity
+import com.example.marvel_hub.data.mapper.CharactersMapper
+import com.example.marvel_hub.data.mapper.ComicsMapper
+import com.example.marvel_hub.data.mapper.EventsMapper
+import com.example.marvel_hub.data.mapper.SeriesMapper
 import com.example.marvel_hub.data.model.CharactersModel
 import com.example.marvel_hub.data.model.ComicModel
 import com.example.marvel_hub.data.model.EventModel
@@ -11,13 +19,18 @@ import com.example.marvel_hub.data.remote.MarvelApiService
 import com.example.marvel_hub.ui.home.util.HomeItem
 import com.example.marvel_hub.util.Constants
 import io.reactivex.rxjava3.core.Completable
+import io.reactivex.rxjava3.core.Observable
 import io.reactivex.rxjava3.core.Single
 import io.reactivex.rxjava3.schedulers.Schedulers
 import javax.inject.Inject
 
 class MarvelRepository @Inject constructor(
     private val dao: MarvelDataBase,
-    private val API: MarvelApiService
+    private val API: MarvelApiService,
+    private val comicsMapper: ComicsMapper,
+    private val characterMapper: CharactersMapper,
+    private val eventsMapper: EventsMapper,
+    private val seriesMapper: SeriesMapper,
 ) : IMarvelRepository {
 
     override fun getAllCharacters() = API.fetchCharacters(25)
@@ -151,11 +164,157 @@ class MarvelRepository @Inject constructor(
                     HomeItem.Series(series.shuffled().take(10)),
                 )
             }
+
+        } catch (e: Exception) {
+            Single.zip(
+                getRandomSeries(),
+                getRandomComics(),
+                getRandomEvents(),
+                getRandomCharacters(),
+            ) { series: List<SeriesModel>,
+                comics: List<ComicModel>,
+                events: List<EventModel>,
+                characters: List<CharactersModel> ->
+                dao.getDao().insertCharacters(characters)
+                dao.getDao().insertComics(comics)
+                dao.getDao().insertEvents(events)
+                dao.getDao().insertSeries(series)
+                listOf(
+                    HomeItem.Banner(Constants.MARVEL_IMAGES.shuffled().take(5)),
+                    HomeItem.Character(characters.shuffled().take(10)),
+                    HomeItem.Comics(comics.shuffled().take(10)),
+                    HomeItem.Events(events.shuffled().take(10)),
+                    HomeItem.Series(series.shuffled().take(10)),
+                )
+            }
+            return Single.zip(
+                getRandomSeries(),
+                getRandomComics(),
+                getRandomEvents(),
+                getRandomCharacters(),
+            ) { series: List<SeriesModel>, comics: List<ComicModel>, events: List<EventModel>, characters: List<CharactersModel> ->
+                listOf(
+                    HomeItem.Banner(Constants.MARVEL_IMAGES.shuffled().take(5)),
+                    HomeItem.Character(characters.shuffled().take(10)),
+                    HomeItem.Comics(comics.shuffled().take(10)),
+                    HomeItem.Events(events.shuffled().take(10)),
+                    HomeItem.Series(series.shuffled().take(10)),
+                )
+            }
         }
+
     }
 
-    override fun saveSearchKeyword(keyword: String): Completable {
-        return dao.getDao().addSearchKeyword(SearchKeywordEntity(0, keyword))
+    override fun saveSearchKeyword(keyword: String, type: String): Completable {
+        return dao.getDao().addSearchKeyword(SearchKeywordEntity(0, keyword, type))
+            .subscribeOn(Schedulers.io())
     }
 
+    override fun getSearchWithKeyword(
+        keyword: String,
+        type: String
+    ): Observable<List<SearchKeywordEntity>> {
+        TODO("Not yet implemented")
+    }
+
+    override fun addSearchComics(comics: List<ComicEntity>): Completable {
+        return dao.getDao().addSearchComics(comics)
+    }
+
+    @SuppressLint("CheckResult")
+    override fun getLocalSearchComics(name: String, type: String): List<ComicEntity> {
+        var comics: List<ComicEntity>? = null
+        getSearchWithKeyword(name, type).subscribeOn(Schedulers.io()).subscribe { results ->
+            if (results.isEmpty()) {
+                searchComics(name).subscribeOn(Schedulers.io()).subscribe { data ->
+                    val list = data.data?.results?.map {
+                        comicsMapper.map(it)
+                    }
+                    dao.getDao().addSearchComics(list!!)
+                    comics = list
+                }
+            } else {
+                dao.getDao().getSearchComics().subscribeOn(Schedulers.io()).subscribe {
+                    comics = it
+                }
+            }
+        }
+        return comics ?: listOf()
+    }
+
+    override fun addSearchCharacters(character: List<CharacterEntity>): Completable {
+        return dao.getDao().addSearchCharacters(character)
+    }
+
+    @SuppressLint("CheckResult")
+    override fun getLocalSearchCharacters(name: String, type: String): List<CharacterEntity> {
+        var character: List<CharacterEntity>? = null
+        getSearchWithKeyword(name, type).subscribeOn(Schedulers.io()).subscribe { results ->
+            if (results.isEmpty()) {
+                searchCharacters(name).subscribeOn(Schedulers.io()).subscribe { data ->
+                    val list = data.data?.results?.map {
+                        characterMapper.map(it)
+                    }
+                    dao.getDao().addSearchCharacters(list!!)
+                    character = list
+                }
+            } else {
+                dao.getDao().getSearchCharacters().subscribeOn(Schedulers.io()).subscribe {
+                    character = it
+                }
+            }
+
+        }
+        return character ?: listOf()
+    }
+
+    override fun addSearchEvents(event: List<EventEntity>): Completable {
+          return dao.getDao().addSearchEvents(event)
+    }
+
+    @SuppressLint("CheckResult")
+    override fun getLocalSearchEvents(name: String, type: String): List<EventEntity> {
+        var events: List<EventEntity>? = null
+        getSearchWithKeyword(name, type).subscribeOn(Schedulers.io()).subscribe { results ->
+            if (results.isEmpty()) {
+                searchEvents(name).subscribeOn(Schedulers.io()).subscribe { data ->
+                    val list = data.data?.results?.map {
+                        eventsMapper.map(it)
+                    }
+                    dao.getDao().addSearchEvents(list!!)
+                    events = list
+                }
+            } else {
+                dao.getDao().getSearchCEvents().subscribeOn(Schedulers.io()).subscribe {
+                    events = it
+                }
+            }
+        }
+        return events ?: listOf()
+    }
+
+    override fun addSearchSeries(series: List<SeriesEntity>): Completable {
+        return dao.getDao().addSearchSeries(series)
+    }
+
+    @SuppressLint("CheckResult")
+    override fun getLocalSearchSeries(name: String, type: String): List<SeriesEntity> {
+        var series: List<SeriesEntity>? = null
+        getSearchWithKeyword(name, type).subscribeOn(Schedulers.io()).subscribe { results ->
+            if (results.isEmpty()) {
+                searchSeries(name).subscribeOn(Schedulers.io()).subscribe { data ->
+                    val list = data.data?.results?.map {
+                        seriesMapper.map(it)
+                    }
+                    dao.getDao().addSearchSeries(list!!)
+                    series = list
+                }
+            } else {
+                dao.getDao().getSearchCSeries().subscribeOn(Schedulers.io()).subscribe {
+                    series = it
+                }
+            }
+        }
+        return series ?: listOf()
+    }
 }
