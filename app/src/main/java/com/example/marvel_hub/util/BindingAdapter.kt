@@ -17,6 +17,10 @@ import com.example.marvel_hub.ui.home.adapter.HomeAdapter
 import com.example.marvel_hub.ui.home.util.HomeItem
 import com.example.marvel_hub.ui.search.SearchStatus
 import com.example.marvel_hub.ui.search.SearchViewModel
+import com.example.marvel_hub.ui.search.adapters.CharacterSearchAdapter
+import com.example.marvel_hub.ui.search.adapters.ComicsSearchAdapter
+import com.example.marvel_hub.ui.search.adapters.EventsSearchAdapter
+import com.example.marvel_hub.ui.search.adapters.SeriesSearchAdapter
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
 import io.reactivex.rxjava3.core.Observable
 import io.reactivex.rxjava3.schedulers.Schedulers
@@ -102,22 +106,22 @@ fun setSearchRecyclerAdapter(
 ) {
     when (searchStatus) {
         SearchStatus.COMIC -> {
-            val adapter = ComicsAdapter(listOf(), viewModel)
+            val adapter = ComicsSearchAdapter(listOf(), viewModel)
             view.adapter = adapter
         }
 
         SearchStatus.EVENT -> {
-            val adapter = EventsAdapter(listOf(), viewModel)
+            val adapter = EventsSearchAdapter(listOf(), viewModel)
             view.adapter = adapter
         }
 
         SearchStatus.SERIES -> {
-            val adapter = SeriesAdapter(listOf(), viewModel)
+            val adapter = SeriesSearchAdapter(listOf(), viewModel)
             view.adapter = adapter
         }
 
         else -> {
-            val adapter = CharacterAdapter(listOf(), viewModel)
+            val adapter = CharacterSearchAdapter(listOf(), viewModel)
             view.adapter = adapter
         }
     }

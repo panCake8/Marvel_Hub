@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="item"
+            type="com.example.marvel_hub.data.local.entities.EventEntity" />
+
+        <variable
+            name="listener"
+            type="com.example.marvel_hub.ui.search.listener.EventsSearchListener" />
+    </data>
+
+    <com.google.android.material.card.MaterialCardView
+        android:layout_width="@dimen/marvel_card_width"
+        android:layout_height="@dimen/marvel_card_height"
+        android:layout_marginHorizontal="@dimen/small_margin"
+        android:layout_marginVertical="@dimen/small_margin"
+        app:cardCornerRadius="@dimen/normal_corner_radius"
+        android:onClick="@{() -> listener.onEventClick(item)}"
+        >
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/card_movie"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent">
+
+            <ImageView
+                android:id="@+id/image_movie"
+                android:layout_width="@dimen/marvel_card_width"
+                android:layout_height="@dimen/marvel_card_height"
+                android:foreground="@drawable/background_bottom_linear_transparent"
+                android:scaleType="fitXY"
+                app:imageUrl="@{item.imageUrl}"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:src="@drawable/movie_photo" />
+
+            <TextView
+                android:id="@+id/text_movie_name"
+                android:layout_width="@dimen/no_width"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/medium_margin"
+                android:layout_marginEnd="@dimen/tiny_small_margin"
+                android:layout_marginBottom="@dimen/tiny_small_margin"
+                android:ellipsize="end"
+                android:fontFamily="@font/poppins_medium"
+                android:maxLines="1"
+                android:text="@{item.title}"
+                style="@style/card_title"
+                android:textColor="@color/white_100"
+                android:textSize="@dimen/body_text"
+                app:layout_constraintBottom_toTopOf="@+id/text_duration_time"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent" />
+
+            <ImageView
+                android:id="@+id/image_time_icon"
+                android:layout_width="@dimen/small_icon_width"
+                android:layout_height="@dimen/small_icon_height"
+                android:layout_marginStart="@dimen/medium_margin"
+                android:layout_marginBottom="@dimen/medium_margin"
+                android:src="@drawable/ic_timer"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toLeftOf="@id/text_duration_time" />
+
+            <TextView
+                android:id="@+id/text_duration_time"
+                android:layout_width="@dimen/no_width"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/small_margin"
+                android:layout_marginTop="@dimen/tiny_small_margin"
+                android:layout_marginEnd="@dimen/tiny_small_margin"
+                android:ellipsize="end"
+                android:fontFamily="@font/poppins"
+                android:maxLines="1"
+                android:text="@{item.modified}"
+                android:textColor="@color/white_60"
+                android:textSize="@dimen/body_text_small"
+                app:layout_constraintBottom_toBottomOf="@id/image_time_icon"
+                app:layout_constraintLeft_toRightOf="@id/image_time_icon"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toTopOf="@id/image_time_icon"
+                tools:text="24m" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </com.google.android.material.card.MaterialCardView>
+</layout>

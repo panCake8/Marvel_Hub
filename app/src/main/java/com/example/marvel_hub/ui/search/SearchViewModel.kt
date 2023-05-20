@@ -1,7 +1,12 @@
 package com.example.marvel_hub.ui.search
 
+import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
+import com.example.marvel_hub.data.local.entities.CharacterEntity
+import com.example.marvel_hub.data.local.entities.ComicEntity
+import com.example.marvel_hub.data.local.entities.EventEntity
+import com.example.marvel_hub.data.local.entities.SeriesEntity
 import com.example.marvel_hub.data.model.BaseResponse
 import com.example.marvel_hub.data.model.CharactersModel
 import com.example.marvel_hub.data.model.ComicModel
@@ -9,10 +14,10 @@ import com.example.marvel_hub.data.model.EventModel
 import com.example.marvel_hub.data.model.SeriesModel
 import com.example.marvel_hub.data.repository.IMarvelRepository
 import com.example.marvel_hub.ui.base.BaseViewModel
-import com.example.marvel_hub.ui.listeners.CharacterListener
-import com.example.marvel_hub.ui.listeners.ComicListener
-import com.example.marvel_hub.ui.listeners.EventsListener
-import com.example.marvel_hub.ui.listeners.SeriesListener
+import com.example.marvel_hub.ui.search.listener.CharacterSearchListener
+import com.example.marvel_hub.ui.search.listener.ComicSearchListener
+import com.example.marvel_hub.ui.search.listener.EventsSearchListener
+import com.example.marvel_hub.ui.search.listener.SeriesSearchListener
 import com.example.marvel_hub.util.Event
 import com.example.marvel_hub.util.State
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -23,9 +28,9 @@ import javax.inject.Inject
 @HiltViewModel
 class SearchViewModel @Inject constructor(
     private val repository: IMarvelRepository,
-) : BaseViewModel(), EventsListener,
-    ComicListener,
-    SeriesListener, CharacterListener {
+) : BaseViewModel(), EventsSearchListener,
+    ComicSearchListener,
+    SeriesSearchListener, CharacterSearchListener {
 
     private val _searchStatus =
         MutableLiveData(SearchStatus.COMIC)
@@ -38,43 +43,53 @@ class SearchViewModel @Inject constructor(
 
     val searchText = MutableLiveData<String>()
 
-    private val _comicEvent = MutableLiveData<Event<ComicModel>>()
-    val comicEvent: LiveData<Event<ComicModel>>
+    private val _comicEvent = MutableLiveData<Event<ComicEntity>>()
+    val comicEvent: LiveData<Event<ComicEntity>>
         get() = _comicEvent
 
-    private val _characterEvent = MutableLiveData<Event<CharactersModel>>()
-    val characterEvent: LiveData<Event<CharactersModel>>
+    private val _characterEvent = MutableLiveData<Event<CharacterEntity>>()
+    val characterEvent: LiveData<Event<CharacterEntity>>
         get() = _characterEvent
 
-    private val _eventEvent = MutableLiveData<Event<EventModel>>()
-    val eventEvent: LiveData<Event<EventModel>>
+    private val _eventEvent = MutableLiveData<Event<EventEntity>>()
+    val eventEvent: LiveData<Event<EventEntity>>
         get() = _eventEvent
 
-    private val _seriesEvent = MutableLiveData<Event<SeriesModel>>()
-    val seriesEvent: LiveData<Event<SeriesModel>>
+    private val _seriesEvent = MutableLiveData<Event<SeriesEntity>>()
+    val seriesEvent: LiveData<Event<SeriesEntity>>
         get() = _seriesEvent
 
 
     fun getDataBySearchText() {
         when (searchStatus.value) {
-            SearchStatus.CHARACTER -> searchText.value?.let { getCharacterData(it) }
-            SearchStatus.COMIC -> searchText.value?.let { getComicData(it) }
+            SearchStatus.CHARACTER -> {
+                saveSearchKeyword("character")
+                getCharacterData()
+            }
+
+            SearchStatus.COMIC -> {
+                saveSearchKeyword("comics")
+                getComicData()
+            }
+
             SearchStatus.SERIES -> searchText.value?.let { getSeriesData(it) }
             else -> searchText.value?.let { getEventData(it) }
         }
-        saveSearchKeyword()
     }
 
-    private fun saveSearchKeyword() {
-        searchText.value?.let { repository.saveSearchKeyword(it).subscribeOn(Schedulers.io()) }
+    private fun saveSearchKeyword(type: String) {
+        searchText.value?.let {
+            repository.saveSearchKeyword(it, type).subscribeOn(Schedulers.io())
+        }
     }
 
-    private fun getComicData(text: String) {
+    private fun getComicData() {
         _searchList.postValue(State.Loading)
-        repository.searchComics(text)
-            .addSchedulers()
-            .subscribe(::onGetComicsSuccess, ::onGetComicsError)
-            .addTo(disposable)
+        searchText.value?.let {
+            val results = repository.getLocalSearchComics(it, "comics")
+            Log.e("ahmed", results.toString())
+            _searchList.postValue(State.Success(results))
+        }
     }
 
     private fun onGetComicsSuccess(comics: BaseResponse<ComicModel>) {
@@ -119,12 +134,14 @@ class SearchViewModel @Inject constructor(
         _searchList.postValue(State.Error(throwable.message.toString()))
     }
 
-    private fun getCharacterData(text: String) {
+    private fun getCharacterData() {
         _searchList.postValue(State.Loading)
-        repository.searchCharacters(text)
-            .addSchedulers()
-            .subscribe(::onGetCharacterSuccess, ::onGetCharacterError)
-            .addTo(disposable)
+        searchText.value?.let {
+            repository.searchCharacters(it)
+                .addSchedulers()
+                .subscribe(::onGetCharacterSuccess, ::onGetCharacterError)
+                .addTo(disposable)
+        }
     }
 
     private fun onGetCharacterSuccess(character: BaseResponse<CharactersModel>) {
@@ -139,7 +156,7 @@ class SearchViewModel @Inject constructor(
 
     fun onClickComicChip() {
         _searchStatus.postValue(SearchStatus.COMIC)
-        searchText.value?.let { getComicData(it) }
+        getComicData()
     }
 
     fun onClickEventChip() {
@@ -154,22 +171,22 @@ class SearchViewModel @Inject constructor(
 
     fun onClickCharacterChip() {
         _searchStatus.postValue(SearchStatus.CHARACTER)
-        searchText.value?.let { getCharacterData(it) }
+        getCharacterData()
     }
 
-    override fun onCharacterClick(character: CharactersModel) {
+    override fun onCharacterClick(character: CharacterEntity) {
         _characterEvent.postValue(Event(character))
     }
 
-    override fun onComicClick(comic: ComicModel) {
+    override fun onComicClick(comic: ComicEntity) {
         _comicEvent.postValue(Event(comic))
     }
 
-    override fun onEventClick(event: EventModel) {
+    override fun onEventClick(event: EventEntity) {
         _eventEvent.postValue(Event(event))
     }
 
-    override fun onSeriesClick(series: SeriesModel) {
+    override fun onSeriesClick(series: SeriesEntity) {
         _seriesEvent.postValue(Event(series))
     }
 
