@@ -1,5 +1,6 @@
 package com.example.marvel_hub.data.repository
 
+import android.annotation.SuppressLint
 import com.example.marvel_hub.data.local.MarvelDataBase
 import com.example.marvel_hub.data.local.entities.SearchKeywordEntity
 import com.example.marvel_hub.data.model.CharactersModel
@@ -11,6 +12,7 @@ import com.example.marvel_hub.ui.home.util.HomeItem
 import com.example.marvel_hub.util.Constants
 import io.reactivex.rxjava3.core.Completable
 import io.reactivex.rxjava3.core.Single
+import io.reactivex.rxjava3.schedulers.Schedulers
 import javax.inject.Inject
 
 class MarvelRepository @Inject constructor(
@@ -109,6 +111,7 @@ class MarvelRepository @Inject constructor(
         return API.fetchCharacters(50).map { it.data?.results!! }
     }
 
+    @SuppressLint("CheckResult")
     override fun fetchHomeItems(): Single<List<HomeItem>> {
         return Single.zip(
             getRandomSeries(),
@@ -119,10 +122,10 @@ class MarvelRepository @Inject constructor(
             comics: List<ComicModel>,
             events: List<EventModel>,
             characters: List<CharactersModel> ->
-            dao.getDao().insertCharacters(characters)
-            dao.getDao().insertComics(comics)
-            dao.getDao().insertEvents(events)
-            dao.getDao().insertSeries(series)
+            dao.getDao().insertCharacters(characters).subscribeOn(Schedulers.io())
+            dao.getDao().insertComics(comics).subscribeOn(Schedulers.io())
+            dao.getDao().insertEvents(events).subscribeOn(Schedulers.io())
+            dao.getDao().insertSeries(series).subscribeOn(Schedulers.io())
             listOf(
                 HomeItem.Banner(Constants.MARVEL_IMAGES.shuffled().take(5)),
                 HomeItem.Character(characters.shuffled().take(10)),
