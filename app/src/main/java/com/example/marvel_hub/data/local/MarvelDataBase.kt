@@ -5,6 +5,7 @@ import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
 import com.example.marvel_hub.data.local.dao.MarvelDao
+import com.example.marvel_hub.data.local.entities.BannerEntity
 import com.example.marvel_hub.data.local.entities.CharacterEntity
 import com.example.marvel_hub.data.local.entities.ComicEntity
 import com.example.marvel_hub.data.local.entities.EventEntity
@@ -13,8 +14,17 @@ import com.example.marvel_hub.data.local.entities.SeriesEntity
 import com.example.marvel_hub.data.local.entities.StoriesEntity
 
 @Database(
-    entities = [CharacterEntity::class, ComicEntity::class, EventEntity::class, SeriesEntity::class, StoriesEntity::class, SearchKeywordEntity::class],
-    version = 1
+    entities = [
+        CharacterEntity::class,
+        ComicEntity::class,
+        EventEntity::class,
+        SeriesEntity::class,
+        StoriesEntity::class,
+        SearchKeywordEntity::class,
+        BannerEntity::class,
+    ],
+    version = 1,
+    exportSchema = false
 )
 abstract class MarvelDataBase : RoomDatabase() {
 

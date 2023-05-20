@@ -1,5 +1,6 @@
 package com.example.marvel_hub.data.model
 
+
 data class ComicModel(
     val description: String? = null,
     val title: String? = null,

@@ -1,6 +1,8 @@
 package com.example.marvel_hub.data.repository
 
 import com.example.marvel_hub.data.local.MarvelDataBase
+import com.example.marvel_hub.data.local.entities.CharacterEntity
+import com.example.marvel_hub.data.local.entities.ComicEntity
 import com.example.marvel_hub.data.local.entities.SearchKeywordEntity
 import com.example.marvel_hub.data.model.CharactersModel
 import com.example.marvel_hub.data.model.ComicModel
@@ -15,7 +17,7 @@ import javax.inject.Inject
 
 class MarvelRepository @Inject constructor(
     private val dao: MarvelDataBase,
-    private val API : MarvelApiService
+    private val API: MarvelApiService
 ) : IMarvelRepository {
 
     override fun getAllCharacters() = API.fetchCharacters(25)
@@ -97,6 +99,10 @@ class MarvelRepository @Inject constructor(
         return API.fetchComics(50).map { it.data?.results!! }
     }
 
+    private fun insertRandomComics(comics: List<ComicEntity>) {
+        dao.getDao().insertComics(comics)
+    }
+
     override fun getRandomEvents(): Single<List<EventModel>> {
         return API.fetchEvents(50).map { it.data?.results!! }
     }
@@ -126,6 +132,7 @@ class MarvelRepository @Inject constructor(
                 HomeItem.Events(events.shuffled().take(10)),
                 HomeItem.Series(series.shuffled().take(10)),
             )
+
         }
     }
 
