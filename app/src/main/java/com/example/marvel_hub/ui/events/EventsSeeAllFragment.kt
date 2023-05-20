@@ -9,7 +9,9 @@ import com.example.marvel_hub.databinding.FragmentEventsSeeAllBinding
 import com.example.marvel_hub.ui.base.BaseFragment
 import com.example.marvel_hub.ui.events.adapter.EventsSeeAllAdapter
 import com.example.marvel_hub.util.EventObserver
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class EventsSeeAllFragment :
     BaseFragment<FragmentEventsSeeAllBinding, EventsViewModel>() {
     override val viewModel: EventsViewModel by viewModels()

@@ -10,7 +10,9 @@ import com.example.marvel_hub.databinding.FragmentStoriesDetailsBinding
 import com.example.marvel_hub.ui.base.BaseFragment
 import com.example.marvel_hub.ui.details.stories.adapter.ParentStoriesDetailsAdapter
 import com.example.marvel_hub.util.EventObserver
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class StoriesDetailsFragment :
     BaseFragment<FragmentStoriesDetailsBinding, StoriesDetailsViewModel>() {
 

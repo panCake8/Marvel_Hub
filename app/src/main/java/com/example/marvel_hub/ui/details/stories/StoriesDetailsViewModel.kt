@@ -8,6 +8,7 @@ import com.example.marvel_hub.data.model.ComicModel
 import com.example.marvel_hub.data.model.EventModel
 import com.example.marvel_hub.data.model.SeriesModel
 import com.example.marvel_hub.data.model.StoriesModel
+import com.example.marvel_hub.data.repository.IMarvelRepository
 import com.example.marvel_hub.ui.base.BaseViewModel
 import com.example.marvel_hub.ui.listeners.CharacterListener
 import com.example.marvel_hub.ui.listeners.ComicListener
@@ -15,11 +16,13 @@ import com.example.marvel_hub.ui.listeners.EventsListener
 import com.example.marvel_hub.ui.listeners.SeriesListener
 import com.example.marvel_hub.util.Event
 import com.example.marvel_hub.util.State
-import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
+import dagger.hilt.android.lifecycle.HiltViewModel
 import io.reactivex.rxjava3.kotlin.addTo
-import io.reactivex.rxjava3.schedulers.Schedulers
-
-class StoriesDetailsViewModel : BaseViewModel(), EventsListener, CharacterListener, ComicListener,
+import javax.inject.Inject
+@HiltViewModel
+class StoriesDetailsViewModel @Inject constructor(
+    private val repository: IMarvelRepository,
+): BaseViewModel(), EventsListener, CharacterListener, ComicListener,
     SeriesListener {
 
     private val _story =
@@ -79,7 +82,7 @@ class StoriesDetailsViewModel : BaseViewModel(), EventsListener, CharacterListen
 
     private fun getStoryById(storyId: Int) =
         repository.getStoryById(storyId)
-            .applySchedulers()
+            .addSchedulers()
             .subscribe(::storyOnSuccess, ::storyOnError).addTo(disposable)
 
     private fun storyOnSuccess(story: BaseResponse<StoriesModel>) {
@@ -93,7 +96,7 @@ class StoriesDetailsViewModel : BaseViewModel(), EventsListener, CharacterListen
 
     private fun getCharactersByStoryId(storyId: Int) =
         repository.getCharactersByStoryId(storyId)
-            .applySchedulers()
+            .addSchedulers()
             .subscribe(::charactersOnSuccess, ::charactersOnError).addTo(disposable)
 
     private fun charactersOnSuccess(characters: BaseResponse<CharactersModel>) {
@@ -107,7 +110,7 @@ class StoriesDetailsViewModel : BaseViewModel(), EventsListener, CharacterListen
 
     private fun getComicsByStoryId(storyId: Int) =
         repository.getComicsByStoryId(storyId)
-            .applySchedulers()
+            .addSchedulers()
             .subscribe(this::comicOnSuccess, this::comicOnError)
             .addTo(disposable)
 
@@ -122,7 +125,7 @@ class StoriesDetailsViewModel : BaseViewModel(), EventsListener, CharacterListen
 
     private fun getSeriesByStoryId(storyId: Int) =
         repository.getSeriesByStoryId(storyId)
-            .applySchedulers()
+            .addSchedulers()
             .subscribe(this::seriesOnSuccess, this::seriesOnError)
             .addTo(disposable)
 
@@ -137,7 +140,7 @@ class StoriesDetailsViewModel : BaseViewModel(), EventsListener, CharacterListen
 
     private fun getEventsByStoryId(storyId: Int) =
         repository.getEventsByStoryId(storyId)
-            .applySchedulers()
+            .addSchedulers()
             .subscribe(this::eventOnSuccess, this::eventOnError)
             .addTo(disposable)
 

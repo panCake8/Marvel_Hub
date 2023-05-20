@@ -8,6 +8,7 @@ import com.example.marvel_hub.data.model.ComicModel
 import com.example.marvel_hub.data.model.EventModel
 import com.example.marvel_hub.data.model.SeriesModel
 import com.example.marvel_hub.data.model.StoriesModel
+import com.example.marvel_hub.data.repository.IMarvelRepository
 import com.example.marvel_hub.ui.base.BaseViewModel
 import com.example.marvel_hub.ui.listeners.CharacterListener
 import com.example.marvel_hub.ui.listeners.EventsListener
@@ -15,11 +16,13 @@ import com.example.marvel_hub.ui.listeners.SeriesListener
 import com.example.marvel_hub.ui.listeners.StoryListener
 import com.example.marvel_hub.util.Event
 import com.example.marvel_hub.util.State
-import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
+import dagger.hilt.android.lifecycle.HiltViewModel
 import io.reactivex.rxjava3.kotlin.addTo
-import io.reactivex.rxjava3.schedulers.Schedulers
-
-class ComicsDetailsViewModel
+import javax.inject.Inject
+@HiltViewModel
+class ComicsDetailsViewModel @Inject constructor(
+    private val repository: IMarvelRepository,
+)
     : BaseViewModel(), EventsListener, SeriesListener, StoryListener, CharacterListener {
     private val _comics =
         MutableLiveData<State<ComicModel>>(State.Loading)
@@ -73,7 +76,7 @@ class ComicsDetailsViewModel
 
     private fun getComicById(comicId: Int) =
         repository.getComicById(comicId)
-            .applySchedulers()
+            .addSchedulers()
             .subscribe(::comicOnSuccess, ::comicOnError)
             .addTo(disposable)
 
@@ -87,7 +90,7 @@ class ComicsDetailsViewModel
 
     private fun getCharacterByComicId(comicId: Int) =
         repository.getCharactersByComicId(comicId)
-            .applySchedulers()
+            .addSchedulers()
             .subscribe(::characterOnSuccess, ::characterOnError)
             .addTo(disposable)
 
@@ -101,7 +104,7 @@ class ComicsDetailsViewModel
 
     private fun getSeriesByComicId(characterId: Int) =
         repository.getSeriesByCharacterId(characterId)
-            .applySchedulers()
+            .addSchedulers()
             .subscribe(::seriesOnSuccess, ::seriesOnError)
             .addTo(disposable)
 
@@ -115,7 +118,7 @@ class ComicsDetailsViewModel
 
     private fun getEventsByByComicId(characterId: Int) =
         repository.getEventsByCharacterId(characterId)
-            .applySchedulers()
+            .addSchedulers()
             .subscribe(::eventsOnSuccess, ::eventsOnError)
             .addTo(disposable)
 
@@ -129,7 +132,7 @@ class ComicsDetailsViewModel
 
     private fun getStoriesByComicById(characterId: Int) =
         repository.getStoriesByCharacterId(characterId)
-            .applySchedulers()
+            .addSchedulers()
             .subscribe(::storiesOnSuccess, ::storiesOnError)
             .addTo(disposable)
 

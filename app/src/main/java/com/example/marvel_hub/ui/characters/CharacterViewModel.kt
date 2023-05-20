@@ -4,13 +4,18 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.example.marvel_hub.data.model.BaseResponse
 import com.example.marvel_hub.data.model.CharactersModel
+import com.example.marvel_hub.data.repository.IMarvelRepository
 import com.example.marvel_hub.ui.base.BaseViewModel
 import com.example.marvel_hub.ui.listeners.CharacterListener
 import com.example.marvel_hub.util.Event
 import com.example.marvel_hub.util.State
+import dagger.hilt.android.lifecycle.HiltViewModel
 import io.reactivex.rxjava3.kotlin.addTo
-
-class CharacterViewModel : BaseViewModel(), CharacterListener {
+import javax.inject.Inject
+@HiltViewModel
+class CharacterViewModel @Inject constructor(
+    private val repository: IMarvelRepository,
+): BaseViewModel(), CharacterListener {
 
     private val _character = MutableLiveData<State<CharactersModel?>>(State.Loading)
     val character: LiveData<State<CharactersModel?>>
@@ -25,7 +30,7 @@ class CharacterViewModel : BaseViewModel(), CharacterListener {
 
     private fun getAllCharacters() {
         repository.getAllCharacters()
-            .applySchedulers()
+            .addSchedulers()
             .subscribe(::onSuccess, ::onError)
             .addTo(compositeDisposable = disposable)
     }

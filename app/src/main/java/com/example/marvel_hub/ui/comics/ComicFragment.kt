@@ -9,7 +9,9 @@ import com.example.marvel_hub.databinding.FragmentComicsBinding
 import com.example.marvel_hub.ui.adapters.ComicsAdapter
 import com.example.marvel_hub.ui.base.BaseFragment
 import com.example.marvel_hub.util.EventObserver
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class ComicFragment : BaseFragment<FragmentComicsBinding, ComicViewModel>() {
 
     override val viewModel: ComicViewModel by viewModels()

@@ -7,6 +7,7 @@ import com.example.marvel_hub.data.model.CharactersModel
 import com.example.marvel_hub.data.model.ComicModel
 import com.example.marvel_hub.data.model.EventModel
 import com.example.marvel_hub.data.model.SeriesModel
+import com.example.marvel_hub.data.repository.IMarvelRepository
 import com.example.marvel_hub.ui.base.BaseViewModel
 import com.example.marvel_hub.ui.listeners.CharacterListener
 import com.example.marvel_hub.ui.listeners.ComicListener
@@ -14,9 +15,13 @@ import com.example.marvel_hub.ui.listeners.EventsListener
 import com.example.marvel_hub.ui.listeners.SeriesListener
 import com.example.marvel_hub.util.Event
 import com.example.marvel_hub.util.State
+import dagger.hilt.android.lifecycle.HiltViewModel
 import io.reactivex.rxjava3.kotlin.addTo
-
-class SearchViewModel : BaseViewModel(), EventsListener,
+import javax.inject.Inject
+@HiltViewModel
+class SearchViewModel @Inject constructor(
+    private val repository: IMarvelRepository,
+): BaseViewModel(), EventsListener,
     ComicListener,
     SeriesListener, CharacterListener {
 
@@ -57,10 +62,14 @@ class SearchViewModel : BaseViewModel(), EventsListener,
         }
     }
 
+  private fun saveSearchKeyword(){
+
+  }
+
   private  fun getComicData(text: String) {
         _searchList.postValue(State.Loading)
         repository.searchComics(text)
-            .applySchedulers()
+            .addSchedulers()
             .subscribe(::onGetComicsSuccess, ::onGetComicsError)
             .addTo(disposable)
     }
@@ -76,7 +85,7 @@ class SearchViewModel : BaseViewModel(), EventsListener,
     private  fun getSeriesData(text: String) {
         _searchList.postValue(State.Loading)
         repository.searchSeries(text)
-            .applySchedulers()
+            .addSchedulers()
             .subscribe(::onGetSeriesSuccess, ::onGetSeriesError)
             .addTo(disposable)
     }
@@ -93,7 +102,7 @@ class SearchViewModel : BaseViewModel(), EventsListener,
     private  fun getEventData(text: String) {
         _searchList.postValue(State.Loading)
         repository.searchEvents(text)
-            .applySchedulers()
+            .addSchedulers()
             .subscribe(::onGetEventSuccess, ::onGetEventError)
             .addTo(disposable)
     }
@@ -110,7 +119,7 @@ class SearchViewModel : BaseViewModel(), EventsListener,
     private    fun getCharacterData(text: String) {
         _searchList.postValue(State.Loading)
         repository.searchCharacters(text)
-            .applySchedulers()
+            .addSchedulers()
             .subscribe(::onGetCharacterSuccess, ::onGetCharacterError)
             .addTo(disposable)
     }

@@ -4,15 +4,19 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.example.marvel_hub.data.model.BaseResponse
 import com.example.marvel_hub.data.model.SeriesModel
-import com.example.marvel_hub.util.State
+import com.example.marvel_hub.data.repository.IMarvelRepository
 import com.example.marvel_hub.ui.base.BaseViewModel
 import com.example.marvel_hub.ui.listeners.SeriesListener
 import com.example.marvel_hub.util.Event
-import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
+import com.example.marvel_hub.util.State
+import dagger.hilt.android.lifecycle.HiltViewModel
 import io.reactivex.rxjava3.kotlin.addTo
-import io.reactivex.rxjava3.schedulers.Schedulers
+import javax.inject.Inject
 
-class SeriesViewModel : BaseViewModel(), SeriesListener {
+@HiltViewModel
+class SeriesViewModel @Inject constructor(
+    private val repository: IMarvelRepository,
+) : BaseViewModel(), SeriesListener {
 
     private val _series = MutableLiveData<State<SeriesModel>>(State.Loading)
     val series: LiveData<State<SeriesModel>>
@@ -28,7 +32,7 @@ class SeriesViewModel : BaseViewModel(), SeriesListener {
 
     private fun getAllSeries() {
         repository.getAllSeries()
-            .applySchedulers()
+            .addSchedulers()
             .subscribe(::onSuccess, ::onFail)
             .addTo(compositeDisposable = disposable)
     }

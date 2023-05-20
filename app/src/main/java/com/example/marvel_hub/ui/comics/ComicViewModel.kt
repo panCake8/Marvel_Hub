@@ -4,15 +4,18 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.example.marvel_hub.data.model.BaseResponse
 import com.example.marvel_hub.data.model.ComicModel
+import com.example.marvel_hub.data.repository.IMarvelRepository
 import com.example.marvel_hub.util.State
 import com.example.marvel_hub.ui.base.BaseViewModel
 import com.example.marvel_hub.ui.listeners.ComicListener
 import com.example.marvel_hub.util.Event
-import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
+import dagger.hilt.android.lifecycle.HiltViewModel
 import io.reactivex.rxjava3.kotlin.addTo
-import io.reactivex.rxjava3.schedulers.Schedulers
-
-class ComicViewModel : BaseViewModel(), ComicListener {
+import javax.inject.Inject
+@HiltViewModel
+class ComicViewModel @Inject constructor(
+    private val repository: IMarvelRepository,
+): BaseViewModel(), ComicListener {
 
     private val _comic = MutableLiveData<State<ComicModel>>(State.Loading)
     val comic: LiveData<State<ComicModel>>
@@ -28,7 +31,7 @@ class ComicViewModel : BaseViewModel(), ComicListener {
 
     private fun getComics() {
         repository.getAllComics()
-            .applySchedulers()
+            .addSchedulers()
             .subscribe(::onSuccess, ::onFailed)
             .addTo(compositeDisposable = disposable)
     }

@@ -9,7 +9,9 @@ import com.example.marvel_hub.databinding.FragmentCharactersBinding
 import com.example.marvel_hub.ui.adapters.CharacterAdapter
 import com.example.marvel_hub.ui.base.BaseFragment
 import com.example.marvel_hub.util.EventObserver
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class CharacterFragment : BaseFragment<FragmentCharactersBinding, CharacterViewModel>() {
 
     override val viewModel: CharacterViewModel by viewModels()

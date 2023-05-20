@@ -11,7 +11,9 @@ import com.example.marvel_hub.ui.base.BaseFragment
 import com.example.marvel_hub.ui.details.comics.ComicsDetailsFragmentArgs
 import com.example.marvel_hub.ui.details.events.adapter.ParentEventsAdapter
 import com.example.marvel_hub.util.EventObserver
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class EventsDetailsFragment : BaseFragment<FragmentEventsDetailsBinding, EventsDetailsViewModel>() {
 
     override val viewModel: EventsDetailsViewModel by viewModels()

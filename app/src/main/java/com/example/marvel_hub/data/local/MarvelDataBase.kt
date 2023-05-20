@@ -8,11 +8,12 @@ import com.example.marvel_hub.data.local.dao.MarvelDao
 import com.example.marvel_hub.data.local.entities.CharacterEntity
 import com.example.marvel_hub.data.local.entities.ComicEntity
 import com.example.marvel_hub.data.local.entities.EventEntity
+import com.example.marvel_hub.data.local.entities.SearchKeywordEntity
 import com.example.marvel_hub.data.local.entities.SeriesEntity
 import com.example.marvel_hub.data.local.entities.StoriesEntity
 
 @Database(
-    entities = [CharacterEntity::class, ComicEntity::class, EventEntity::class, SeriesEntity::class, StoriesEntity::class],
+    entities = [CharacterEntity::class, ComicEntity::class, EventEntity::class, SeriesEntity::class, StoriesEntity::class, SearchKeywordEntity::class],
     version = 1
 )
 abstract class MarvelDataBase : RoomDatabase() {

@@ -10,7 +10,9 @@ import com.example.marvel_hub.databinding.FragmentSeriesDetailsBinding
 import com.example.marvel_hub.ui.base.BaseFragment
 import com.example.marvel_hub.ui.details.series.adapter.ParentSeriesAdapter
 import com.example.marvel_hub.util.EventObserver
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class SeriesDetailsFragment : BaseFragment<FragmentSeriesDetailsBinding, SeriesDetailsViewModel>() {
 
     override val viewModel: SeriesDetailsViewModel by viewModels()
