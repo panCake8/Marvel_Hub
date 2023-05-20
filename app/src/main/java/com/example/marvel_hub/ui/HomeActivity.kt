@@ -9,7 +9,9 @@ import androidx.navigation.ui.setupWithNavController
 import com.example.marvel_hub.R
 import com.example.marvel_hub.databinding.ActivityHomeBinding
 import com.example.marvel_hub.ui.base.BaseActivity
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class HomeActivity : BaseActivity<ActivityHomeBinding>() {
     private lateinit var navController: NavController
     override val layoutId: Int

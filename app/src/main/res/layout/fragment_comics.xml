@@ -7,7 +7,7 @@
 
         <variable
             name="viewModel"
-            type="com.example.marvel_hub.ui.comics.viewModel.ComicViewModel" />
+            type="com.example.marvel_hub.ui.comics.ComicViewModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
