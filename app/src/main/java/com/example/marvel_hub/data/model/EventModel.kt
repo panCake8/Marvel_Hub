@@ -8,7 +8,7 @@ data class EventModel(
     val title: String? = null,
     @PrimaryKey(autoGenerate = false) val id: Int? = null,
     val description: String? = null,
-    val thumbnail: Thumbnail? = Thumbnail(),
+    val thumbnail: Thumbnail? = null,
     val start: String? = null,
     val end: String? = null,
     val modified: String? = null,

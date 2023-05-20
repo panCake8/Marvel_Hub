@@ -4,6 +4,7 @@ import android.content.Context
 import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
+import androidx.room.TypeConverters
 import com.example.marvel_hub.data.local.dao.MarvelDao
 import com.example.marvel_hub.data.local.entities.BannerEntity
 import com.example.marvel_hub.data.local.entities.CharacterEntity
@@ -16,7 +17,10 @@ import com.example.marvel_hub.data.model.CharactersModel
 import com.example.marvel_hub.data.model.ComicModel
 import com.example.marvel_hub.data.model.EventModel
 import com.example.marvel_hub.data.model.SeriesModel
+import com.example.marvel_hub.data.util.InfoConverter
+import com.example.marvel_hub.data.util.ThumbnailConverter
 
+@TypeConverters(ThumbnailConverter::class, InfoConverter::class)
 @Database(
     entities = [
         CharacterEntity::class,
@@ -32,7 +36,7 @@ import com.example.marvel_hub.data.model.SeriesModel
         EventModel::class,
     ],
     version = 1,
-    exportSchema = false
+    exportSchema = false,
 )
 abstract class MarvelDataBase : RoomDatabase() {
 

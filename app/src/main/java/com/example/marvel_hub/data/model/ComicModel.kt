@@ -9,8 +9,7 @@ data class ComicModel(
     val title: String? = null,
     val modified: String? = null,
    @PrimaryKey(autoGenerate = false) val id: Int? = null,
-    val thumbnail: Thumbnail? = Thumbnail(),
+    val thumbnail: Thumbnail? = null,
     val name: String? = null,
     val pageCount: Int,
-    val prices: List<PricesItemModel?>? = null,
 )

@@ -8,7 +8,7 @@ data class SeriesModel(
     @PrimaryKey(autoGenerate = false) val id: Int? = null,
     val title: String? = null,
     val description: String? = null,
-    val thumbnail: Thumbnail? = Thumbnail(),
+    val thumbnail: Thumbnail? = null,
     val rating: String? = null,
     val startYear: String? = null,
     val endYear: String? = null,

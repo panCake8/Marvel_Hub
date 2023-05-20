@@ -32,24 +32,24 @@ interface MarvelDao {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     fun insertCharacters(characters: List<CharactersModel>): Completable
 
-    @Query("SELECT * FROM CharacterEntity")
+    @Query("SELECT * FROM CharactersModel")
     fun getAllCharacters(): Single<List<CharactersModel>>
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     fun insertComics(comics: List<ComicModel>): Completable
 
-    @Query("SELECT * FROM ComicEntity")
+    @Query("SELECT * FROM ComicModel")
     fun getAllComics(): Single<List<ComicModel>>
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     fun insertEvents(events: List<EventModel>): Completable
 
-    @Query("SELECT * FROM EventEntity")
+    @Query("SELECT * FROM EventModel")
     fun getAllEvents(): Single<List<EventModel>>
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     fun insertSeries(series: List<SeriesModel>): Completable
 
-    @Query("SELECT * FROM SeriesEntity")
+    @Query("SELECT * FROM SeriesModel")
     fun getAllSeries(): Single<List<SeriesModel>>
 }
